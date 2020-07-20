@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fnt.model.dto.MemberDto;
   
 
 @WebServlet("/LoginCrudController")
@@ -29,6 +31,15 @@ public class LoginCrudController extends HttpServlet {
 		
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
+		
+		
+		if(command.equals("login")) {
+			String memberid = request.getParameter("id");
+			String memberpw = request.getParameter("pw");
+			
+			
+			
+		}
 	}
 
 }
