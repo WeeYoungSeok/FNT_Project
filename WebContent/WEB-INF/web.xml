@@ -3,13 +3,5 @@
   <display-name>FNT_Project</display-name>
   <welcome-file-list>
     <welcome-file>fntmain.html</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <servlet-name>fntcontroller</servlet-name>
-    <servlet-class>com.fnt.controller.FntController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>fntcontroller</servlet-name>
-    <url-pattern>/fnt.do</url-pattern>
-  </servlet-mapping>
+  </welcome-file-list> 
 </web-app>
