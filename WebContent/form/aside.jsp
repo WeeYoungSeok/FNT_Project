@@ -36,12 +36,14 @@
 		background-color: black;
 		color: white;
 		font-weight: bold;
+		cursor: pointer;
 	}
 	
 	p {
 		text-align: left;
 		padding-left: 40px;
 		font: 16pt "Arial";
+		
 	}
 	
 </style>
