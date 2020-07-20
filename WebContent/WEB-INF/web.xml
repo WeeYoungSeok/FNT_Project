@@ -12,4 +12,22 @@
     <servlet-name>fntcontroller</servlet-name>
     <url-pattern>/fnt.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>mypagecontroller</servlet-name>
+  	<servlet-class>com.fnt.controller.MypageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>mypagecontroller</servlet-name>
+  	<url-pattern>/mypage.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>admincontroller</servlet-name>
+  	<servlet-class>com.fnt.controller.AdminpageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>admincontroller</servlet-name>
+  	<url-pattern>/admin.do</url-pattern>
+  </servlet-mapping>
 </web-app>
