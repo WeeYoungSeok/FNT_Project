@@ -73,7 +73,7 @@
 			<a id="loginmsg">님, 환영합니다 ;D</a>
 			
 			<!-- 알림 -->
-			<a href="">
+			<a href="mypage.do?command=alert">
 				<img id="alertbell" alt="alert" src="./img/bell.png"/>
 			</a>
 			

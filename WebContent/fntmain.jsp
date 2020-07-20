@@ -16,8 +16,6 @@
 	<%@ include file="./form/aside.jsp" %>
 	<section>
 		
-		<h1>EXAMPLE</h1>
-		
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>
