@@ -9,26 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	* { margin: 0px; padding: 0px; }
-	.fnt_logo { margin-top: 20px; text-align: center; }
-	img { width: 180px; height: 80px; }
-	form { margin-left: 180px; }
-	p { color: red; }
-	tr { height: 30px; font-family: "Arial"; }
-	th { width: 140px; background-color: #dddddd; text-align: left; padding-left: 16px; }
-	input { width: 700px; height: 30px; padding-left: 10px; border: none; }
-	button { cursor: pointer; margin-left: 310px; width: 300px; height: 40px; background-color: #fee500;
-			 color: white; font-size: 14pt; font-weight: bold; border: none; }
-</style>
+<link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
 	<div class="fnt_logo">
 		<img src="./img/fnt_logo.png"/>
-	</div>
-	
-	<br/>
+	</div><br/>
 	
 	<form action="" method="post">
 		<table>
@@ -71,8 +58,8 @@
 				<th>Email</th>
 				<td><input type="text" name="memberemail" placeholder="이메일을 입력해주세요." required="required"/></td>
 			</tr>
-		</table>
-		<br/>
+		</table><br/>
+		
 		<button type="submit">Sign Up</button>
 	</form>
 
