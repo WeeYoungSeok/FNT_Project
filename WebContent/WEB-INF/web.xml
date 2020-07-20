@@ -14,4 +14,14 @@
     <url-pattern>/notice.do</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>logioncrud</servlet-name>
+    <servlet-class>com.fnt.controller.LogionCrudController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logioncrud</servlet-name>
+    <url-pattern>/logincrud.do</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
