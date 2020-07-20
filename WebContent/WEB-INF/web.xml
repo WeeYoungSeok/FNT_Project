@@ -5,11 +5,11 @@
     <welcome-file>fntmain.html</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>fntcontroller</servlet-name>
-    <servlet-class>com.fnt.controller.FntController</servlet-class>
+    <servlet-name>logioncrudcontroller</servlet-name>
+    <servlet-class>com.fnt.controller.LogionCrudController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>fntcontroller</servlet-name>
-    <url-pattern>/fnt.do</url-pattern>
+    <servlet-name>logioncrudcontroller</servlet-name>
+    <url-pattern>/logincrud.do</url-pattern>
   </servlet-mapping>
 </web-app>
