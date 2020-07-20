@@ -6,29 +6,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-  
 
-@WebServlet("/LoginCrudController")
-public class LoginCrudController extends HttpServlet {
+
+@WebServlet("/MypageController")
+public class MypageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
-    public LoginCrudController() {
-    	 
+
+    public MypageController() {
+
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
+		doGet(request, response);
 
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		String command = request.getParameter("command");
-		System.out.println("[" + command + "]");
+		response.setContentType("text/html; charset=UTF-8"); 
 	}
 
 }
