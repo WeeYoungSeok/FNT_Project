@@ -1,6 +1,9 @@
 package com.fnt.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/NoticeController")
+@WebServlet("/notice.do")
 public class NoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,7 +29,28 @@ public class NoticeController extends HttpServlet {
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
 		
-		
+		if (command.equals("notice")) {
+			response.sendRedirect("fntnotice.jsp");
+		} else if (command.equals("insert")) {
+			response.sendRedirect("fntnoticeinsert.jsp");
+		}
+	}
+	
+	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatch = request.getRequestDispatcher(url);
+
+		dispatch.forward(request, response);
+	}
+	
+	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
+
+		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href = '" + url + "';"
+				+ "</script>";
+
+		PrintWriter out = response.getWriter();
+		out.append(s);
 	}
 
 }

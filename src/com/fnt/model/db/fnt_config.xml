@@ -5,6 +5,15 @@
 
 	<properties resource="com/fnt/model/db/fntdb.properties"></properties>
 
+	<typeAliases>
+		<typeAlias type="com.fnt.model.dto.NoticeBoardDto" alias="NBdto"/>
+		<typeAlias type="com.fnt.model.dto.AlertDto" alias="alertdto"/>
+		<typeAlias type="com.fnt.model.dto.OrderlistDto" alias="orderlistdto"/>
+		<typeAlias type="com.fnt.model.dto.ReportDto" alias="reportdto"/>
+		<typeAlias type="com.fnt.model.dto.WishlistDto" alias="wishlistdto"/>
+	</typeAliases>
+	
+	
 
 	<environments default="development">
 		<environment id="development">
@@ -17,5 +26,13 @@
 			</dataSource>
 		</environment>
 	</environments>
+	
+	<mappers>
+  		<mapper resource="com/fnt/model/db/NoticeBoardMapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/alertmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/orderlistmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/wishlistmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/reportmapper.xml"/>
+  </mappers>
 
 </configuration>
