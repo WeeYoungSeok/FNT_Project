@@ -1,7 +1,8 @@
-package com.fnt.model.biz;
+package com.fnt.model.biz.impl;
 
+import com.fnt.model.biz.NoticeBoardBiz;
 import com.fnt.model.dao.NoticeBoardDao;
-import com.fnt.model.dao.NoticeBoardDaoImpl;
+import com.fnt.model.dao.impl.NoticeBoardDaoImpl;
 import com.fnt.model.dto.NoticeBoardDto;
 
 public class NoticeBoardBizImpl implements NoticeBoardBiz {

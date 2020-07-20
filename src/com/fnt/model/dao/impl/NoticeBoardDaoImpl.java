@@ -1,7 +1,8 @@
-package com.fnt.model.dao;
+package com.fnt.model.dao.impl;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.fnt.model.dao.NoticeBoardDao;
 import com.fnt.model.dto.NoticeBoardDto;
 import static com.fnt.model.dao.SqlMapConfig.*;
 
