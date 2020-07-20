@@ -6,19 +6,29 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+  
 
- 
-@WebServlet("/DealBoardController")
-public class DealBoardController extends HttpServlet {
+@WebServlet("/LoginCrudController")
+public class LoginCrudController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+  
+    public LoginCrudController() {
+
+    }
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		doPost(request, response);
 	}
- 
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String command = request.getParameter("command");
+		System.out.println("[" + command + "]");
 	}
- 
+
 }
