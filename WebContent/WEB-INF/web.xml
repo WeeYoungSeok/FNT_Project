@@ -4,24 +4,4 @@
   <welcome-file-list>
     <welcome-file>fntmain.html</welcome-file>
   </welcome-file-list>
-  
-  <servlet>
-    <servlet-name>noticecontroller</servlet-name>
-    <servlet-class>com.fnt.controller.NoticeController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>noticecontroller</servlet-name>
-    <url-pattern>/notice.do</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-    <servlet-name>logioncrud</servlet-name>
-    <servlet-class>com.fnt.controller.LogionCrudController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>logioncrud</servlet-name>
-    <url-pattern>/logincrud.do</url-pattern>
-  </servlet-mapping>
-  
-  
 </web-app>
