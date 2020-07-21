@@ -8,8 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css"> * {margin: 0px; padding: 0px;} section {padding-top: 90px; padding-left: 240px;} </style>
+<title>FNT - Main</title>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<%@ include file="./form/header.jsp" %>

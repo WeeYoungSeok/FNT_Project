@@ -8,45 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-
-	* {
-		margin: 0px;
-		padding: 0px;
-	}
-
-	aside {
-		position: fixed;
-		align: left;
-		top: 90px;
-		height: 100%;
-		background-color: #fee500;
-		box-shadow: 1px 0px 6px #ccc;
-		z-index: 2;
-	}
-	
-	.menubar {
-		padding-top: 24px;
-		background-color: #fee500;
-		width: 200px;
-		height: 50px;
-	}
-	
-	.menubar:hover {
-		background-color: black;
-		color: white;
-		font-weight: bold;
-		cursor: pointer;
-	}
-	
-	p {
-		text-align: left;
-		padding-left: 40px;
-		font: 16pt "Arial";
-		
-	}
-	
-</style>
+<link href="css/aside.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 

@@ -8,34 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-
-	* {
-		margin: 0px;
-		padding: 0px;
-	}
-	
-	footer {
-		position: fixed;
-		bottom: 0px;
-		width: 100%;
-		background-color: #dddddd;
-		box-shadow: 0px -1px 4px #ccc;
-		height: 30px;
-		z-index: 3;
-	}
-	
-	div {
-		padding: 6px;
-	}
-	
-	.foot {
-		text-align: center;
-		font: 12pt "Arial";
-		color: white;
-	}
-
-</style>
+<link href="css/footer.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 

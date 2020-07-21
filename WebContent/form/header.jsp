@@ -8,61 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-
-	* {
-		margin: 0px;
-		padding: 0px;
-	}
-
-	header {
-		position: fixed;
-		background-color: white;
-		width: 100%;
-		height: 90px;
-		box-shadow: 0px 1px 10px #ccc;
-		z-index: 4;
-	}
-	
-	.mysection {
-		float: right;
-		margin-top: 36px;
-		display: flex;
-		flex-decoration: row;
-	}
-	
-	#trans {
-		margin-right: 40px;
-		font: 12pt "Arial";
-		font-weight: bold;	
-	}
-	
-	#alertbell {
-		width: 20px;
-		height: 20px;
-		margin-right: 10px;
-	}
-	
-	#loginmsg {
-		font: 12pt "Arial";
-		right: 140px;
-		color: black;
-		margin-right: 10px;
-		margin-top: 1px;
-	}
-	
-	.fnt_logo {
-		position: absolute;
-		left: 40%;
-	}
-	
-	.fnt_logo > img {
-		width: 180px;
-		height: 80px;
-	}
-	
-</style>
-
+<link href="css/header.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<header>

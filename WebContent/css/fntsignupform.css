@@ -40,12 +40,18 @@ input {
 	border: none;
 }
 
+#resetbtn {
+	background-color: #dddddd;
+}
+
+#submitbtn {
+	background-color: #fee500;
+}
+
 button {
 	cursor: pointer;
-	margin-left: 310px;
 	width: 300px;
 	height: 40px;
-	background-color: #fee500;
 	color: white;
 	font-size: 14pt;
 	font-weight: bold;
