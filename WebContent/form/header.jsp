@@ -1,3 +1,4 @@
+<%@page import="com.fnt.model.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -11,12 +12,25 @@
 <link href="css/header.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<%
+	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
+%>
 	<header>
 	
 		<span class="mysection">
 			<!-- 마이페이지 -->
 			<!-- <a href=""></a> -->
-			<button onclick="location.href='fntlogincrud.jsp'">로그인</button>
+			<%
+				if(memberdto != null) {
+			%>
+				<p><%=memberdto.getMembername() %>님 환영합니다.</p>
+			<%
+				} else {
+			%>
+				<button onclick="location.href='fntlogincrud.jsp'">로그인</button>
+			<%
+				}
+			%>
 			
 			<!-- 알림 -->
 			<a href="mypage.do?command=alert">

@@ -9,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.NoticeBoardDto;
 
 
 @WebServlet("/notice.do")
@@ -28,8 +32,12 @@ public class NoticeController extends HttpServlet {
 		
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
+		HttpSession session = request.getSession();
+		
+		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 		
 		if (command.equals("notice")) {
+			
 			response.sendRedirect("fntnotice.jsp");
 		} else if (command.equals("insert")) {
 			response.sendRedirect("fntnoticeinsert.jsp");

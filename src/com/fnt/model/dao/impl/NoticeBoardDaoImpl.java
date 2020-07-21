@@ -6,9 +6,19 @@ import com.fnt.model.dao.NoticeBoardDao;
 import com.fnt.model.dto.NoticeBoardDto;
 import static com.fnt.model.dao.SqlMapConfig.*;
 
+import java.util.List;
+
 public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	
 	private String namespace = "noticeboard.";
+	
+	public List<NoticeBoardDto> selectList() {
+		SqlSession session = null;
+		
+		
+		
+		return null;
+	}
 	
 	public int insert(NoticeBoardDto dto) {
 		SqlSession session = null;
@@ -28,5 +38,6 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 		}
 		return res;
 	}
+
 
 }
