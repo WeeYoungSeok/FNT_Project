@@ -24,6 +24,7 @@
 				if(memberdto != null) {
 			%>
 				<p><%=memberdto.getMembername() %>님 환영합니다.</p>
+				<button onclick="location.href='LoginCrudController?command=logout'">logout</button>
 			<%
 				} else {
 			%>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 페이지</title>
 <style type="text/css">
 	div{
 		text-align : center;
@@ -18,24 +18,18 @@
 </style>
 </head>
 <body>
-<%
-	MemberDto dto = (MemberDto)session.getAttribute("dto");
-	
-
-%>
-
 	<div>
-		<img alt="FNT" src="./img/fnt_logo.png">	
+		<a href="fntmain.jsp"><img alt="FNT" src="./img/fnt_logo.png"></a>	
 	</div>
 	<hr/>
-	<form action="LoginCrudController">
+	<form action="LoginCrudController" method="post">
 	<input type="hidden" name="command" value="login">
 	<table border="1">
 		<tr>
 			<td>ID : <input type="text" name="id" required="required"></td>
 		</tr>
 		<tr>
-			<td>PW : <input type="text" name="pw" required="required"></td>
+			<td>PW : <input type="password" name="pw" required="required"></td>
 		</tr>
 		<tr>
 			<td>
@@ -46,7 +40,13 @@
 		
 		<tr>
 			<td>
-				<input type="button" value="ID 찾기 / PW 찾기" onclick="location.href='logincrudfind.jsp'">
+				<input type="button" value="ID 찾기 / PW 찾기" onclick="location.href='command?logincrudfind'">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" value="카카오 로그인">
+				<input type="button" value="네이버 로그인">
 			</td>
 		</tr>
 	</table>
