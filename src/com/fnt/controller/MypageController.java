@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.fnt.model.dto.MemberDto;
 
 
 @WebServlet("/mypage.do")
@@ -29,9 +32,30 @@ public class MypageController extends HttpServlet {
 		String command = request.getParameter("command");
 		System.out.println("<"+command+">");
 		
+		//세션 객체 만들어준다.
+		HttpSession session = request.getSession();
+		
+		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
+		System.out.println(memberdto.getMembername());		
+				
+		//알람창뜨게하기
 		if(command.equals("alert")) {
-			response.sendRedirect("alert.jsp");
+			response.sendRedirect("fntalert.jsp");
 		}
+		
+		//마이페이지
+		if(command.equals("mypage")) {
+			if(memberdto.getMemberrole().equals("USER")) {
+			response.sendRedirect("fntmypage.jsp");
+			} else if(memberdto.getMemberrole().equals("ADMIN")) {
+				response.sendRedirect("admin.do?command=adminpage");
+			}
+		}
+		
+		if(memberdto != null) {
+			
+		}
+		
 	}
 
 }
