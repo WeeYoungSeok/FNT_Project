@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="logincrud">
+  
+   	<resultMap type="memberdto" id="memberDtoResultMap">
+ 		<result property="memberid" column="MEMBER_ID"></result>
+ 		<result property="memberpw" column="MEMBER_PW"></result>
+ 		<result property="memberpwchk" column="MEMBER_PWCHK"></result>
+ 		<result property="membernickname" column="MEMBER_NICKNAME"></result>
+ 		<result property="membername" column="MEMBER_NAME"></result>
+ 		<result property="memberbirth" column="MEMBER_BIRTH"></result>
+ 		<result property="memberphone" column="MEMBER_PHONE"></result>
+ 		<result property="memberaddr" column="MEMBER_ADDR"></result>
+ 		<result property="memberemail" column="MEMBER_EMAIL"></result>
+ 		<result property="memberrole" column="MEMBER_ROLE"></result>
+ 		<result property="memberenabled" column="ENABLED"></result>
+ 		<result property="memberregdate" column="REGDATE"></result>
+ 	</resultMap>
+  
+  <select id="selectmemberbyidandpw" parameterType="map" resultMap="memberDtoResultMap">
+  	SELECT MEMBER_ID, MEMBER_PW, MEMBER_PWCHK, MEMBER_NICKNAME,
+  			MEMBER_NAME, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDR,
+  			MEMBER_EMAIL, MEMBER_ROLE, ENABLED, REGDATE
+  	FROM MEMBER
+  	WHERE MEMBER_ID = #{memberid} AND MEMBER_PW = #{memberpw}
+  </select>
+  
+</mapper>
