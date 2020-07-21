@@ -28,9 +28,7 @@ section {
 </style>
 </head>
 <body>
-	<%
-		MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
-	%>
+	
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
 	<section>

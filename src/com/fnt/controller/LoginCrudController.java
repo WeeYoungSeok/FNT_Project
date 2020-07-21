@@ -57,6 +57,13 @@ public class LoginCrudController extends HttpServlet {
 				jsResponse("아이디 또는 비밀번호를 확인해주세요", "fntlogincrud.jsp", response);
 			}
 			
+		}else if(command.equals("logincrudfind")) {
+			MemberDto memberdto = new MemberDto();
+			dispatch("fntlogincrud.jsp", request, response);
+			
+		}else if(command.equals("logout")) {
+			session.invalidate();
+			jsResponse("로그아웃 되었습니다.", "fntmain.jsp", response);
 		}
 		
 		
