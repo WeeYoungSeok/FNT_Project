@@ -3,7 +3,7 @@ package com.fnt.model.dto;
 public class NoticeBoardDto {
 
 	private int nbboardno;
-	private String nbid;
+	private String nbnickname;
 	private String nbtitle;
 	private String nbcontent;
 	private String nbregdate;
@@ -11,9 +11,9 @@ public class NoticeBoardDto {
 	public NoticeBoardDto() {
 	}
 
-	public NoticeBoardDto(int nbboardno, String nbid, String nbtitle, String nbcontent, String nbregdate) {
+	public NoticeBoardDto(int nbboardno, String nbnickname, String nbtitle, String nbcontent, String nbregdate) {
 		this.nbboardno = nbboardno;
-		this.nbid = nbid;
+		this.nbnickname = nbnickname;
 		this.nbtitle = nbtitle;
 		this.nbcontent = nbcontent;
 		this.nbregdate = nbregdate;
@@ -27,12 +27,12 @@ public class NoticeBoardDto {
 		this.nbboardno = nbboardno;
 	}
 
-	public String getNbid() {
-		return nbid;
+	public String getnbnickname() {
+		return nbnickname;
 	}
 
-	public void setNbid(String nbid) {
-		this.nbid = nbid;
+	public void setnbnickname(String nbnickname) {
+		this.nbnickname = nbnickname;
 	}
 
 	public String getNbtitle() {

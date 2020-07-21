@@ -37,6 +37,11 @@ public class NoticeController extends HttpServlet {
 		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 		
 		if (command.equals("notice")) {
+			String id = request.getParameter("id");
+			String qbtitle = request.getParameter("qbtitle");
+			String qbcontent = request.getParameter("qbcontent");
+			
+			NoticeBoardDto noticeboarddto = new NoticeBoardDto(0,id,qbtitle,qbcontent,null);
 			
 			response.sendRedirect("fntnotice.jsp");
 		} else if (command.equals("insert")) {
