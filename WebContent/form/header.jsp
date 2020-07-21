@@ -70,7 +70,7 @@
 		<span class="mysection">
 			<!-- 마이페이지 -->
 			<!-- <a href=""></a> -->
-			<button onclick="location.href='logincrud.jsp'">로그인</button>
+			<button onclick="location.href='fntlogincrud.jsp'">로그인</button>
 			
 			<!-- 알림 -->
 			<a href="mypage.do?command=alert">

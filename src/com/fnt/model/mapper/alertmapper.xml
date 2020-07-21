@@ -3,7 +3,4 @@
 
 
 <mapper namespace="alert">
-	<select id="">
-		
-	</select>
 </mapper>
