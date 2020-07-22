@@ -6,6 +6,7 @@ import com.fnt.model.dto.MemberDto;
 import static com.fnt.model.dao.SqlMapConfig.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -93,5 +94,27 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		
 		return dto;
 	}
+	
+	//마이페이지에서 내정보 보기 누를 때 내 정보 리스트 출력하기
+	public MemberDto selectOne(String memberid){
+		System.out.println(memberid+"이씨팔련아 어딨어");
+		SqlSession session = null;
+		MemberDto dto = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			dto = session.selectOne(namespace+"mypagelist",memberid);
+			System.out.println(dto.toString() + "으아아악");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		
+		return dto;
+	}
+	
 
 }

@@ -1,7 +1,7 @@
 package com.fnt.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,8 +52,15 @@ public class LoginCrudController extends HttpServlet {
 			
 			if(memberdto != null) {	//id 랑 pw가 있다면
 				session.setAttribute("memberdto", memberdto);
-				response.sendRedirect("fntmain.jsp");
-				
+				if(memberdto.getMemberenabled().equals("R")) {
+					jsResponse("신고된 회원입니다.카카오 채널로 문의 해주세요.카카오 채널 ID: fnt_5", "fntmain.jsp", response);
+					session.invalidate();
+				} else if (memberdto.getMemberenabled().equals("N")) {
+					jsResponse("탈퇴된 회원입니다.카카오 채널로 문의 해주세요.카카오 채널 ID: fnt_5", "fntmain.jsp", response);
+					session.invalidate();
+				} else {
+					jsResponse(memberdto.getMembernickname() + "님 환영합니다.", "fntmain.jsp", response);
+				}
 			}else {
 				jsResponse("아이디 또는 비밀번호를 확인해주세요", "fntlogincrud.jsp", response);
 			}
@@ -99,6 +106,14 @@ public class LoginCrudController extends HttpServlet {
 			}else {
 				jsResponse("잘못된 정보 입니다", "fntlogincrudsearchpw.jsp", response);
 			}
+		}else if(command.equals("cruddetail")) {
+			String memberid = request.getParameter("memberid");
+			System.out.println(memberid+"어디야 시발련아");
+			MemberDto dto = new MemberDto();
+			dto = dao.selectOne(memberid);
+			System.out.println(dto.toString() + "컨트롤러에서 dto");
+			request.setAttribute("dto", dto);
+			dispatch("fntcrudmypage.jsp", request, response);
 		}
 		
 		

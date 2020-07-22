@@ -39,5 +39,14 @@
   	AND MEMBER_PHONE = #{memberphone}
   </select>
    
+  <select id="mypagelist" parameterType="String" resultMap="memberDtoResultMap">
+  	SELECT MEMBER_ID, MEMBER_PW, MEMBER_PWCHK, MEMBER_NICKNAME,
+  			MEMBER_NAME, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDR,
+  			MEMBER_EMAIL, MEMBER_ROLE, ENABLED, REGDATE
+  	FROM MEMBER
+  	WHERE MEMBER_ID = #{memberid}
+  </select>
+  
+  
   
 </mapper>
