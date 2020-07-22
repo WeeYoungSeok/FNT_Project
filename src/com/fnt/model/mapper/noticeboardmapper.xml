@@ -1,4 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="noticeboard">  
+
+	<resultMap type="noticeboarddto" id="noticeboardDtoResultMap">
+ 		<result property="nbboardno" column="NB_BOARDNO"></result>
+ 		<result property="nbid" column="NB_ID"></result>
+ 		<result property="nbnickname" column="NB_NICKNAME"></result>
+ 		<result property="nbtitle" column="NB_TITLE"></result>
+ 		<result property="nbcontent" column="NB_CONTENT"></result>
+ 		<result property="nbregdate" column="NB_REGDATE"></result>
+ 	</resultMap>
+ 	
+ 	<select id="noticeselectList" resultMap="noticeboardDtoResultMap">
+ 		SELECT NB_BOARDNO, NB_ID, NB_NICKNAME, NB_TITLE, NB_CONTENT, NB_REGDATE
+ 		FROM NOTICE_BOARD
+ 	</select>
+ 	
+ 	<select id="count" resultType="int">
+ 		SELECT COUNT(*) as count FROM NOTICE_BOARD
+ 	</select>
+ 	
+ 	<select id="noticeselectPaging" parameterType="map" resultMap="noticeboardDtoResultMap">
+ 		<![CDATA[
+ 		SELECT NB_BOARDNO, NB_ID, NB_NICKNAME, NB_TITLE, NB_CONTENT, NB_REGDATE 
+		FROM (SELECT row_num ,NB_BOARDNO, NB_ID, NB_NICKNAME, NB_TITLE, NB_CONTENT, NB_REGDATE 
+		FROM (SELECT ROWNUM row_num, NB_BOARDNO, NB_ID, NB_NICKNAME, NB_TITLE, NB_CONTENT, NB_REGDATE FROM NOTICE_BOARD) 
+		WHERE row_num >= #{endNum}) 
+		WHERE row_num <= #{startNum}
+		ORDER BY NB_REGDATE DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="noticeselectListOne" parameterType="int" resultMap="noticeboardDtoResultMap">
+ 		SELECT NB_BOARDNO, NB_ID, NB_NICKNAME, NB_TITLE, NB_CONTENT, NB_REGDATE
+ 		FROM NOTICE_BOARD
+ 		WHERE NB_BOARDNO = #{nbboardno}
+ 	</select>
+
+
+	<insert id="noticeinsert" parameterType="noticeboarddto">
+		INSERT INTO NOTICE_BOARD
+		VALUES
+		(NB_BOARDNO_SEQ.NEXTVAL, #{nbid}, #{nbnickname}, #{nbtitle}, #{nbcontent}, SYSDATE)
+	</insert>
+	
+	<delete id="noticedelete" parameterType="int">
+		DELETE FROM NOTICE_BOARD
+		WHERE NB_BOARDNO = #{nbboardno}
+	</delete>
 </mapper>

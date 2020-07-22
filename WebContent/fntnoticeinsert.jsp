@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FNT(Feel New Item) : 공지사항 글 작성</title>
 <link href="css/fntnoticeinsert.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 * {
@@ -32,22 +32,49 @@ section {
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
 	<section>
-
-		<form action="notice.do?cammand=notice" method="post">
+	<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "LoginCrudController?command=logincrudfind";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
+		<form action="notice.do" method="post">
+			<input type="hidden" value="noticeinsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
-			<div>
-				<input type="text" name="qbtitle"/>
-			</div>
-			<div>
-				<textarea cols="50" rows="5" name="qbcontent"></textarea>
-			</div>
-			<div>
+			<table>
+				<tr>
+				<td>
+				제목
+				</td>
+				<td>
+				<input type="text" name="nbtitle"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				내용
+				</td>
+				<td><textarea cols="50" rows="5" name="nbcontent"></textarea></td>
+			</tr>
+			<tr>
+			<td align="right" colspan="2">
 				<input type="button" value="취소"
-					onclick="location.href='notice.do?command=notice'" /> <input
-					type="submit" value="완료" />
-			</div>
+					onclick="location.href='notice.do?command=notice'" />
+					 <input type="submit" value="완료" />
+					 </td>
+			</tr>
+			</table>
 		</form>
 	</section>
 	<%@ include file="./form/footer.jsp"%>
+	
+	<%
+	}
+	%>
 </body>
 </html>

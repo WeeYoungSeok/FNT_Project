@@ -2,6 +2,8 @@ package com.fnt.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fnt.model.biz.NoticeBoardBiz;
+import com.fnt.model.biz.impl.NoticeBoardBizImpl;
+import com.fnt.model.dao.NoticeBoardDao;
+import com.fnt.model.dao.impl.NoticeBoardDaoImpl;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.NoticeBoardDto;
+import com.fnt.util.Paging;
 
 
 @WebServlet("/notice.do")
@@ -30,22 +37,77 @@ public class NoticeController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("html/text; charset=UTF-8");
 		
+		NoticeBoardBiz noticeboardbiz = new NoticeBoardBizImpl();
+		
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
 		HttpSession session = request.getSession();
+		NoticeBoardDao dao = new NoticeBoardDaoImpl();
 		
 		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 		
 		if (command.equals("notice")) {
-			String id = request.getParameter("id");
-			String qbtitle = request.getParameter("qbtitle");
-			String qbcontent = request.getParameter("qbcontent");
+			int page = 1;
 			
-			NoticeBoardDto noticeboarddto = new NoticeBoardDto(0,id,qbtitle,qbcontent,null);
+			if(request.getParameter("page")!=null) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			Paging paging = new Paging();
+			int count = noticeboardbiz.getAllCount();
 			
-			response.sendRedirect("fntnotice.jsp");
-		} else if (command.equals("insert")) {
+			
+			paging.setTotalcount(count);
+			paging.setPage(page);
+			
+			
+			
+			System.out.println("야");
+			List<NoticeBoardDto> noticeboardlist = noticeboardbiz.selectAllMember(paging);
+			System.out.println(noticeboardlist.size());
+			
+			request.setAttribute("noticeboardlist", noticeboardlist);
+			request.setAttribute("paging", paging);
+			
+			dispatch("fntnotice.jsp", request, response);
+			
+			
+		} else if (command.equals("noticeinsert")) {
 			response.sendRedirect("fntnoticeinsert.jsp");
+			
+		} else if (command.equals("noticeinsertres")) {
+			String id = request.getParameter("id");
+			String nbtitle = request.getParameter("nbtitle");
+			String nbcontent = request.getParameter("nbcontent");
+			
+			
+			
+			int res = noticeboardbiz.insert(new NoticeBoardDto(0,id,memberdto.getMembernickname(),nbtitle,nbcontent,null));
+			
+			if (res > 0) {
+				response.sendRedirect("notice.do?command=notice");
+			} else {
+				response.sendRedirect("notice.do?command=notice");
+			}
+		} else if (command.equals("noticedetail")) {
+			int nbboardno = Integer.parseInt(request.getParameter("nbboardno"));
+			
+			NoticeBoardDto noticeboardlistone = noticeboardbiz.selectOne(nbboardno);
+			
+			request.setAttribute("noticeboardlistone", noticeboardlistone);
+			
+			dispatch("fntnoticedetail.jsp", request, response);
+			
+			
+		} else if (command.equals("noticedelete")) {
+			int nbboardno = Integer.parseInt(request.getParameter("nbboardno"));
+			
+			int res = noticeboardbiz.delelte(nbboardno);
+			
+			if (res > 0) {
+				response.sendRedirect("notice.do?command=notice");
+			} else {
+				response.sendRedirect("notice.do?command=notice");
+			}
 		}
 	}
 	
@@ -57,13 +119,6 @@ public class NoticeController extends HttpServlet {
 		dispatch.forward(request, response);
 	}
 	
-	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
-
-		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href = '" + url + "';"
-				+ "</script>";
-
-		PrintWriter out = response.getWriter();
-		out.append(s);
-	}
+	
 
 }
