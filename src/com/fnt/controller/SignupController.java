@@ -9,17 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.fnt.model.dto.MemberDto;
-import com.fnt.model.dto.NoticeBoardDto;
-
-
-@WebServlet("/notice.do")
-public class NoticeController extends HttpServlet {
+@WebServlet("/signup.do")
+public class SignupController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public NoticeController() {
+    
+    public SignupController() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,40 +23,38 @@ public class NoticeController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("html/text; charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
-		HttpSession session = request.getSession();
 		
-		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
-		
-		if (command.equals("notice")) {
-			String id = request.getParameter("id");
-			String qbtitle = request.getParameter("qbtitle");
-			String qbcontent = request.getParameter("qbcontent");
+		if (command.equals("signup")) {
+			String memberid = request.getParameter("memberid");
+			String memberpw = request.getParameter("memberpw");
+			String memberpwchk = request.getParameter("memberpwchk");
+			String membernickname = request.getParameter("membernickname");
+			String membername = request.getParameter("membername");
+			String memberbirth = request.getParameter("memberbirth");
+			String memberphone = request.getParameter("memberphone");
+			String memberaddr = request.getParameter("memberaddr");
+			String memberemail = request.getParameter("memberemail");
+			String memberrole = request.getParameter("memberrole");
+			String enabled = request.getParameter("enabled");
+			String regdate = request.getParameter("regdate");
 			
-			NoticeBoardDto noticeboarddto = new NoticeBoardDto(0,id,qbtitle,qbcontent,null);
-			
-			response.sendRedirect("fntnotice.jsp");
-		} else if (command.equals("insert")) {
-			response.sendRedirect("fntnoticeinsert.jsp");
+			response.sendRedirect("logincrud.jsp");
 		}
 	}
 	
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
-
 		dispatch.forward(request, response);
 	}
 	
 	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
-
 		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href = '" + url + "';"
 				+ "</script>";
-
 		PrintWriter out = response.getWriter();
 		out.append(s);
 	}

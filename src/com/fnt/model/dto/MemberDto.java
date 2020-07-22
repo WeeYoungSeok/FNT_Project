@@ -12,7 +12,7 @@ public class MemberDto {
 	private Date memberbirth;
 	private String memberphone;
 	private String memberaddr;
-	private String membermail;
+	private String memberemail;
 	private String memberrole;
 	private String memberenabled;
 	private Date memberregdate;
@@ -20,12 +20,13 @@ public class MemberDto {
 	
 	
 	public MemberDto() {
+		
 	}
 
 
 
 	public MemberDto(String memberid, String memberpw, String memberpwchk, String membernickname, String membername,
-			Date memberbirth, String memberphone, String memberaddr, String membermail, String memberrole,
+			Date memberbirth, String memberphone, String memberaddr, String memberemail, String memberrole,
 			String memberenabled, Date memberregdate) {
 		this.memberid = memberid;
 		this.memberpw = memberpw;
@@ -35,7 +36,7 @@ public class MemberDto {
 		this.memberbirth = memberbirth;
 		this.memberphone = memberphone;
 		this.memberaddr = memberaddr;
-		this.membermail = membermail;
+		this.memberemail = memberemail;
 		this.memberrole = memberrole;
 		this.memberenabled = memberenabled;
 		this.memberregdate = memberregdate;
@@ -139,14 +140,14 @@ public class MemberDto {
 
 
 
-	public String getMembermail() {
-		return membermail;
+	public String getMemberemail() {
+		return memberemail;
 	}
 
 
 
-	public void setMembermail(String membermail) {
-		this.membermail = membermail;
+	public void setMemberemail(String memberemail) {
+		this.memberemail = memberemail;
 	}
 
 
