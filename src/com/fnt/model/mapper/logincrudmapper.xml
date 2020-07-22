@@ -25,4 +25,19 @@
   	WHERE MEMBER_ID = #{memberid} AND MEMBER_PW = #{memberpw}
   </select>
   
+  <select id="searchid" parameterType="map" resultMap="memberDtoResultMap">
+  	SELECT MEMBER_ID
+  	FROM MEMBER
+  	WHERE MEMBER_NAME = #{membername} AND MEMBER_EMAIL = #{memberemail}
+  	AND MEMBER_PHONE = #{memberphone}
+  </select>
+  
+  <select id="searchpw" parameterType="map" resultMap="memberDtoResultMap">
+  	SELECT MEMBER_PW
+  	FROM MEMBER
+  	WHERE MEMBER_ID = #{memberid} AND MEMBER_NAME = #{membername} AND MEMBER_EMAIL = #{memberemail}
+  	AND MEMBER_PHONE = #{memberphone}
+  </select>
+   
+  
 </mapper>
