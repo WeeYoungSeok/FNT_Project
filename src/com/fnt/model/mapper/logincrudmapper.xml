@@ -38,6 +38,6 @@
   	WHERE MEMBER_ID = #{memberid} AND MEMBER_NAME = #{membername} AND MEMBER_EMAIL = #{memberemail}
   	AND MEMBER_PHONE = #{memberphone}
   </select>
-  
+   
   
 </mapper>

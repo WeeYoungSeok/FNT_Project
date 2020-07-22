@@ -8,5 +8,5 @@ public interface LoginCrudDao {
 
 	public MemberDto searchId(String membername, String memberemail, String memberphone);
 	
-	public MemberDto searchPw(String memberid, String membername, String memberemail, String memberphone);
+	public MemberDto searchPw(String memberid, String membername, String memberemail, String memberphone); 
 }

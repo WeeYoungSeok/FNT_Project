@@ -13,6 +13,6 @@
 	%>
 	<div><%=dto.getMemberpw() %></div>
 	<br/>
-	<input type="button" value="로그인 하러가기" onclick="location.href='fntlogincrud.jsp'">
+	<input type="button" value="로그인 하러가기" onclick="location.href='fntlogincrud.jsp'"> 
 </body>
 </html>

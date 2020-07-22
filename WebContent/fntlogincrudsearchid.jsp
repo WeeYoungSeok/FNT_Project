@@ -46,7 +46,7 @@
 		<input type="submit" value="검색하기">
 		</form>
 	
-	
+	 
 
 
 

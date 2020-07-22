@@ -47,6 +47,6 @@
 			</tr>
 		</table>
 		<input type="submit" value="검색하기">
-		</form>
+		</form> 
 </body>
 </html>

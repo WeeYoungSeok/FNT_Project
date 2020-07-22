@@ -114,7 +114,7 @@ public class LoginCrudController extends HttpServlet {
 					"</script>";
 		
 		response.getWriter().append(s);
-		
+		 
 	}
 
 }
