@@ -42,5 +42,11 @@ public class NoticeBoardBizImpl implements NoticeBoardBiz {
 		return noticeboarddao.delete(nbboardno);
 	}
 
+	@Override
+	public int update(NoticeBoardDto dto) {
+		// TODO Auto-generated method stub
+		return noticeboarddao.update(dto);
+	}
+
 
 }

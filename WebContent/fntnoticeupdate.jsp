@@ -30,19 +30,22 @@
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	<section>
+	<form action="notice.do" method="post">
+		<input type="hidden" value="noticeupdateres" name="command"/>
+		<input type="hidden" value="<%=noticeboardlistone.getNbboardno() %>" name="nbboardno"/>
 		<table border="1"> 
 			<tr>
 				<td>공지사항 > 
 				<button onclick="location.href='notice.do?command=notice'">목록</button></td>
 			<tr>
 			<tr>
-				<td><%=noticeboardlistone.getNbtitle() %></td>
+				<td><input type="text" value="<%=noticeboardlistone.getNbtitle() %>" name="nbtitle"/></td>
 			</tr>
 			<tr>
 				<td><%=noticeboardlistone.getNbnickname() %></td>
 			</tr>
 			<tr>
-				<td width="400" height="200"><%=noticeboardlistone.getNbcontent() %></td>
+				<td width="400" height="200"><textarea cols="55" rows="14" name="nbcontent" style="resize: none"><%=noticeboardlistone.getNbcontent() %></textarea></td>
 			</tr>
 	
 		<%
@@ -54,8 +57,8 @@
 		%>
 		<tr>
 		<td align="right">
-			<button onclick="location.href='notice.do?command=noticeupdate&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">수정</button>
-			<button onclick="location.href='notice.do?command=noticedelete&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">삭제</button>
+			<input type="submit" value="완료"/>
+			<input type="button" value="취소" onclick="location.href='notice.do?command=noticedetail&nbboardno=<%=noticeboardlistone.getNbboardno()%>'"/>
 		</td>
 		</tr>
 		<%
@@ -66,6 +69,7 @@
 			}
 		%>
 		</table>
+		</form>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>

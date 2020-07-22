@@ -13,8 +13,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item) : 공지사항 글 작성</title>
+<title>FNT(Feel New Item) : 고객센터 글 작성</title>
 <link href="css/fntnoticeinsert.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style type="text/css">
 * {
 	margin: 0px;
@@ -26,6 +27,28 @@ section {
 	padding-left: 240px;
 }
 </style>
+
+<script type="text/javascript">
+	$(function(){
+		$("#chk").click(function(){
+			if($("#chk").prop("checked")){
+				$("#chk").val("Y");
+				console.log($("#chk").val());
+			} else {
+				$("#chk").val("N");
+				console.log($("#chk").val());
+			}
+		});
+		
+		
+	});
+	
+	function postForm() {
+		$("#chk").val();
+		alert($("#chk").val());
+		return true
+	}
+</script>
 </head>
 <body>
 	
@@ -43,28 +66,26 @@ section {
 	<%
 		} else {
 	%>
-		<form action="notice.do" method="post">
-			<input type="hidden" value="noticeinsertres" name="command"/>
+		<form action="qna.do" method="post" onsubmit="postForm()">
+			<input type="hidden" value="qnainsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
 			<table>
 				<tr>
+				<td>제목</td>
 				<td>
-				제목
-				</td>
-				<td>
-				<input type="text" name="nbtitle"/>
+				<input type="text" name="qbtitle"/> <input type="checkbox" name="qbsecret" id="chk" value="N" />비밀글 
 				</td>
 			</tr>
 			<tr>
 				<td>
 				내용
 				</td>
-				<td><textarea cols="50" rows="5" name="nbcontent"></textarea></td>
+				<td><textarea cols="50" rows="5" name="qbcontent"></textarea></td>
 			</tr>
 			<tr>
 			<td align="right" colspan="2">
 				<input type="button" value="취소"
-					onclick="location.href='notice.do?command=notice'" />
+					onclick="location.href='qna.do?command=qna'" />
 					 <input type="submit" value="완료" />
 					 </td>
 			</tr>
@@ -77,4 +98,6 @@ section {
 	}
 	%>
 </body>
+
+
 </html>

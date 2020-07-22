@@ -21,68 +21,62 @@ import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.util.Paging;
 
-
 @WebServlet("/notice.do")
 public class NoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public NoticeController() {
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public NoticeController() {
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("html/text; charset=UTF-8");
-		
+
 		NoticeBoardBiz noticeboardbiz = new NoticeBoardBizImpl();
-		
+
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
 		HttpSession session = request.getSession();
-		NoticeBoardDao dao = new NoticeBoardDaoImpl();
-		
-		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
-		
+
+		MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
+
 		if (command.equals("notice")) {
 			int page = 1;
-			
-			if(request.getParameter("page")!=null) {
+
+			if (request.getParameter("page") != null) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
 			Paging paging = new Paging();
 			int count = noticeboardbiz.getAllCount();
-			
-			
+
 			paging.setTotalcount(count);
 			paging.setPage(page);
-			
-			
-			
-			System.out.println("야");
+
 			List<NoticeBoardDto> noticeboardlist = noticeboardbiz.selectAllMember(paging);
 			System.out.println(noticeboardlist.size());
-			
+
 			request.setAttribute("noticeboardlist", noticeboardlist);
 			request.setAttribute("paging", paging);
-			
+
 			dispatch("fntnotice.jsp", request, response);
-			
-			
+
 		} else if (command.equals("noticeinsert")) {
 			response.sendRedirect("fntnoticeinsert.jsp");
-			
+
 		} else if (command.equals("noticeinsertres")) {
 			String id = request.getParameter("id");
 			String nbtitle = request.getParameter("nbtitle");
 			String nbcontent = request.getParameter("nbcontent");
-			
-			
-			
-			int res = noticeboardbiz.insert(new NoticeBoardDto(0,id,memberdto.getMembernickname(),nbtitle,nbcontent,null));
-			
+
+			int res = noticeboardbiz
+					.insert(new NoticeBoardDto(0, id, memberdto.getMembernickname(), nbtitle, nbcontent, null));
+
 			if (res > 0) {
 				response.sendRedirect("notice.do?command=notice");
 			} else {
@@ -90,27 +84,47 @@ public class NoticeController extends HttpServlet {
 			}
 		} else if (command.equals("noticedetail")) {
 			int nbboardno = Integer.parseInt(request.getParameter("nbboardno"));
-			
+
 			NoticeBoardDto noticeboardlistone = noticeboardbiz.selectOne(nbboardno);
-			
+
 			request.setAttribute("noticeboardlistone", noticeboardlistone);
-			
+
 			dispatch("fntnoticedetail.jsp", request, response);
-			
-			
+
 		} else if (command.equals("noticedelete")) {
 			int nbboardno = Integer.parseInt(request.getParameter("nbboardno"));
-			
+
 			int res = noticeboardbiz.delelte(nbboardno);
-			
+
 			if (res > 0) {
 				response.sendRedirect("notice.do?command=notice");
 			} else {
 				response.sendRedirect("notice.do?command=notice");
 			}
+		} else if (command.equals("noticeupdate")) {
+			int nbboardno = Integer.parseInt(request.getParameter("nbboardno"));
+
+			NoticeBoardDto noticeboardlistone = noticeboardbiz.selectOne(nbboardno);
+
+			request.setAttribute("noticeboardlistone", noticeboardlistone);
+
+			dispatch("fntnoticeupdate.jsp", request, response);
+		} else if (command.equals("noticeupdateres")) {
+			int nbboardno = Integer.parseInt(request.getParameter("nbboardno"));
+			String nbtitle = request.getParameter("nbtitle");
+			String nbcontent = request.getParameter("nbcontent");
+			
+			int res = noticeboardbiz
+					.update(new NoticeBoardDto(nbboardno, null, null, nbtitle, nbcontent, null));
+			
+			if (res > 0) {
+				response.sendRedirect("notice.do?command=noticedetail&nbboardno="+nbboardno);
+			} else {
+				response.sendRedirect("notice.do?command=noticedetail&nbboardno="+nbboardno);
+			}
 		}
 	}
-	
+
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -118,7 +132,5 @@ public class NoticeController extends HttpServlet {
 
 		dispatch.forward(request, response);
 	}
-	
-	
 
 }

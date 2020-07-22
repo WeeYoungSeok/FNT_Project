@@ -13,14 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 public class NoticeBoardDaoImpl implements NoticeBoardDao {
-	
+
 	private String namespace = "noticeboard.";
-	
+
 	public List<NoticeBoardDto> selectList() {
 		SqlSession session = null;
 		List<NoticeBoardDto> noticeboardlist = null;
-		
-		
+
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			noticeboardlist = session.selectList(namespace + "noticeselectList");
@@ -29,18 +28,17 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 		} finally {
 			session.close();
 		}
-		
-		
+
 		return noticeboardlist;
 	}
-	
+
 	public int insert(NoticeBoardDto noticeboarddto) {
 		SqlSession session = null;
 		int res = 0;
-		
+
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			res = session.insert(namespace+"noticeinsert",noticeboarddto);
+			res = session.insert(namespace + "noticeinsert", noticeboarddto);
 			if (res > 0) {
 				session.commit();
 			}
@@ -57,49 +55,41 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	public NoticeBoardDto selectOne(int nbboardno) {
 		SqlSession session = null;
 		NoticeBoardDto noticeboardlistone = null;
-		
-		
+
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			noticeboardlistone = session.selectOne(namespace + "noticeselectListOne",nbboardno);
+			noticeboardlistone = session.selectOne(namespace + "noticeselectListOne", nbboardno);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
+
 		return noticeboardlistone;
 	}
 
 	@Override
 	public List<NoticeBoardDto> selectAllMember(Paging paging) {
 		int startNum = paging.getStartNum();
-		System.out.println("start" + startNum);
 		int endNum = paging.getEndNum();
-		System.out.println("end" +endNum);
-		
-		Map<String,Integer> map = new HashMap<String,Integer>();
+
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-		
+
 		SqlSession session = null;
 		List<NoticeBoardDto> noticeboardpaging = null;
-		
-		
+
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			noticeboardpaging = session.selectList(namespace + "noticeselectPaging",map);
-			System.out.println("noticeboardpaging의 사이즈" + noticeboardpaging);
+			noticeboardpaging = session.selectList(namespace + "noticeselectPaging", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
-		
-		System.out.println("스타트넘 : " + startNum);
-		System.out.println("엔드넘 : " + endNum);
-		
+
+
 		return noticeboardpaging;
 	}
 
@@ -107,18 +97,16 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	public int getAllCount() {
 		SqlSession session = null;
 		int count = 0;
-		
+
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			count = session.selectOne(namespace + "count");
-			System.out.println("count의 값" + count);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
+
 		return count;
 	}
 
@@ -126,10 +114,30 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	public int delete(int nbboardno) {
 		SqlSession session = null;
 		int res = 0;
-		
+
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			res = session.delete(namespace+"noticedelete",nbboardno);
+			res = session.delete(namespace + "noticedelete", nbboardno);
+			if (res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return res;
+	}
+
+	@Override
+	public int update(NoticeBoardDto dto) {
+		SqlSession session = null;
+		int res = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace + "noticeupdate", dto);
 			if (res > 0) {
 				session.commit();
 			}

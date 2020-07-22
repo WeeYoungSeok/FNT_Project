@@ -10,6 +10,7 @@ public interface NoticeBoardBiz {
 	public List<NoticeBoardDto> selectList();
 	public NoticeBoardDto selectOne(int nbboardno);
 	public int insert(NoticeBoardDto dto);
+	public int update(NoticeBoardDto dto);
 	public int delelte(int nbboardno);
 	public List<NoticeBoardDto> selectAllMember(Paging paging);
 	public int getAllCount();

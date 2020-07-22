@@ -27,7 +27,7 @@
 		FROM (SELECT ROWNUM row_num, NB_BOARDNO, NB_ID, NB_NICKNAME, NB_TITLE, NB_CONTENT, NB_REGDATE FROM NOTICE_BOARD) 
 		WHERE row_num >= #{endNum}) 
 		WHERE row_num <= #{startNum}
-		ORDER BY NB_REGDATE DESC
+		ORDER BY NB_BOARDNO DESC
  		]]>
  	</select>
  	
@@ -44,8 +44,16 @@
 		(NB_BOARDNO_SEQ.NEXTVAL, #{nbid}, #{nbnickname}, #{nbtitle}, #{nbcontent}, SYSDATE)
 	</insert>
 	
+	<update id="noticeupdate" parameterType="noticeboarddto">
+		UPDATE NOTICE_BOARD
+		SET NB_TITLE = #{nbtitle}, NB_CONTENT = #{nbcontent}
+		WHERE NB_BOARDNO = #{nbboardno} 
+	</update>
+	
 	<delete id="noticedelete" parameterType="int">
 		DELETE FROM NOTICE_BOARD
 		WHERE NB_BOARDNO = #{nbboardno}
 	</delete>
+	
+	
 </mapper>

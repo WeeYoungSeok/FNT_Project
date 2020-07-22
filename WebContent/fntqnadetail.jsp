@@ -1,3 +1,4 @@
+<%@page import="com.fnt.model.dto.QnaBoardDto"%>
 <%@page import="com.fnt.model.dto.NoticeBoardDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <%
-	NoticeBoardDto noticeboardlistone = (NoticeBoardDto)request.getAttribute("noticeboardlistone");
+	QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone");
 %>
-<title>FNT(Feel New Item) : <%=noticeboardlistone.getNbtitle() %></title>
+<title>FNT(Feel New Item) : <%=qnaboardlistone.getQbtitle() %></title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 	.notice{
@@ -32,17 +33,17 @@
 	<section>
 		<table border="1"> 
 			<tr>
-				<td>공지사항 > 
+				<td>고객센터 > 
 				<button onclick="location.href='notice.do?command=notice'">목록</button></td>
 			<tr>
 			<tr>
-				<td><%=noticeboardlistone.getNbtitle() %></td>
+				<td><%=qnaboardlistone.getQbtitle() %></td>
 			</tr>
 			<tr>
-				<td><%=noticeboardlistone.getNbnickname() %></td>
+				<td><%=qnaboardlistone.getQbnickname() %></td>
 			</tr>
 			<tr>
-				<td width="400" height="200"><%=noticeboardlistone.getNbcontent() %></td>
+				<td width="400" height="200"><%=qnaboardlistone.getQbcontent() %></td>
 			</tr>
 	
 		<%
@@ -50,16 +51,16 @@
 		%>
 		
 		<%
-			} else if (memberdto.getMemberrole().equals("ADMIN")) {
+			} else if (memberdto.getMemberid().equals(qnaboardlistone.getQbid()) || qnaboardlistone.equals("ADMIN")) {
 		%>
 		<tr>
 		<td align="right">
-			<button onclick="location.href='notice.do?command=noticeupdate&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">수정</button>
-			<button onclick="location.href='notice.do?command=noticedelete&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">삭제</button>
+			<button onclick="location.href='qna.do?command=qnaupdate&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">수정</button>
+			<button onclick="location.href='qna.do?command=qnadelete&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">삭제</button>
 		</td>
 		</tr>
 		<%
-			} else if (memberdto.getMemberrole().equals("USER")) {
+			} else {
 		%>
 			
 		<%
