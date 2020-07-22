@@ -59,14 +59,10 @@
 		</tr>
 		
 		<tr>
-<<<<<<< HEAD
-			<td colspan="2" align="center">
-				<a href="command?logincrudfind">ID 찾기</a> / <a href="command?logincrudfind">PW 찾기</a>
-=======
-			<td>
-				<input type="button" value="ID 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchid'">
-				<input type="button" value="PW 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchpw'">
->>>>>>> branch 'develop' of https://github.com/WeeYoungSeok/FNT_Project.git
+			<td colspan="2">
+				<input class="findbtn" type="button" value="ID 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchid'">
+				<input class="findbtn" type="button" value="PW 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchpw'">
+
 			</td>
 		</tr> 
 		<tr>
@@ -82,7 +78,7 @@
 		</tr>
 	</table>
 	</form>
-<<<<<<< HEAD
+
 <%
 	String clientId = "T0e_dO0FJagJxo8igTCZ";//애플리케이션 클라이언트 아이디값";
 	String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/fntsignupform.jsp", "UTF-8");
@@ -109,8 +105,8 @@
 	
 </script>
 
-=======
+
  
->>>>>>> branch 'develop' of https://github.com/WeeYoungSeok/FNT_Project.git
+
 </body>
 </html>
