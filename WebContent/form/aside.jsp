@@ -15,8 +15,8 @@
 	<aside>
 	
 		<p class="menubar" onclick="location.href='notice.do?command=notice'">공지사항</p>
-		<p class="menubar" onclick="">구매게시판</p>
-		<p class="menubar" onclick="">판매게시판</p>
+		<p class="menubar" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p>
+		<p class="menubar" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p>
 		<p class="menubar" onclick="">고객센터</p>
 		
 	</aside>
