@@ -12,8 +12,8 @@ public class AdminPageBizImpl implements AdminPageBiz {
 	AdminPageDao dao = new AdminPageDaoImpl();
 	
 	//전체회원조회 biz
-	public List<MemberDto> selectAll(){
-		return dao.selectAll();
+	public List<MemberDto> selectAll(String enabled){
+		return dao.selectAll(enabled);
 	}
 	//탈퇴회원조회 biz
 	public List<MemberDto> deleteAll(){
@@ -23,4 +23,5 @@ public class AdminPageBizImpl implements AdminPageBiz {
 	public List<MemberDto> reportAll(){
 		return dao.reportAll();
 	}
+	
 }

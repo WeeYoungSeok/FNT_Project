@@ -34,7 +34,7 @@
   		<mapper resource="com/fnt/model/mapper/alertmapper.xml"/>
   		<mapper resource="com/fnt/model/mapper/orderlistmapper.xml"/>
   		<mapper resource="com/fnt/model/mapper/wishlistmapper.xml"/>
-  		<mapper resource="com/fnt/model/mapper/reportmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/selectallmapper.xml"/>
   		<mapper resource="com/fnt/model/mapper/dealboardmapper.xml"/>
   		<mapper resource="com/fnt/model/mapper/logincrudmapper.xml"/>
   		<mapper resource="com/fnt/model/mapper/signupmapper.xml"/>

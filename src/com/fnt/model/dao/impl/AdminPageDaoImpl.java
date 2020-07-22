@@ -13,13 +13,13 @@ public class AdminPageDaoImpl implements AdminPageDao {
 	
 	//전체회원조회
 	@Override
-	public List<MemberDto> selectAll() {
+	public List<MemberDto> selectAll(String enabled) {
 		SqlSession session = null;
 		List<MemberDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"selectall");
+			list = session.selectList(namespace+"selectall", enabled);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -39,5 +39,4 @@ public class AdminPageDaoImpl implements AdminPageDao {
 	public List<MemberDto> reportAll() {
 		return null;
 	}
-
 }
