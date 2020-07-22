@@ -4,7 +4,8 @@ import java.sql.Date;
 
 public class DealBoardDto {
 	private int dboardno;
-	private String dboardid;
+	private String did;
+	private String dnickname;
 	private String dtitle;
 	private String dfilename;
 	private String dcontent;
@@ -13,15 +14,17 @@ public class DealBoardDto {
 	private String dcategory;
 	private String dflag;
 	
+	
 	public DealBoardDto() {
 		
 	}
 	
-	public DealBoardDto(int dboardno, String dboardid, String dtitle, String dfilename, String dcontent, int dprice,
-			Date dregdate, String dcategory, String dflag) {
+	public DealBoardDto(int dboardno, String did, String dnickname, String dtitle, String dfilename, String dcontent,
+			int dprice, Date dregdate, String dcategory, String dflag) {
 		super();
 		this.dboardno = dboardno;
-		this.dboardid = dboardid;
+		this.did = did;
+		this.dnickname = dnickname;
 		this.dtitle = dtitle;
 		this.dfilename = dfilename;
 		this.dcontent = dcontent;
@@ -39,12 +42,20 @@ public class DealBoardDto {
 		this.dboardno = dboardno;
 	}
 
-	public String getDboardid() {
-		return dboardid;
+	public String getDid() {
+		return did;
 	}
 
-	public void setDboardid(String dboardid) {
-		this.dboardid = dboardid;
+	public void setDid(String did) {
+		this.did = did;
+	}
+
+	public String getDnickname() {
+		return dnickname;
+	}
+
+	public void setDnickname(String dnickname) {
+		this.dnickname = dnickname;
 	}
 
 	public String getDtitle() {
@@ -102,15 +113,7 @@ public class DealBoardDto {
 	public void setDflag(String dflag) {
 		this.dflag = dflag;
 	}
-
-	@Override
-	public String toString() {
-		return "DealBoardDto [dboardno=" + dboardno + ", dboardid=" + dboardid + ", dtitle=" + dtitle + ", dfilename="
-				+ dfilename + ", dcontent=" + dcontent + ", dprice=" + dprice + ", dregdate=" + dregdate
-				+ ", dcategory=" + dcategory + ", dflag=" + dflag + "]";
-	}
-	
-	
 	
 	
 }
+
