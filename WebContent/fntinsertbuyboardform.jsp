@@ -1,60 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 구매 글쓰기</title>
-<script type="text/javascript" src="./se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
+<!-- summernote 넣기 -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script><script src="./js/summernote-lite.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="./js/summernote-lite.js"></script>
+<script src="./js/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="./css/summernote-lite.css">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+
+<script>
 $(function(){
+	$('#summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+		  
+		  toolbar: [
+			    // [groupName, [list of button]]
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]
+			  ],
+			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+			callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+				onImageUpload : function(files) {
+					uploadSummernoteImageFile(files[0],this);
+				}
+	});
+	
+	
+
+	
 	$("input[name=dprice]").on("keyup", function() {
 	    $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
 	});	
 	
-    //전역변수선언
-    var editor_object = [];
-     
-    nhn.husky.EZCreator.createInIFrame({
-        oAppRef: editor_object,
-        elPlaceHolder: "dcontent",
-        sSkinURI: "./se2/SmartEditor2Skin.html",
-        htParams : {
-            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseToolbar : true,            
-            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,    
-            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true,
-        }
-    });
-     
-    //전송버튼 클릭이벤트
-    $("#submitbutton").click(function() {
-        //id가 dcontent인 textarea에 에디터에서 대입
-        editor_object.getById["dcontent"].exec("UPDATE_CONTENTS_FIELD", []);
-         
-        // 이부분에 에디터 validation 검증
-         
-        //폼 submit
-        $("#insertform").submit();
-    })
-	
-	
+
 	
 });
 
-	function addCommas(x) {
-	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-	 
-	//모든 콤마 제거
-	function removeCommas(x) {
-	    if(!x || x.length == 0) return "";
-	    else return x.split(",").join("");
-	}
+var postForm = function() {
+	alert("왔냐고");
+	$('textarea[name="dcontent"]').val($('#summernote').summernote('code'));
 
+	console.log(dcontent);
+    
+    
+   	return true;
+    
+}
+
+
+ function uploadSummernoteImageFile(file,editor,welEditable){
+ 	var data = new FormData();
+	  data.append("file", file);
+           $.ajax({
+           data: data,
+           type: "POST",
+                   // 이미지 업로드하는 파일 path 
+           url: '/dealbaord.do?command=insertimage',
+           cache: false,
+           contentType: false,
+           enctype: 'multipart/form-data',
+           processData: false,
+           success : function(data){
+        	   $("#summernote").summernote('insertImage', data.url);
+           }
+	    });
+	  } 
+
+	  
+
+function addCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+ 
+
+//모든 콤마 제거
+function removeCommas(x) {
+    if(!x || x.length == 0) return "";
+    else return x.split(",").join("");
+}
 
 
 
@@ -87,8 +130,9 @@ td {
 <body>
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>
+
 	<section>
-		<form action="dealboard.do" id="insertform" enctype='multipart/form-data' method="post">
+		<form action="dealboard.do" id="insertform" onsubmit="postForm()" enctype='multipart/form-data' method="post">
 		<input type="hidden" name="command" value="insertbuyboardres">
 			<table border="1">
 				<tr>
@@ -108,16 +152,15 @@ td {
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea cols="100" rows="10" name="dcontent" id="dcontent"></textarea>
+						<textarea id="summernote" name="dcontent" ></textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>가격</th>
 					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px"/>
-					<input type="file" name="dfilename" id="dfilename" accept="image/*" multiple></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="right"><input type="button" id="submitbutton" value="전송" style="width:100px"></td>
+					<td colspan="2" align="right"><input type="submit" value="전송" style="width:100px"></td>
 				</tr>
 			</table>
 		</form>
