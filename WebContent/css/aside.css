@@ -8,27 +8,34 @@ aside {
 	align: left;
 	top: 90px;
 	height: 100%;
-	background-color: #fee500;
-	box-shadow: 1px 0px 6px #ccc;
+	box-shadow: 1px 0px 6px black;
 	z-index: 2;
 }
 
 .menubar {
 	padding-top: 24px;
-	background-color: #fee500;
+	background-color: white;
+	color: black;
 	width: 200px;
 	height: 50px;
-}
-
-.menubar:hover {
-	background-color: black;
-	color: white;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-p {
 	text-align: left;
 	padding-left: 40px;
 	font: 16pt "Arial";
+	font-weight: bold;
+	cursor: pointer;
+	opacity: 0.2;
+}
+
+.menubar:hover {
+	padding-top: 22px;
+	font: 18pt "Arial";
+	opacity: 0.3;
+	font-weight: bold;
+}
+
+.menubar_x {
+	background-color: white;
+	width: 234px;
+	height: 400px;
+	opacity: 0.1;
 }

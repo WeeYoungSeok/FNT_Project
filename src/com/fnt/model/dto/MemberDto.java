@@ -17,13 +17,9 @@ public class MemberDto {
 	private String memberenabled;
 	private Date memberregdate;
 	
-	
-	
 	public MemberDto() {
 		
 	}
-
-
 
 	public MemberDto(String memberid, String memberpw, String memberpwchk, String membernickname, String membername,
 			Date memberbirth, String memberphone, String memberaddr, String memberemail, String memberrole,

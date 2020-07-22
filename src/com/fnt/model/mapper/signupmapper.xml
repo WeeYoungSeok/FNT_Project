@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fnt.model.mapper">
+<mapper namespace="signupmapper">
 
-	<resultMap type="memberdto" id="memberdtoResultMap">
-		<result property="memberid" column="MEMBER_ID"/>
-		<result property="memberpw" column="MEMBER_PW"/>
-		<result property="memberpwchk" column="MEMBER_PWCHK"/>
-		<result property="membernickname" column="MEMBER_NICKNAME"/>
-		<result property="membername" column="MEMBER_NAME"/>
-		<result property="memberbirth" column="MEMBER_BIRTH"/>
-		<result property="memberphone" column="MEMBER_PHONE"/>
-		<result property="memberaddr" column="MEMEBER_ADDR"/>
-		<result property="memberemail" column="MEMBER_EMAIL"/>
-		<result property="memberrole" column="MEMBER_ROLE"/>
-		<result property="enabled" column="ENABLED"/>
-		<result property="regdate" column="REGDATE"/>
-	</resultMap>
+	<resultMap type="memberdto" id="memberDtoResultMap">
+ 		<result property="memberid" column="MEMBER_ID"></result>
+ 		<result property="memberpw" column="MEMBER_PW"></result>
+ 		<result property="memberpwchk" column="MEMBER_PWCHK"></result>
+ 		<result property="membernickname" column="MEMBER_NICKNAME"></result>
+ 		<result property="membername" column="MEMBER_NAME"></result>
+ 		<result property="memberbirth" column="MEMBER_BIRTH"></result>
+ 		<result property="memberphone" column="MEMBER_PHONE"></result>
+ 		<result property="memberaddr" column="MEMBER_ADDR"></result>
+ 		<result property="memberemail" column="MEMBER_EMAIL"></result>
+ 		<result property="memberrole" column="MEMBER_ROLE"></result>
+ 		<result property="memberenabled" column="ENABLED"></result>
+ 		<result property="memberregdate" column="REGDATE"></result>
+ 	</resultMap>
 
 	<insert id="signup" parameterType="memberdto">
 		INSERT INTO MEMBER 
