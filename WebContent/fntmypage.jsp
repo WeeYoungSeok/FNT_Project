@@ -24,7 +24,7 @@
 				<th></th>
 			</tr>
 		</table>
-		
+	<input type="button" value="내 정보 보기" onclick="location.href='LoginCrudController?command=cruddetail&memberid=<%=memberdto.getMemberid()%>'">
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>
