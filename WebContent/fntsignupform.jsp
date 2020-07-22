@@ -22,23 +22,23 @@
 	
 	<br/><br/>
 	
-	<form onsubmit="return validate();" action="signup.do?command=signup" method="post">
-		<input type="hidden" name="command" value="signup">
+	<form action="signup.do" method="post">
+		<input type="hidden" name="command" value="signupform"/>
 		<table>
 			<tr>
 				<td colspan="2" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td>
 			</tr>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" id="memberid" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 6~12자 이내)" maxlength="10" required="required"/></td>
+				<td><input type="text" id="memberid" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 6~12자 이내)" maxlength="12" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Password</th>
-				<td><input type="password" id="memberpw" name="memberpw" placeholder="비밀번호를 입력해주세요. (영문/숫자 포함 6~12자 이내)" maxlength="16" required="required"/></td>
+				<td><input type="password" id="memberpw" name="memberpw" placeholder="비밀번호를 입력해주세요. (영문/숫자 포함 6~12자 이내)" maxlength="12" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Password Check</th>
-				<td><input type="password" id="memberpwchk" name="memberpwchk" placeholder="비밀번호를 다시 한 번 입력해주세요." maxlength="16" required="required"/></td>
+				<td><input type="password" id="memberpwchk" name="memberpwchk" placeholder="비밀번호를 다시 한 번 입력해주세요." maxlength="12" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Nickname</th>
@@ -46,15 +46,15 @@
 			</tr>
 			<tr>
 				<th>Name</th>
-				<td><input type="text" id="membername" name="membername" placeholder="이름을 입력해주세요." maxlength="10" required="required"/></td>
+				<td><input type="text" id="membername" name="membername" placeholder="성함을 입력해주세요." maxlength="10" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Birthday</th>
-				<td><input type="date" id="memberbirth" name="memberbirth" required="required"/></td>
+				<td><input type="date" id="memberbirth" name="memberbirth" placeholder="생년월일(YYYYMMDD)을 입력해주세요. (ex.'20200101')" maxlength="8" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Phone</th>
-				<td><input type="tel" id="memberphone" name="memberphone" placeholder="전화번호를 입력해주세요. (ex. '010-0000-0000')" required="required"/></td>
+				<td><input type="tel" id="memberphone" name="memberphone" placeholder="'-'를 사용해서 전화번호를 입력해주세요. (ex.'010-0000-0000')" maxlength="13" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Address</th>

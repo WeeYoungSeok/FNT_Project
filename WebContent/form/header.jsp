@@ -16,7 +16,6 @@
 	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 %>
 	<header>
-	
 		<span class="mysection">
 			<!-- 마이페이지 -->
 			<!-- <a href=""></a> -->
