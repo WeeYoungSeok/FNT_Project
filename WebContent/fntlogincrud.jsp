@@ -40,7 +40,8 @@
 		
 		<tr>
 			<td>
-				<input type="button" value="ID 찾기 / PW 찾기" onclick="location.href='command?logincrudfind'">
+				<input type="button" value="ID 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchid'">
+				<input type="button" value="PW 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchpw'">
 			</td>
 		</tr>
 		<tr>

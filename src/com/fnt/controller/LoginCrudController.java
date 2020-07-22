@@ -1,6 +1,7 @@
 package com.fnt.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,14 +57,48 @@ public class LoginCrudController extends HttpServlet {
 			}else {
 				jsResponse("아이디 또는 비밀번호를 확인해주세요", "fntlogincrud.jsp", response);
 			}
+			//id찾기 눌렀을 때 찾는 폼으로 이동
+		}else if(command.equals("logincrudsearchid")) {
 			
-		}else if(command.equals("logincrudfind")) {
-			MemberDto memberdto = new MemberDto();
-			dispatch("fntlogincrud.jsp", request, response);
+			jsResponse("id찾기", "fntlogincrudsearchid.jsp", response);
 			
 		}else if(command.equals("logout")) {
 			session.invalidate();
 			jsResponse("로그아웃 되었습니다.", "fntmain.jsp", response);
+		}else if(command.equals("searchid")) {
+			
+			String membername = request.getParameter("name");
+			String memberemail = request.getParameter("email");
+			String memberphone = request.getParameter("phone");
+			
+			
+			
+			MemberDto dto = dao.searchId(membername, memberemail, memberphone);
+			
+			if(dto != null) {
+				request.setAttribute("dto", dto);
+				dispatch("fntlogincrudsearchidres.jsp", request, response);
+				
+			}else {
+				jsResponse("잘못된 정보 입니다", "fntlogincrudsearchid.jsp", response);
+			}
+			
+		}else if(command.equals("logincrudsearchpw")) {
+			jsResponse("pw찾기", "fntlogincrudsearchpw.jsp", response);
+		}else if(command.equals("searchpw")) {
+			String memberid = request.getParameter("id");
+			String membername = request.getParameter("name");
+			String memberemail = request.getParameter("email");
+			String memberphone = request.getParameter("phone");
+			
+			MemberDto dto = dao.searchPw(memberid, membername, memberemail, memberphone);
+			
+			if(dto != null) {
+				request.setAttribute("dto", dto);
+				dispatch("fntlogincrudsearchpwres.jsp", request, response);
+			}else {
+				jsResponse("잘못된 정보 입니다", "fntlogincrudsearchpw.jsp", response);
+			}
 		}
 		
 		
