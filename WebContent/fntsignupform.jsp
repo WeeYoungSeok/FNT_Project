@@ -8,52 +8,22 @@
 <meta charset="UTF-8">
 <title>FNT - Sign Up</title>
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">
-
-	function validate() {
-		// id, pw 형식
-		var re = /^[a-zA-Z0-9]{6,12}$/
-		
-		// email 형식
-		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		
-		var memberid = document.getElementById("memberid");
-		var memberpw = document.getElementById("memberpw");
-		var memberemail = document.getElementById("memberemail");
-		
-		// id 형식 유효성
-		if (!check(re,memberid,"ID는 영문/숫자 6~12자 이내로 작성해주세요!")) {
-			return false;
-		}
-		
-		// pw 형식 유효성
-		if (!check(re,memberpw,"Password는 영문/숫자 6~12자 이내로 작성해주세요!")) {
-			return false;
-		}
-		
-		// pw, pwchk 대조 유효성
-		if (signup.memberpw.value != signup.memberpw.value) {
-			alert("Password가 일치하지 않습니다! 다시 확인해주세요!");
-			signup.memberpw.value = "";
-			signup.memberpw.focus();
-			return false;
-		}
-		
-		// email 형식 유효성
-		if (!check(re2,memberemail,"이메일 형식이 적합하지 않습니다!")) {
-			return false;
-		}
-		
-	}
-</script>
+<script type="text/javascript"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<link href="js/fntsignupform.js" type="text/javascript">
 </head>
 <body>
 
-	<div class="fnt_logo">
-		<img src="./img/fnt_logo.png"/>
-	</div><br/><br/>
+	<div>
+		<a href="fntmain.jsp">
+			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
+		</a>	
+	</div>
 	
-	<form name="signup" onsubmit="return validate();" action="notice.do?command=signup" method="post">
+	<br/><br/>
+	
+	<form onsubmit="return validate();" action="signup.do?command=signup" method="post">
+		<input type="hidden" name="command" value="signup">
 		<table>
 			<tr>
 				<td colspan="2" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td>
