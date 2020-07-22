@@ -15,10 +15,13 @@
  		<result property="memberenabled" column="ENABLED"></result>
  		<result property="memberregdate" column="REGDATE"></result>
  	</resultMap>
-  	<!-- 전체회원출력 -->
+  	<!-- 여부로 상태 출력 회원출력 -->
 	<select id="selectall"  parameterType="String" resultMap="memberDtoResultMap">
 		SELECT MEMBER_ID, MEMBER_NICKNAME, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDR, MEMBER_EMAIL, MEMBER_ROLE, ENABLED, REGDATE
 		FROM MEMBER
 		WHERE ENABLED=#{enabled}
 	</select>
+	
+	<!-- 신고된 회원 처리누르면 role를 r로 바꾸는 것 -->
+	
 </mapper>

@@ -3,26 +3,47 @@ package com.fnt.model.dto;
 import java.util.Date;
 
 public class ReportDto {
+
+	private int reportno;
+	private String sendid;
 	private String receiveid;
 	private String sendnickname;
 	private String receivenickname;
 	private String reporttitle;
 	private String reportcontent;
 	private Date reportregdate;
-	
+
 	public ReportDto() {
-		
+
 	}
-	
-	public ReportDto(String receiveid, String sendnickname, String receivenickname, String reporttitle,
-			String reportcontent, Date reportregdate) {
+
+	public ReportDto(int reportno, String sendid, String receiveid, String sendnickname, String receivenickname,
+			String reporttitle, String reportcontent, Date reportregdate) {
 		super();
+		this.reportno = reportno;
+		this.sendid = sendid;
 		this.receiveid = receiveid;
 		this.sendnickname = sendnickname;
 		this.receivenickname = receivenickname;
 		this.reporttitle = reporttitle;
 		this.reportcontent = reportcontent;
 		this.reportregdate = reportregdate;
+	}
+
+	public int getReportno() {
+		return reportno;
+	}
+
+	public void setReportno(int reportno) {
+		this.reportno = reportno;
+	}
+
+	public String getSendid() {
+		return sendid;
+	}
+
+	public void setSendid(String sendid) {
+		this.sendid = sendid;
 	}
 
 	public String getReceiveid() {
@@ -73,5 +94,4 @@ public class ReportDto {
 		this.reportregdate = reportregdate;
 	}
 
-	
 }
