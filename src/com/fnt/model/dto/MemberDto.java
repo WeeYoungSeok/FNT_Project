@@ -17,13 +17,9 @@ public class MemberDto {
 	private String memberenabled;
 	private Date memberregdate;
 	
-	
-	
 	public MemberDto() {
 		
 	}
-
-
 
 	public MemberDto(String memberid, String memberpw, String memberpwchk, String membernickname, String membername,
 			Date memberbirth, String memberphone, String memberaddr, String memberemail, String memberrole,
@@ -190,11 +186,11 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return " {\"memberid\" : " + memberid + ", \"memberpw\" : " + memberpw + ", \"memberpwchk\" : " + memberpwchk
-				+ ", \"membernickname\" : " + membernickname + ", \"membername\" : " + membername + ", \"memberbirth\" : " + memberbirth
-				+ ", \"memberphone\" : " + memberphone + ", \"memberaddr\" : " + memberaddr + ", \"memberemail\" : " + memberemail
-				+ ", \"memberrole\" : " + memberrole + ", \"memberenabled\" : " + memberenabled + ", \"memberregdate\" : " + memberregdate
-				+ "}";
+		return " {\"memberid\" : \"" + memberid + "\"}, {\"memberpw\" : \"" + memberpw + "\"}, {\"memberpwchk\" : \"" + memberpwchk
+				+ "\"}, {\"membernickname\" : \"" + membernickname + "\"}, {\"membername\" : \"" + membername + "\"}, {\"memberbirth\" : \"" + memberbirth
+				+ "\"}, {\"memberphone\" : \"" + memberphone + "\"}, {\"memberaddr\" : \"" + memberaddr + "\"}, {\"memberemail\" : \"" + memberemail
+				+ "\"}, {\"memberrole\" : \"" + memberrole + "\"}, {\"memberenabled\" : \"" + memberenabled + "\"}, {\"memberregdate\" : \"" + memberregdate
+				+ "\"}";
 		//list:[{k:v},{k:v}]
 	}
 	

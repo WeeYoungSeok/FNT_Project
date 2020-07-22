@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -17,11 +20,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fnt.model.dto.MemberDto;
-import com.fnt.model.dao.impl.SignupDaoImpl;
-import com.fnt.model.dao.SignupDao;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
-@WebServlet("/signup")
+import com.fnt.model.dto.MemberDto;
+import com.fnt.model.util.DatetimeUtil;
+import com.sun.glass.ui.Window;
+import com.sun.javafx.scene.control.skin.Utils;
+
+import javafx.stage.Popup;
+
+import com.fnt.model.dao.SignupDao;
+import com.fnt.model.util.DatetimeUtil;
+import com.fnt.model.dao.impl.SignupDaoImpl;
+
+@WebServlet("/signup.do")
 public class SignupController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -37,30 +50,51 @@ public class SignupController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String command = request.getParameter("command");
-		System.out.println("[" + command + "]");
 		
+		SignupDao dao = new SignupDaoImpl() ;
 		
 		HttpSession session = request.getSession();
 				
-		if (command.equals("signup")) {
+		if (command.contentEquals("main")) {
+			response.sendRedirect("fntmain.jsp");
+			
+		} else if (command.equals("signup")) {
+			response.sendRedirect("fntsignupform.jsp");
+			
+		} else if (command.contentEquals("signupform")) {
 			String memberid = request.getParameter("memberid");
 			String memberpw = request.getParameter("memberpw");
 			String memberpwchk = request.getParameter("memberpwchk");
 			String membernickname = request.getParameter("membernickname");
 			String membername = request.getParameter("membername");
+			String prebirth = request.getParameter("memberbirth");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			Date memberbirth = null;
+			try {
+				memberbirth = sdf.parse(prebirth);
+			} catch (ParseException e) {
+				System.out.println("[error] memberbirth");
+				e.printStackTrace();
+			}
+			
 			String memberphone = request.getParameter("memberphone");
 			String memberaddr = request.getParameter("memberaddr");
 			String memberemail = request.getParameter("memberemail");
-			String memberrole = request.getParameter("memberrole");
-			String enabled = request.getParameter("enabled");
-						
-			response.sendRedirect("fntlogincrud.jsp");
-		} else if (command.equals("naverlogin")) {
-			String clientId = "[1편에서 얻은 clientId값 입력]";
-			String clientSecret = "[1편에서 얻은 clientSecret값 입력]"; 
+
+			int res = dao.signup(new MemberDto(memberid, memberpw, memberpwchk, membernickname, membername, memberbirth, memberphone, memberaddr, memberemail, null, null, null));
+			
+			if (res > 0) {
+				response.sendRedirect("signup.do?command=main");
+			} else {
+				dispatch("signup.do?command=signup", request, response);
+			}
+		} else if (command.equals("naversignup")) {
+		
+			String clientId = "T0e_dO0FJagJxo8igTCZ";
+			String clientSecret = "vayV2rXfog"; 
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
-			String redirectURI = URLEncoder.encode("[로그인 후 보이게 할 페이지 url]","UTF-8");
+			String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/fntsignupform.jsp","UTF-8");
 					
 			StringBuffer apiURL = new StringBuffer();
 			apiURL.append("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&");
@@ -73,9 +107,11 @@ public class SignupController extends HttpServlet {
 			String refresh_token = ""; //나중에 이용합시다
 					
 			try { 
-				  URL url = new URL(apiURL);
+				  String apiurl = "https://openapi.naver.com/v1/nid/me";
+				  URL url = new URL(apiurl);
 			      HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			      con.setRequestMethod("GET");
+			      //con.setRequestProperty("Authorization", header);
 			      int responseCode = con.getResponseCode();
 			      BufferedReader br;
 			      System.out.print("responseCode="+responseCode);
@@ -91,11 +127,25 @@ public class SignupController extends HttpServlet {
 			      }
 			      br.close();
 			      if(responseCode==200) {
-			        out.println(res.toString());
+			        System.out.println(res.toString());
+			        JSONParser parsing = new JSONParser();
+			        Object obj = parsing.parse(res.toString());
+			        JSONObject jsonObj = (JSONObject)obj;
+			        JSONObject resObj = (JSONObject)jsonObj.get("response");
+			        
+			        String membernickname = (String)resObj.get("nickname");
+			        String memberemail = (String)resObj.get("email");
+			        String membername = (String)resObj.get("name");
+			        String memberbirth = (String)resObj.get("birthday");
+			        
+			        access_token = (String)jsonObj.get("access_token");
+			        refresh_token = (String)jsonObj.get("refresh_token");
 			      }
 			    } catch (Exception e) {
 			      System.out.println(e);
 			    }
+		} else if (command.equals("kakaosignup")) {
+			
 		}
 	}
 	

@@ -13,12 +13,11 @@
 <body>
 
 	<aside>
-	
-		<p class="menubar" onclick="location.href='notice.do?command=notice'">공지사항</p>
-		<p class="menubar" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p>
-		<p class="menubar" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p>
-		<p class="menubar" onclick="">고객센터</p>
-		
+		<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+		<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+		<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+		<div class="menubar"><p onclick="">고객센터</p></div>
+		<div class="menubar_x"></div>
 	</aside>
 
 </body>

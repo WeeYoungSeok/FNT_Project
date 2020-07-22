@@ -16,14 +16,13 @@
 	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 %>
 	<header>
-	
 		<span class="mysection">
 			<!-- 마이페이지 -->
 			<!-- <a href=""></a> -->
 			<%
 				if(memberdto != null) {
 			%>
-				<p><a href="mypage.do?command=mypage"><%=memberdto.getMembername() %></a>님 환영합니다.</p>
+				<p><a href="mypage.do?command=mypage"><%=memberdto.getMembernickname() %></a>님 환영합니다.</p>
 				<button onclick="location.href='LoginCrudController?command=logout'">logout</button>
 			<%
 				} else {
