@@ -6,7 +6,7 @@ import com.fnt.model.dto.MemberDto;
 
 public interface AdminPageBiz {
 	//전체회원조회 biz
-	public List<MemberDto> selectAll();
+	public List<MemberDto> selectAll(String enabled);
 	//탈퇴회원조회 biz
 	public List<MemberDto> deleteAll();
 	//신고회원 조회 biz

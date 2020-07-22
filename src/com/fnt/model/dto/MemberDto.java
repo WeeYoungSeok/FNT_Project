@@ -185,6 +185,18 @@ public class MemberDto {
 	public void setMemberregdate(Date memberregdate) {
 		this.memberregdate = memberregdate;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return " {\"memberid\" : " + memberid + ", \"memberpw\" : " + memberpw + ", \"memberpwchk\" : " + memberpwchk
+				+ ", \"membernickname\" : " + membernickname + ", \"membername\" : " + membername + ", \"memberbirth\" : " + memberbirth
+				+ ", \"memberphone\" : " + memberphone + ", \"memberaddr\" : " + memberaddr + ", \"memberemail\" : " + memberemail
+				+ ", \"memberrole\" : " + memberrole + ", \"memberenabled\" : " + memberenabled + ", \"memberregdate\" : " + memberregdate
+				+ "}";
+		//list:[{k:v},{k:v}]
+	}
 	
 	
 	
