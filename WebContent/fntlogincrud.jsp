@@ -43,7 +43,7 @@
 				<input type="button" value="ID 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchid'">
 				<input type="button" value="PW 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchpw'">
 			</td>
-		</tr>
+		</tr> 
 		<tr>
 			<td>
 				<input type="button" value="카카오 로그인">
