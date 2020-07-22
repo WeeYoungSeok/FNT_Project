@@ -12,19 +12,16 @@
 	<%@ include file="./form/aside.jsp" %>
 	<section>
 		<h1>마이페이지</h1>
-			<table border="1">
-			<tr>
-				<th>내가 쓴 글보기</th>
-				<th>찜목록</th>
-				<th>주문내역</th>
-			</tr>
-			<tr>
-				<th></th>
-				<th>d</th>
-				<th></th>
-			</tr>
-		</table>
-		
+		<form action="mypage.do">
+		<input type="hidden" name="command" value="selectlist"/>
+		<input type="hidden" name="memberid" value="<%=memberdto.getMemberid()%>"/>
+		<select name="mypageselect">
+			<option>내가 쓴 글보기</option>
+			<option>찜목록</option>
+			<option>주문내역</option>
+		</select> 
+		<input type="submit" value="조회"/>
+		</form>		
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>

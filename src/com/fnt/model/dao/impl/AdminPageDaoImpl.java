@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import static com.fnt.model.dao.SqlMapConfig.*;
 import com.fnt.model.dao.AdminPageDao;
 import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.ReportDto;
 
 public class AdminPageDaoImpl implements AdminPageDao {
 
@@ -34,9 +35,21 @@ public class AdminPageDaoImpl implements AdminPageDao {
 		return null;
 	}
 
-	//신고회원조회
 	@Override
-	public List<MemberDto> reportAll() {
+	public MemberDto updateRole(String receiveid) {
+		/*SqlSession session = null;
+		MemberDto dto = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			dto = session.update(namespace+"updateRole", receiveid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+		*/
 		return null;
 	}
 }

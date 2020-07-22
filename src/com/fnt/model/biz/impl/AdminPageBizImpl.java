@@ -6,6 +6,7 @@ import com.fnt.model.biz.AdminPageBiz;
 import com.fnt.model.dao.AdminPageDao;
 import com.fnt.model.dao.impl.AdminPageDaoImpl;
 import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.ReportDto;
 
 public class AdminPageBizImpl implements AdminPageBiz {
 
@@ -19,9 +20,10 @@ public class AdminPageBizImpl implements AdminPageBiz {
 	public List<MemberDto> deleteAll(){
 		return dao.deleteAll();
 	}
-	//신고회원 조회 biz
-	public List<MemberDto> reportAll(){
-		return dao.reportAll();
+	//신고된 회원 role r로 바꿔주기.
+	@Override
+	public MemberDto updateRole(String receiveid) {
+		return dao.updateRole(receiveid);
 	}
 	
 }

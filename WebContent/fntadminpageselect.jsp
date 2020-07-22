@@ -9,6 +9,7 @@
 <title>회원 조회</title>
 </head>
 <body>
+
 	<%
 		List<MemberDto> list = (List<MemberDto>) request.getAttribute("list");
 	%>
@@ -45,6 +46,7 @@
 		}
 	%>
 	</table>
+	<button onclick="location.href='fntadminpage.jsp'">뒤로가기</button>
 
 </body>
 </html>
