@@ -20,8 +20,9 @@
 			<option>찜목록</option>
 			<option>주문내역</option>
 		</select> 
-		<input type="submit" value="조회"/>
+		<input type="submit" value="조회"/><br/>
 		</form>		
+	<input type="button" value="내 정보 보기" onclick="location.href='LoginCrudController?command=cruddetail&memberid=<%=memberdto.getMemberid()%>'">	
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>

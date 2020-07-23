@@ -107,13 +107,56 @@ public class LoginCrudController extends HttpServlet {
 				jsResponse("잘못된 정보 입니다", "fntlogincrudsearchpw.jsp", response);
 			}
 		}else if(command.equals("cruddetail")) {
-			String memberid = request.getParameter("memberid");
-			System.out.println(memberid+"어디야 시발련아");
-			MemberDto dto = new MemberDto();
-			dto = dao.selectOne(memberid);
+			
+			
+			MemberDto dto = (MemberDto) session.getAttribute("memberdto");
 			System.out.println(dto.toString() + "컨트롤러에서 dto");
-			request.setAttribute("dto", dto);
+			
 			dispatch("fntcrudmypage.jsp", request, response);
+			//update폼으로 이동
+		}else if(command.equals("crudupdate")) {
+			String memberid = request.getParameter("memberid");
+			request.setAttribute("memberid", memberid);
+			dispatch("fntcrudupdate.jsp", request, response);
+			//update 하기
+		}else if(command.equals("crudupdateres")) {
+			String memberpw = request.getParameter("memberpw");
+			String memberemail = request.getParameter("memberemail");
+			String memberid = request.getParameter("memberid");
+			System.out.println("컨트롤러에서 받아온 비밀번호 : " +memberpw +   "컨트롤러에서 받아온 이메일" + memberemail);
+			
+			MemberDto dto = dao.selectOne(memberid);
+			dto.setMemberpw(memberpw);
+			dto.setMemberpwchk(memberpw);
+			dto.setMemberemail(memberemail);
+			System.out.println("컨트롤러에서 dto 값 : "+dto);
+			int res = dao.update(dto);
+			
+			session.setAttribute("memberdto", dto);
+			
+			if(res > 0) {
+				jsResponse("내 정보 수정 성공!", "LoginCrudController?command=cruddetail", response);
+			//	dispatch("fntcrudmypage.jsp", request, response);
+			}else {
+				jsResponse("내 정보 수정 실패ㅜ", "LoginCrudController?command=crudupdate", response);
+			}
+			
+			
+		}else if(command.equals("outmember")) {
+			String memberid = request.getParameter("memberid");
+			String memberenabled = request.getParameter("memberenabled");
+			
+			
+			
+			int res = dao.updateoutmember(new MemberDto(memberid, null,null ,null ,null ,null ,null ,null,null,null , memberenabled,null));
+			
+			if(res > 0) {
+				jsResponse("회원 탈퇴가 성공되었습니다.", "LoginCrudController?command=main", response);
+			}else {
+				jsResponse("회원 탈퇴 실패 ㅠ", "LoginCrudController?command=crudupdate", response);
+			}
+		}else if(command.equals("main")) {
+			dispatch("fntmain.jsp", request, response);
 		}
 		
 		

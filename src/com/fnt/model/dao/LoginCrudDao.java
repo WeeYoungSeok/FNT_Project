@@ -13,4 +13,8 @@ public interface LoginCrudDao {
 	public MemberDto searchPw(String memberid, String membername, String memberemail, String memberphone); 
 	
 	public MemberDto selectOne(String memberid);
+	
+	public int update(MemberDto dto);
+	
+	public int updateoutmember(MemberDto dto);
 }
