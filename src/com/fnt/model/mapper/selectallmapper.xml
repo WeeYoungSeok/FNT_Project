@@ -21,7 +21,12 @@
 		FROM MEMBER
 		WHERE ENABLED=#{enabled}
 	</select>
-	
 	<!-- 신고된 회원 처리누르면 role를 r로 바꾸는 것 -->
-	
+	<update id="updateRole" parameterType="String">
+		UPDATE MEMBER SET ENABLED = 'R' WHERE MEMBER_ID = #{receiveid}
+	</update>
+	<!-- 신고처리된 회원을 복귀버튼 누르면 enabled를 바꿔주자. -->
+	<update id="resetenabled" parameterType="String">
+		UPDATE MEMBER SET ENABLED = 'Y' WHERE MEMBER_ID = #{id}
+	</update>
 </mapper>

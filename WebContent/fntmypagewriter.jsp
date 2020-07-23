@@ -34,7 +34,12 @@
 				if(list.size() == 0 || list == null) {
 			%>
 				<tr align = "center">
-					<td colspan="4">조회된 글이 없습니다!</td>
+					<td colspan="4">-----조회된 글이 없습니다-----</td>
+				</tr>
+				<tr align = "right">
+					<td colspan="4">
+						<input type="button" value="뒤로가기" onclick="location.href='admin.do?command=adminpage'"/>
+					</td>
 				</tr>
 			<%
 				} else {
@@ -46,10 +51,17 @@
 					<td><%=list.get(i).getDprice() %></td>
 					<td><%=list.get(i).getDregdate() %></td>
 				</tr>
-			<%
+				<%
 				}
+				%>
+				<tr align="right">
+					<td colspan="4">
+						<input type="button" value="뒤로가기" onclick="location.href='admin.do?command=adminpage'"/>
+					</td>
+				</tr>
+				<%
 				}
-			%>
+				%>
 		</table>
 	</section>
 	<%@ include file="./form/footer.jsp" %>

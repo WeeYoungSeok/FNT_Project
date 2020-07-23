@@ -11,5 +11,7 @@ public interface AdminPageBiz {
 	//탈퇴회원조회 biz
 	public List<MemberDto> deleteAll();
 	//신고처리버튼 클릭했을 때에 enabled를 r로 바꿔주는 것
-	public MemberDto updateRole(String receiveid);
+	public int updateRole(String receiveid);
+	//신고회원을 복귀버튼 누르면 enabled를 y로 돌려주자.
+	public int restEnabled(String id);
 }

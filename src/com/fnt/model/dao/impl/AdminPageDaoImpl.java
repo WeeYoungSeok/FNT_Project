@@ -36,20 +36,42 @@ public class AdminPageDaoImpl implements AdminPageDao {
 	}
 
 	@Override
-	public MemberDto updateRole(String receiveid) {
-		/*SqlSession session = null;
-		MemberDto dto = null;
+	public int updateRole(String receiveid) {
+		SqlSession session = null;
+		int res = 0;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			dto = session.update(namespace+"updateRole", receiveid);
+			res = session.update(namespace+"updateRole", receiveid);
+			System.out.println(res + "여기입니다.");
+			if(res > 0) {
+				session.commit();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return dto;
-		*/
-		return null;
+		return res;
+	}
+
+	@Override
+	public int restEnabled(String id) {
+		SqlSession session = null;
+		int res = 0;
+		System.out.println(id + "dao에서 찍힌 id");
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.update(namespace+"resetenabled", id);
+			System.out.println(res + "dao에서 찍힌 res");
+			if(res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return res;
 	}
 }

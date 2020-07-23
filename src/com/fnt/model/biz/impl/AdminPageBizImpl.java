@@ -22,8 +22,12 @@ public class AdminPageBizImpl implements AdminPageBiz {
 	}
 	//신고된 회원 role r로 바꿔주기.
 	@Override
-	public MemberDto updateRole(String receiveid) {
+	public int updateRole(String receiveid) {
 		return dao.updateRole(receiveid);
+	}
+	@Override
+	public int restEnabled(String id) {
+		return dao.restEnabled(id);
 	}
 	
 }

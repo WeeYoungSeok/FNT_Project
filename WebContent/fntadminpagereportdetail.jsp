@@ -26,6 +26,10 @@
 				<td><%=dto.getSendnickname() %></td>
 			</tr>
 			<tr>
+				<th>신고자 아이디</th>
+				<td><%=dto.getSendid() %></td>
+			</tr>
+			<tr>
 				<th>신고사유</th>
 				<td><%=dto.getReporttitle() %></td>
 			</tr>
@@ -40,8 +44,17 @@
 				<td><%=dto.getReceivenickname() %></td>
 			</tr>
 			<tr>
+				<th>신고받는 아이디</th>
+				<td><%=dto.getReceiveid() %></td>
+			</tr>
+			<tr>
 				<th>신고 날짜</th>
 				<td><%=dto.getReportregdate() %></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input type="button" value="차단" onclick="location.href='admin.do?command=change&receiveid=<%=dto.getReceiveid() %>'"/>		
+				</td>
 			</tr>
 		</table>
 	</section>

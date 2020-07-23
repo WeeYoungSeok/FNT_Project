@@ -12,15 +12,34 @@
  		<result property="reportcontent" column="REPORT_CONTENT"></result>
  		<result property="reportregdate" column="REPORT_REGDATE"></result>
  	</resultMap>
+ 	<resultMap type="memberdto" id="memberDtoResultMap">
+ 		<result property="memberid" column="MEMBER_ID"></result>
+ 		<result property="memberpw" column="MEMBER_PW"></result>
+ 		<result property="memberpwchk" column="MEMBER_PWCHK"></result>
+ 		<result property="membernickname" column="MEMBER_NICKNAME"></result>
+ 		<result property="membername" column="MEMBER_NAME"></result>
+ 		<result property="memberbirth" column="MEMBER_BIRTH"></result>
+ 		<result property="memberphone" column="MEMBER_PHONE"></result>
+ 		<result property="memberaddr" column="MEMBER_ADDR"></result>
+ 		<result property="memberemail" column="MEMBER_EMAIL"></result>
+ 		<result property="memberrole" column="MEMBER_ROLE"></result>
+ 		<result property="memberenabled" column="ENABLED"></result>
+ 		<result property="memberregdate" column="REGDATE"></result>
+ 	</resultMap>
+ 	
+ 	
 
+<!-- 신고자 리스트 -->
 	<select id="reportlist" resultMap="reportDtoResultMap">
-		SELECT REPORT_NO, SEND_ID, RECEIVE_ID, SEND_NICKNAME, RECEIVE_NICKNAME, REPORT_TITLE, REPORT_CONTENT, REPORT_REGDATE
-		FROM REPORT ORDER BY REPORT_NO DESC
+		SELECT R.REPORT_NO, R.SEND_ID, R.RECEIVE_ID, R.SEND_NICKNAME, R.RECEIVE_NICKNAME,
+		R.REPORT_TITLE, R.REPORT_CONTENT, R.REPORT_REGDATE
+		FROM REPORT R JOIN MEMBER M ON (R.RECEIVE_ID = M.MEMBER_ID)
+		WHERE M.ENABLED = 'Y'
+		ORDER BY R.REPORT_NO DESC
 	</select>
-	
+	<!-- 신고 내용 디테일 -->
 	<select id="reportdetail" parameterType="int" resultMap="reportDtoResultMap">
 		SELECT REPORT_NO, SEND_ID, RECEIVE_ID, SEND_NICKNAME, RECEIVE_NICKNAME, REPORT_TITLE, REPORT_CONTENT, REPORT_REGDATE
 		FROM REPORT WHERE REPORT_NO = #{reportno}
 	</select>
-	
 </mapper>
