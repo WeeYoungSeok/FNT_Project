@@ -16,7 +16,7 @@
 		document.getElementsByName("id")[0].value = id;
 	}
 	
-	function confirmid(bool) {
+	function confirmid(bool) { 
 		if (bool == "true") {
 			opener.document.getElementsByName("memberid")[0].title = 'y';
 			opener.document.getElementsByName("memberpw")[0].focus();

@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 공지사항</title>
+
 <style type="text/css">
  * {
  	margin: 0px; padding: 0px;
