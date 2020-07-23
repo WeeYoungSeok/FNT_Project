@@ -12,4 +12,5 @@ public interface QnaBoardDao {
 	public QnaBoardDto selectOne(int qbboardno);
 	public int delete(int qbboardno);
 	public int insert(QnaBoardDto dto);
+	public int recomment(QnaBoardDto dto);
 }

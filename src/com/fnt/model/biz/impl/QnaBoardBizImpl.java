@@ -35,4 +35,9 @@ public class QnaBoardBizImpl implements QnaBoardBiz {
 	public int insert(QnaBoardDto dto) {
 		return qnaboarddao.insert(dto);
 	}
+
+	@Override
+	public int recomment(QnaBoardDto dto) {
+		return qnaboarddao.recomment(dto);
+	}
 }

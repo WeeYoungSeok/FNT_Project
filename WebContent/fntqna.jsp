@@ -41,6 +41,7 @@
  }
  </style>
  
+ 
 
 </head>
 <%
@@ -58,12 +59,14 @@
 		<table>
 		
 			<col width="50">
+			<col width="100">
      		<col width="300">
      	 	<col width="100">
       		<col width="300">
       		
       		<tr align="center">
       			<th></th>
+      			<th>답변여부</th>
       			<th>제목</th>
       			<th>작성자</th>
       			<th>작성일</th>
@@ -81,14 +84,58 @@
 			%>
 				<tr align="center">
 					<td><%=qnaboardlist.get(i).getQbboardno() %></td>
-					
-					
-		
-						<td align="left"><a href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>"><%=qnaboardlist.get(i).getQbtitle() %></a></td>
-					
+					<%
+						if (memberdto == null) {
+							if (qnaboardlist.get(i).getQbflag().equals("N")) {
+					%>
+							<td>처리중</td>
+					<%
+							} else {
+					%>
+							<td>답변완료</td>
+					<% 
+							}
+						} else {
 						
+							if (qnaboardlist.get(i).getQbflag().equals("N")) {
+					%>
+							<td>처리중</td>
+					<%
+						} else {
+							%>
+							<td>답변완료</td>
+							<% 
+						
+						}
+					}
+					%>
 					
 					
+					<%
+						if (memberdto == null) {
+							if (qnaboardlist.get(i).getQbsecret().equals("Y")) {
+					%>
+							<td align="left"><a onclick="alert('비밀글입니다'); return false;" href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>">(비밀글)<%=qnaboardlist.get(i).getQbtitle() %></a></td>
+					<%
+							} else {
+					%>
+							<td align="left"><a href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>"><%=qnaboardlist.get(i).getQbtitle() %></a></td>
+					<% 
+							}
+						} else {
+						
+							if (qnaboardlist.get(i).getQbsecret().equals("Y")) {
+					%>
+							<td align="left"><a id="secret" onclick="<%=((qnaboardlist.get(i).getQbid().equals(memberdto.getMemberid())) || (memberdto.getMemberrole().equals("ADMIN"))) ? "return true;" : "alert('비밀글입니다'); return false;"%>" href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>">(비밀글)<%=qnaboardlist.get(i).getQbtitle() %></a></td>
+					<%
+						} else {
+							%>
+							<td align="left"><a href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>"><%=qnaboardlist.get(i).getQbtitle() %></a></td>
+							<% 
+						
+						}
+					}
+					%>
 					<td><%=qnaboardlist.get(i).getQbnickname() %></td>
 					<td><%=qnaboardlist.get(i).getQbregdate() %></td>
 				<tr>
@@ -98,11 +145,13 @@
 			
 			%>
 			<tr>
-				<td colspan="4" align="right">
+				<td colspan="5" align="right">
 					<button onclick="location.href='qna.do?command=qnainsert'">글 작성</button>
 				</td>
 			</tr>
 		</table>
+		
+		
 	<jsp:include page="./paging/fntqnapaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>

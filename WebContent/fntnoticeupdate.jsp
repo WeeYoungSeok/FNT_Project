@@ -30,6 +30,17 @@
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	<section>
+	<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
 	<form action="notice.do" method="post">
 		<input type="hidden" value="noticeupdateres" name="command"/>
 		<input type="hidden" value="<%=noticeboardlistone.getNbboardno() %>" name="nbboardno"/>
@@ -48,12 +59,9 @@
 				<td width="400" height="200"><textarea cols="55" rows="14" name="nbcontent" style="resize: none"><%=noticeboardlistone.getNbcontent() %></textarea></td>
 			</tr>
 	
-		<%
-			if(memberdto == null) {
-		%>
 		
 		<%
-			} else if (memberdto.getMemberrole().equals("ADMIN")) {
+			if (memberdto.getMemberrole().equals("ADMIN")) {
 		%>
 		<tr>
 		<td align="right">
@@ -67,6 +75,8 @@
 			
 		<%
 			}
+		}
+	
 		%>
 		</table>
 		</form>

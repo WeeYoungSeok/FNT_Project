@@ -25,6 +25,9 @@ section {
 	padding-top: 90px;
 	padding-left: 240px;
 }
+span {
+	color: red;
+}
 </style>
 </head>
 <body>

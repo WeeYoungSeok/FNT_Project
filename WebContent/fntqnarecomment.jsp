@@ -30,7 +30,22 @@
 <body>
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
+	
 	<section>
+	<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
+		<form action="qna.do" method="post">
+		<input type="hidden" name="command" value="qnarecommnetres"/>
+		<input type="hidden" name="qbboardno" value="<%=qnaboardlistone.getQbboardno()%>"/>
 		<table border="1"> 
 			<tr>
 				<td>고객센터 > 
@@ -43,55 +58,22 @@
 				<td><%=qnaboardlistone.getQbnickname() %></td>
 			</tr>
 			<tr>
-			
-				<td width="400" height="200" style="vertical-align: top;"><br/>Q.<%=qnaboardlistone.getQbcontent() %><br/>
-			
-				<%
-				if (qnaboardlistone.getQbflag().equals("Y")) {
-				%>
-					<br/><span>&nbsp;&nbsp;&nbsp;문의 답변 | 등록일 : <%=qnaboardlistone.getQbredate() %></span>
-				<%
-				} 
-				%>
-				</td>
+				<td width="400" height="200"><textarea cols="54" rows="13" name="qbcontent" style="resize: none"><%=qnaboardlistone.getQbcontent() %><br><br><br></textarea></td>
 			</tr>
 	
-		<%
-			if(memberdto == null) {
-		%>
-		
-		<%
-			} else {
-				if (memberdto.getMemberrole().equals("ADMIN")) {
-		%>
+	
 		<tr>
-			<td align="right">
-				<button onclick="location.href='qna.do?command=qnarecomment&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">답변</button>
-				<button onclick="location.href='qna.do?command=qnadelete&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">삭제</button>
-			</td>
+		<td align="right">
+			<input type="submit" value="완료">
+			<button onclick="location.href='qna.do?command=qnadelete&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">삭제</button>
+		</td>
 		</tr>
-		<%
-			} else if (memberdto.getMemberid().equals(qnaboardlistone.getQbid())) {
-		%>
-			<tr>
-				<td align="right">
-					<button onclick="location.href='qna.do?command=qnaupdate&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">수정</button>
-					<button onclick="location.href='qna.do?command=qnadelete&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">삭제</button>
-				</td>
-			</tr>
-		<%
-			} else {
-				
-				%>
-				
-				<% 
-			}
-		}
-		
-		%>
-		
 		
 		</table>
+		</form>
+		<%
+		}
+		%>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>

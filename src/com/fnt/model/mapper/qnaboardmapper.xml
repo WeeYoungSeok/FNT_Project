@@ -6,20 +6,19 @@
  		<result property="qbboardno" column="QB_BOARDNO"></result>
  		<result property="qbid" column="QB_ID"></result>
  		<result property="qbnickname" column="QB_NICKNAME"></result>
- 		<result property="qbgroupno" column="QB_GROUPNO"></result>
- 		<result property="qbgroupseq" column="QB_GROUPSEQ"></result>
- 		<result property="qbtitletab" column="QB_TITLETAB"></result>
  		<result property="qbtitle" column="QB_TITLE"></result>
  		<result property="qbcontent" column="QB_CONTENT"></result>
  		<result property="qbsecret" column="QB_SECRET"></result>
+ 		<result property="qbflag" column="QB_FLAG"></result>
  		<result property="qbregdate" column="QB_REGDATE"></result>
+ 		<result property="qbredate" column="QB_REDATE"></result>
  	</resultMap>
 
 	<select id="qnaselectPaging" parameterType="map" resultMap="qnaboardDtoResultMap">
 	<![CDATA[
-		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_GROUPNO, QB_GROUPSEQ, QB_TITLETAB, QB_TITLE, QB_CONTENT, QB_SECRET, QB_REGDATE 
-		FROM (SELECT row_num ,QB_BOARDNO, QB_ID, QB_NICKNAME, QB_GROUPNO, QB_GROUPSEQ, QB_TITLETAB, QB_TITLE, QB_CONTENT, QB_SECRET, QB_REGDATE  
-		FROM (SELECT ROWNUM row_num, QB_BOARDNO, QB_ID, QB_NICKNAME, QB_GROUPNO, QB_GROUPSEQ, QB_TITLETAB, QB_TITLE, QB_CONTENT, QB_SECRET, QB_REGDATE  FROM QNA_BOARD) 
+		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE ,QB_REDATE
+		FROM (SELECT row_num ,QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE ,QB_REDATE  
+		FROM (SELECT ROWNUM row_num, QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE, QB_REDATE  FROM QNA_BOARD) 
 		WHERE row_num >= #{endNum}) 
 		WHERE row_num <= #{startNum}
 		ORDER BY QB_BOARDNO DESC
@@ -31,7 +30,7 @@
  	</select>
  	
  	<select id="qnaselectListOne" parameterType="int" resultMap="qnaboardDtoResultMap">
- 		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_GROUPNO, QB_GROUPSEQ, QB_TITLETAB, QB_TITLE, QB_CONTENT, QB_SECRET, QB_REGDATE 
+ 		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE, QB_REDATE 
  		FROM QNA_BOARD
  		WHERE QB_BOARDNO = #{qbboardno}
  	</select>
@@ -43,6 +42,12 @@
  	
  	<insert id="qnainsert" parameterType="qnaboarddto">
  		INSERT INTO QNA_BOARD
-	VALUES (QB_BOARDNO_SEQ.NEXTVAL, #{qbid}, #{qbnickname}, QB_GROUPNO_SEQ.NEXTVAL, 1, 0, #{qbtitle}, #{qbcontent}, #{qbsecret}, SYSDATE)
+		VALUES (QB_BOARDNO_SEQ.NEXTVAL, #{qbid}, #{qbnickname}, #{qbtitle}, #{qbcontent}, #{qbsecret}, 'N' , SYSDATE, SYSDATE)
  	</insert>
+ 	
+ 	<update id="qnarecomment" parameterType="qnaboarddto">
+ 		UPDATE QNA_BOARD
+ 		SET QB_CONTENT = #{qbcontent}, QB_REDATE = SYSDATE, QB_FLAG = 'Y' 
+ 		WHERE QB_BOARDNO = #{qbboardno} 
+ 	</update>
 </mapper>
