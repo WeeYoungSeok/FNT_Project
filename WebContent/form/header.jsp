@@ -44,7 +44,7 @@
 		
 		<!-- 로고 -->
 		<div class="fnt_logo">
-			<img src="./img/fnt_logo.png" onclick="location.href='fntmain.html'"/>
+			<img src="./img/fnt_logo.png" onclick="location.href='fntmain.jsp'"/>
 		</div>
 		
 	</header>

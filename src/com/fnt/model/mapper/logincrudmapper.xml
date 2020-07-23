@@ -47,6 +47,19 @@
   	WHERE MEMBER_ID = #{memberid}
   </select>
   
+  <update id="mypageupdate" parameterType="memberdto">
+  	UPDATE MEMBER
+  	SET MEMBER_PW = #{memberpw},  
+  		MEMBER_PWCHK = #{memberpw}, 
+  		MEMBER_EMAIL = #{memberemail}
+  	WHERE MEMBER_ID = #{memberid}
+  </update>
+  
+  <update id="updateoutmember" parameterType="memberdto">
+  	UPDATE MEMBER
+  	SET ENABLED = #{memberenabled}
+  	WHERE MEMBER_ID = #{memberid}
+  </update>
   
   
 </mapper>

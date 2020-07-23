@@ -97,7 +97,6 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 	
 	//마이페이지에서 내정보 보기 누를 때 내 정보 리스트 출력하기
 	public MemberDto selectOne(String memberid){
-		System.out.println(memberid+"이씨팔련아 어딨어");
 		SqlSession session = null;
 		MemberDto dto = null;
 		
@@ -114,6 +113,53 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		
 		
 		return dto;
+	}
+	
+	//마이페이지에서 개인정보 수정하기
+	public int update(MemberDto dto) {
+		SqlSession session = null;
+		int res = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			System.out.println("DAO비밀번호 : "+dto.getMemberpw());
+			res = session.update(namespace+"mypageupdate",dto);
+			
+			if(res > 0) {
+				session.commit();
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return res;
+		
+	}
+	
+	//탈퇴하기를 눌렀을 때, enabled를 update
+	public int updateoutmember(MemberDto dto) {
+		SqlSession session = null;
+		int res = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.update(namespace+"updateoutmember",dto);
+			
+			if(res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return res;
 	}
 	
 
