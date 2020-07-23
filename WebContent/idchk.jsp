@@ -23,7 +23,7 @@
 		} else {
 			opener.document.getElementsByName("memberid")[0].focus();
 		}
-		self.close();
+		self.close(); 
 	}
 	
 </script>
