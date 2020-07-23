@@ -15,4 +15,8 @@ public interface DealBoardDao {
 	
 	public DealBoardDto selectDetail(int dboardno);
 	
+	public int deleteDealBoard(int dboardno);
+	
+	public int updateDealBoard(DealBoardDto dto);
+	
 }

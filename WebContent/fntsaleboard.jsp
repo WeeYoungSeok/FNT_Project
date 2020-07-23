@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item) : 구매</title>
+<title>FNT(Feel New Item) : 판매</title>
 <style type="text/css">
 * {
 	margin: 0px;
@@ -42,10 +43,10 @@ section {
 						<tr>
 							<td>${dealboarddto.dboardno }</td>
 							<td>
-								<a href="dealboard.do?command=dealboarddetail&dboardno=${dealboarddto.dboardno}">${dealboarddto.dtitle }</a>
+								<a href="dealboard.do?command=detailboard&dboardno=${dealboarddto.dboardno}">${dealboarddto.dtitle }</a>
 							</td>
 							<td>${dealboarddto.dnickname }</td>
-							<td>${dealboarddto.dprice }</td>
+							<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>
 							<td>${dealboarddto.dregdate }</td>
 						</tr>
 					</c:forEach>
