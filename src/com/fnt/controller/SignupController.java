@@ -54,13 +54,27 @@ public class SignupController extends HttpServlet {
 		SignupDao dao = new SignupDaoImpl() ;
 		
 		HttpSession session = request.getSession();
-				
+		
+		// 메인 페이지로 보내기
 		if (command.contentEquals("main")) {
 			response.sendRedirect("fntmain.jsp");
-			
+		
+		// 회원가입 폼으로 보내기
 		} else if (command.equals("signup")) {
 			response.sendRedirect("fntsignupform.jsp");
+		
+		// 아이디 중복 체크
+		} else if (command.equals("idchk")) {
+			String id = request.getParameter("id");
+			System.out.println(id);
+			MemberDto memberdto = dao.idchk(id);
+			boolean idnotused = true;
+			if (memberdto != null) {
+				idnotused = false;
+			}
+			response.sendRedirect("idchk.jsp?idnotused=" + idnotused);
 			
+		// 회원가입 폼에서 member 테이블로 insert
 		} else if (command.contentEquals("signupform")) {
 			String memberid = request.getParameter("memberid");
 			String memberpw = request.getParameter("memberpw");
@@ -88,10 +102,12 @@ public class SignupController extends HttpServlet {
 			} else {
 				dispatch("signup.do?command=signup", request, response);
 			}
+		
+		// 네이버 연동 로그인
 		} else if (command.equals("naversignup")) {
 		
-			String clientId = "T0e_dO0FJagJxo8igTCZ";
-			String clientSecret = "vayV2rXfog"; 
+			String clientId = "T0e_dO0FJagJxo8igTCZ";			// client id : T0e_dO0FJagJxo8igTCZ
+			String clientSecret = "vayV2rXfog"; 				// client secret : vayV2rXfog
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
 			String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/fntsignupform.jsp","UTF-8");
@@ -104,14 +120,14 @@ public class SignupController extends HttpServlet {
 			apiURL.append("&code=" + code);
 			apiURL.append("&state=" + state);
 			String access_token = "";
-			String refresh_token = ""; //나중에 이용합시다
+			String refresh_token = ""; // 나중에 다시 찾아봄
 					
 			try { 
 				  String apiurl = "https://openapi.naver.com/v1/nid/me";
 				  URL url = new URL(apiurl);
 			      HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			      con.setRequestMethod("GET");
-			      //con.setRequestProperty("Authorization", header);
+			      //con.setRequestProperty("Authorization", header);		// 이 header가 대체 어디서 나왔는지 아시는 분...?
 			      int responseCode = con.getResponseCode();
 			      BufferedReader br;
 			      System.out.print("responseCode="+responseCode);
@@ -144,6 +160,8 @@ public class SignupController extends HttpServlet {
 			    } catch (Exception e) {
 			      System.out.println(e);
 			    }
+			
+		// 카카오 연동 로그인 
 		} else if (command.equals("kakaosignup")) {
 			
 		}

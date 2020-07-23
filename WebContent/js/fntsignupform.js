@@ -1,35 +1,32 @@
-function validate() {
-	// id, pw 형식
-	var re = /^[a-zA-Z0-9]{6,12}$/
-	
-	// email 형식
-	var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	
-	var memberid = document.getElementById("memberid");
-	var memberpw = document.getElementById("memberpw");
-	var memberemail = document.getElementById("memberemail");
-	
-	// id 형식 유효성
-	if (!check(re,memberid,"ID는 영문/숫자 6~12자 이내로 작성해주세요!")) {
-		return false;
+	// id 중복체크 팝업
+	function open_win(url,name) {
+		var chkid = document.getElementsByName("memberid")[0];
+		
+		window.open(url + '&id=' + chkid.value,name,
+					"width=300, height=300");
 	}
 	
-	// pw 형식 유효성
-	if (!check(re,memberpw,"Password는 영문/숫자 6~12자 이내로 작성해주세요!")) {
-		return false;
+	// pw pwchk 비교 처리
+ 	$(document).ready(function(){
+ 		
+ 		// pwchk 입력란을 벗어나면(tab, click) 실행
+ 		$('.PwChk').focusout(pwChk);
+ 	});
+ 	
+ 	function pwChk() {
+		var pw = document.getElementsByName("memberpw")[0];
+		var pwchk = document.getElementsByName("memberpwchk")[0];
+		
+		if (pw.value != pwchk.value) {
+			
+			// 에러메시지 출력
+			alert("Password가 일치하지 않습니다! 다시 확인해주세요!");
+			
+			// pw, pwchk 리셋해주기 
+			$('.Pw').val('');
+			$('.PwChk').val('');
+			
+			// memberpw 입력으로 돌아가기
+			pw.select();
+		}
 	}
-	
-	// pw, pwchk 대조 유효성
-	if (signup.memberpw.value != signup.memberpw.value) {
-		alert("Password가 일치하지 않습니다! 다시 확인해주세요!");
-		signup.memberpw.value = "";
-		signup.memberpw.focus();
-		return false;
-	}
-	
-	// email 형식 유효성
-	if (!check(re2,memberemail,"이메일 형식이 적합하지 않습니다!")) {
-		return false;
-	}
-	
-}

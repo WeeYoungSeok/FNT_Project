@@ -16,7 +16,15 @@
  		<result property="memberenabled" column="ENABLED"></result>
  		<result property="memberregdate" column="REGDATE"></result>
  	</resultMap>
+ 	
+ 	<!-- 입력한 id가 db에 있으면 가져오기 -->
+ 	<select id="selectidall" parameterType="String" resultMap="memberDtoResultMap">
+ 		SELECT MEMBER_ID
+ 		FROM MEMBER
+ 		WHERE MEMBER_ID = #{id}
+ 	</select>
 
+	<!-- 입력한 정보들 db에 넣기 -->
 	<insert id="signup" parameterType="memberdto">
 		INSERT INTO MEMBER 
 		VALUES(#{memberid}, #{memberpw}, #{memberpwchk}, #{membernickname}, #{membername}, #{memberbirth}, #{memberphone}, #{memberaddr}, #{memberemail}, 'USER', 'Y', SYSDATE)
