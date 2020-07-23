@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item) : 구매 글쓰기</title>
+<title>FNT(Feel New Item) : 글 수정하기</title>
 <!-- summernote 넣기 -->
 <link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -139,7 +139,8 @@ td {
 
 	<section>
 		<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
-		<input type="hidden" name="command" value="insertbuyboardres">
+		<input type="hidden" name="command" value="updatebuyboardres">
+		<input type="hidden" name="dboardno" value="${dealboarddto.dboardno }">
 			<table border="1">
 				<tr>
 					<th>글제목</th>
@@ -152,18 +153,18 @@ td {
 							<option value="A">애완</option>
 							<option value="S">스포츠</option>
 						</select>
-						<input type="text" name="dtitle" placeholder="제목을 입력해주세요." required="required"/>
+						<input type="text" name="dtitle" placeholder="제목을 입력해주세요." required="required" value="${dealboarddto.dtitle }"/>
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea class="summernote" id="summernote" name="dcontent" style="resize:none" ></textarea>
+						<textarea class="summernote" id="summernote" name="dcontent" style="resize:none" >${dealboarddto.dcontent}</textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px"/>
+					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" value="${dealboarddto.dprice }"/>
 				</tr>
 				<tr>
 					<td colspan="2" align="right"><input type="submit" value="전송" style="width:100px"></td>

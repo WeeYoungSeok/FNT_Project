@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import com.fnt.model.dao.DealBoardDao;
 import com.fnt.model.dto.DealBoardDto;
 
+import sun.security.ec.ECDHKeyAgreement;
+
 public class DealBoardDaoImpl implements DealBoardDao{
 
 	private String namespace = "dealboardmapper.";
@@ -104,6 +106,44 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		}
 		
 		return dto;
+	}
+
+	@Override
+	public int deleteDealBoard(int dboardno) {
+		SqlSession sqlsession = null;
+		int res = 0;
+		try {
+			sqlsession = getSqlSessionFactory().openSession(false);
+			res = sqlsession.delete(namespace+"deletedealboard",dboardno);
+			
+			if(res > 0) {
+				sqlsession.commit();
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		return res;
+	}
+
+	@Override
+	public int updateDealBoard(DealBoardDto dto) {
+		SqlSession sqlsession = null;
+		int res = 0;
+		try {
+			sqlsession = getSqlSessionFactory().openSession(false);
+			res = sqlsession.update(namespace+"updatedealboard",dto);
+			if(res > 0) {
+				sqlsession.commit();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		return res;
 	}
 	
 
