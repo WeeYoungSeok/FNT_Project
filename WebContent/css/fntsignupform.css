@@ -25,7 +25,7 @@ img {
 
 form {
 	margin-top: 110px;
-	margin-left: 180px;
+	margin-left: 280px;
 }
 
 p {
@@ -38,38 +38,52 @@ tr {
 }
 
 th {
-	width: 140px;
 	background-color: #dddddd;
 	text-align: left;
 	padding-left: 16px;
-}
-
-td {
-	width: 700px;
+	padding-right: 10px;
 }
 
 input {
-	width: 400px;
+	width: 376px;
 	height: 30px;
 	padding-left: 10px;
 	border: none;
 }
 
+.in_btn {
+	width: 100px;
+	height: 24px;
+	background-color: #dddddd;
+	color: white;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
 #resetbtn {
 	background-color: #dddddd;
-}
-
-#submitbtn {
-	background-color: #fee500;
-}
-
-button {
-	margin-left: 100px;
 	cursor: pointer;
-	width: 300px;
+	width: 316px;
 	height: 40px;
 	color: white;
 	font-size: 14pt;
 	font-weight: bold;
 	border: none;
+}
+
+#submitbtn {
+	background-color: #fee500;
+	margin-left: 12px;
+	cursor: pointer;
+	width: 316px;
+	height: 40px;
+	color: white;
+	font-size: 14pt;
+	font-weight: bold;
+	border: none;
+}
+
+#idchkbtn {
+	cursor: pointer;
 }

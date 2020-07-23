@@ -2,6 +2,7 @@ package com.fnt.model.dao.impl;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,6 +15,42 @@ public class SignupDaoImpl implements SignupDao {
 	
 	private String namespace = "signupmapper.";
 	
+	// db에 있는 id 전부 불러오는 용도
+	public List<MemberDto> selectidall() {
+		
+		SqlSession session = null;
+		List<MemberDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace + "selectidall");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return list;
+	}
+	
+	// id 중복 체크
+	public MemberDto idchk(String id) {
+		SqlSession session = null;
+		MemberDto memberdto = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			memberdto = session.selectOne(namespace + "selectidall", id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return memberdto;
+	}
+	
+	// 회원가입 폼에 넣은 정보들 db에 입력
 	public int signup(MemberDto memberdto) {
 		
 		SqlSession session = null;
