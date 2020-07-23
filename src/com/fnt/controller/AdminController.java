@@ -69,12 +69,10 @@ public class AdminController extends HttpServlet {
 				list = reportpagebiz.selectList();
 				request.setAttribute("reportlist", list);
 				dispatch("fntadminpagereport.jsp", request, response);
-				System.out.println("report로 들어옴");
 			}else {
 				List<MemberDto> list = new ArrayList<MemberDto>();
 				list = adminpagebiz.selectAll(enabled);
 				request.setAttribute("list", list);
-				System.out.println(enabled + "잘 들어왔니?");
 				dispatch("fntadminpageselect.jsp",request,response);
 			}
 			//json으로 바꿔준다.
@@ -86,16 +84,31 @@ public class AdminController extends HttpServlet {
 			 * System.out.println(list.toString()); PrintWriter out = response.getWriter();
 			 * out.println(list.get(0));
 			 */
+			
+			//신고내용 자세히 보기
 		} else if(command.equals("reportdetail")) {
 			int reportno = Integer.parseInt(request.getParameter("reportno"));
 			ReportDto dto = new ReportDto();
 			dto = reportpagebiz.selectOne(reportno);
 			request.setAttribute("reportdto", dto);
 			dispatch("fntadminpagereportdetail.jsp", request, response);
+			
+			//처리버튼 누르면 enabled를 r로 바꿔주기.
 		} else if(command.equals("change")) {
 			String receiveid = request.getParameter("receiveid");
-			System.out.println(receiveid+"ㅎㅎ");
-			
+			int res = adminpagebiz.updateRole(receiveid);
+			if(res > 0) {
+				jsResponse("신고처리가 완료되었습니다.", "admin.do?command=adminpage", response);
+			}
+		}
+		//회원상태조회에서 복귀버튼 누르면 enabled를 y로 변경
+		else if(command.equals("reset")) {
+			String id = request.getParameter("id");
+			System.out.println(id + "컨트롤러에서 찍힌 id");
+			int res = adminpagebiz.restEnabled(id);
+			if(res > 0) {
+				jsResponse("복귀처리가 완료되었습니다.", "admin.do?command=adminpage", response);
+			}
 		}
 	}
 	

@@ -29,7 +29,7 @@ CREATE TABLE MEMBER(
    CONSTRAINT ENABLED_MEMBER_CHK CHECK(ENABLED IN('Y','N','R'))
 );
 INSERT INTO MEMBER
-VALUES('test', 'test1234', 'test1234', '문의열리네요', '김지후', SYSDATE, '010-1234-1234', '캘리포니아', 'mune@kh.com', 'USER', 'Y', SYSDATE);
+VALUES('abcd', 'abcd1234', 'abcd1234', '타투문희', '나문희', SYSDATE, '010-1234-1236', '캘리포니아12', 'mune12@kh.com', 'USER', 'Y', SYSDATE);
 
 --공지사항 테이블
 DELETE FROM NOTICE_BOARD;
@@ -167,7 +167,11 @@ CREATE TABLE REPORT(
    FOREIGN KEY(RECEIVE_NICKNAME) REFERENCES MEMBER(MEMBER_NICKNAME)
 );
 INSERT INTO REPORT
-VALUES(REPORT_SEQ.NEXTVAL, 'test', 'member', '문의열리네요', '회원', '거래사기', '거래사기쳤어요', SYSDATE);
+VALUES(REPORT_SEQ.NEXTVAL, 'mun', 'test', '호피문희', '문의열리네요', '라면먹기~~~~~~', '내가 제일 좋아하는 갈비찜 덮밥!', SYSDATE);
+INSERT INTO REPORT
+VALUES(REPORT_SEQ.NEXTVAL, 'mun', 'sample', '호피문희', '뱁새', '지원이누나', '지원이누나의 sample아이디 신고해버리고 y로 바꿔버리기 ㅋ', SYSDATE);
+INSERT INTO REPORT
+VALUES(REPORT_SEQ.NEXTVAL, 'mun', 'abcd', '호피문희', '타투문희', '문희가 문희신고', '부적절한 닉네임', SYSDATE);
 
 --찜목록
 DELETE FROM WISH_LIST;
@@ -233,3 +237,4 @@ CREATE TABLE ALERT(
 
 
 		
+SELECT * FROM MEMBER;

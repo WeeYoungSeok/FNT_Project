@@ -42,4 +42,8 @@ public class ReportPageDaoImpl implements ReportPageDao {
 		}
 		return dto;
 	}
+	
+	public int update(String rece) {
+		return 0;
+	}
 }
