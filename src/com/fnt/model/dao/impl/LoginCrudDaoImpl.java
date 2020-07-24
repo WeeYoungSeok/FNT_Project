@@ -39,16 +39,18 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		return dto;
 	}
 	
+	
+	
 	 
 	//id 분실시 id찾기
-	public MemberDto searchId(String membername, String memberemail, String memberphone) {
+	public MemberDto searchId(String membername, String memberemail) {
 		SqlSession session = null;
 		MemberDto dto = null;
 		
 		Map<String, String> map = new HashMap<String, String>();
    		map.put("membername", membername);
 		map.put("memberemail", memberemail);
-		map.put("memberphone", memberphone);
+		
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);

@@ -25,6 +25,8 @@
   	WHERE MEMBER_ID = #{memberid} AND MEMBER_PW = #{memberpw}
   </select>
   
+
+  
   <select id="searchid" parameterType="map" resultMap="memberDtoResultMap">
   	SELECT MEMBER_ID
   	FROM MEMBER
