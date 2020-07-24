@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MemberDto {
 
+	//toStrnig부분 주석처리된 부분은 다시 풀어놓고 다른거는 주석처리히고 가장 위에있는 생성자  주석처리하면 됌
 	private String memberid;
 	private String memberpw;
 	private String memberpwchk;
@@ -16,6 +17,7 @@ public class MemberDto {
 	private String memberrole;
 	private String memberenabled;
 	private Date memberregdate;
+	
 	
 	public MemberDto() {
 		
@@ -182,25 +184,7 @@ public class MemberDto {
 		return memberregdate;
 	}
 
-
-
 	public void setMemberregdate(Date memberregdate) {
 		this.memberregdate = memberregdate;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return " {\"memberid\" : \"" + memberid + "\"}, {\"memberpw\" : \"" + memberpw + "\"}, {\"memberpwchk\" : \"" + memberpwchk
-				+ "\"}, {\"membernickname\" : \"" + membernickname + "\"}, {\"membername\" : \"" + membername + "\"}, {\"memberbirth\" : \"" + memberbirth
-				+ "\"}, {\"memberphone\" : \"" + memberphone + "\"}, {\"memberaddr\" : \"" + memberaddr + "\"}, {\"memberemail\" : \"" + memberemail
-				+ "\"}, {\"memberrole\" : \"" + memberrole + "\"}, {\"memberenabled\" : \"" + memberenabled + "\"}, {\"memberregdate\" : \"" + memberregdate
-				+ "\"}";
-		//list:[{k:v},{k:v}]
-	}
-	
-	
-	
-	
 }

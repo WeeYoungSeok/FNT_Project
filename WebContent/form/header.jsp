@@ -24,18 +24,22 @@
 			%>
 				<p><a href="mypage.do?command=mypage"><%=memberdto.getMembernickname() %></a>님 환영합니다.</p>
 				<button onclick="location.href='LoginCrudController?command=logout'">logout</button>
-			<%
+				<%
+					if(memberdto.getMemberrole().equals("USER")){
+				%>
+				<a href="mypage.do?command=alert">
+					<img id="alertbell" alt="alert" src="./img/bell.png"/>
+				</a>
+				<%
+					}
 				} else {
 			%>
 				<button onclick="location.href='fntlogincrud.jsp'">로그인</button>
+				<!-- 알림 -->
 			<%
 				}
 			%>
 			
-			<!-- 알림 -->
-			<a href="mypage.do?command=alert">
-				<img id="alertbell" alt="alert" src="./img/bell.png"/>
-			</a>
 			
 			<!-- 번역 -->
 			<a id="trans" href="">KO/EN</a>

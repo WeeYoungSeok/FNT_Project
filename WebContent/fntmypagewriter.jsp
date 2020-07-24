@@ -56,7 +56,7 @@
 				%>
 				<tr align="right">
 					<td colspan="4">
-						<input type="button" value="뒤로가기" onclick="location.href='admin.do?command=adminpage'"/>
+						<input type="button" value="뒤로가기" onclick="location.href='mypage.do?command=mypage'"/>
 					</td>
 				</tr>
 				<%
