@@ -1,3 +1,4 @@
+<%@page import="com.fnt.model.dto.ReportDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,71 +11,120 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	
-/* 	function getParameterValues(){
-			var queryString = "?command=select&enabled=" + $("select[name=enabled]").val();
-		return queryString;
-	}
-	
+function getParameterValues(){
+	var queryString = "?command=select&enabled=" + $("select[name=enabled]").val();
+return queryString;
+}
+function enabledValue() {
+	var enabled = $("select[name=enabled]").val();
+	return enabled
+} 
 
-	$(function() {
-		$("#selectmember").click(function() {
-			$.ajax({
-				url : "admin.do" + getParameterValues(),
-				data : "text",
-				dataType : "json",
-				success : function(msg) {
-					alert("연결 성공");	
-					console.log(msg);
-						$("table").attr("border",1);
-						var $tr = $("<tr>");
-						$tr.append($("<th>").html("아이디"));
-						$tr.append($("<th>").html("비밀번호"));
-						$tr.append($("<th>").html("비번확인"));
-						$tr.append($("<th>").html("닉네임"));
-						$tr.append($("<th>").html("이름"));
-						$tr.append($("<th>").html("생일"));
-						$tr.append($("<th>").html("폰번호"));
-						$tr.append($("<th>").html("주소"));
-						$tr.append($("<th>").html("이메일"));
-						$tr.append($("<th>").html("등급"));
-						$tr.append($("<th>").html("여부"));
-						$tr.append($("<th>").html("날짜"));
-						
-						$("thead").append($tr);
-						
-					$.each(msg, function(key, val){
-						if(key == "list"){
-							var $tr = $("<tr>");
-							for(var i = 0; i < val.length; i++){
-								for(var j in val[i]){
-									$tr.append($("<td>").html(val[i][j]));
-								}
-							}
-							$("tbody").append($tr);
-							}
-					});
-						
-				},
-				error : function(){
-					alert("연결 실패");
-				}
-			});
-		});
-	}); */
-	$(function(){
-		$("#selectmember").click(function(){
-			location.href="admin.do?command=select&enabled=" + $("select[name=enabled]").val();
-			console.log($("select[name=enabled]").val());
-		});
-	});
+function letGo(){
+	   $("table").removeAttr("border");
+	   $("thead").empty();
+	   $("tbody").empty();
+if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
+	   $.ajax({
+	      url : "admin.do" + getParameterValues(),
+	      dataType : "json",
+	      success : function(data) {
+	         $("table").attr("border", 1);
+	         $("thead").append(
+	            "<tr>"+
+	               "<th>"+"아이디"+"</th>"+
+	               "<th>"+"닉네임"+"</th>"+
+	               "<th>"+"이름"+"</th>"+
+	               "<th>"+"생년월일"+"</th>"+
+	               "<th>"+"전화번호"+"</th>"+
+	               "<th>"+"주소"+"</th>"+
+	               "<th>"+"이메일"+"</th>"+
+	               "<th>"+"가입날짜"+"</th>"+
+	            "</tr>"
+	         );
+	         $.each(data, function(key, val){
+	        	 if(key == "LIST"){
+	               var list = val;
+	               for (var i = 0; i < list.length; i++) {
+	                  var str = list[i];
+	                  $("tbody").append(
+	                     "<tr>"+
+	                        "<td>"+str.memberid+"</td>"+
+	                        "<td>"+str.membernickname+"</td>"+
+	                        "<td>"+str.membername+"</td>"+
+	                        "<td>"+str.memberbirth+"</td>"+
+	                        "<td>"+str.memberphone+"</td>"+
+	                        "<td>"+str.memberaddr+"</td>"+
+	                        "<td>"+str.memberemail+"</td>"+
+	                        "<td>"+str.memberregdate+"</td>"+
+	                     "</tr>"
+	                  );
+	               }
+	            }
+	         });  
+	      },
+	      error : function(){
+	         alert("회원여부조회페이지 연결 실패");
+	      }
+	      });
+	   	}
+
+	   	else{
+		   $.ajax({
+			      url : "admin.do" + getParameterValues(),
+			      dataType : "json",
+			      success : function(data) {
+			         $("table").attr("border", 1);
+			         $("thead").append(
+			            "<tr>"+
+			               "<th>"+"신고번호"+"</th>"+
+			               "<th>"+"신고사유"+"</th>"+
+			               "<th>"+"신고자 아이디"+"</th>"+
+			               "<th>"+"신고자 닉네임"+"</th>"+
+			               "<th>"+"신고받는사람 아이디"+"</th>"+
+			               "<th>"+"신고받는사람 닉네임"+"</th>"+
+			               "<th>"+"신고날짜"+"</th>"+
+			               "<th>"+"처리"+"</th>"+
+			            "</tr>"
+			         );
+			         $.each(data, function(key, val){
+			        	 if(key=="REPORT"){
+			               var list = val;
+			               for (var i = 0; i < list.length; i++) {
+			                  var str = list[i];
+			                  $("tbody").append(
+			                     "<tr>"+
+			                        "<td>"+str.reportno+"</td>"+
+			                        "<td><a href=admin.do?command=reportdetail&reportno=" + str.reportno +">"+str.reporttitle+"</a></td>"+
+			                        "<td>"+str.sendid+"</td>"+
+			                        "<td>"+str.sendnickname+"</td>"+
+			                        "<td>"+str.receiveid+"</td>"+
+			                        "<td>"+str.receivenickname+"</td>"+
+			                        "<td>"+str.reportregdate+"</td>"+
+			                        "<td><input type=button value=차단하기 onclick=location.href='admin.do?command=change&receiveid='" + str.receiveid + "/></td>"+
+			                     "</tr>"
+			                  );
+			               }
+			        	 }
+			            
+			         });  
+			      },
+			      error : function(){
+			         alert("신고 처리페이지 연결 실패");
+			      }
+			      });
+			  	}
+}
+			
 </script>
 
 </head>
 <body>
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
-	<section>
+	
+	
+		<section>
 		<h1>관리자페이지</h1>
 		<select name="enabled">
 			<optgroup label="선택한 회원 조회">
@@ -86,7 +136,7 @@
 				<option value="report">신고 및 차단</option>
 			</optgroup>
 		</select>
-		<input type="button" value="조회" id="selectmember" />
+		<input type="button" value="조회" id="selectmember" onclick="letGo();" />
 
 		<div id="print">
 			<table>
