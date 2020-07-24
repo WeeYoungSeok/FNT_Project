@@ -10,6 +10,10 @@ public interface SignupDao {
 	public List<MemberDto> selectidall();
 
 	public int signup(MemberDto dto);
+	
+	public int naverSignup(MemberDto memberdto);
+	
+	public int kakaoSignup(MemberDto memberdto);
 
 	public MemberDto idchk(String id);
 }

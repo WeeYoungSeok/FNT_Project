@@ -14,24 +14,15 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 공지사항</title>
-
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
- * {
- 	margin: 0px; padding: 0px;
- }
- section {
- 
- 	padding-top: 90px; padding-left: 240px;
- 
- }
- 
  table {
- 	margin-left: 400px;
+ 	margin-left: 100px;
  	margin-top: 20px;
  } 
  
  h1 {
- 	margin-top: 180px;
+ 	margin-top: 20px;
  }
  span {
  	cursor: pointer;
@@ -48,7 +39,7 @@
 	%>
 	<section>
 		
-		<h1 align="center">공지사항</h1>
+		<h1>공지사항</h1>
 		
 		<table>
 		
