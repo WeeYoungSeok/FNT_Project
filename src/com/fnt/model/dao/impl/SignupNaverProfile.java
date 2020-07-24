@@ -9,7 +9,7 @@ public class SignupNaverProfile {
 	
 	public static void main(String[] args) {
         String token = "CAvtdovO5q6UfDcRFE";// 네아로 접근 토큰 값";
-        String header = "Bearer " + token; // Bearer 다음에 공백 추가
+        String header = "Bearer " + token; // Bearer 다음에 공백 추가 
         try {
             String apiURL = "https://openapi.naver.com/v1/nid/me";
             URL url = new URL(apiURL);

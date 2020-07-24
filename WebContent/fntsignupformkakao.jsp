@@ -19,6 +19,15 @@
 <script src="./js/fntsignupform.js"></script>
 </head>
 <body>
+<%
+	
+	String nickname = request.getParameter("nickname");
+	String name = request.getParameter("name");
+	String email = request.getParameter("email");
+	String birth = request.getParameter("birthday");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	Date birthday = sdf.parse(birth);
+%>
 	<div>
 		<a href="fntmain.jsp">
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">

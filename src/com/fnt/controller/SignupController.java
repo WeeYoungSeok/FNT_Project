@@ -117,12 +117,12 @@ public class SignupController extends HttpServlet {
 			String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/fntsignupform.jsp","UTF-8");
 					
 			StringBuffer apiURL = new StringBuffer();
-			apiURL.append("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&");
-			apiURL.append("client_id=" + clientId);
-			apiURL.append("&client_secret=" + clientSecret);
-			apiURL.append("&redirect_uri=" + redirectURI);
-			apiURL.append("&code=" + code);
-			apiURL.append("&state=" + state);
+				apiURL.append("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&");
+				apiURL.append("client_id=" + clientId);
+				apiURL.append("&client_secret=" + clientSecret);
+				apiURL.append("&redirect_uri=" + redirectURI);
+				apiURL.append("&code=" + code);
+				apiURL.append("&state=" + state);	
 			String access_token = "";
 			String refresh_token = ""; // 나중에 다시 찾아봄
 					
@@ -171,7 +171,7 @@ public class SignupController extends HttpServlet {
 			        access_token = (String)jsonObj.get("access_token");
 			        refresh_token = (String)jsonObj.get("refresh_token");
 			        
-			        response.sendRedirect("fntsignupform.jsp?nickname=" + nickname + 
+			        response.sendRedirect("fntsignupformnaver.jsp?nickname=" + nickname + 
 			        					  "&email=" + email + 
 			        					  "&name=" + name + 
 			        					  "&birthday=" + birthday);

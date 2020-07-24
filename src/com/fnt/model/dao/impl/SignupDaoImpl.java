@@ -50,13 +50,53 @@ public class SignupDaoImpl implements SignupDao {
 		return memberdto;
 	}
 	
-	public int naverSignup(MemberDto memberdto) {
-		return 0;
-	}
-	
 	// 회원가입 폼에 넣은 정보들 db에 입력
 	public int signup(MemberDto memberdto) {
 		
+		SqlSession session = null;
+		int res = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace + "signup", memberdto);
+			
+			if (res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			session.close();
+		}
+		return res;
+	}
+
+	// naver 로그인으로 가져온 정보에 추가로 받아서 db에 입력 
+	public int naverSignup(MemberDto memberdto) {
+
+		SqlSession session = null;
+		int res = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace + "signup", memberdto);
+			
+			if (res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			session.close();
+		}
+		return res;
+	}
+
+	// kakao 로그인으로 가져온 정보에 추가로 받아서 db에 입력 
+	public int kakaoSignup(MemberDto memberdto) {
+
 		SqlSession session = null;
 		int res = 0;
 		
