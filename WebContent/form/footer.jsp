@@ -13,7 +13,7 @@
 <body>
 
 	<footer>
-		<div>
+		<div class="ftrbox">
 			<p class="foot">FNT | 회사소개 | 이용약관 | 개인정보처리방침 | Copyright © & FNT. all rights reserved</p>
 		</div>
 	</footer>
