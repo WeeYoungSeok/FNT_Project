@@ -50,6 +50,10 @@ public class SignupDaoImpl implements SignupDao {
 		return memberdto;
 	}
 	
+	public int naverSignup(MemberDto memberdto) {
+		return 0;
+	}
+	
 	// 회원가입 폼에 넣은 정보들 db에 입력
 	public int signup(MemberDto memberdto) {
 		

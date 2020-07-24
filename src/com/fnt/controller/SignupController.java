@@ -42,10 +42,6 @@ public class SignupController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -66,7 +62,6 @@ public class SignupController extends HttpServlet {
 		// 아이디 중복 체크
 		} else if (command.equals("idchk")) {
 			String id = request.getParameter("id");
-			System.out.println(id);
 			MemberDto memberdto = dao.idchk(id);
 			boolean idnotused = true;
 			if (memberdto != null) {
@@ -103,6 +98,15 @@ public class SignupController extends HttpServlet {
 				dispatch("signup.do?command=signup", request, response);
 			}
 		
+		// 주소 검색
+		} else if (command.equals("juso")) {
+			PrintWriter out = response.getWriter();
+				out.println("<html><body>");
+				out.println("<script type=\"text/javascript\">");
+				out.println("var popwin = window.open(\"jusotest/jusoPopup.jsp\")");
+				out.println("</script>");
+				out.println("</body></html>");
+			
 		// 네이버 연동 로그인
 		} else if (command.equals("naversignup")) {
 		
@@ -123,16 +127,18 @@ public class SignupController extends HttpServlet {
 			String refresh_token = ""; // 나중에 다시 찾아봄
 					
 			try { 
-				  String apiurl = "https://openapi.naver.com/v1/nid/me";
-				  URL url = new URL(apiurl);
-			      HttpURLConnection con = (HttpURLConnection)url.openConnection();
-			      con.setRequestMethod("GET");
-			      //con.setRequestProperty("Authorization", header);		// 이 header가 대체 어디서 나왔는지 아시는 분...?
-			      int responseCode = con.getResponseCode();
-			      BufferedReader br;
-			      System.out.print("responseCode="+responseCode);
-			      if(responseCode==200) { // 정상 호출
-			        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				String token = "CAvtdovO5q6UfDcRFE";// 네아로 접근 토큰 값";
+		        String header = "Bearer " + token; // Bearer 다음에 공백 추가
+				String apiurl = "https://openapi.naver.com/v1/nid/me";
+				URL url = new URL(apiurl);
+			    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			    con.setRequestMethod("GET");
+			    con.setRequestProperty("Authorization", header);
+			    int responseCode = con.getResponseCode();
+			    BufferedReader br;
+			    System.out.print("responseCode="+responseCode);
+			    if(responseCode==200) { // 정상 호출
+			      br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			      } else {  // 에러 발생
 			        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 			      }
@@ -144,18 +150,31 @@ public class SignupController extends HttpServlet {
 			      br.close();
 			      if(responseCode==200) {
 			        System.out.println(res.toString());
+			        
 			        JSONParser parsing = new JSONParser();
 			        Object obj = parsing.parse(res.toString());
 			        JSONObject jsonObj = (JSONObject)obj;
 			        JSONObject resObj = (JSONObject)jsonObj.get("response");
 			        
-			        String membernickname = (String)resObj.get("nickname");
-			        String memberemail = (String)resObj.get("email");
-			        String membername = (String)resObj.get("name");
-			        String memberbirth = (String)resObj.get("birthday");
-			        
+			        String nickname = (String)resObj.get("nickname");
+			        String email = (String)resObj.get("email");
+			        String name = (String)resObj.get("name");
+			        String birth = (String)resObj.get("birthday");
+			        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+					Date birthday = null;
+					try {
+						birthday = sdf.parse(birth);
+					} catch (ParseException e) {
+						System.out.println("[error] memberbirth");
+						e.printStackTrace();
+					}
 			        access_token = (String)jsonObj.get("access_token");
 			        refresh_token = (String)jsonObj.get("refresh_token");
+			        
+			        response.sendRedirect("fntsignupform.jsp?nickname=" + nickname + 
+			        					  "&email=" + email + 
+			        					  "&name=" + name + 
+			        					  "&birthday=" + birthday);
 			      }
 			    } catch (Exception e) {
 			      System.out.println(e);
@@ -166,6 +185,10 @@ public class SignupController extends HttpServlet {
 			
 		}
 	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 	
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -174,8 +197,10 @@ public class SignupController extends HttpServlet {
 	}
 	
 	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
-		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href = '" + url + "';"
-				+ "</script>";
+		String s = "<script type='text/javascript'>" + 
+				   "alert('" + msg + "');" + 
+				   "location.href = '" + url + "';" + 
+				   "</script>";
 		PrintWriter out = response.getWriter();
 		out.append(s);
 	}

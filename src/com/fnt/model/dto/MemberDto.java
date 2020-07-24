@@ -37,8 +37,14 @@ public class MemberDto {
 		this.memberenabled = memberenabled;
 		this.memberregdate = memberregdate;
 	}
-
-
+	
+	// naver 로그인 -> 가입폼
+	public MemberDto(String membernickname, String memberemail, String membername, Date memberbirth) {
+		this.membernickname = membernickname;
+		this.membername = membername;
+		this.memberbirth = memberbirth;
+		this.memberemail = memberemail;
+	}
 
 	public String getMemberid() {
 		return memberid;

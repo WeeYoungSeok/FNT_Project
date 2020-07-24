@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +11,19 @@
 <title>FNT - Sign Up</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
 
+</script>
 <script src="./js/fntsignupform.js"></script>
 </head>
 <body>
+<%
+String nickname = request.getParameter("nickname");
+String name = request.getParameter("name");
+String email = request.getParameter("email");
+//Date birthday = request.getParameter("birthday");
 
+%>
 	<div>
 		<a href="fntmain.jsp">
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
@@ -22,7 +32,7 @@
 	
 	<br/><br/>
 	
-	<form action="signup.do" method="post" >
+	<form action="signup.do" id="form" name="form" method="post" >
 		<input type="hidden" name="command" value="signupform"/>
 		<table>
 			<tr>
@@ -47,7 +57,7 @@
 			</tr>
 			<tr>
 				<th>Nickname</th>
-				<td colspan="2"><input type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요." required="required"/></td>
+				<td colspan="2"><input type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Name</th>
@@ -64,10 +74,9 @@
 			<tr>
 				<th>Address</th>
 				<td>
-					<input type="text" name="memberaddr1" placeholder="거래 시 배송지로 이용될 도로주소를 입력해주세요." readonly="readonly" onclick=""/><br/>
-					<input type="text" name="memberaddr2" placeholder="상세 주소(동, 층, 호 등)를 입력해주세요."/>
+					<input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로주소를 입력해주세요." required="required" onclick="goPopup();"/><br/>
 				</td>
-				<td><button class="in_btn" onclick="">도로명주소 검색</button></td>
+				<td><button class="in_btn" onclick="goPopup();">도로명주소 검색</button></td>
 			</tr>
 			<tr>
 				<th>Email</th>
