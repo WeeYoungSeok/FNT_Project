@@ -8,7 +8,7 @@ public interface LoginCrudDao {
 
 	public MemberDto login(String memberid, String memberpw);
 
-	public MemberDto searchId(String membername, String memberemail, String memberphone);
+	public MemberDto searchId(String membername, String memberemail);
 	
 	public MemberDto searchPw(String memberid, String membername, String memberemail, String memberphone); 
 	
@@ -17,4 +17,6 @@ public interface LoginCrudDao {
 	public int update(MemberDto dto);
 	
 	public int updateoutmember(MemberDto dto);
+	
+	
 }
