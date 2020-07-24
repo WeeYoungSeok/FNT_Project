@@ -43,7 +43,7 @@ section {
 						<tr>
 							<td>${dealboarddto.dboardno }</td>
 							<td>
-								<a href="dealboard.do?command=detailboard&dboardno=${dealboarddto.dboardno}">${dealboarddto.dtitle }</a>
+								<a href="dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}">${dealboarddto.dtitle }</a>
 							</td>
 							<td>${dealboarddto.dnickname }</td>
 							<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>

@@ -8,8 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item) : 글보기</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<title>FNT(Feel New Item) : 구매 글보기</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 function delChk(dboardno){
 	if(confirm("삭제하시겠습니까?")){
@@ -51,6 +51,10 @@ section {
 				<th>내용</th>
 				<td><div>${dealboarddto.dcontent }</div></td>
 			</tr>
+
+			
+			
+			
 			<tr>
 	<%
 		if(memberdto==null) {

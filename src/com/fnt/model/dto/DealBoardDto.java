@@ -13,14 +13,16 @@ public class DealBoardDto {
 	private Date dregdate;
 	private String dcategory;
 	private String dflag;
-	
+	private String dlongitude;
+	private String dlatitude;
 	
 	public DealBoardDto() {
 		
 	}
 	
+	
 	public DealBoardDto(int dboardno, String did, String dnickname, String dtitle, String dfilename, String dcontent,
-			int dprice, Date dregdate, String dcategory, String dflag) {
+			int dprice, Date dregdate, String dcategory, String dflag, String dlongitude, String dlatitude) {
 		super();
 		this.dboardno = dboardno;
 		this.did = did;
@@ -32,6 +34,8 @@ public class DealBoardDto {
 		this.dregdate = dregdate;
 		this.dcategory = dcategory;
 		this.dflag = dflag;
+		this.dlongitude = dlongitude;
+		this.dlatitude = dlatitude;
 	}
 
 	public int getDboardno() {
@@ -113,6 +117,33 @@ public class DealBoardDto {
 	public void setDflag(String dflag) {
 		this.dflag = dflag;
 	}
+
+	public String getDlongitude() {
+		return dlongitude;
+	}
+
+	public void setDlongitude(String dlongitude) {
+		this.dlongitude = dlongitude;
+	}
+
+	public String getDlatitude() {
+		return dlatitude;
+	}
+
+	public void setDlatitude(String dlatitude) {
+		this.dlatitude = dlatitude;
+	}
+
+
+	@Override
+	public String toString() {
+		return "DealBoardDto [dboardno=" + dboardno + ", did=" + did + ", dnickname=" + dnickname + ", dtitle=" + dtitle
+				+ ", dfilename=" + dfilename + ", dcontent=" + dcontent + ", dprice=" + dprice + ", dregdate="
+				+ dregdate + ", dcategory=" + dcategory + ", dflag=" + dflag + ", dlongitude=" + dlongitude
+				+ ", dlatitude=" + dlatitude + "]";
+	}
+	
+	
 	
 	
 }
