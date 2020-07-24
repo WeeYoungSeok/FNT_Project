@@ -1,4 +1,4 @@
-<%@page import="com.fnt.model.dto.QnaBoardDto"%>
+	<%@page import="com.fnt.model.dto.QnaBoardDto"%>
 <%@page import="com.fnt.util.Paging"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 

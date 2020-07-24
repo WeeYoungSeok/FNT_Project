@@ -39,6 +39,7 @@
  </style>
 </head>
 <body>
+
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	<%
@@ -84,11 +85,22 @@
 			}
 			
 			%>
+			<%
+				if (memberdto==null || memberdto.getMemberrole().equals("USER")) {
+			%>
+			
+			<%
+				} else {
+			%>
 			<tr>
 				<td colspan="4" align="right">
 					<button onclick="location.href='notice.do?command=noticeinsert'">글 작성</button>
 				</td>
 			</tr>
+			
+			<%
+				}
+			%>
 		</table>
 	<jsp:include page="./paging/fntnoticepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
@@ -99,10 +111,6 @@
 	</jsp:include>
 
 
-
-	
-		
-		
 		
 	</section>
 	<%@ include file="./form/footer.jsp" %>

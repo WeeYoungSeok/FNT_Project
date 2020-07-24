@@ -1,4 +1,4 @@
-<%@page import="com.fnt.model.dto.NoticeBoardDto"%>
+<%@page import="com.fnt.model.dto.QnaBoardDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <%
-	NoticeBoardDto noticeboardlistone = (NoticeBoardDto)request.getAttribute("noticeboardlistone");
+QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone");
 %>
-<title>FNT(Feel New Item) : <%=noticeboardlistone.getNbtitle() %></title>
+<title>FNT(Feel New Item) : <%=qnaboardlistone.getQbtitle() %></title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -100,40 +100,36 @@ table {
 	<%
 		} else {
 	%>
-	<form action="notice.do" method="post">
-		<input type="hidden" value="noticeupdateres" name="command"/>
-		<input type="hidden" value="<%=noticeboardlistone.getNbboardno() %>" name="nbboardno"/>
+	<form action="qna.do" method="post">
+		<input type="hidden" value="qnaupdateres" name="command"/>
+		<input type="hidden" value="<%=qnaboardlistone.getQbboardno() %>" name="qbboardno"/>
 		<table border="1"> 
 			<tr>
-				<td>공지사항 > 
-				<button onclick="location.href='notice.do?command=notice'">목록</button></td>
+				<td>고객센터 > 
+				<button onclick="location.href='qna.do?command=qna'">목록</button></td>
 			<tr>
 			<tr>
-				<td><input type="text" value="<%=noticeboardlistone.getNbtitle() %>" name="nbtitle"/></td>
+				<td><input type="text" value="<%=qnaboardlistone.getQbtitle() %>" name="qbtitle"/></td>
 			</tr>
 			<tr>
-				<td><%=noticeboardlistone.getNbnickname() %></td>
+				<td><%=qnaboardlistone.getQbnickname() %></td>
 			</tr>
 			<tr>
-				<td width="400" height="200"><textarea id="summernote" name="nbcontent" style="resize: none"><%=noticeboardlistone.getNbcontent() %></textarea></td>
+				<td width="400" height="200"><textarea id="summernote" name="qbcontent" style="resize: none"><%=qnaboardlistone.getQbcontent() %></textarea></td>
 			</tr>
 	
 		
-		<%
-			if (memberdto.getMemberrole().equals("ADMIN")) {
-		%>
+		
 		<tr>
 		<td align="right">
 			<input type="submit" value="완료"/>
-			<input type="button" value="취소" onclick="location.href='notice.do?command=noticedetail&nbboardno=<%=noticeboardlistone.getNbboardno()%>'"/>
+			<input type="button" value="취소" onclick="location.href='qna.do?command=qnadetail&qbboardno=<%=qnaboardlistone.getQbboardno()%>'"/>
 		</td>
 		</tr>
-		<%
-			} else if (memberdto.getMemberrole().equals("USER")) {
-		%>
+		
 			
 		<%
-			}
+			
 		}
 	
 		%>

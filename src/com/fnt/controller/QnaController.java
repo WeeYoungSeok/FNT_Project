@@ -54,7 +54,6 @@ public class QnaController extends HttpServlet {
 			paging.setPage(page);
 
 			List<QnaBoardDto> qnaboardlist = qnaboardbiz.selectAllMember(paging);
-			System.out.println(qnaboardlist);
 
 			request.setAttribute("qnaboardlist", qnaboardlist);
 			request.setAttribute("paging", paging);
@@ -91,7 +90,6 @@ public class QnaController extends HttpServlet {
 				qbsecret = "N";
 			}
 
-			System.out.println("시크릿 값" + qbsecret);
 
 			int res = qnaboardbiz.insert(new QnaBoardDto(0, id, memberdto.getMembernickname(), qbtitle, qbcontent,
 					qbsecret, null, null, null));
@@ -130,6 +128,20 @@ public class QnaController extends HttpServlet {
 			request.setAttribute("qnaboardlistone", qnaboardlistone);
 			
 			dispatch("fntqnaupdate.jsp", request, response);
+		} else if (command.equals("qnaupdateres")) {
+			int qbboardno = Integer.parseInt(request.getParameter("qbboardno"));
+			String qbtitle = request.getParameter("qbtitle");
+			String qbcontent = request.getParameter("qbcontent");
+			
+			int res = qnaboardbiz.update(new QnaBoardDto(qbboardno, null, null, qbtitle, qbcontent, null, null, null, null));
+			
+			if (res > 0) {
+				response.sendRedirect("qna.do?command=qnadetail&qbboardno="+qbboardno);
+			} else {
+				response.sendRedirect("qna.do?command=qnadetail&qbboardno="+qbboardno);
+			}
+		} else if (command.equals("qnadelete")) {
+			
 		}
 	}
 

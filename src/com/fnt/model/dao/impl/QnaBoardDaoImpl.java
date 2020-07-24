@@ -131,6 +131,27 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 		}
 		return res;
 	}
+
+	@Override
+	public int update(QnaBoardDto dto) {
+		SqlSession session = null;
+		int res = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.update(namespace + "qnaupdate", dto);
+			if (res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return res;
+	}
+	}
 	
 	
-}
+

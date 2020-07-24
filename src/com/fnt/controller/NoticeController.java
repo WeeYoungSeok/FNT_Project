@@ -59,7 +59,6 @@ public class NoticeController extends HttpServlet {
 			paging.setPage(page);
 
 			List<NoticeBoardDto> noticeboardlist = noticeboardbiz.selectAllMember(paging);
-			System.out.println(noticeboardlist.size());
 
 			request.setAttribute("noticeboardlist", noticeboardlist);
 			request.setAttribute("paging", paging);

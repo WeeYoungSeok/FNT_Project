@@ -137,7 +137,7 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			res = session.insert(namespace + "noticeupdate", dto);
+			res = session.update(namespace + "noticeupdate", dto);
 			if (res > 0) {
 				session.commit();
 			}

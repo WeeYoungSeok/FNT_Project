@@ -13,4 +13,5 @@ public interface QnaBoardDao {
 	public int delete(int qbboardno);
 	public int insert(QnaBoardDto dto);
 	public int recomment(QnaBoardDto dto);
+	public int update(QnaBoardDto dto);
 }

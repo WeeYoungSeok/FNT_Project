@@ -44,12 +44,12 @@
 			</tr>
 			<tr>
 			
-				<td width="400" height="200" style="vertical-align: top;"><br/>Q.<%=qnaboardlistone.getQbcontent() %><br/>
+				<td width="400" height="200" style="vertical-align: top;"><br/><p style="font-weight: bold;">Q.문의 내용</p><%=qnaboardlistone.getQbcontent() %>
 			
 				<%
 				if (qnaboardlistone.getQbflag().equals("Y")) {
 				%>
-					<br/><span>&nbsp;&nbsp;&nbsp;문의 답변 | 등록일 : <%=qnaboardlistone.getQbredate() %></span>
+					<span>&nbsp;&nbsp;&nbsp;문의 답변 | 등록일 : <%=qnaboardlistone.getQbredate() %></span>
 				<%
 				} 
 				%>
@@ -71,17 +71,25 @@
 			</td>
 		</tr>
 		<%
-			} else if (memberdto.getMemberid().equals(qnaboardlistone.getQbid())) {
+			} else if (qnaboardlistone.getQbflag().equals("Y")){
 		%>
 			<tr>
 				<td align="right">
-					<button onclick="location.href='qna.do?command=qnaupdate&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">수정</button>
 					<button onclick="location.href='qna.do?command=qnadelete&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">삭제</button>
 				</td>
 			</tr>
 		<%
-			} else {
+			} else if (memberdto.getMemberid().equals(qnaboardlistone.getQbid()) || qnaboardlistone.getQbflag().equals("N")){
 				
+				%>
+					<tr>
+				<td align="right">
+					<button onclick="location.href='qna.do?command=qnaupdate&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">수정</button>
+					<button onclick="location.href='qna.do?command=qnadelete&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">삭제</button>
+				</td>
+				</tr>
+				<% 
+			} else {
 				%>
 				
 				<% 
