@@ -12,17 +12,19 @@
 	<result property="dregdate" column="D_REGDATE"/>
 	<result property="dcategory" column="D_CATEGORY"/>
 	<result property="dflag" column="D_FLAG"/>
+	<result property="dlongitude" column="D_LONGITUDE"/>
+	<result property="dlatitude" column="D_LATITUDE"/>
 </resultMap>
 <!-- 판매목록 -->
 	<select id="selectsalelist" resultMap="dealBoardDtoResultMap">
-		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG,  D_LONGITUDE, D_LATITUDE 
 		FROM DEAL_BOARD
 		WHERE D_FLAG = 'S'
 	</select>
 	
 <!-- 구매목록 -->
 	<select id="selectbuylist" resultMap="dealBoardDtoResultMap">
-		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
 		FROM DEAL_BOARD
 		WHERE D_FLAG = 'B'
 	</select>
@@ -30,18 +32,42 @@
 <!-- 구매글 작성 -->
 	<insert id="insertbuyboard" parameterType="dealboarddto">
 		INSERT INTO DEAL_BOARD 
-		VALUES (DB_BOARDNO_SEQ.NEXTVAL, #{did}, #{dnickname}, #{dtitle}, #{dfilename}, #{dcontent}, #{dprice}, SYSDATE, #{dcategory}, 'B' )
+		VALUES (DB_BOARDNO_SEQ.NEXTVAL, 
+			#{did}, 
+			#{dnickname}, 
+			#{dtitle}, 
+			#{dfilename}, 
+			#{dcontent}, 
+			#{dprice}, 
+			SYSDATE, 
+			#{dcategory}, 
+			'B',
+			#{dlongitude},
+			#{dlatitude}
+			 )
 	</insert>
 
 <!-- 판매글 작성 -->
 	<insert id="insertsaleboard" parameterType="dealboarddto">
 		INSERT INTO DEAL_BOARD 
-		VALUES (DB_BOARDNO_SEQ.NEXTVAL, #{did}, #{dnickname}, #{dtitle}, #{dfilename}, #{dcontent}, #{dprice}, SYSDATE, #{dcategory}, 'S' )
+		VALUES (DB_BOARDNO_SEQ.NEXTVAL, 
+			#{did}, 
+			#{dnickname}, 
+			#{dtitle}, 
+			#{dfilename}, 
+			#{dcontent}, 
+			#{dprice}, 
+			SYSDATE, 
+			#{dcategory}, 
+			'S',
+			#{dlongitude},
+			#{dlatitude} 
+			)
 	</insert>
 
 <!-- 글 자세히 보기 -->
 	<select id="selectdetail" resultMap="dealBoardDtoResultMap">
-		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
 		FROM DEAL_BOARD
 		WHERE D_BOARDNO = #{dboardno}
 	</select>

@@ -72,6 +72,9 @@ public class DealBoardController extends HttpServlet {
          dealboarddto.setDcontent(dcontent);
          dealboarddto.setDprice(dprice);
          dealboarddto.setDfilename("None");
+         dealboarddto.setDlatitude("0");
+         dealboarddto.setDlongitude("0");
+         
          
          
          int res = dao.insertBuyBoard(dealboarddto);
@@ -89,8 +92,17 @@ public class DealBoardController extends HttpServlet {
          String dcategory = request.getParameter("dcategory");
          String dcontent = request.getParameter("dcontent");
          int dprice = biz.removecomma((request.getParameter("dprice")));
+         String coords = request.getParameter("coords");
+         
+         String [] str = coords.split(",");
+         String dlongitude = str[0].substring(1);
+         
+         int last = str[1].length()-1;
+         
+         String dlatitude = str[1].substring(0,last);
          
          MemberDto memberdto =(MemberDto)session.getAttribute("memberdto");
+
          String memberid = memberdto.getMemberid();
          String membernickname = memberdto.getMembernickname();
          
@@ -102,6 +114,10 @@ public class DealBoardController extends HttpServlet {
          dealboarddto.setDcategory(dcategory);
          dealboarddto.setDcontent(dcontent);
          dealboarddto.setDprice(dprice);
+         dealboarddto.setDfilename("none");
+         dealboarddto.setDlongitude(dlongitude);
+         dealboarddto.setDlatitude(dlatitude);
+         
 
          
          int res = dao.insertSaleBoard(dealboarddto); 
@@ -113,7 +129,7 @@ public class DealBoardController extends HttpServlet {
             jsResponse("작성 실패", "dealboard.do?command=insertsaleboard", response);
          }
          
-      }else if(command.equals("detailboard")) { //글 자세히보기
+      }else if(command.equals("detailboard")) { // 구매글 자세히보기
          int dboardno = Integer.parseInt(request.getParameter("dboardno"));
          DealBoardDto dealboarddto = dao.selectDetail(dboardno);
          
@@ -170,6 +186,12 @@ public class DealBoardController extends HttpServlet {
               jsResponse("수정되지 않았습니다.", "dealboard.do?command=updatebuyboard&dboardno="+dboardno, response);
            }
           
+      }else if(command.equals("detailsaleboard")) { // 판매글 보기
+    	  int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+    	  DealBoardDto dealboarddto = dao.selectDetail(dboardno);
+    	  
+    	  request.setAttribute("dealboarddto", dealboarddto);
+    	  dispatch("fntdetailsaleboard.jsp", request, response);
       }
       
       

@@ -18,7 +18,7 @@
 	
 	try{
         // 파일업로드 및 업로드 후 파일명 가져옴
-		MultipartRequest multi = new MultipartRequest(request, realpath+"upload", size, "utf-8", new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, realpath+"/upload", size, "utf-8", new DefaultFileRenamePolicy());
 		Enumeration files = multi.getFileNames();
 		String file = (String)files.nextElement(); 
 		fileName = multi.getFilesystemName(file); 
@@ -39,6 +39,7 @@
 	JSONObject jobj = new JSONObject();
 	jobj.put("url", uploadPath);
 */
+//	System.out.println(realpath);
 //	response.setContentType("application/json"); // 데이터 타입을 json으로 설정하기 위한 세팅
 	System.out.println("[이미지 업로드 완료]");
 	out.print("./upload/"+fileName); // 상대경로 입력해주기
