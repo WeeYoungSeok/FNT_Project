@@ -1,6 +1,8 @@
 package com.fnt.model.dao.impl;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import static com.fnt.model.dao.SqlMapConfig.*;
@@ -9,6 +11,7 @@ import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.model.dto.QnaBoardDto;
+import com.fnt.model.dto.WishlistDto;
 
 public class MyPageDaoImpl implements MyPageDao {
 	
@@ -80,8 +83,20 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 	
 	//찜목록
-	public List<DealBoardDto> Wishlist(String memberid) {
-		return null;
+	public List<WishlistDto> Wishlist(String memberid) {
+		SqlSession session = null;
+		List<WishlistDto> wishlist = null;
+		System.out.println("dao에서 받은 memberid : " + memberid);
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			wishlist = session.selectList(namespace+"wishlist", memberid);
+			System.out.println("dao에서 받은 Map : " + wishlist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return wishlist;
 	}
 
 	//주문내역

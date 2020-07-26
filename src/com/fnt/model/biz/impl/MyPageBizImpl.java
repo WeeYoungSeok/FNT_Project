@@ -1,6 +1,7 @@
 package com.fnt.model.biz.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fnt.model.biz.MyPageBiz;
 import com.fnt.model.dao.AdminPageDao;
@@ -11,6 +12,7 @@ import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.model.dto.QnaBoardDto;
+import com.fnt.model.dto.WishlistDto;
 
 public class MyPageBizImpl implements MyPageBiz {
 
@@ -40,7 +42,7 @@ public class MyPageBizImpl implements MyPageBiz {
 	}
 	//찜목록
 	@Override
-	public List<DealBoardDto> Wishlist(String memberid) {
+	public List<WishlistDto> Wishlist(String memberid) {
 		// TODO Auto-generated method stub
 		return dao.Wishlist(memberid);
 	}

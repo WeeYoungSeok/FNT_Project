@@ -3,7 +3,9 @@ package com.fnt.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +29,7 @@ import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.model.dto.QnaBoardDto;
+import com.fnt.model.dto.WishlistDto;
 
 
 @WebServlet("/mypage.do")
@@ -87,6 +90,7 @@ public class MypageController extends HttpServlet {
 			dispatch("fntmypagebuy.jsp", request, response);
 			
 		}else if(command.equals("qnalist")) {
+			//내가 쓴 문의글 클릭 시
 			String memberid = request.getParameter("memberid");
 			
 			List<QnaBoardDto> qnalist = new ArrayList<QnaBoardDto>();
@@ -95,10 +99,21 @@ public class MypageController extends HttpServlet {
 			request.setAttribute("qnalist", qnalist);
 			dispatch("fntmypageqna.jsp", request, response);
 			
-			//내가 쓴 문의글 클릭 시
 		}else if(command.equals("wishlist")) {
-			String memberid = request.getParameter("memberid");
 			//내가 찜한 상품 클릭 시
+			String memberid = request.getParameter("memberid");
+			
+			List<WishlistDto> wishlist = null;
+			wishlist = mypagebiz.Wishlist(memberid);
+			
+			System.out.println(wishlist.get(0).getWlboardno());
+			
+			System.out.println("컨트롤러에서 list : " + wishlist);
+			
+			request.setAttribute("wishlist", wishlist);
+			dispatch("fntmypagewish.jsp", request, response);
+			
+			
 		}else if(command.equals("orderlist")) {
 			String memberid = request.getParameter("memberid");
 			//내가 주문한 상품 클릭 시

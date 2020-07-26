@@ -1,11 +1,13 @@
 package com.fnt.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.model.dto.QnaBoardDto;
+import com.fnt.model.dto.WishlistDto;
 
 public interface MyPageDao {
 	
@@ -19,7 +21,7 @@ public interface MyPageDao {
 	//내가 쓴 문의글
 	public List<QnaBoardDto> Qnalist(String memberid);
 	//내 찜목록
-	public List<DealBoardDto> Wishlist(String memberid);
+	public List<WishlistDto> Wishlist(String memberid);
 	//내 주문내역
 	public List<DealBoardDto> Orderlist(String memberid);
 
