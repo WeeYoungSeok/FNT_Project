@@ -20,6 +20,8 @@ public interface LoginCrudDao {
 	
 	public MemberDto findId(String memberemail);
 	
-	public MemberDto fincPw(String memberid, String memberemail);
+	public MemberDto findPw(String memberid, String memberemail);
+	
+	public int updatepw(String memberpw, String memberpwchk, String memberid);
 	
 }

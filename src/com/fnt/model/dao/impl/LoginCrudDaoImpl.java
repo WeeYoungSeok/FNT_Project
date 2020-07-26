@@ -124,7 +124,6 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			System.out.println("DAO비밀번호 : "+dto.getMemberpw());
 			res = session.update(namespace+"mypageupdate",dto);
 			
 			if(res > 0) {
@@ -189,7 +188,7 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		return dto;
 	}
 	//id와 email로 pw 찾기(pwchk도 같이...)
-	public MemberDto fincPw(String memberid, String memberemail) {
+	public MemberDto findPw(String memberid, String memberemail) {
 		SqlSession session = null;
 		MemberDto dto = null;
 		
@@ -210,6 +209,29 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 			session.close();
 		}
 		return dto;
+	}
+	
+	public int updatepw(String memberpw, String memberpwchk, String memberid) {
+		SqlSession session = null;
+		int res = 0;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberpw", memberpw);
+		map.put("memberpwchk", memberpwchk);
+		map.put("memberid", memberid);
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.update(namespace+"updatepw", map);
+			
+			if(res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return res;
 	}
 	
 	

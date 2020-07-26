@@ -328,7 +328,7 @@ public class LoginCrudController extends HttpServlet {
 		}else if(command.equals("real2")) {
 			String email = request.getParameter("email");
 			String id = request.getParameter("id");
-			MemberDto dto = dao.fincPw(id, email);
+			MemberDto dto = dao.findPw(id, email);
 			
 			// null을 검사해줄때는
 			// 만약 dto가 null이면 dto.get으로 불러오는 함수들은 전부 nullpoint에러남
@@ -348,6 +348,28 @@ public class LoginCrudController extends HttpServlet {
 			} else {
 				PrintWriter out = response.getWriter(); 
 				out.print("2");
+			}
+		}else if(command.equals("updatepw")) {
+			String memberid = request.getParameter("memberid");
+			
+			request.setAttribute("memberid", memberid);
+			System.out.println("컨트롤러에서 memberid : "+memberid);
+			dispatch("fntcrudupdatepw.jsp", request, response);
+		}else if(command.equals("updatepwres")) {
+			String memberid = request.getParameter("memberid");
+			String memberpw = request.getParameter("memberpw");
+			String memberpwchk = request.getParameter("memberpwchk");
+			System.out.println("id : " + memberid);
+			System.out.println("pw : "+memberpw + "pwchk : " + memberpwchk);
+			MemberDto dto = new MemberDto();
+			System.out.println(dto);
+			int res = dao.updatepw(memberpw, memberpwchk,memberid);
+			
+			if(res > 0) {
+				jsResponse("비밀번호 변경 완료! \\n 로그인 페이지로 이동합니다!", "fntlogincrud.jsp", response);
+				//가끔 alert에서 역슬래쉬 하나 안먹을 때, 있으니까 안되면 꼭 2번 써보자!!!
+			}else {
+				jsResponse("비밀번호가 맞는지 확인해주세요!", "LoginCrudController?command=updatepw", response);
 			}
 		}
 		
