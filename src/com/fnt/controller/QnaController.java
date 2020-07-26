@@ -38,7 +38,6 @@ public class QnaController extends HttpServlet {
 		QnaBoardBiz qnaboardbiz = new QnaBoardBizImpl();
 
 		String command = request.getParameter("command");
-		System.out.println("[" + command + "]");
 		HttpSession session = request.getSession();
 		MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
 		if (command.equals("qna")) {
@@ -63,7 +62,6 @@ public class QnaController extends HttpServlet {
 			int qbboardno = Integer.parseInt(request.getParameter("qbboardno"));
 
 			QnaBoardDto qnaboardlistone = qnaboardbiz.selectOne(qbboardno);
-			System.out.println("dd" + qnaboardlistone.getQbid());
 
 			request.setAttribute("qnaboardlistone", qnaboardlistone);
 

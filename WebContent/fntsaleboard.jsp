@@ -18,6 +18,10 @@ section {
 	padding-top: 90px;
 	padding-left: 240px;
 }
+a{
+	text-decoration: none;
+	color: black;
+}
 </style>
 </head>
 <body>
@@ -42,6 +46,23 @@ section {
 					<c:forEach items="${list }" var="dealboarddto">
 						<tr>
 							<td>${dealboarddto.dboardno }</td>
+							<c:choose>
+							<c:when test="${dealboarddto.dcategory eq 'F'}">
+								<td>패션</td>
+							</c:when>
+							<c:when test="${dealboarddto.dcategory eq 'C'}">
+								<td>차량</td>
+							</c:when>
+							<c:when test="${dealboarddto.dcategory eq 'D'}">
+								<td>가전제품</td>
+							</c:when>
+							<c:when test="${dealboarddto.dcategory eq A}">
+								<td>애완</td>
+							</c:when>
+							<c:otherwise>
+								<td>스포츠</td>
+							</c:otherwise>
+							</c:choose>
 							<td>
 								<a href="dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}">${dealboarddto.dtitle }</a>
 							</td>
@@ -56,7 +77,7 @@ section {
 						if(dto != null){
 					%>		
 					<tr>
-						<td colspan="5" align="right">
+						<td colspan="6" align="right">
 							<input type="button" value="글작성" onclick="location.href='dealboard.do?command=insertsaleboard'">
 						</td>
 					</tr>
@@ -66,7 +87,14 @@ section {
 				</c:otherwise>
 			</c:choose>
 		</table>
+		<jsp:include page="./paging/fntsalepaging.jsp">
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
 	</section>
-<%@ include file="./form/footer.jsp" %>
+<%@ include file="./form/footer.jsp" %>	
 </body>
 </html>

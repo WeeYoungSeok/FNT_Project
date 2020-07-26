@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style type="text/css">
 body{
     text-align:center;
@@ -26,7 +27,7 @@ body{
 <c:forEach begin="${param.beginPage}" end="${param.endPage}" step="1" var="index">
     <c:choose>
         <c:when test="${param.page==index}">
-            ${index}
+            <a id="onePage">${index}</a>
         </c:when>
         <c:otherwise>
             <a href="${action}?page=${index}&command=notice">${index}</a>
@@ -38,5 +39,10 @@ body{
 </c:if>
 </div>
 </body>
+<script type="text/javascript">
+			$(function(){
+				$("#onePage").css("color","red");
+			});
+	</script>
 
 </html>

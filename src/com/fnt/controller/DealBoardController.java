@@ -24,6 +24,8 @@ import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.ReplyDto;
 import com.fnt.model.dto.WishlistDto;
+import com.fnt.util.Paging;
+
 
 
 @WebServlet("/dealboard.do")
@@ -47,16 +49,42 @@ public class DealBoardController extends HttpServlet {
       
    
       if(command.equals("fntsaleboard")) { //판매게시판         
-         List<DealBoardDto> list = dao.selectSaleList();
-         request.setAttribute("list", list);
-         
-         dispatch("fntsaleboard.jsp", request, response);
+    	  int page = 1;
+
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			Paging paging = new Paging();
+			int count = dao.getAllCountS();
+
+			paging.setTotalcount(count);
+			paging.setPage(page);
+
+			List<DealBoardDto> list = dao.selectSaleList(paging);
+
+			request.setAttribute("list", list);
+			request.setAttribute("paging", paging);
+
+			dispatch("fntsaleboard.jsp", request, response);
          
       }else if(command.equals("fntbuyboard")) { //구매게시판
-         List<DealBoardDto> list = dao.selectBuylist();
-         request.setAttribute("list", list);
-         
-         dispatch("fntbuyboard.jsp", request, response);
+    	  int page = 1;
+
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			Paging paging = new Paging();
+			int count = dao.getAllCount();
+
+			paging.setTotalcount(count);
+			paging.setPage(page);
+
+			List<DealBoardDto> list = dao.selectBuylist(paging);
+
+			request.setAttribute("list", list);
+			request.setAttribute("paging", paging);
+
+			dispatch("fntbuyboard.jsp", request, response);
          
       }else if(command.equals("insertbuyboard")) { //구매글작성form
          response.sendRedirect("fntinsertbuyboardform.jsp");

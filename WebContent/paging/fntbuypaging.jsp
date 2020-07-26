@@ -20,9 +20,9 @@ body{
 <body>
 <div id="paging">
 <!-- 1~10까지 있는 페이지의 페이징 -->
-<c:url var="action" value="/qna.do"/>
+<c:url var="action" value="/dealboard.do"/>
 <c:if test="${param.prev}">
-    <a href="${action}?page=${param.beginPage-1}&command=qna">prev</a>
+    <a href="${action}?page=${param.beginPage-1}&command=fntbuyboard">prev</a>
 </c:if>
 <c:forEach begin="${param.beginPage}" end="${param.endPage}" step="1" var="index">
     <c:choose>
@@ -30,12 +30,12 @@ body{
             <a id="onePage">${index}</a>
         </c:when>
         <c:otherwise>
-            <a href="${action}?page=${index}&command=qna">${index}</a>
+            <a href="${action}?page=${index}&command=fntbuyboard">${index}</a>
         </c:otherwise>
     </c:choose>
 </c:forEach>
 <c:if test="${param.next}">
-    <a href="${action}?page=${param.endPage+1}&command=qna">next</a>
+    <a href="${action}?page=${param.endPage+1}&command=fntbuyboard">next</a>
 </c:if>
 </div>
 </body>

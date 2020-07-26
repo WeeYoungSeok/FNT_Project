@@ -16,17 +16,27 @@
 	<result property="dlatitude" column="D_LATITUDE"/>
 </resultMap>
 <!-- 판매목록 -->
-	<select id="selectsalelist" resultMap="dealBoardDtoResultMap">
-		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG,  D_LONGITUDE, D_LATITUDE 
-		FROM DEAL_BOARD
-		WHERE D_FLAG = 'S'
+	<select id="selectsalelist" parameterType="map" resultMap="dealBoardDtoResultMap">
+		<![CDATA[
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE ,ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE FROM DEAL_BOARD WHERE D_FLAG = 'S' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
 	</select>
 	
 <!-- 구매목록 -->
-	<select id="selectbuylist" resultMap="dealBoardDtoResultMap">
+	<select id="selectbuylist" parameterType="map" resultMap="dealBoardDtoResultMap">
+	<![CDATA[
 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
-		FROM DEAL_BOARD
-		WHERE D_FLAG = 'B'
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE ,ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE FROM DEAL_BOARD WHERE D_FLAG = 'B' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
 	</select>
 
 <!-- 구매글 작성 -->
@@ -87,4 +97,14 @@
 			D_CATEGORY = #{dcategory}
 		WHERE D_BOARDNO = #{dboardno}
 	</update>
+	
+	<!-- 구매글 페이징 -->
+	<select id="count" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'B'
+ 	</select>
+ 	
+ 	<!-- 판매글 페이징 -->
+	<select id="counts" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'S'
+ 	</select>
 </mapper>

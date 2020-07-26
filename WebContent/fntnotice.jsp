@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 공지사항</title>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
  table {
@@ -21,11 +22,20 @@
  	margin-top: 20px;
  } 
  
- h1 {
+ table {
+ 	margin-left: 400px;
  	margin-top: 20px;
+ } 
+ 
+ h1 {
+ 	margin-top: 180px;
  }
  span {
  	cursor: pointer;
+ }
+ a{
+ 	text-decoration: none;
+ 	color: black;
  }
  </style>
 </head>
@@ -100,10 +110,8 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
-
-
-		
 	</section>
+
 	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>
