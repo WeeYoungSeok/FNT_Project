@@ -120,6 +120,7 @@ td {
 		}
 		
 		function getId(){
+			var id = document.getElementById("id").value;
 			$.ajax({
 				url : "LoginCrudController" + getParameterValues(),
 				dataType : "text",
@@ -128,8 +129,8 @@ td {
 						alert("입력값이 존재하지 않습니다.");
 						window.location="fntlogincrudsearchpw.jsp";
 					} else {
-						alert("인증성공!\n 비밀번호 : " + data + "\n로그인 페이지로 이동합니다.");
-						window.location="fntlogincrud.jsp";
+						alert("인증성공!\n 비밀번호를 변경 해주세요 ! \n ***비밀번호 변경 페이지로 이동합니다***");
+						window.location="LoginCrudController?command=updatepw&memberid="+ id;
 					}
 				}, error:function(){
 					alert("연결실패");

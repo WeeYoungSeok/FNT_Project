@@ -69,6 +69,13 @@
   	WHERE MEMBER_ID = #{memberid}
   </update>
   
+  <update id="updatepw" parameterType="map">
+  	UPDATE MEMBER
+  	SET MEMBER_PW = #{memberpw},
+  		MEMBER_PWCHK = #{memberpwchk}
+  	WHERE MEMBER_ID = #{memberid}
+  </update>
+  
   <update id="updateoutmember" parameterType="memberdto">
   	UPDATE MEMBER
   	SET ENABLED = #{memberenabled}
