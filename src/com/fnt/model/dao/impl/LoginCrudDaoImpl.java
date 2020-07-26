@@ -69,7 +69,7 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		return dto;
 	}
 	//pw 분실 시 pw 찾기
-	public MemberDto searchPw(String memberid, String membername, String memberemail, String memberphone) {
+	public MemberDto searchPw(String memberid, String membername, String memberemail) {
 		SqlSession session = null;
 		MemberDto dto = null;
 		
@@ -77,7 +77,7 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		map.put("memberid", memberid);
 		map.put("membername", membername);
 		map.put("memberemail", memberemail);
-		map.put("memberphone", memberphone);
+		
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
@@ -163,6 +163,55 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		
 		return res;
 	}
+	
+	//email로 id 찾기
+	public MemberDto findId(String memberemail) {
+		SqlSession session = null;
+		MemberDto dto = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberemail", memberemail);
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			dto = session.selectOne(namespace+"findid",memberemail);
+			if(dto != null) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		
+		return dto;
+	}
+	//id와 email로 pw 찾기(pwchk도 같이...)
+	public MemberDto fincPw(String memberid, String memberemail) {
+		SqlSession session = null;
+		MemberDto dto = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberid", memberid);
+		map.put("memberemail", memberemail);
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			dto = session.selectOne(namespace+"findpw", map);
+			if(dto != null) {
+				session.commit();
+			}
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
+	
 	
 
 }
