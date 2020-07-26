@@ -10,7 +10,7 @@ public interface LoginCrudDao {
 
 	public MemberDto searchId(String membername, String memberemail);
 	
-	public MemberDto searchPw(String memberid, String membername, String memberemail, String memberphone); 
+	public MemberDto searchPw(String memberid, String membername, String memberemail); 
 	
 	public MemberDto selectOne(String memberid);
 	
@@ -18,5 +18,8 @@ public interface LoginCrudDao {
 	
 	public int updateoutmember(MemberDto dto);
 	
+	public MemberDto findId(String memberemail);
+	
+	public MemberDto fincPw(String memberid, String memberemail);
 	
 }

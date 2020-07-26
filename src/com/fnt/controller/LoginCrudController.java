@@ -1,6 +1,7 @@
 package com.fnt.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Properties;
 
@@ -22,11 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import org.json.simple.JSONObject;
 
 import com.fnt.model.dao.LoginCrudDao;
 import com.fnt.model.dao.impl.LoginCrudDaoImpl;
 import com.fnt.model.dto.MemberDto;
+import com.google.gson.Gson;
 
   
 
@@ -111,9 +113,9 @@ public class LoginCrudController extends HttpServlet {
 			String memberid = request.getParameter("id");
 			String membername = request.getParameter("name");
 			String memberemail = request.getParameter("email");
-			String memberphone = request.getParameter("phone");
 			
-			MemberDto dto = dao.searchPw(memberid, membername, memberemail, memberphone);
+			
+			MemberDto dto = dao.searchPw(memberid, membername, memberemail);
 			
 			if(dto != null) {
 				request.setAttribute("dto", dto);
@@ -174,63 +176,180 @@ public class LoginCrudController extends HttpServlet {
 			dispatch("fntmain.jsp", request, response);
 			//메일 보내기 
 		}else if(command.equals("emailchk")) {
-			Properties props = System.getProperties();
-			props.put("mail.smtp.user", "구글아이디");	//서버 아이디만 쓰기
-			props.put("mail.smtp.host", "smtp.gmail.com");	//구글 SMTP
-			props.put("mail.smtp.prot", "465");
-			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.auth", "true");
-			props.put("mail.smtp.socketFactory.port", "465");
-			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocket Factory");
-			props.put("mail.smtp.socketFactory.fallback", "false");
+			 Properties props = System.getProperties();
+		        props.put("mail.smtp.user", "구글아이디"); // 서버 아이디만 쓰기
+				props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
+				props.put("mail.smtp.port", "465");
+				props.put("mail.smtp.starttls.enable", "true");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.socketFactory.port", "465");
+				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+				props.put("mail.smtp.socketFactory.fallback", "false");
+		           
+		        Authenticator auth = new MyAuthentication();
+		         
+		        //session 생성 및  MimeMessage생성
+		        Session session1 = Session.getDefaultInstance(props, auth);
+		        MimeMessage msg = new MimeMessage(session1);
+		       
+		        try{
+		            //편지보낸시간
+		            msg.setSentDate(new Date());
+		             
+		            InternetAddress from = new InternetAddress("qkrwlsdn496@gmail.com") ;             
+
+		            // 이메일 발신자
+		            msg.setFrom(from);           
+		             
+		            // 이메일 수신자
+		            String email = request.getParameter("email"); //사용자가 입력한 이메일 받아오기
+		            InternetAddress to = new InternetAddress(email);
+		            msg.setRecipient(Message.RecipientType.TO, to);
+		             
+		            // 이메일 제목
+		            msg.setSubject("비밀번호 인증번호", "UTF-8");
+		             
+		            // 이메일 내용 
+
+		            String code = request.getParameter("code_check"); //인증번호 값 받기
+		            request.setAttribute("code", code);
+		            msg.setText(code, "UTF-8");
+		             
+		            // 이메일 헤더 
+		            msg.setHeader("content-Type", "text/html");
+		             
+		            //메일보내기
+		            javax.mail.Transport.send(msg);
+		            System.out.println("보냄!");
+		          
+		            
+		             
+		        }catch (AddressException addr_e) {
+		            addr_e.printStackTrace();
+		        }catch (MessagingException msg_e) {
+		            msg_e.printStackTrace();
+		        }
+		        // 위의코드는 우리가 받아온 이메일에 난수를 보내주는 코드
+		        
+		        
+		        PrintWriter out = response.getWriter();
+		        out.print("1");
+		        // else if문이 실행이 되고나서
+		        // out.print 괄호안에있는 값을 
+		        // ajax function 괄호안에있는 데이타에 넘겨준다.
+		        
+		        
+		} else if (command.equals("real")) {
 			
-			Authenticator auth = new MyAuthentication();
 			
-			Session session1 = Session.getDefaultInstance(props, auth);
-			MimeMessage msg = new MimeMessage(session1);
 			
-			try {
-				msg.setSentDate(new Date());
-				
-				InternetAddress from = new InternetAddress("보내는 사람");
-				
-				//이메일 발신자
-				msg.setFrom(from);
-				
-				//이메일 수신자
-				String email = request.getParameter("email");	//사용자가 입력한 이메일 받아오기
-				
-				InternetAddress to = new InternetAddress(email);
-				msg.setRecipient(Message.RecipientType.TO, to);
-				
-				//이메일 제목
-				msg.setSubject("비밀번호 인증번호", "UTF-8");
-				
-				//이메일 내용
-				String code = request.getParameter("code_check");	//인증번호 값 받기
-				
-				request.setAttribute("code", code);
-				msg.setText(code, "UTF-8");
-				
-				//이메일 헤더
-				msg.setHeader("content-Type", "text/html");
-				
-				//메일보내기
-				javax.mail.Transport.send(msg);
-				System.out.println("보냄!!");
-				
-			}catch(AddressException addr_e){
-				addr_e.printStackTrace();
-				
-			} catch (MessagingException msg_e) {
-				// TODO Auto-generated catch block
-				msg_e.printStackTrace();
+			String email = request.getParameter("email");
+			MemberDto dto = dao.findId(email);
+			// null을 검사해줄때는
+			// 만약 dto가 null이면 dto.get으로 불러오는 함수들은 전부 nullpoint에러남
+			// 그것을 방지하기 위해서 dto.get의 null을 검사하는게 아니라
+			// dto 객체 자체의 null값을 검사해야함
+			
+			// 존재하지 않는 or 비회원같은것을 검사할때는 꼭 dto의 객체의 null을 검사하자.
+			if(dto != null) {
+			String id = dto.getMemberid();
+			PrintWriter out = response.getWriter(); 
+			out.print(id);
+			/*
+			 * JSONObject ob = new JSONObject(); ob.put("id", id); Gson gson = new Gson();
+			 * String jsonPlace = gson.toJson(ob); System.out.println(jsonPlace);
+			 * PrintWriter out = response.getWriter(); out.print(jsonPlace);
+			 */
+			} else {
+				PrintWriter out = response.getWriter(); 
+				out.print("1");
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("인증번호 확인하는 페이지");
-			rd.forward(request, response);
+		}else if(command.equals("findpw")) {
+			 Properties props = System.getProperties();
+		        props.put("mail.smtp.user", "구글아이디"); // 서버 아이디만 쓰기
+				props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
+				props.put("mail.smtp.port", "465");
+				props.put("mail.smtp.starttls.enable", "true");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.socketFactory.port", "465");
+				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+				props.put("mail.smtp.socketFactory.fallback", "false");
+		           
+		        Authenticator auth = new MyAuthentication();
+		         
+		        //session 생성 및  MimeMessage생성
+		        Session session1 = Session.getDefaultInstance(props, auth);
+		        MimeMessage msg = new MimeMessage(session1);
+		       
+		        try{
+		            //편지보낸시간
+		            msg.setSentDate(new Date());
+		             
+		            InternetAddress from = new InternetAddress("qkrwlsdn496@gmail.com") ;             
+
+		            // 이메일 발신자
+		            msg.setFrom(from);           
+		             
+		            // 이메일 수신자
+		            String email = request.getParameter("email"); //사용자가 입력한 이메일 받아오기
+		            InternetAddress to = new InternetAddress(email);
+		            msg.setRecipient(Message.RecipientType.TO, to);
+		           
+		            // 이메일 제목
+		            msg.setSubject("비밀번호 인증번호", "UTF-8");
+		             
+		            // 이메일 내용 
+
+		            String code = request.getParameter("code_check"); //인증번호 값 받기
+		            request.setAttribute("code", code);
+		            msg.setText(code, "UTF-8");
+		             
+		            // 이메일 헤더 
+		            msg.setHeader("content-Type", "text/html");
+		             
+		            //메일보내기
+		            javax.mail.Transport.send(msg);
+		          
+		            
+		             
+		        }catch (AddressException addr_e) {
+		            addr_e.printStackTrace();
+		        }catch (MessagingException msg_e) {
+		            msg_e.printStackTrace();
+		        }
+		        // 위의코드는 우리가 받아온 이메일에 난수를 보내주는 코드
+		        
+		        
+		        PrintWriter out = response.getWriter();
+		        out.print("2");
+		        // else if문이 실행이 되고나서
+		        // out.print 괄호안에있는 값을 
+		        // ajax function 괄호안에있는 데이타에 넘겨준다.
+		}else if(command.equals("real2")) {
+			String email = request.getParameter("email");
+			String id = request.getParameter("id");
+			MemberDto dto = dao.fincPw(id, email);
 			
+			// null을 검사해줄때는
+			// 만약 dto가 null이면 dto.get으로 불러오는 함수들은 전부 nullpoint에러남
+			// 그것을 방지하기 위해서 dto.get의 null을 검사하는게 아니라
+			// dto 객체 자체의 null값을 검사해야함
+			
+			// 존재하지 않는 or 비회원같은것을 검사할때는 꼭 dto의 객체의 null을 검사하자.
+			if(dto != null) {
+			String pw = dto.getMemberpw();
+			PrintWriter out = response.getWriter(); 
+			out.print(pw);
+			/*
+			 * JSONObject ob = new JSONObject(); ob.put("id", id); Gson gson = new Gson();
+			 * String jsonPlace = gson.toJson(ob); System.out.println(jsonPlace);
+			 * PrintWriter out = response.getWriter(); out.print(jsonPlace);
+			 */
+			} else {
+				PrintWriter out = response.getWriter(); 
+				out.print("2");
+			}
 		}
-           
 		
 	
 	}
@@ -238,8 +357,8 @@ public class LoginCrudController extends HttpServlet {
 		PasswordAuthentication pa;
 		
 		public MyAuthentication() {
-			String id = "구글id" ; 	//구글 id
-			String pw = "구글 비밀번호"; //구글 비밀번호
+			String id = "qkrwlsdn496@gmail.com" ; 	//구글 id
+			String pw = "dkssud496!"; //구글 비밀번호
 			
 			//id와 비밀번호를 입력한다.
 			pa = new PasswordAuthentication(id, pw);
