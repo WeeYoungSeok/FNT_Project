@@ -14,6 +14,7 @@
 		<typeAlias type="com.fnt.model.dto.DealBoardDto" alias="dealboarddto"/>
 		<typeAlias type="com.fnt.model.dto.MemberDto" alias="memberdto"/>
 		<typeAlias type="com.fnt.model.dto.QnaBoardDto" alias="qnaboarddto"/>
+		<typeAlias type="com.fnt.model.dto.ReplyDto" alias="replydto"/>
 	</typeAliases>
 	
 	
@@ -39,6 +40,8 @@
   		<mapper resource="com/fnt/model/mapper/signupmapper.xml"/>
   		<mapper resource="com/fnt/model/mapper/reportmapper.xml"/>
   		<mapper resource="com/fnt/model/mapper/qnaboardmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/wishlistmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/replymapper.xml"/>
   </mappers>
 
 </configuration>

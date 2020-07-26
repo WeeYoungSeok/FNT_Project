@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wishlistmapper">
+  <resultMap type="wishlistdto" id="wishlistDtoResultMap">
+  	<result property="wlno" column="WL_NO"/>
+  	<result property="wlid"	column="WL_ID"/>
+  	<result property="wlsellnickname" column="WL_SELL_NICKNAME"/>
+  	<result property="wlboardno" column="WL_BOARDNO"/>
+  </resultMap>
+  
+ <!-- 찜목록 넣기 -->
+	 <insert id="insertwishlist" parameterType="wishlistdto">
+	 	INSERT INTO WISH_LIST
+	 	VALUES (
+	 		WL_NO_SEQ.NEXTVAL, 
+	 		#{wlid},
+	 		#{wlsellnickname},
+	 		#{wlboardno}
+	 	)
+	 </insert>
+	 
+<!-- 찜목록 지우기 -->
+	<delete id="deletewishlist" parameterType="int">
+		DELETE FROM WISH_LIST
+		WHERE WL_NO = #{wlno}
+	</delete>
+	
+<!-- id와 판매자 닉네임과 boardno확인해서 찜목록 하나 가져오기 -->
+	<select id="selectOnewishlist" parameterType="map" resultMap="wishlistDtoResultMap">
+		SELECT WL_NO, WL_ID, WL_SELL_NICKNAME, WL_BOARDNO
+		FROM WISH_LIST
+		WHERE WL_ID = #{wlid}
+		AND	WL_SELL_NICKNAME = #{wlsellnickname}
+		AND	WL_BOARDNO = #{wlboardno}
+	</select>
+
+<!-- id,nickname,boardno 로 wlno 찾기 -->
+	<select id="selectOneWishlistBymemberid" parameterType="map" resultType="int">
+		SELECT WL_NO
+		FROM WISH_LIST
+		WHERE WL_ID = #{wlid}
+		AND	WL_SELL_NICKNAME = #{wlsellnickname}
+		AND	WL_BOARDNO = #{wlboardno}
+	</select>
+</mapper>

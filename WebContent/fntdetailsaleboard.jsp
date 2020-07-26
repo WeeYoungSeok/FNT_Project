@@ -25,11 +25,26 @@ section {
 
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>
-	<section>
+
+<section>
+
 		<table border="1">
 			<tr>
 				<th>제  목</th>
 				<td>${dealboarddto.dtitle }</td>
+			</tr>
+			<tr>
+				<th>찜</th>
+				<td>
+			<c:choose>
+				<c:when test="${empty wishlistdto }">
+					<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');">☆</span>
+				</c:when>
+				<c:otherwise>
+					<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno}');">★</span>
+				</c:otherwise>
+			</c:choose>
+				</td>
 			</tr>
 			<tr>
 				<th>가격</th>
@@ -37,23 +52,27 @@ section {
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${dealboarddto.did }</td>
+				<td>${dealboarddto.dnickname }</td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td><div>${dealboarddto.dcontent }</div></td>
-			</tr>		<c:choose>
-			<c:when test="${not empty dealboarddto.dlongitude }">
+			</tr>		
+	<%
+		DealBoardDto dealboarddto = (DealBoardDto) request.getAttribute("dealboarddto");
+		if(dealboarddto.getDlatitude() != null){
+	%>
+			
 			<tr>
 				<th>여기서 만나요!</th>
 				<td style="width:500px;"><div id="map" style="width:100%;height:350px;"></div><td>
-			</tr>
 				<input type="hidden" name="longitude" id="longitude" value="${dealboarddto.dlongitude }">
 				<input type="hidden" name="latitude" id="latitude" value="${dealboarddto.dlatitude }">
-			</c:when>
-		</c:choose>
+			</tr>
+			
 
 	<%
+		}
 		if(memberdto==null) {
 	%>
 		
@@ -61,7 +80,6 @@ section {
 		}else {
 	%>
 	<%
-				DealBoardDto dealboarddto = (DealBoardDto) request.getAttribute("dealboarddto");
 				String dealboardid = dealboarddto.getDid();
 				if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin")){
 	%>
@@ -82,11 +100,35 @@ section {
 		</table>
 		
 	</section>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+
+
+
+function wishcheck(memberid,dnickname,dboardno){
+	if(!memberid){
+		alert("찜 하시려면 로그인 해주세요🤗");
+		return false;
+	}
+	$.ajax({
+		url : "wishlist.do",
+		method : "POST",
+		data : {"command":"selectOnewishlist","memberid":memberid, "dnickname" :dnickname,"dboardno":dboardno },
+		success : function(msg){
+			if(msg == "INSERT"){
+				alert("찜목록 추가");
+				$(".wish").text("★")
+			}else{
+				alert("찜목록 삭제");
+				$(".wish").text("☆");
+			}
+		}
+	});
+}
+
 function delChk(dboardno){
-	if(confirm("삭제하시겠습니까?")){
+	if(confirm("삭제하시겠습니까?🤔")){
 		location.href='dealboard.do?command=deletesaleboard&dboardno='+dboardno;
 	}
 }
@@ -112,22 +154,26 @@ position: markerPosition
 marker.setMap(map);
 var infowindow = new kakao.maps.InfoWindow({zindex:1}); 
 var geocoder = new kakao.maps.services.Geocoder();
+var latlng = new kakao.maps.LatLng($("#longitude").val(), $("#latitude").val());
+function searchDetailAddrFromCoords(coords, callback) {
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+}
 
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★고치세요 
-searchDetailAddrFromCoords(onload,function(result, status){
+searchDetailAddrFromCoords(latlng,function(result, status){
     if (status === kakao.maps.services.Status.OK) {
         var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-        detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+      //  detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
         
         var content = '<div class="bAddr">' +
-                        '<span class="title">법정동 주소정보</span>' + 
+                        '<span class="title">★여기서 만나요★</span>' + 
                         detailAddr + 
                     '</div>';
         infowindow.setContent(content);
         infowindow.open(map, marker);
     }
 });
-*/
+
 </script>
 	
 <%@ include file="./form/footer.jsp" %>

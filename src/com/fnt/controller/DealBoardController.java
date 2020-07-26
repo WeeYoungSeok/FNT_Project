@@ -15,9 +15,15 @@ import javax.servlet.http.HttpSession;
 import com.fnt.model.biz.DealBoardBiz;
 import com.fnt.model.biz.impl.DealBoardBizImpl;
 import com.fnt.model.dao.DealBoardDao;
+import com.fnt.model.dao.ReplyDao;
+import com.fnt.model.dao.WishlistDao;
 import com.fnt.model.dao.impl.DealBoardDaoImpl;
+import com.fnt.model.dao.impl.ReplyDaoImpl;
+import com.fnt.model.dao.impl.WishlistDaoImpl;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.ReplyDto;
+import com.fnt.model.dto.WishlistDto;
 
 
 @WebServlet("/dealboard.do")
@@ -31,6 +37,10 @@ public class DealBoardController extends HttpServlet {
       HttpSession session = request.getSession();
       DealBoardDao dao = new DealBoardDaoImpl();
       DealBoardBiz biz = new DealBoardBizImpl();
+      WishlistDao wishlistdao = new WishlistDaoImpl();
+      ReplyDao replydao = new ReplyDaoImpl();
+      
+      MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
       
       String command = request.getParameter("command");
       System.out.println("["+command+"]");
@@ -60,7 +70,7 @@ public class DealBoardController extends HttpServlet {
          String dcategory = request.getParameter("dcategory");
          String dcontent = request.getParameter("dcontent");
          int dprice = biz.removecomma((request.getParameter("dprice")));
-         MemberDto memberdto =(MemberDto)session.getAttribute("memberdto");
+         
          String memberid = memberdto.getMemberid();
          String membernickname = memberdto.getMembernickname();
          
@@ -74,7 +84,6 @@ public class DealBoardController extends HttpServlet {
          dealboarddto.setDfilename("None");
          dealboarddto.setDlatitude("0");
          dealboarddto.setDlongitude("0");
-         
          
          
          int res = dao.insertBuyBoard(dealboarddto);
@@ -93,20 +102,27 @@ public class DealBoardController extends HttpServlet {
          String dcontent = request.getParameter("dcontent");
          int dprice = biz.removecomma((request.getParameter("dprice")));
          String coords = request.getParameter("coords");
+
+         DealBoardDto dealboarddto = new DealBoardDto();
+
+         if(coords.equals("undefined")) {
+        	 dealboarddto.setDlongitude("");
+             dealboarddto.setDlatitude("");
+         }else {
+        	 String [] str = coords.split(",");
+        	 String dlongitude = str[0].substring(1);
+        	 
+        	 int last = str[1].length()-1;
+        	 String	dlatitude = str[1].substring(0,last);
+        	 System.out.println("dlatitude : "+dlatitude);
+        	 
+        	 dealboarddto.setDlongitude(dlongitude);
+        	 dealboarddto.setDlatitude(dlatitude);
+         }
          
-         String [] str = coords.split(",");
-         String dlongitude = str[0].substring(1);
-         
-         int last = str[1].length()-1;
-         
-         String dlatitude = str[1].substring(0,last);
-         
-         MemberDto memberdto =(MemberDto)session.getAttribute("memberdto");
 
          String memberid = memberdto.getMemberid();
          String membernickname = memberdto.getMembernickname();
-         
-         DealBoardDto dealboarddto = new DealBoardDto();
          
          dealboarddto.setDid(memberid);
          dealboarddto.setDnickname(membernickname);
@@ -115,11 +131,7 @@ public class DealBoardController extends HttpServlet {
          dealboarddto.setDcontent(dcontent);
          dealboarddto.setDprice(dprice);
          dealboarddto.setDfilename("none");
-         dealboarddto.setDlongitude(dlongitude);
-         dealboarddto.setDlatitude(dlatitude);
-         
 
-         
          int res = dao.insertSaleBoard(dealboarddto); 
          
          if(res > 0) {
@@ -132,7 +144,9 @@ public class DealBoardController extends HttpServlet {
       }else if(command.equals("detailboard")) { // 구매글 자세히보기
          int dboardno = Integer.parseInt(request.getParameter("dboardno"));
          DealBoardDto dealboarddto = dao.selectDetail(dboardno);
+         List<ReplyDto> replylist = replydao.selectReplyList();
          
+         request.setAttribute("replylist", replylist);
          request.setAttribute("dealboarddto", dealboarddto);
          dispatch("fntdetailboard.jsp", request, response);
          
@@ -186,10 +200,21 @@ public class DealBoardController extends HttpServlet {
               jsResponse("수정되지 않았습니다.", "dealboard.do?command=updatebuyboard&dboardno="+dboardno, response);
            }
           
-      }else if(command.equals("detailsaleboard")) { // 판매글 보기
+      }else if(command.equals("detailsaleboard")) { // 판매글 자세히보기
     	  int dboardno = Integer.parseInt(request.getParameter("dboardno"));
     	  DealBoardDto dealboarddto = dao.selectDetail(dboardno);
+    	  String memberid="";
+    	  if(memberdto == null) {
+    		  
+    	  }else {
+    		 memberid =  memberdto.getMemberid();
+    	  }
     	  
+    	  String wlsellnickname = dealboarddto.getDnickname();
+ 
+    	  WishlistDto wishlistdto = wishlistdao.selectOneWishlist(memberid, wlsellnickname, dboardno);
+
+    	  request.setAttribute("wishlistdto", wishlistdto);
     	  request.setAttribute("dealboarddto", dealboarddto);
     	  dispatch("fntdetailsaleboard.jsp", request, response);
       }

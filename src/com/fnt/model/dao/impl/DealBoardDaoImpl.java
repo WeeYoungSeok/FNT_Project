@@ -79,6 +79,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		try {
 			sqlsession = getSqlSessionFactory().openSession(false);
 			res = sqlsession.insert(namespace+"insertsaleboard",dto);
+			
 	
 			if(res > 0) {
 				sqlsession.commit();
