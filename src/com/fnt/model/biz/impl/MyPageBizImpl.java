@@ -9,6 +9,8 @@ import com.fnt.model.dao.impl.AdminPageDaoImpl;
 import com.fnt.model.dao.impl.MyPageDaoImpl;
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
+import com.fnt.model.dto.NoticeBoardDto;
+import com.fnt.model.dto.QnaBoardDto;
 
 public class MyPageBizImpl implements MyPageBiz {
 
@@ -20,24 +22,36 @@ public class MyPageBizImpl implements MyPageBiz {
 		return dao.Allalert();
 	}
 
-	//내가쓴글
+	//내가쓴판매글
 	@Override
-	public List<DealBoardDto> Mywriterlist(String memberid) {
-		return dao.Mywriterlist(memberid);
+	public List<DealBoardDto> Selllist(String memberid) {
+		return dao.Selllist(memberid);
+	}
+	//내가쓴구매글
+	public List<DealBoardDto> Buylist(String memberid) {
+		// TODO Auto-generated method stub
+		return dao.Buylist(memberid);
+	}
+	//내가 쓴 문의글
+	@Override
+	public List<QnaBoardDto> Qnalist(String memberid) {
+		// TODO Auto-generated method stub
+		return dao.Qnalist(memberid);
 	}
 	//찜목록
 	@Override
-	public List<DealBoardDto> Mywishlist(String memberid) {
+	public List<DealBoardDto> Wishlist(String memberid) {
 		// TODO Auto-generated method stub
-		return dao.Mywishlist(memberid);
+		return dao.Wishlist(memberid);
 	}
 
 	//주문내역
 	@Override
-	public List<DealBoardDto> Myoederlist(String memberid) {
+	public List<DealBoardDto> Orderlist(String memberid) {
 		// TODO Auto-generated method stub
-		return dao.Myorderlist(memberid);
+		return dao.Orderlist(memberid);
 	}
+
 
 	
 }

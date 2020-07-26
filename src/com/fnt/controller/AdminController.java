@@ -127,7 +127,7 @@ public class AdminController extends HttpServlet {
 		        PrintWriter out = response.getWriter(); 
 		        if(enabled.equals("Y") || enabled.equals("N") || enabled.equals("R")) {
 		        	out.print(jsonPlace);
-		        } else {
+		        } else if(enabled.equals("report")) {
 		        	out.print(jsonPlace1);
 		        }
 	        
