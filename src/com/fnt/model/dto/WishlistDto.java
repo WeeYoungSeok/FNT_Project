@@ -45,4 +45,12 @@ public class WishlistDto {
 	public void setWlboardno(int wlboardno) {
 		this.wlboardno = wlboardno;
 	}
+
+	@Override
+	public String toString() {
+		return "WishlistDto [wlno=" + wlno + ", wlid=" + wlid + ", wlsellnickname=" + wlsellnickname + ", wlboardno="
+				+ wlboardno + "]";
+	}
+	
+	
 }

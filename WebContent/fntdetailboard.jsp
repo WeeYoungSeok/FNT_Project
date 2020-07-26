@@ -16,6 +16,12 @@ function delChk(dboardno){
 		location.href='dealboard.do?command=deletebuyboard&dboardno='+dboardno;
 	}
 }
+
+function insertreply(){
+	$.ajax({
+		url : 
+	});
+}
 </script>
 <style type="text/css">
 * {
@@ -34,6 +40,11 @@ section {
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>
 	<section>
+<%
+	if(memberdto == null) {
+	
+	}
+%>
 		<table border="1">
 			<tr>
 				<th>제  목</th>
@@ -49,13 +60,9 @@ section {
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><div>${dealboarddto.dcontent }</div></td>
+				<td width="400" height="200">${dealboarddto.dcontent }</td>
 			</tr>
 
-			
-			
-			
-			<tr>
 	<%
 		if(memberdto==null) {
 	%>
@@ -83,7 +90,45 @@ section {
 		}
 	%> 
 		</table>
-		
+	<%
+		if(memberdto==null) {
+			
+	%>
+	
+	<%
+		}else{
+	%>
+		<table>
+			<tr>
+				<th><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="width:80px"></th>
+				<td>
+					<input type="text" name="replytitle" style="width:450px">
+					<input type="button" id="insertreply" value="등록" onclick="insertreply();">
+				</td>
+		</table>
+	<%
+		}
+	%>
+	<c:choose>
+		<c:when test="${empty replylist }">
+			<div>작성된 댓글이 없습니다.</div>
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${relpylist }" var="replydto">
+				<div>
+					<span>
+						${replydto.replynickname }
+					</span>
+					<div>
+						${replydto.replytitle }
+					</div>
+					<div>
+						${replydto.replyregdate }
+					</div>
+				</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 	</section>
 <%@ include file="./form/footer.jsp" %>
 </body>
