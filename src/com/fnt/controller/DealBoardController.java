@@ -174,6 +174,8 @@ public class DealBoardController extends HttpServlet {
          DealBoardDto dealboarddto = dao.selectDetail(dboardno);
          List<ReplyDto> replylist = replydao.selectReplyList();
          
+         System.out.println("controller replylist : "+replylist);
+         
          request.setAttribute("replylist", replylist);
          request.setAttribute("dealboarddto", dealboarddto);
          dispatch("fntdetailboard.jsp", request, response);

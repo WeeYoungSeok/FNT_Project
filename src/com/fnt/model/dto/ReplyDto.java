@@ -16,6 +16,13 @@ public class ReplyDto {
 	public ReplyDto() {
 		
 	}
+	
+	public ReplyDto(String replyid, String replynickname, int replyboardno, String replytitle) {
+		this.replyid = replyid;
+		this.replynickname = replynickname;
+		this.replyboardno = replyboardno;
+		this.replytitle = replytitle;
+	}
 
 	public ReplyDto(int replyno, String replyid, String replynickname, int replyboardno, int replygroupno,
 			int replygroupnoseq, String replytitletab, String replytitle, Date replyregdate) {

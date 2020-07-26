@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fnt.model.biz.ReplyBiz;
+import com.fnt.model.biz.impl.ReplyBizImpl;
 import com.fnt.model.dao.ReplyDao;
 import com.fnt.model.dao.impl.ReplyDaoImpl;
 import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.ReplyDto;
 
 @WebServlet("/reply.do")
 public class ReplyController extends HttpServlet {
@@ -23,6 +26,7 @@ public class ReplyController extends HttpServlet {
       response.setContentType("text/html; charset=utf-8");
       HttpSession session = request.getSession();
       ReplyDao replydao = new ReplyDaoImpl();
+      ReplyBiz replybiz = new ReplyBizImpl();
       
       MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
       
@@ -30,6 +34,24 @@ public class ReplyController extends HttpServlet {
       System.out.println("["+command+"]");
       
       if(command.equals("insertreply")) {
+    	  String replyid = memberdto.getMemberid();
+    	  String replynickname = request.getParameter("replynickname");
+    	  String replytitle = request.getParameter("replytitle");
+    	  int replyboardno = Integer.parseInt(request.getParameter("replyboardno"));
+    	  
+    	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
+    	  
+    	  System.out.println("컨트롤러에서 replydto : "+replydto);
+    	 
+    	  int res = replydao.insertReply(replydto);
+    //	  int res = replybiz.replyProc(replydto);
+    	 
+    	  if(res > 0) {
+    		  response.getWriter().append("COMPLETE");
+    	  }else {
+    		  response.getWriter().append("FAILD");
+    	  }
+
     	  
       }
       

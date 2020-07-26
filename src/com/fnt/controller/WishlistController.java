@@ -36,9 +36,7 @@ public class WishlistController extends HttpServlet {
     	  int wldboardno = Integer.parseInt(request.getParameter("dboardno"));
     	  
     	 int whno= dao.selectOneWishlistBymemberid(wlid, wlsellnickname, wldboardno);
-    	  
-    	  System.out.println("wishlist컨트롤러에서 dto : "+whno);
-    	  
+    	      	  
     	  String result = "";
     	  
     	  if(whno==0) {
