@@ -1,11 +1,25 @@
 package com.fnt.model.dto;
 
+import java.util.List;
+
 public class WishlistDto {
 	private int wlno;
+
 	private String wlid;
 	private String wlsellnickname;
 	private int wlboardno;
+	private DealBoardDto dealboarddto;
 	
+	
+	
+	public DealBoardDto getDealboarddto() {
+		return dealboarddto;
+	}
+
+	public void setDealboarddto(DealBoardDto dealboarddto) {
+		this.dealboarddto = dealboarddto;
+	}
+
 	public WishlistDto() {
 		
 	}

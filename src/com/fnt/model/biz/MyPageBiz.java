@@ -1,11 +1,13 @@
 package com.fnt.model.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.model.dto.QnaBoardDto;
+import com.fnt.model.dto.WishlistDto;
 
 public interface MyPageBiz {
 	
@@ -18,7 +20,7 @@ public interface MyPageBiz {
 	//내가 쓴 문의글 보기 biz
 	public List<QnaBoardDto> Qnalist(String memberid);
 	//찜목록 biz
-	public List<DealBoardDto> Wishlist(String memberid);
+	public List<WishlistDto> Wishlist(String memberid);
 	//주문내역 biz
 	public List<DealBoardDto> Orderlist(String memberid);
 }

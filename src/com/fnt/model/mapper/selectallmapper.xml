@@ -19,7 +19,7 @@
 	<select id="selectall"  parameterType="String" resultMap="memberDtoResultMap">
 		SELECT MEMBER_ID, MEMBER_NICKNAME, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDR, MEMBER_EMAIL, MEMBER_ROLE, ENABLED, REGDATE
 		FROM MEMBER
-		WHERE ENABLED=#{enabled}
+		WHERE ENABLED=#{enabled} AND MEMBER_ROLE='USER'
 	</select>
 	<!-- 신고된 회원 처리누르면 role를 r로 바꾸는 것 -->
 	<update id="updateRole" parameterType="String">
