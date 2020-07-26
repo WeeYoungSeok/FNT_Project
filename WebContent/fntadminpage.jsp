@@ -17,7 +17,7 @@ return queryString;
 }
 function enabledValue() {
 	var enabled = $("select[name=enabled]").val();
-	return enabled
+	return enabled;
 } 
 
 function letGo(){
@@ -31,7 +31,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	      success : function(data) {
 	         $("table").attr("border", 1);
 	         $("thead").append(
-	            "<tr>"+
+	            "<tr id=title>"+
 	               "<th>"+"아이디"+"</th>"+
 	               "<th>"+"닉네임"+"</th>"+
 	               "<th>"+"이름"+"</th>"+
@@ -41,14 +41,23 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	               "<th>"+"이메일"+"</th>"+
 	               "<th>"+"가입날짜"+"</th>"+
 	            "</tr>"
-	         );
+	            );
+	               if(enabledValue() == "R"){
+	 	               $("#title").append( 
+	 	            	"<th>처리</th>"
+	 	            	);
+	 	            }
 	         $.each(data, function(key, val){
+	         	
 	        	 if(key == "LIST"){
+	        		 alert(key);
+	        		alert(val);
 	               var list = val;
 	               for (var i = 0; i < list.length; i++) {
 	                  var str = list[i];
+	                  if(enabledValue() =="Y"||enabledValue()=="N"){
 	                  $("tbody").append(
-	                     "<tr>"+
+	                     "<tr id=content>"+
 	                        "<td>"+str.memberid+"</td>"+
 	                        "<td>"+str.membernickname+"</td>"+
 	                        "<td>"+str.membername+"</td>"+
@@ -58,10 +67,32 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	                        "<td>"+str.memberemail+"</td>"+
 	                        "<td>"+str.memberregdate+"</td>"+
 	                     "</tr>"
+	                     
 	                  );
+	                  }
+	                  else {
+	                	  $("tbody").append(
+	     	                     "<tr>"+
+	     	                        "<td>"+str.memberid+"</td>"+
+	     	                        "<td>"+str.membernickname+"</td>"+
+	     	                        "<td>"+str.membername+"</td>"+
+	     	                        "<td>"+str.memberbirth+"</td>"+
+	     	                        "<td>"+str.memberphone+"</td>"+
+	     	                        "<td>"+str.memberaddr+"</td>"+
+	     	                        "<td>"+str.memberemail+"</td>"+
+	     	                        "<td>"+str.memberregdate+"</td>"+
+	     	                       "<td><input type=button value=복귀하기 onclick=location.href='admin.do?command=reset&id="+ str.memberid + "'></td>"+
+	     	                     "</tr>"
+	     	                     
+	     	                  );	  
+	                  }
 	               }
-	            }
-	         });  
+	            } else if(key.val == null){
+              	  $("tbody").append(
+	                		"<tr><td>-----조회된 회원이 없습니다.-----</td></tr>"	  
+	              );
+	              }
+	         });
 	      },
 	      error : function(){
 	         alert("회원여부조회페이지 연결 실패");
@@ -89,6 +120,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			         );
 			         $.each(data, function(key, val){
 			        	 if(key=="REPORT"){
+			        		 alert(key);
+			        		 alert(val);
 			               var list = val;
 			               for (var i = 0; i < list.length; i++) {
 			                  var str = list[i];
@@ -101,11 +134,15 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			                        "<td>"+str.receiveid+"</td>"+
 			                        "<td>"+str.receivenickname+"</td>"+
 			                        "<td>"+str.reportregdate+"</td>"+
-			                        "<td><input type=button value=차단하기 onclick=location.href='admin.do?command=change&receiveid='" + str.receiveid + "/></td>"+
+			                        "<td><input type=button value=차단하기 onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
 			                     "</tr>"
 			                  );
 			               }
-			        	 }
+			        	 }  else if(key.val == null){
+			        		 $("tbody").append(
+			        			"<tr><td>-----신고받은 회원이 없습니다.-----</td></tr>"		 
+			        		 );
+			        	 } 
 			            
 			         });  
 			      },

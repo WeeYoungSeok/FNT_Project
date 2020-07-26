@@ -3,23 +3,44 @@
 
 
 <mapper namespace="mypage">
-<resultMap type="dealboarddto" id="dealBoardDtoResultMap">
-	<result property="dboardno" column="D_BOARDNO"/>
-	<result property="did" column="D_ID"/>
-	<result property="dnickname" column="D_NICKNAME"/>
-	<result property="dtitle" column="D_TITLE"/>
-	<result property="dfilename" column="D_FILENAME"/>
-	<result property="dcontent" column="D_CONTENT"/>
-	<result property="dprice" column="D_PRICE"/>
-	<result property="dregdate" column="D_REGDATE"/>
-	<result property="dcategory" column="D_CATEGORY"/>
+	<resultMap type="dealboarddto" id="dealBoardDtoResultMap">
+		<result property="dboardno" column="D_BOARDNO"/>
+		<result property="did" column="D_ID"/>
+		<result property="dnickname" column="D_NICKNAME"/>
+		<result property="dtitle" column="D_TITLE"/>
+		<result property="dfilename" column="D_FILENAME"/>
+		<result property="dcontent" column="D_CONTENT"/>
+		<result property="dprice" column="D_PRICE"/>
+		<result property="dregdate" column="D_REGDATE"/>
+		<result property="dcategory" column="D_CATEGORY"/>
 	<result property="dflag" column="D_FLAG"/>
-</resultMap>
+	</resultMap>
+
+	<resultMap type="noticeboarddto" id="noticeboardDtoResultMap">
+ 		<result property="nbboardno" column="NB_BOARDNO"></result>
+ 		<result property="nbid" column="NB_ID"></result>
+ 		<result property="nbnickname" column="NB_NICKNAME"></result>
+ 		<result property="nbtitle" column="NB_TITLE"></result>
+ 		<result property="nbcontent" column="NB_CONTENT"></result>
+ 		<result property="nbregdate" column="NB_REGDATE"></result>
+ 	</resultMap>
 	
-	<!-- 내가 쓴 글 조회할거야. -->
-	<select id="mywriterlist" parameterType="String" resultMap="dealBoardDtoResultMap">
+	<!-- 내가 쓴 판매글 조회할거야. -->
+	<select id="selllist" parameterType="String" resultMap="dealBoardDtoResultMap">
 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG
-		FROM DEAL_BOARD WHERE D_ID = #{did}
+		FROM DEAL_BOARD WHERE D_ID = #{did} AND D_FLAG = 'S'
+	</select>
+	
+	<!-- 내가 쓴 구매글 조회할거야. -->
+	<select id="buylist" parameterType="String" resultMap="dealBoardDtoResultMap">
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG
+		FROM DEAL_BOARD WHERE D_ID = #{did} AND D_FLAG = 'B'
+	</select>
+	
+	<!-- 내가 쓴 문의글 조회할거야 -->
+	<select id="qnalist" parameterType="String" resultMap="noticeboardDtoResultMap">
+		 SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE, QB_REDATE
+		 FROM QNA_BOARD WHERE QD_ID = #{memberid}
 	</select>
 
 </mapper>

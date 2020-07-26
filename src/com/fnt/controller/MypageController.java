@@ -25,6 +25,8 @@ import com.fnt.model.dao.impl.AdminPageDaoImpl;
 import com.fnt.model.dao.impl.DealBoardDaoImpl;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.NoticeBoardDto;
+import com.fnt.model.dto.QnaBoardDto;
 
 
 @WebServlet("/mypage.do")
@@ -62,23 +64,44 @@ public class MypageController extends HttpServlet {
 		
 		//마이페이지
 		if(command.equals("mypage")) {
+			//fntmain.jsp에서 로그인하고 닉네임을 클릭했을 때에 memberid가 넘어오고
+			//그 값을 받아서 sell list출력하고 담고 fntmypagesell.jsp에 보내준다.
 			if(memberdto.getMemberrole().equals("USER")) {
-			response.sendRedirect("fntmypage.jsp");
+				String memberid = request.getParameter("memberid");
+				List<DealBoardDto> selllist = new ArrayList<DealBoardDto>();
+				selllist = mypagebiz.Selllist(memberid);
+				
+				request.setAttribute("selllist", selllist);
+				dispatch("fntmypagesell.jsp", request, response);
 			} else if(memberdto.getMemberrole().equals("ADMIN")) {
 				response.sendRedirect("admin.do?command=adminpage");
 			}
-		//마이페이지에서 선택사항 3개 중 하나를 선택하고 클릭했을 때 오는 컨트롤러.
-		}else if(command.equals("selectlist")) {
+		}else if(command.equals("buylist")) {
+			//내가 쓴 구매글 클릭 시
 			String memberid = request.getParameter("memberid");
-			List<DealBoardDto> list = new ArrayList<DealBoardDto>();
-			list = mypagebiz.Mywriterlist(memberid);
 			
-			request.setAttribute("mywriterlist", list);
-			dispatch("fntmypagewriter.jsp", request, response);
-		}
-		
-		if(memberdto != null) {
+			List<DealBoardDto> buylist = new ArrayList<DealBoardDto>();
+			buylist = mypagebiz.Buylist(memberid);
 			
+			request.setAttribute("buylist", buylist);
+			dispatch("fntmypagebuy.jsp", request, response);
+			
+		}else if(command.equals("qnalist")) {
+			String memberid = request.getParameter("memberid");
+			
+			List<QnaBoardDto> qnalist = new ArrayList<QnaBoardDto>();
+			qnalist = mypagebiz.Qnalist(memberid);
+			
+			request.setAttribute("qnalist", qnalist);
+			dispatch("fntmypageqna.jsp", request, response);
+			
+			//내가 쓴 문의글 클릭 시
+		}else if(command.equals("wishlist")) {
+			String memberid = request.getParameter("memberid");
+			//내가 찜한 상품 클릭 시
+		}else if(command.equals("orderlist")) {
+			String memberid = request.getParameter("memberid");
+			//내가 주문한 상품 클릭 시
 		}
 		
 	}
