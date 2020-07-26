@@ -71,7 +71,7 @@
 			</td>
 		</tr>
 		<%
-			} else if (qnaboardlistone.getQbflag().equals("Y")){
+			} else if (qnaboardlistone.getQbflag().equals("Y") && memberdto.getMemberid().equals(qnaboardlistone.getQbid())){
 		%>
 			<tr>
 				<td align="right">
@@ -79,7 +79,7 @@
 				</td>
 			</tr>
 		<%
-			} else if (memberdto.getMemberid().equals(qnaboardlistone.getQbid()) || qnaboardlistone.getQbflag().equals("N")){
+			} else if (memberdto.getMemberid().equals(qnaboardlistone.getQbid()) && qnaboardlistone.getQbflag().equals("N")){
 				
 				%>
 					<tr>

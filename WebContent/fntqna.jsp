@@ -36,9 +36,10 @@
  span {
  	cursor: pointer;
  }
- a{
- 	text-decoration: none;
- }
+a{
+	text-decoration: none;
+	color: black;
+}
  </style>
  
  
@@ -158,14 +159,7 @@
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
-	</jsp:include>
-
-
-
-	
-		
-		
-		
+	</jsp:include>	
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>

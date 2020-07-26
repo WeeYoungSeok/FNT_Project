@@ -19,6 +19,7 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 	public List<QnaBoardDto> selectAllMember(Paging paging) {
 		int startNum = paging.getStartNum();
 		int endNum = paging.getEndNum();
+		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
@@ -54,6 +55,8 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 
 		return count;
 	}
+	
+	
 
 	@Override
 	public QnaBoardDto selectOne(int qbboardno) {

@@ -41,7 +41,6 @@ public class NoticeController extends HttpServlet {
 		NoticeBoardBiz noticeboardbiz = new NoticeBoardBizImpl();
 
 		String command = request.getParameter("command");
-		System.out.println("[" + command + "]");
 		HttpSession session = request.getSession();
 
 		MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
