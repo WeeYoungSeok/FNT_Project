@@ -7,7 +7,7 @@
 		<result property="replynickname" column="REPLY_NICKNAME"/>
 		<result property="replyboardno" column="REPLY_BOARDNO"/>
 		<result property="replygroupno" column="REPLY_GROUPNO"/>
-		<result property="replygroupseq" column="REPLY_GROUPNOSEQ"/>
+		<result property="replygroupnoseq" column="REPLY_GROUPNOSEQ"/>
 		<result property="replytitletab" column="REPLY_TITLETAB"/>
 		<result property="replytitle" column="REPLY_TITLE"/>
 		<result property="replyregdate" column="REPLY_REGDATE"/>
@@ -19,9 +19,23 @@
 		FROM REPLY
 		ORDER BY REPLY_GROUPNO DESC, REPLY_GROUPNOSEQ
 	</select>
-
+	
 <!-- 댓글 등록 -->
-	<insert id="insertreply" parameterType="map">
+<insert id="insertreply" parameterType="map">
+	INSERT INTO REPLY
+	VALUES (REPLY_SEQ.NEXTVAL,
+			#{replyid},
+			#{replynickname},
+			#{replyboardno},
+			REPLY_GROUPNO_SEQ.NEXTVAL,
+			1,
+			0,
+			#{replytitle},
+			SYSDATE
+			)
+</insert>
+<!-- 댓글 답변 등록-->
+	<insert id="insertrereply" parameterType="map">
 		INSERT INTO REPLY
 		VALUES (REPLY_SEQ.NEXTVAL,
 			#{replyid},
@@ -34,12 +48,12 @@
 			SYSDATE
 		)
 	</insert>
-<!-- 댓글 업데이트 -->
+<!-- 댓글GROUPSEQ 업데이트 -->
 	<update id="updatereply" parameterType="int">
 		UPDATE REPLY
-		SET REPLY_GROUPNOSEQ = REPLY_GROUPSEQ +1
+		SET REPLY_GROUPNOSEQ = REPLY_GROUPNOSEQ +1
 		WHERE REPLY_GROUPNO = (SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_BOARDNO = #{replyboardno})
-		AND REPLY_GROUPNOSEQ > (SELECT REPLY_GROUPNOSEQ FROMR REPLY WHERE REPLY_BOARDNO = #{replyboardno})
+		AND REPLY_GROUPNOSEQ > (SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_BOARDNO = #{replyboardno})
 	</update>
 	
 <!-- 댓글 삭제 -->

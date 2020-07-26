@@ -6,4 +6,6 @@ import com.fnt.model.dto.ReplyDto;
 
 public interface ReplyDao {
 	public List<ReplyDto> selectReplyList();
+	public int insertReply(ReplyDto replydto);
+	public int updateReplyseq(int replyboardno);
 }
