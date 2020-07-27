@@ -1,4 +1,4 @@
-package com.fnt.model.dto;
+ package com.fnt.model.dto;
 
 import java.sql.Date;
 

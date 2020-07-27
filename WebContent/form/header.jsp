@@ -16,6 +16,13 @@
 	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 %>
 	<header>
+	<form action="dealboard.do" method="post">
+		<input type="hidden" name="command" value="searchdeal">
+		
+		<input type="text" name="searchdeal" id="searchdeal" required="required" placeholder="구매 및 판매글만 검색 가능합니다.">		
+		<span><input type="submit" value="검색"></span>
+	</form>
+	
 		<span class="mysection">
 			<!-- 마이페이지 -->
 			<!-- <a href=""></a> -->

@@ -22,4 +22,10 @@ public interface DealBoardDao {
 	
 	public int updateDealBoard(DealBoardDto dto);
 	
+	//통합검색 리스트로 출력
+	public List<DealBoardDto> searchList(String searchdeal);
+	public List<DealBoardDto> ascorder(String searchdeal);
+	public List<DealBoardDto> desccate(String searchdeal, String categorylist);
+	public List<DealBoardDto> asccate(String searchdeal, String categorylist);
+	
 }
