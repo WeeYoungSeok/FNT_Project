@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item)문의글 보기</title>
+<title>FNT(Feel New Item)찜목록 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -20,7 +20,7 @@
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
 	<section>
-	<h1>MyPage</h1>
+	<h1>내가 찜한 상품 보기</h1>
 		<div id="alllist">
 			<div id="list">
 				<a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>">내가 쓴 판매글</a>
@@ -39,10 +39,10 @@
 						<th>판매글올린날짜</th>
 					</tr>
 					<%
-						if(wishlist == null){
+						if(wishlist.size() == 0){
 					%>
 						<tr>
-							<td colspan="4">-----조회된 글이 없습니다.-----</td>
+							<td colspan="4" align="center">-----조회된 글이 없습니다.-----</td>
 						</tr>
 					<%
 						} else {
@@ -50,7 +50,24 @@
 					%>
 							 <tr>
 								<td><%=wishlist.get(i).getWlno()%></td>
-								<td><%=wishlist.get(i).getDealboarddto().getDtitle()%></td>
+								<%
+								if(wishlist != null){
+									if(wishlist.get(i).getDealboarddto().getDflag().equals("S")){
+								%>
+								<td>
+									<a href="dealboard.do?command=detailsaleboard&dboardno=<%=wishlist.get(i).getDealboarddto().getDboardno()%>"><%=wishlist.get(i).getDealboarddto().getDtitle()%></a>
+								</td>
+								<%
+									} else if(wishlist.get(i).getDealboarddto().getDflag().equals("B")){
+								%>
+								<td>
+									<a href="dealboard.do?command=detailboard&dboardno=<%=wishlist.get(i).getDealboarddto().getDboardno()%>"><%=wishlist.get(i).getDealboarddto().getDtitle()%></a>
+								</td>
+								<%
+									}
+								}
+								%>
+								
 								<td><%=wishlist.get(i).getWlsellnickname()%></td>
 								<td><%=wishlist.get(i).getDealboarddto().getDregdate()%></td>
 							</tr>

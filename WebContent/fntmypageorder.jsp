@@ -1,15 +1,14 @@
-<%@page import="com.fnt.model.dto.QnaBoardDto"%>
-<%@page import="com.fnt.model.dto.NoticeBoardDto"%>
-<%@page import="java.util.List"%>
 <%@page import="com.fnt.model.dto.DealBoardDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item)문의글 보기</title>
+<title>FNT(Feel New Item)주문내역 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
+
 <style type="text/css">
 a{
 	text-decoration : none;
@@ -18,15 +17,16 @@ a:hover{
 	color : orange;
 }
 </style>
+
 </head>
 <body>
 <%
-	List<QnaBoardDto> qnalist = (List<QnaBoardDto>)request.getAttribute("qnalist");
+	//request.getAttribute받아와야함
 %>
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
 	<section>
-	<h1>내가 문의한 글 보기</h1>
+		<h1>내가 주문한 내역보기</h1>
 		<div id="alllist">
 			<div id="list">
 				<a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>">내가 쓴 판매글</a>
@@ -39,36 +39,37 @@ a:hover{
 			<div id="selllist">
 				<table border="1">
 					<tr>
-						<th>글번호</th>
-						<th>글제목</th>
-						<th>작성날짜</th>
+						<th>주문</th>
+						<th>주문</th>
+						<th>주문</th>
 					</tr>
 					<%
-						if(qnalist.size() == 0){
+						//if(//어떤변수의.size() == 0){
 					%>
 						<tr>
 							<td colspan="3">-----조회된 글이 없습니다.-----</td>
 						</tr>
 					<%
-						} else {
-							for(int i = 0; i < qnalist.size(); i++){
+						//} else {
+							//for(int i = 0; i < .size(); i++){
 					%>
 							<tr>
-								<td><%=qnalist.get(i).getQbboardno() %></td>
-								<td>
-									<a href="qna.do?command=qnadetail&qbboardno=<%=qnalist.get(i).getQbboardno()%>"><%=qnalist.get(i).getQbtitle() %></a>
-								</td>
-								<td><%=qnalist.get(i).getQbregdate() %></td>
+								<td>출력할 값</td>
+								<td>출력할 값</td>
+								<td>출력할 값</td>
 							</tr>
 					<%
-							}
-						}
+							//}
+						//}
 					%>
 				</table>
 			</div>
 		</div>
-		<input type="button" value="내 정보 보기" onclick="location.href='LoginCrudController?command=cruddetail&memberid=<%=memberdto.getMemberid()%>'">
-		</section>
+
+	<input type="button" value="내 정보 보기" onclick="location.href='LoginCrudController?command=cruddetail&memberid=<%=memberdto.getMemberid()%>'">
+	</section>
+	
 	<%@ include file="./form/footer.jsp"%>
+
 </body>
-</html></html>
+</html>

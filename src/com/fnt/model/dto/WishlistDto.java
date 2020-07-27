@@ -3,11 +3,12 @@ package com.fnt.model.dto;
 import java.util.List;
 
 public class WishlistDto {
+	
 	private int wlno;
-
 	private String wlid;
 	private String wlsellnickname;
 	private int wlboardno;
+	//이 변수는 DealBoardDto객체를 담을 수 있는 변수
 	private DealBoardDto dealboarddto;
 	
 	

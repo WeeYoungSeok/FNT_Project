@@ -16,15 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fnt.model.biz.AdminPageBiz;
+import com.fnt.model.biz.AlertBiz;
 import com.fnt.model.biz.DealBoardBiz;
 import com.fnt.model.biz.MyPageBiz;
 import com.fnt.model.biz.impl.AdminPageBizImpl;
+import com.fnt.model.biz.impl.AlertBizImpl;
 import com.fnt.model.biz.impl.DealBoardBizImpl;
 import com.fnt.model.biz.impl.MyPageBizImpl;
 import com.fnt.model.dao.AdminPageDao;
 import com.fnt.model.dao.DealBoardDao;
 import com.fnt.model.dao.impl.AdminPageDaoImpl;
 import com.fnt.model.dao.impl.DealBoardDaoImpl;
+import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.NoticeBoardDto;
@@ -59,10 +62,16 @@ public class MypageController extends HttpServlet {
 		
 		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 		MyPageBiz mypagebiz = new MyPageBizImpl();
-				
+		AlertBiz alertbiz = new AlertBizImpl();
+		
 		//알람창뜨게하기
 		if(command.equals("alert")) {
-			response.sendRedirect("fntalert.jsp");
+			String memberid = request.getParameter("memberid");
+			List<AlertDto> alertlist = new ArrayList<AlertDto>();
+			alertlist = alertbiz.AlertList(memberid);
+			
+			request.setAttribute("alertlist", alertlist);
+			dispatch("fntalert.jsp", request, response);
 		}
 		
 		//마이페이지
@@ -105,17 +114,15 @@ public class MypageController extends HttpServlet {
 			
 			List<WishlistDto> wishlist = null;
 			wishlist = mypagebiz.Wishlist(memberid);
-			
-			System.out.println(wishlist.get(0).getWlboardno());
-			
-			System.out.println("컨트롤러에서 list : " + wishlist);
-			
+						
 			request.setAttribute("wishlist", wishlist);
 			dispatch("fntmypagewish.jsp", request, response);
 			
 			
 		}else if(command.equals("orderlist")) {
 			String memberid = request.getParameter("memberid");
+			
+			response.sendRedirect("fntmypageorder.jsp");
 			//내가 주문한 상품 클릭 시
 		}
 		

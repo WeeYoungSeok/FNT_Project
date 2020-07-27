@@ -17,6 +17,7 @@ public class MyPageDaoImpl implements MyPageDao {
 	
 	private String namespace = "mypage.";
 
+	//알림내역
 	public List<AlertDto> Allalert(){
 		SqlSession session = null;
 		List<AlertDto> list = null;
@@ -86,11 +87,9 @@ public class MyPageDaoImpl implements MyPageDao {
 	public List<WishlistDto> Wishlist(String memberid) {
 		SqlSession session = null;
 		List<WishlistDto> wishlist = null;
-		System.out.println("dao에서 받은 memberid : " + memberid);
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			wishlist = session.selectList(namespace+"wishlist", memberid);
-			System.out.println("dao에서 받은 Map : " + wishlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

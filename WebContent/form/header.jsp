@@ -27,7 +27,13 @@
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
 				%>
-				<a href="mypage.do?command=alert">
+				<script type="text/javascript">
+					function newpop(url, name){
+						var memberid = "<%=memberdto.getMemberid()%>";
+						window.open(url + "&memberid=" + memberid, name, "width=400, height=600");
+					}
+				</script>
+				<a href="javascript:newpop('mypage.do?command=alert', 'name');">
 					<img id="alertbell" alt="alert" src="./img/bell.png"/>
 				</a>
 				<%
