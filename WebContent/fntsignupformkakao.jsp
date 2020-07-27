@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.JsonObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.Date" %>
@@ -19,15 +20,6 @@
 <script src="./js/fntsignupform.js"></script>
 </head>
 <body>
-<%
-	
-	String nickname = request.getParameter("nickname");
-	String name = request.getParameter("name");
-	String email = request.getParameter("email");
-	String birth = request.getParameter("birthday");
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-	Date birthday = sdf.parse(birth);
-%>
 	<div>
 		<a href="fntmain.jsp">
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
@@ -84,7 +76,7 @@
 			</tr>
 			<tr>
 				<th>Email</th>
-				<td colspan="2"><input type="email" name="memberemail" placeholder="이메일을 입력해주세요." required="required"/></td>
+				<td colspan="2"><input type="email" name="memberemail" placeholder="이메일을 입력해주세요." required="required" value=<%= ((JsonObject) request.getAttribute("profileJson")).get("email") %>/></td>
 			</tr>
 		</table><br/>
 		<button id="resetbtn" type="reset">RESET</button>
