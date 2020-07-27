@@ -29,6 +29,8 @@
 	
 	<form action="signup.do" id="form" name="form" method="post" >
 		<input type="hidden" name="command" value="signupform"/>
+		<input type="hidden" name="IDCHK" value=""/>
+		<input type="hidden" name="NICKCHK" value=""/>
 		<table>
 			<tr>
 				<td colspan="3" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td>
@@ -36,10 +38,10 @@
 			<tr>
 				<th>ID</th>
 				<td>
-					<input type="text" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/>
+					<input class="IdChk" type="text" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/>
 				</td>
 				<td>
-					<button id="idchkbtn" class="in_btn" onclick="open_win('signup.do?command=idchk','idchk');">ID 중복 확인</button>
+					<button id="idchkbtn" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');">ID 중복 확인</button>
 				</td>
 			</tr>
 			<tr>
@@ -52,7 +54,10 @@
 			</tr>
 			<tr>
 				<th>Nickname</th>
-				<td colspan="2"><input type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" required="required"/></td>
+				<td><input class="NickChk" type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" title="n" required="required"/></td>
+				<td>
+					<button id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');">Nick 중복 확인</button>
+				</td>
 			</tr>
 			<tr>
 				<th>Name</th>

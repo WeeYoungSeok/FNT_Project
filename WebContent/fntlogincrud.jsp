@@ -94,7 +94,6 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 		
 		<tr>
 			<td colspan="2">
-				<a class="findbtn" href="LoginClurController?command=logincurdsearchid">ID 찾기</a>
 				<input class="findbtn" type="button" value="ID 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchid'">
 				<input class="findbtn" type="button" value="PW 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchpw'">
 
@@ -104,10 +103,10 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 			<td colspan="2">
 				<div class="social_login_btn">
 					<!-- navers -->
-					<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+					<a href="<%=apiURL%>"><img height="50" src="img/naver_btn.png"/></a>
 					
 					<!-- 카카오 -->
-					<img id="kakao_id_login" src="./img/login_btn_kakao.png" onclick="javascript:loginWithKakao()"/>
+					<img id="kakao_id_login" src="img/kakao_btn.png" height="50" onclick="javascript:loginWithKakao()"/>
 				</div>
 			</td>
 		</tr>
