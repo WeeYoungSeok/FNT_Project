@@ -84,7 +84,7 @@ public class LoginCrudController extends HttpServlet {
 		}else if(command.equals("logincrudsearchid")) {
 			
 			
-		jsResponse("이동!", "fntlogincrudsearchid.jsp", response);;
+		jsResponse("FNT ID 찾기 페이지로 이동!", "fntlogincrudsearchid.jsp", response);;
 			
 		}else if(command.equals("logout")) {
 			session.invalidate();
@@ -108,7 +108,7 @@ public class LoginCrudController extends HttpServlet {
 			}
 			
 		}else if(command.equals("logincrudsearchpw")) {
-			jsResponse("pw찾기", "fntlogincrudsearchpw.jsp", response);
+			jsResponse("FNT PW 찾기 페이지로 이동!", "fntlogincrudsearchpw.jsp", response);
 		}else if(command.equals("searchpw")) {
 			String memberid = request.getParameter("id");
 			String membername = request.getParameter("name");
@@ -127,7 +127,6 @@ public class LoginCrudController extends HttpServlet {
 			
 			
 			MemberDto dto = (MemberDto) session.getAttribute("memberdto");
-			System.out.println(dto.toString() + "컨트롤러에서 dto");
 			
 			dispatch("fntcrudmypage.jsp", request, response);
 			//update폼으로 이동
@@ -140,13 +139,11 @@ public class LoginCrudController extends HttpServlet {
 			String memberpw = request.getParameter("memberpw");
 			String memberemail = request.getParameter("memberemail");
 			String memberid = request.getParameter("memberid");
-			System.out.println("컨트롤러에서 받아온 비밀번호 : " +memberpw +   "컨트롤러에서 받아온 이메일" + memberemail);
 			
 			MemberDto dto = dao.selectOne(memberid);
 			dto.setMemberpw(memberpw);
 			dto.setMemberpwchk(memberpw);
 			dto.setMemberemail(memberemail);
-			System.out.println("컨트롤러에서 dto 값 : "+dto);
 			int res = dao.update(dto);
 			
 			session.setAttribute("memberdto", dto);
@@ -207,7 +204,8 @@ public class LoginCrudController extends HttpServlet {
 		            msg.setRecipient(Message.RecipientType.TO, to);
 		             
 		            // 이메일 제목
-		            msg.setSubject("비밀번호 인증번호", "UTF-8");
+		            msg.setSubject("FNT(Feel New Item)에서 보내는 메일 입니다.\n"
+		            		+ "아이디를 찾기 위한 인증번호 입니다. 정확하게 입력해 주세요!\n", "UTF-8");
 		             
 		            // 이메일 내용 
 
@@ -220,7 +218,6 @@ public class LoginCrudController extends HttpServlet {
 		             
 		            //메일보내기
 		            javax.mail.Transport.send(msg);
-		            System.out.println("보냄!");
 		          
 		            
 		             
@@ -296,7 +293,8 @@ public class LoginCrudController extends HttpServlet {
 		            msg.setRecipient(Message.RecipientType.TO, to);
 		           
 		            // 이메일 제목
-		            msg.setSubject("비밀번호 인증번호", "UTF-8");
+		            msg.setSubject("FNT(Feel New Item)에서 보내는 메일 입니다.\n"
+		            		+ "비밀번호를 찾기 위한 인증번호 입니다. 정확하게 입력해 주세요!\n", "UTF-8");
 		             
 		            // 이메일 내용 
 

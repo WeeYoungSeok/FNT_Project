@@ -105,7 +105,6 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			dto = session.selectOne(namespace+"mypagelist",memberid);
-			System.out.println(dto.toString() + "으아아악");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
