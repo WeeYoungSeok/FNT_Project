@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fnt.model.biz.AlertBiz;
 import com.fnt.model.biz.ReplyBiz;
+import com.fnt.model.biz.impl.AlertBizImpl;
 import com.fnt.model.biz.impl.ReplyBizImpl;
 import com.fnt.model.dao.ReplyDao;
 import com.fnt.model.dao.impl.ReplyDaoImpl;
+import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.ReplyDto;
 
@@ -27,6 +30,7 @@ public class ReplyController extends HttpServlet {
       HttpSession session = request.getSession();
       ReplyDao replydao = new ReplyDaoImpl();
       ReplyBiz replybiz = new ReplyBizImpl();
+      AlertBiz alertbiz = new AlertBizImpl();
       
       MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
       
@@ -37,14 +41,27 @@ public class ReplyController extends HttpServlet {
     	  String replyid = memberdto.getMemberid();
     	  String replynickname = request.getParameter("replynickname");
     	  String replytitle = request.getParameter("replytitle");
+    	  //replyboardno = dealboardno
+    	  //replyid = memberid
     	  int replyboardno = Integer.parseInt(request.getParameter("replyboardno"));
     	  
     	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
     	  
     	  System.out.println("컨트롤러에서 replydto : "+replydto);
-    	 
+    	  
     	  int res = replydao.insertReply(replydto);
-    //	  int res = replybiz.replyProc(replydto);
+    	  
+    	  //insert를 해준다.
+    	  int alertres = alertbiz.insertAlert(new AlertDto(0, replyid, replyboardno, null));
+    	  System.out.println("replycontroller에서 받은 alertdto : " + alertres);
+    	  
+    	  //insert에 성공한 selectList를 여기서 출력해서 그 결과값을 fntalert.jsp에
+    	  //setAttribute해서 보내고 fntalert.jsp에서 받아서 출력해준다.
+    	  //어차피 session에 나의 id가 있으니까(memberid)
+    	  //작성자가(memberid) 글작성한사람이고(did) 알람받을 사람이라면 alertid
+    	  //3단조인 해야하나??
+    	  //근데 did나 alertid 전부 외래키가 memberid야
+    	  //int res = replybiz.replyProc(replydto);
     	 
     	  if(res > 0) {
     		  response.getWriter().append("COMPLETE");

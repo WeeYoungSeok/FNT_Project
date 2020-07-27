@@ -6,8 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item)판매글 보기</title>
+<title>FNT(Feel New Item)구매글 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+a{
+	text-decoration : none;
+}
+a:hover{
+	color : orange;
+}
+</style>
 </head>
 <body>
 <%
@@ -16,7 +24,7 @@
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
 	<section>
-	<h1>MyPage</h1>
+	<h1>내가 작성한 구매글 보기</h1>
 		<div id="alllist">
 			<div id="list">
 				<a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>">내가 쓴 판매글</a>
@@ -34,7 +42,7 @@
 						<th>작성날짜</th>
 					</tr>
 					<%
-						if(buylist == null){
+						if(buylist.size() == 0){
 					%>
 						<tr>
 							<td colspan="3">-----조회된 글이 없습니다.-----</td>
@@ -45,7 +53,9 @@
 					%>
 							<tr>
 								<td><%=buylist.get(i).getDboardno() %></td>
-								<td><%=buylist.get(i).getDtitle() %></td>
+								<td>
+									<a href="dealboard.do?command=detailboard&dboardno=<%=buylist.get(i).getDboardno()%>"><%=buylist.get(i).getDtitle() %></a>
+								</td>
 								<td><%=buylist.get(i).getDregdate() %></td>
 							</tr>
 					<%
