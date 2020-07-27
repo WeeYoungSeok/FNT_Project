@@ -12,11 +12,31 @@
 		<result property="replytitle" column="REPLY_TITLE"/>
 		<result property="replyregdate" column="REPLY_REGDATE"/>
 	</resultMap>
+	
+<!-- 댓글 하나 찾아오기 -->
+<select id ="selectreply" parameterType="map" resultMap="replyDtoResultMap">
+	SELECT REPLY_NO, REPLY_ID, REPLY_NICKNAME, REPLY_BOARDNO, REPLY_GROUPNO, 
+		REPLY_GROUPNOSEQ, REPLY_TITLETAB, REPLY_TITLE, REPLY_REGDATE
+	FROM REPLY
+	WHERE REPLY_ID = #{replyid}
+	AND REPLY_NICKNAME = #{replynickname}
+	AND REPLY_TITLE = #{replytitle}
+	AND REPLY_BOARDNO = #{replyboardno}
+</select>
+	
 <!-- 댓글 리스트 가져오기 -->
-	<select id="selectreplylist" resultMap="replyDtoResultMap">
-		SELECT REPLY_NO, REPLY_ID, REPLY_NICKNAME, REPLY_BOARDNO, REPLY_GROUPNO, 
-				REPLY_GROUPNOSEQ, REPLY_TITLETAB, REPLY_TITLE, REPLY_REGDATE
+	<select id="selectreplylist" parameterType="int" resultMap="replyDtoResultMap">
+		SELECT REPLY_NO, 
+				REPLY_ID, 
+				REPLY_NICKNAME,
+				REPLY_BOARDNO, 
+				REPLY_GROUPNO, 
+				REPLY_GROUPNOSEQ, 
+				REPLY_TITLETAB,
+				REPLY_TITLE,
+				REPLY_REGDATE
 		FROM REPLY
+		WHERE REPLY_BOARDNO = #{replyboardno}
 		ORDER BY REPLY_GROUPNO DESC, REPLY_GROUPNOSEQ
 	</select>
 	
@@ -34,26 +54,29 @@
 			SYSDATE
 			)
 </insert>
-<!-- 댓글 답변 등록-->
+
+<!-- 대댓글 등록-->
 	<insert id="insertrereply" parameterType="map">
 		INSERT INTO REPLY
 		VALUES (REPLY_SEQ.NEXTVAL,
 			#{replyid},
 			#{replynickname},
 			#{replyboardno},
-			(SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_BOARDNO = #{replyboardno}),
-			(SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_BOARDNO = #{replyboardno})+1,
-			(SELECT REPLY_TITLETAB FROM REPLY WHERE REPLY_BOARDNO = #{replyboardno})+1,
+			(SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_NO = #{parentreplyno}),
+			(SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_NO = #{parentreplyno})+1,
+			(SELECT REPLY_TITLETAB FROM REPLY WHERE REPLY_NO = #{parentreplyno})+1,
 			#{replytitle},
 			SYSDATE
 		)
 	</insert>
-<!-- 댓글GROUPSEQ 업데이트 -->
-	<update id="updatereply" parameterType="int">
+	
+<!-- 댓글GROUPSEQ -->
+	<update id="updatereply" parameterType="map">
 		UPDATE REPLY
 		SET REPLY_GROUPNOSEQ = REPLY_GROUPNOSEQ +1
-		WHERE REPLY_GROUPNO = (SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_BOARDNO = #{replyboardno})
-		AND REPLY_GROUPNOSEQ > (SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_BOARDNO = #{replyboardno})
+		WHERE REPLY_GROUPNO = (SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_NO = #{replyno})
+		AND REPLY_GROUPNOSEQ > (SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_NO = #{replyno})
+		AND REPLY_BOARDNO = #{replyboardno}
 	</update>
 	
 <!-- 댓글 삭제 -->

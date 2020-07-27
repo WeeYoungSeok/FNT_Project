@@ -30,11 +30,12 @@ a{
 	<section>
 		<table border="1">
 			<tr>
-				<th>글번호</th>
-				<th>제  목</th>
-				<th>작성자</th>
-				<th>가  격</th>
-				<th>작성일</th>
+				<th>글 번 호</th>
+				<th>카테고리</th>
+				<th>제      목</th>
+				<th>작 성 자</th>
+				<th>가      격</th>
+				<th>작 성 일</th>
 			</tr>
 			<c:choose>
 				<c:when test="${empty list }">
