@@ -130,6 +130,7 @@ td {
 				// 그 데이터가 function안에 있는 data로 들어가게 됨
 				// ajax는 url이 실행되고나서 out.print로 값을 안보내주면 실패한다.
 				success : function(data) {
+					alert("입력하신 메일로 인증번호를 보냅니다.\n인증번호를 알맞게 입력해주세요!");
 					$("#form2").css("display", "block");
 					// 성공한 순간 인증번호를 입력할수있는 폼을 보여줌
 				}, error:function() {

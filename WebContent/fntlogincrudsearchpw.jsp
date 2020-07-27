@@ -95,13 +95,14 @@ td {
 			<input id="hi" type="hidden" value="인증하기">
 		</form>
 	</section>
+	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 		function getemail(){
-			alert($("#email").val());
 			$.ajax({
 				url : "LoginCrudController" + getParameterEmail(),
 				success : function(data){
+					alert("입력하신 메일로 인증번호를 보냅니다.\n인증번호를 알맞게 입력해주세요!");
 					$("#form2").css("display", "block");
 				}, error : function(){
 					alert("연결실패");
