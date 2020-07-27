@@ -11,18 +11,41 @@
 <title>로그인 페이지</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/kakao.min.js"></script>
 
 <script type="text/javascript">
+Kakao.init('290f8b616802bba9fad591226e4dab51');
+
+/*function loginWithKakao() {
+	Kakao.Auth.authorize({
+		redirectUri: '${pageContext.request.contextPath}/kakaosignup.do'
+	});	
+}*/
 	
 // 카카오 소셜 로그인
-	
-	// 웹 플랫폼 도메인 등 초기화한 앱의 설정이 그대로 적용 - 초기화 상태에 현재 도메인이 등록되지 않은 경우 에러 발생
-	Kakao.init('290f8b616802bba9fad591226e4dab51')
 	function loginWithKakao() {
 		Kakao.Auth.login({
 			success: function(authObj) {
-				alert(JSON.stringify(authObj))
+				location.href = '${pageContext.request.contextPath}/kakaosignup.do?access_token=' + authObj.access_token;
+				/*Kakao.API.request({
+				    url: '/v2/user/me',
+				    success: function(response) {
+				    	fetch('${pageContext.request.contextPath}/kakaosignup.do', {
+				    		method: 'POST',
+				    		headers: {
+				    			'Content-Type': 'application/json;charset=utf-8',
+				    		},
+				    		body: JSON.stringify({
+				    			response, access_token: authObj.access_token,
+				    		}),
+				    	})
+				    	.then(res => res.text())
+				    	.then(console.log);
+				    },
+				    fail: function(error) {
+				        console.log(error);
+				    }
+				});*/
 			},
 			fail: function(err) {
 				alert(JSON.stringify(err))
@@ -32,8 +55,19 @@
 </script>
 
 <link href="css/fntlogincrud.css" rel="stylesheet" type="text/css"/>
-
+<%
+    String clientId = "T0e_dO0FJagJxo8igTCZ";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/naversignup.do", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
 </head>
+
 <body>
 	<div class="logo">
 		<a href="fntmain.jsp">
@@ -60,6 +94,7 @@
 		
 		<tr>
 			<td colspan="2">
+				<a class="findbtn" href="LoginClurController?command=logincurdsearchid">ID 찾기</a>
 				<input class="findbtn" type="button" value="ID 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchid'">
 				<input class="findbtn" type="button" value="PW 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchpw'">
 
@@ -68,8 +103,8 @@
 		<tr>
 			<td colspan="2">
 				<div class="social_login_btn">
-					<!-- 네이버 -->
-					<div id="naver_id_login"></div>
+					<!-- navers -->
+					<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 					
 					<!-- 카카오 -->
 					<img id="kakao_id_login" src="./img/login_btn_kakao.png" onclick="javascript:loginWithKakao()"/>
@@ -78,35 +113,5 @@
 		</tr>
 	</table>
 	</form>
-
-<%
-	String clientId = "T0e_dO0FJagJxo8igTCZ";//애플리케이션 클라이언트 아이디값";
-	String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/fntsignupform.jsp", "UTF-8");
-	SecureRandom random = new SecureRandom();
-	String state = new BigInteger(130, random).toString();
-	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-	apiURL += "&client_id=" + clientId;
-	apiURL += "&redirect_uri=" + redirectURI;
-	apiURL += "&state=" + state;
-	session.setAttribute("state", state);
-%>
-<script type="text/javascript">
-
-// 네이버 소셜 로그인
-
-	var naver_id_login = new naver_id_login("T0e_dO0FJagJxo8igTCZ", "http://127.0.0.1:8787/FNT_Project/");
-	var state = naver_id_login.getUniqState();
-	naver_id_login.setButton("green", 12,40);
-	naver_id_login.setDomain("http://127.0.0.1:8787/FNT_Project/");
-	naver_id_login.setState(state);
-	naver_id_login.setPopup();
-	naver_id_login.init_naver_id_login();
-	naver_id_login.self.close();
-	
-</script>
-
-
- 
-
 </body>
-</html>
+</html>	

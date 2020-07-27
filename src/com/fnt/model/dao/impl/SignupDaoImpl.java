@@ -1,9 +1,11 @@
 package com.fnt.model.dao.impl;
 
+import java.security.SecureRandom;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -80,7 +82,7 @@ public class SignupDaoImpl implements SignupDao {
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			res = session.insert(namespace + "signup", memberdto);
+			res = session.insert(namespace + "naversignup", memberdto);
 			
 			if (res > 0) {
 				session.commit();
