@@ -10,8 +10,9 @@ public class ReplyBizImpl implements ReplyBiz {
 	
 	@Override
 	public int replyProc(ReplyDto replydto) {
-		int res1 = replydao.updateReplyseq(replydto.getReplyboardno());
-		int res2 = replydao.insertReply(replydto);
+		
+		int res1 = replydao.updateReplyseq(replydto.getReplyboardno(), replydto.getReplyno());
+		int res2 = replydao.insertReReply(replydto);
 		return res1+res2;
 	}
 	

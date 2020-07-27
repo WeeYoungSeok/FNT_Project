@@ -19,6 +19,19 @@
 <script src="./js/fntsignupform.js"></script>
 </head>
 <body>
+<%!
+	public int getRandom(){
+	int random = 0;
+	random = (int)Math.floor((Math.random()*(99999-10000+1)))+10000;
+	return random;
+}
+%>
+
+<%
+	int res = getRandom();
+	// 내부적으로 비동기 실행시 랜덤함수가 두번실행돼서 
+	// 하나의 변수에 담아서 비교했을때 값이 일치하게 만들어주기 위해
+%>
 	<div>
 		<a href="fntmain.jsp">
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
@@ -27,20 +40,52 @@
 	
 	<br/><br/>
 	
+<script type="text/javascript">
+	$(function() {
+		$("form").on("submit", function() {
+		       
+			if($("#real").val() == "") {
+				alert("이메일 인증을 해주세요");
+				return false;
+			}
+		    });
+ 	});
+	
+	function emailReal(url, name) {
+		if($("#email").val() == "") {
+			alert("이메일을 입력해주세요.");
+			return false;
+		} else {
+			window.open(url + getParameterEmail(), name, "width=300, height=300");
+		}
+	}
+	
+	function getParameterEmail() {
+		var email = "&email=" + $("#email").val() + "&code_check=" + $("#code_check").val();
+		return email;
+		// ? 붙인 이유는 컨트롤러? 붙이듯이 붙여주기위해 ?를 붙임
+		// command를 선언하고
+		// 사용자가 입력한 이메일 값 받아오고
+		// 히든에 발생한 난수를 가져옴
+	}
+ 
+</script>
+	
 	<form action="signup.do" id="form" name="form" method="post" >
 		<input type="hidden" name="command" value="signupform"/>
+		<input type="hidden" value="" name="IDCHK" id="IDCHK"/>
+		<input type="hidden" value="" name="NICKCHK" id="NICKCHK"/>
+		<input type="hidden" value="" name="real" id="real"/>
+		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
+
 		<table>
 			<tr>
-				<td colspan="3" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td>
+				<td colspan="3" align="left"><p>* 반드시 <b>모든 항목</b>을 작성완료하셔야만 <b>정상 가입</b>됩니다 :)</p></td>
 			</tr>
 			<tr>
 				<th>ID</th>
-				<td>
-					<input type="text" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/>
-				</td>
-				<td>
-					<button id="idchkbtn" class="in_btn" onclick="open_win('signup.do?command=idchk','idchk');">ID 중복 확인</button>
-				</td>
+				<td><input class="IdChk" type="text" id="id" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/></td>
+				<td><button id="idchkbtn" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');">ID 중복</button></td>
 			</tr>
 			<tr>
 				<th>Password</th>
@@ -52,7 +97,8 @@
 			</tr>
 			<tr>
 				<th>Nickname</th>
-				<td colspan="2"><input type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" required="required"/></td>
+				<td><input class="NickChk" type="text" id="nick" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" title="n" required="required"/></td>
+				<td><button id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');">Nickname 중복</button></td>
 			</tr>
 			<tr>
 				<th>Name</th>
@@ -68,18 +114,20 @@
 			</tr>
 			<tr>
 				<th>Address</th>
-				<td>
-					<input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로주소를 입력해주세요." required="required" onclick="goPopup();"/><br/>
-				</td>
-				<td><button class="in_btn" onclick="goPopup();">도로명주소 검색</button></td>
+				<td><input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로명주소를 입력해주세요." required="required" onclick="juso();"/><br/></td>
+				<td><button class="in_btn" onclick="juso();">도로명주소 검색</button></td>
 			</tr>
 			<tr>
 				<th>Email</th>
-				<td colspan="2"><input type="email" name="memberemail" placeholder="이메일을 입력해주세요." required="required"/></td>
+				<td><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required"/></td>
+				<td><button class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');">Email 인증</button></td>
 			</tr>
-		</table><br/>
+		</table>
+		<br/>
 		<button id="resetbtn" type="reset">RESET</button>
 		<button id="submitbtn" type="submit">Sign Up</button>
+		<!-- 이거 뭐야??? -->
+		<button onclick="AA()">ㅎㅇㅎㅇ</button>
 	</form>
 
 </body>

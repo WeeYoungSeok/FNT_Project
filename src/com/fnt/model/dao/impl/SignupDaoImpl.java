@@ -19,19 +19,17 @@ public class SignupDaoImpl implements SignupDao {
 	
 	// db에 있는 id 전부 불러오는 용도
 	public List<MemberDto> selectidall() {
-		
 		SqlSession session = null;
 		List<MemberDto> list = null;
-		
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			list = session.selectList(namespace + "selectidall");
+			System.out.println("id-memberdto-list " + list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
 		return list;
 	}
 	
@@ -39,35 +37,62 @@ public class SignupDaoImpl implements SignupDao {
 	public MemberDto idchk(String id) {
 		SqlSession session = null;
 		MemberDto memberdto = null;
-		
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			memberdto = session.selectOne(namespace + "selectidall", id);
+			System.out.println("id-memberdto " + memberdto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
+		return memberdto;
+	}
+	
+	// db에 있는 nickname 전부 불러오는 용도
+	public List<MemberDto> selectnickall() {
+		SqlSession session = null;
+		List<MemberDto> list = null;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace + "selectnickall");
+			System.out.println("nick-memberdto-list " + list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	// nickname 중복 체크
+	public MemberDto nickchk(String nick) {
+		SqlSession session = null;
+		MemberDto memberdto = null;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			memberdto = session.selectOne(namespace + "selectnickall", nick);
+			System.out.println("nick-memberdto " + memberdto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		return memberdto;
 	}
 	
 	// 회원가입 폼에 넣은 정보들 db에 입력
 	public int signup(MemberDto memberdto) {
-		
 		SqlSession session = null;
 		int res = 0;
-		
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace + "signup", memberdto);
-			
 			if (res > 0) {
 				session.commit();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		} finally {
 			session.close();
 		}
@@ -76,20 +101,16 @@ public class SignupDaoImpl implements SignupDao {
 
 	// naver 로그인으로 가져온 정보에 추가로 받아서 db에 입력 
 	public int naverSignup(MemberDto memberdto) {
-
 		SqlSession session = null;
 		int res = 0;
-		
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace + "naversignup", memberdto);
-			
 			if (res > 0) {
 				session.commit();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		} finally {
 			session.close();
 		}
@@ -98,20 +119,16 @@ public class SignupDaoImpl implements SignupDao {
 
 	// kakao 로그인으로 가져온 정보에 추가로 받아서 db에 입력 
 	public int kakaoSignup(MemberDto memberdto) {
-
 		SqlSession session = null;
 		int res = 0;
-		
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace + "signup", memberdto);
-			
 			if (res > 0) {
 				session.commit();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		} finally {
 			session.close();
 		}

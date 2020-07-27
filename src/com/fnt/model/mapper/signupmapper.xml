@@ -23,6 +23,13 @@
  		FROM MEMBER
  		WHERE MEMBER_ID = #{id}
  	</select>
+ 	
+ 	<!-- 입력한 nickname이 db에 있으면 가져오기 -->
+ 	<select id="selectnickall" parameterType="String" resultMap="memberDtoResultMap">
+ 		SELECT MEMBER_NICKNAME
+ 		FROM MEMBER
+ 		WHERE MEMBER_NICKNAME = #{nick}
+ 	</select>
 
 	<!-- 입력한 정보들 db에 넣기 -->
 	<insert id="signup" parameterType="memberdto">

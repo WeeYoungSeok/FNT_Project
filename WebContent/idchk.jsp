@@ -8,32 +8,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ID Validation</title>
 <script type="text/javascript">
 
-	onload = function(){
+	onload = function() {
 		var id = opener.document.getElementsByName("memberid")[0].value;
 		document.getElementsByName("id")[0].value = id;
 	}
 	
 	function confirmid(bool) { 
 		if (bool == "true") {
+			$('#IDCHK').val("");
 			opener.document.getElementsByName("memberid")[0].title = 'y';
 			opener.document.getElementsByName("memberpw")[0].focus();
 		} else {
+			$('.IdChk').val("");
+			$('#IDCHK').val("a");
 			opener.document.getElementsByName("memberid")[0].focus();
 		}
 		self.close(); 
 	}
 	
 </script>
+<%	String idnotused = request.getParameter("idnotused");%>
 </head>
 <body>
-<%
-	String idnotused = request.getParameter("idnotused");
-%>
-
-	
 	<table>
 		<tr>
 			<td><input type="text" name="id"/></td>

@@ -20,6 +20,9 @@ function delChk(dboardno){
 }
 
 function insertreply(memberid){
+	if($("input[name=replytitle]").val()==""){
+		alert("내용을 입력해주세요");
+	}
 	$.ajax({
 		url : "reply.do",
 		method : "POST",
@@ -28,24 +31,27 @@ function insertreply(memberid){
 			"replynickname":$("input[name=replynickname]").val(),
 			"replytitle":$("input[name=replytitle]").val(),
 			"replyboardno" : $("input[name=replyboardno]").val()},
-		success : function(msg){
-			if(msg == "COMPLETE"){
+		dataType : "JSON",
+		success : function(obj){
+			if(obj != null){
 				alert("댓글 등록 성공!");
 				let today = new Date();   
 
 				let year = today.getFullYear(); // 년도
 				let month = today.getMonth() + 1;  // 월
 				let date = today.getDate();  // 날짜
-				let day = today.getDay();  // 요일
-				$("#reply").eq(0).before(
-					'<tr>'
-						+'<th>'+$("input[name=replynickname]").val()+'</th>'
-						+ '<td>'+$("input[name=replytitle]").val()+'</td>'
-						+ '<td>'+year+"-"+"0"+month+"-"+date+'</td>'
-						+'<td><input type="button" value="답변" onclick="insertrereply();"></td>'
-					+'</tr>'
-				);
-				
+				let day = today.getDay();  // 요일 
+		
+			$("#reply").eq(0).before(
+				'<li>'
+					+'<div><strong>'+obj.replynickname+'</strong></div>'
+					+ '<div>'+obj.replytitle+'</div>'
+					+ '<div>'+year+"-"+"0"+month+"-"+date
+					+'<span><input type="button" value="답변" onclick="openrereply(this,\''+obj.replynickname+'\','+obj.replyno+','+obj.replyboardno+');"></span>'
+					+'<input type="hidden" name="replyid" value="'+obj.replyid+'">'
+					+'</div>'
+				+'</li>'
+			);
 				document.getElementById("replytitle").value="";
 			}else{
 				alert("댓글 등록 실패");
@@ -53,6 +59,71 @@ function insertreply(memberid){
 		}
 	});
 }
+
+function openrereply(me,membernickname,replyno,replyboardno){
+	if(membernickname==""){
+		alert("답변 하시려면 로그인 해주세요");
+		return false;
+	}
+	
+	$(".rereplyform").hide();
+	$(me).closest("li").append(
+				'<li class="rereplyform" style="padding-left:45px">'
+					+'<div><strong>'+membernickname+'</strong></div>'
+					+'<div><input type="text" name="rereplytitle"/>'		
+					+'<input type="button" value="등록" onclick="insertRereply(this,\''+membernickname+'\','+replyno+','+replyboardno+');">'
+					+'</div>'
+				+'</li>'
+			);
+	
+}
+
+function insertRereply(me,replynickname,replyno,replyboardno){
+	var rereplyid = $("input[name=replyid]").val();
+	var rereplytitle = $("input[name=rereplytitle]").val();
+	if(rereplytitle == ""){
+		alert("내용을 입력해주세요");
+	}
+	$.ajax({
+		url : "reply.do",
+		data : {"command":"insertRereply",
+			"replyno":replyno,
+			"replyid":rereplyid,
+			"replytitle":rereplytitle,
+			"replyboardno":replyboardno,
+			"replynickname":replynickname},
+		dataType:"JSON",
+		success:function(obj){
+			if(obj != null){
+				alert("대댓글 작성 완료");
+				let today = new Date();   
+
+				let year = today.getFullYear(); // 년도
+				let month = today.getMonth() + 1;  // 월
+				let date = today.getDate();  // 날짜
+				let day = today.getDay();  // 요일 
+				
+				alert($(me).text());
+				$(me).parent().parent().after(
+					'<li>'
+						+'<div><strong>'+obj.replynickname+'</strong></div>'
+						+ '<div>'+obj.replytitle+'</div>'
+						+ '<div>'+year+"-"+"0"+month+"-"+date
+						+'<span><input type="button" value="답변" onclick="openrereply(this,'+obj.replynickname+','+obj.replyno+','+obj.replyboardno+');"></span>'
+						+'<input type="hidden" name="replyid" value="'+obj.replyid+'">'
+						+'</div>'
+					+'</li>'						
+				)
+				
+				$(".rereplyform").hide();
+			}else{
+				alert("대댓글 등록 안됐어 멍청아");
+			}
+		}
+	});
+	
+}
+
 </script>
 <style type="text/css">
 * {
@@ -63,6 +134,9 @@ function insertreply(memberid){
 section {
 	padding-top: 90px;
 	padding-left: 240px;
+}
+ul{
+   list-style:none;
 }
 </style>
 </head>
@@ -144,17 +218,27 @@ section {
 	<c:choose>
 		<c:when test="${empty replylist }">
 			<div>작성된 댓글이 없습니다.</div>
+			<ul>
+				<li id="reply">
+				</li>
+			</ul>
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${replylist }" var="replydto">
-				<table>
-					<tr id="reply">
-						<th>${replydto.replynickname }</th>
-						<td>${replydto.replytitle }</td>
-						<td>${replydto.replyregdate }</td>
-						<td><input type="button" value="답변" onclick="insertrereply(this);"></td>
-					</tr>					
-				</table>
+				<ul>
+				<c:choose>
+					<c:when test="${replydto.replygroupnoseq eq 1}">
+						<li id="reply">
+					</c:when>	
+					<c:otherwise>
+						<li id="reply" style="padding-left:45px">
+					</c:otherwise>
+				</c:choose>
+						<div><strong>${replydto.replynickname }</strong></div>
+						<div>${replydto.replytitle }</div>
+						<div>${replydto.replyregdate }<span><input type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });"></span></div>
+					</li>			
+				</ul>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>

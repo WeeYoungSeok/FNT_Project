@@ -38,6 +38,12 @@ CREATE TABLE MEMBER(
    --Y : 회원, N : 탈퇴한 회원, R : 신고된 회원
    CONSTRAINT ENABLED_MEMBER_CHK CHECK(ENABLED IN('Y','N','R'))
 );
+
+SELECT MEMBER_NICKNAME
+ 		FROM MEMBER
+ 		WHERE MEMBER_NICKNAME = '김샘플';
+ 		
+ 		
 SELECT * FROM MEMBER;
 INSERT INTO MEMBER
 VALUES('test', 'test1234', 'test1234', '문의열리네요', '김지후', SYSDATE, '010-1234-1234', '캘리포니아', 'mune@kh.com', 'USER', 'Y', SYSDATE);
