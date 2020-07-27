@@ -1,8 +1,24 @@
+	$(function() {
+		$("form").on("submit", function() {
+			if ($("#IDCHK").val() == "") {
+				alert("ID를 입력해주세요!");
+				return false;
+			} else if ($("#NICKCHK").val() == "") {
+				alert("Nickname을 입력해주세요!");
+				return false;
+			}
+		});
+	});
+
 // id 중복체크 팝업
 	function search_id(url, name) {
-		var chkid = document.getElementsByName("memberid")[0];
-		window.open(url + '&id=' + chkid.value, name, "width=300, height=300");
 		
+		if($("#id").val() == "") {
+			alert("ID를 입력해주세요!");
+			return false;
+		} else {
+			window.open(url + '&id=' + $("#id").val(), name, "width=300, height=300");
+		}
 	}
 	
 // pw, pwchk 비교 처리
@@ -26,12 +42,16 @@
  	
  // nickname 중복체크 팝업
 	function search_nick(url, name) {
-		var chknick = document.getElementsByName("membernickname")[0];
-		window.open(url + '&nick=' + chknick.value, name, "width=300, height=300");
+		if($("#nick").val() == "") {
+			alert("Nickname을 입력해주세요!");
+			return false;
+		} else {
+			window.open(url + '&nick=' + $("#nick").val(), name, "width=300, height=300");
+		}
 	}
  	
 // 주소 검색 팝업
- 	function goPopup() {
+ 	function juso() {
  		// jusoPopup.jsp에서 실제 주소검색 URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do) 호출
  		var pop = window.open("./jusoPopup.jsp", "pop", "width=570,height=420, scrollbars=yes, resizable=yes"); 
  	}

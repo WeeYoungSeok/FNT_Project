@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Email Validation</title>
 </head>
 <body>
 <%
@@ -12,46 +12,47 @@
 %>
 <script type="text/javascript">
 
-function checkCode(){
-	var v1 = form2.code_check2.value = <%=res%>;
-	// 코드check2의 벨류에 우리가 발생시킨 난수를 넣어줄거임 (hidden)
-	
-	var v2 = form2.code.value;
-	// 사용자가 입력한 인증번호
-	
-	if(v1 != v2){
-		document.getElementById("checkCode").style.color = "red";
-		document.getElementById("checkCode").innerHTML = "잘못된 인증 번호";
-		// 우리가 발생시킨 난수랑 사용자가 입력한 숫자랑 다르면 div태그에 빨간 글씨로 뿌려줘라
+	function checkCode() {
+		var v1 = form2.code_check2.value = <%=res%>;
+		// 코드check2의 벨류에 우리가 발생시킨 난수를 넣어줄거임 (hidden)
 		
-		makeNull();
-		//그리고 이 함수 실행
-	}else {
-		document.getElementById("checkCode").style.color = "blue";
-		document.getElementById("checkCode").innerHTML = "인증되었습니다";
-		// 사용자가 입력한 인증번호를 한글자씩 치면서 
-		// 우리가 발생시킨 난수와 일치가 되는순간.!
-		// 인증되었습니다 라고 div태그에 써주고
+		var v2 = form2.code.value;
+		// 사용자가 입력한 인증번호
 		
-		// 이 함수를 실행한다
-		makeReal();
+		if (v1 != v2) {
+			document.getElementById("checkCode").style.color = "red";
+			document.getElementById("checkCode").innerHTML = "잘못된 인증 번호";
+			// 우리가 발생시킨 난수랑 사용자가 입력한 숫자랑 다르면 div태그에 빨간 글씨로 뿌려줘라
+			
+			makeNull();
+			//그리고 이 함수 실행
+		} else {
+			document.getElementById("checkCode").style.color = "blue";
+			document.getElementById("checkCode").innerHTML = "인증되었습니다";
+			// 사용자가 입력한 인증번호를 한글자씩 치면서 
+			// 우리가 발생시킨 난수와 일치가 되는순간.!
+			// 인증되었습니다 라고 div태그에 써주고
+			
+			// 이 함수를 실행한다
+			makeReal();
+		}
 	}
-}
 
-function makeReal(){
-	var hi = document.getElementById("hi");
-	hi.type="button";
-}
-function makeNull(){
-	var hi = document.getElementById("hi");
-	hi.type="hidden";
-	// 인증번호가 다르면 인증하기 버튼을 숨긴다.
-}	
-
-function checkCompl() {
-	opener.document.getElementById("real").value = "Y";
-	self.close();
-}
+	function makeReal() {
+		var hi = document.getElementById("hi");
+		hi.type="button";
+	}
+	
+	function makeNull() {
+		var hi = document.getElementById("hi");
+		hi.type="hidden";
+		// 인증번호가 다르면 인증하기 버튼을 숨긴다.
+	}	
+	
+	function checkCompl() {
+		opener.document.getElementById("real").value = "Y";
+		self.close();
+	}
 </script>
 <form id="form2" action="javascript:getId()">
 		<!-- 서브밋을 눌럿을때 getId()함수 실행 -->

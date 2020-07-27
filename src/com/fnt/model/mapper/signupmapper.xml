@@ -24,7 +24,7 @@
  		WHERE MEMBER_ID = #{id}
  	</select>
  	
- 	<!-- 입력한 id가 db에 있으면 가져오기 -->
+ 	<!-- 입력한 nickname이 db에 있으면 가져오기 -->
  	<select id="selectnickall" parameterType="String" resultMap="memberDtoResultMap">
  		SELECT MEMBER_NICKNAME
  		FROM MEMBER
