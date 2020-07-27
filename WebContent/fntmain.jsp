@@ -12,6 +12,7 @@
 <link href="css/fntmain.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+	
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 		<div id="slider">

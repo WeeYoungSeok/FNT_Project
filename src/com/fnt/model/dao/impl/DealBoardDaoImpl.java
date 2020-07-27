@@ -196,6 +196,82 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return count;
 	}
 	
+	//통합검색 리스트로 출력
+	@Override
+	public List<DealBoardDto> searchList(String searchdeal){
+		SqlSession session = null;
+		List<DealBoardDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"searchdeal", searchdeal);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<DealBoardDto> ascorder(String searchdeal) {
+		SqlSession session = null;
+		List<DealBoardDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"ascorder",searchdeal);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<DealBoardDto> desccate(String searchdeal, String categorylist) {
+		SqlSession session = null;
+		List<DealBoardDto> list = null;
+		Map<String,Object> map = new HashMap<>();
+		map.put("searchdeal",searchdeal );
+		map.put("categorylist", categorylist );
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"desccategory", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<DealBoardDto> asccate(String searchdeal, String categorylist) {
+		SqlSession session = null;
+		List<DealBoardDto> list = null;
+		Map<String,Object> map = new HashMap<>();
+		map.put("searchdeal",searchdeal );
+		map.put("categorylist", categorylist );
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"asccategory", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return list;
+	
+	}
+	
 	
 
 	

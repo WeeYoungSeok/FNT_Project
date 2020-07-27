@@ -245,6 +245,62 @@ public class DealBoardController extends HttpServlet {
     	  request.setAttribute("wishlistdto", wishlistdto);
     	  request.setAttribute("dealboarddto", dealboarddto);
     	  dispatch("fntdetailsaleboard.jsp", request, response);
+      } else if(command.equals("searchdeal")) {		//통합검색 
+    	  String searchdeal = request.getParameter("searchdeal");
+    	  System.out.println(searchdeal);
+    	  
+    	  List<DealBoardDto> list = dao.searchList(searchdeal);
+    	  request.setAttribute("list", list);
+    	  request.setAttribute("searchdeal", searchdeal);
+    	  
+    	  dispatch("fntsearchdeal.jsp", request, response);
+      } else if(command.equals("searchlist")) {
+    	  String orderlist = request.getParameter("orderlist");
+    	  String categorylist = request.getParameter("categorylist");
+    	  System.out.println("오더" + orderlist + "카테고리" + categorylist);
+    	  
+    	  List<DealBoardDto> list = null;
+    	  if(orderlist.equals("D") && categorylist.equals("CHECK")) {
+    		  // 전체 출력 DESC
+    		  String searchdeal = request.getParameter("searchdeal");
+    		  request.setAttribute("orderlist", orderlist);
+    		  request.setAttribute("categorylist", categorylist);
+    		  
+    		  list = dao.searchList(searchdeal);
+    		  request.setAttribute("list", list);
+    		  request.setAttribute("searchdeal", searchdeal);
+    		  dispatch("fntsearchdeal.jsp", request, response);
+    	  } else if ((orderlist.equals("D"))&&(categorylist.equals("F")|| categorylist.equals("C")|| categorylist.equals("D")|| categorylist.equals("A")|| categorylist.equals("S"))) {
+    		  request.setAttribute("orderlist", orderlist);
+    		  request.setAttribute("categorylist", categorylist);
+    		  
+    		  String searchdeal = request.getParameter("searchdeal");
+    		  System.out.println(searchdeal);
+    		  list = dao.desccate(searchdeal, categorylist);
+    		  request.setAttribute("list", list);
+    		  request.setAttribute("searchdeal", searchdeal);
+    		  dispatch("fntsearchdeal.jsp", request, response);
+    		  
+    	  } else if (orderlist.equals("A") && categorylist.equals("CHECK")) {
+    		  request.setAttribute("orderlist", orderlist);
+    		  request.setAttribute("categorylist", categorylist);
+    		  
+    		  String searchdeal = request.getParameter("searchdeal");
+    		  list = dao.ascorder(searchdeal);
+    		  request.setAttribute("searchdeal", searchdeal);
+    		  request.setAttribute("list", list);
+    		  dispatch("fntsearchdeal.jsp", request, response);
+    	  } else if ((orderlist.equals("A"))&&(categorylist.equals("F")|| categorylist.equals("C")|| categorylist.equals("D")|| categorylist.equals("A")|| categorylist.equals("S"))) {
+    		  request.setAttribute("orderlist", orderlist);
+    		  request.setAttribute("categorylist", categorylist);
+    		  
+    		  String searchdeal = request.getParameter("searchdeal");
+    		  System.out.println(searchdeal);
+    		  list = dao.asccate(searchdeal, categorylist);
+    		  request.setAttribute("list", list);
+    		  request.setAttribute("searchdeal", searchdeal);
+    		  dispatch("fntsearchdeal.jsp", request, response);
+    	  }
       }
       
       
