@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
 import com.fnt.model.biz.ReplyBiz;
 import com.fnt.model.biz.impl.ReplyBizImpl;
 import com.fnt.model.dao.ReplyDao;
 import com.fnt.model.dao.impl.ReplyDaoImpl;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.ReplyDto;
+import com.google.gson.Gson;
 
 @WebServlet("/reply.do")
 public class ReplyController extends HttpServlet {
@@ -33,26 +36,88 @@ public class ReplyController extends HttpServlet {
       String command = request.getParameter("command");
       System.out.println("["+command+"]");
       
+      /* 댓글 등록*/
       if(command.equals("insertreply")) {
     	  String replyid = memberdto.getMemberid();
     	  String replynickname = request.getParameter("replynickname");
     	  String replytitle = request.getParameter("replytitle");
     	  int replyboardno = Integer.parseInt(request.getParameter("replyboardno"));
     	  
-    	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
     	  
-    	  System.out.println("컨트롤러에서 replydto : "+replydto);
+    	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
+    	 
     	 
     	  int res = replydao.insertReply(replydto);
-    //	  int res = replybiz.replyProc(replydto);
-    	 
+    	  ReplyDto returnReplyDto = null;
+    	  returnReplyDto = replydao.selectReply(replydto);
+    	
+			/*
+			 * Map<String,Object>map = new HashMap<>(); map.put()
+			 */
+    	  
+    	  JSONObject obj = new JSONObject();
+    	  obj.put("replyno", returnReplyDto.getReplyno());
+    	  obj.put("replyid", returnReplyDto.getReplyid());
+    	  obj.put("replynickname", returnReplyDto.getReplynickname());
+    	  obj.put("replyboardno", returnReplyDto.getReplyboardno());
+    	  obj.put("replygroupno", returnReplyDto.getReplygroupno());
+    	  obj.put("replygroupnoseq", returnReplyDto.getReplygroupnoseq());
+    	  obj.put("replytitletab", returnReplyDto.getReplytitletab());
+    	  obj.put("replytitle", returnReplyDto.getReplytitle());
+    	  obj.put("replyregdate", returnReplyDto.getReplyregdate());
+    	  
+    	  Gson gson = new Gson();
+    	  String gsonobj = gson.toJson(obj);
+    	  System.out.println(gsonobj);
+    		  
+    	  
+    	  System.out.println("컨트롤러에서 obj : "+obj);
     	  if(res > 0) {
-    		  response.getWriter().append("COMPLETE");
+    		  System.out.println("성공?");
+    		 response.getWriter().print(gsonobj);
+    		 
+    		  
     	  }else {
+    		  System.out.println("실패");
     		  response.getWriter().append("FAILD");
     	  }
 
+    	 /* 대댓글 등록 */
+      }else if(command.equals("insertRereply")) {
+    	  String replyid = memberdto.getMemberid();
+    	  String replynickname = request.getParameter("replynickname");
+    	  String replytitle = request.getParameter("replytitle");
+    	  int replyno = Integer.parseInt(request.getParameter("replyno"));
+    	  int replyboardno = Integer.parseInt(request.getParameter("replyboardno"));
     	  
+    	  ReplyDto replydto = new ReplyDto(replyno, replyid, replynickname, replyboardno, replytitle);
+    	  int res = replybiz.replyProc(replydto);
+    	  
+    	  ReplyDto returnReplyDto = null;
+    	  returnReplyDto = replydao.selectReply(replydto);
+    	  
+    	  System.out.println("컨트롤러 returnReplyDto : "+returnReplyDto);
+    	  
+    	  JSONObject obj = new JSONObject();
+    	  obj.put("replyno", returnReplyDto.getReplyno());
+    	  obj.put("replyid", returnReplyDto.getReplyid());
+    	  obj.put("replynickname", returnReplyDto.getReplynickname());
+    	  obj.put("replyboardno", returnReplyDto.getReplyboardno());
+    	  obj.put("replygroupno", returnReplyDto.getReplygroupno());
+    	  obj.put("replygroupnoseq", returnReplyDto.getReplygroupnoseq());
+    	  obj.put("replytitletab", returnReplyDto.getReplytitletab());
+    	  obj.put("replytitle", returnReplyDto.getReplytitle());
+    	  obj.put("replyregdate", returnReplyDto.getReplyregdate());
+    	  
+    	  Gson gson = new Gson();
+    	  String gsonobj = gson.toJson(obj);
+    	  
+    	  if(res > 0) {
+    		  System.out.println("db등록 성공");
+     		 response.getWriter().print(gsonobj);
+    	  }else {
+    		  response.getWriter().append("FAILD");
+    	  }
       }
       
 	}

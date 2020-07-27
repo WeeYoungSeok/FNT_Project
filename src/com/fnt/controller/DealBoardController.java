@@ -172,9 +172,7 @@ public class DealBoardController extends HttpServlet {
       }else if(command.equals("detailboard")) { // 구매글 자세히보기
          int dboardno = Integer.parseInt(request.getParameter("dboardno"));
          DealBoardDto dealboarddto = dao.selectDetail(dboardno);
-         List<ReplyDto> replylist = replydao.selectReplyList();
-         
-         System.out.println("controller replylist : "+replylist);
+         List<ReplyDto> replylist = replydao.selectReplyList(dboardno);
          
          request.setAttribute("replylist", replylist);
          request.setAttribute("dealboarddto", dealboarddto);
