@@ -14,20 +14,19 @@
 <body>
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
-		<div class="container">
-			<ul class="slider">
-				<li class="item"><img src="img/1.png"/></li>
-				<li class="item"><img src="img/2.png"/></li>
-				<li class="item"><img src="img/3.png"/></li>
-				<li class="item"><img src="img/4.png"/></li>
-				<li class="item"><img src="img/5.png"/></li>
-				<li class="item"><img src="img/6.png"/></li>
-				<li class="item"><img src="img/7.png"/></li>
-				<li class="item"><img src="img/8.png"/></li>
-				<li class="item"><img src="img/9.png"/></li>
-			</ul>
+		<div id="slider">
+			<div id="slide-holder">
+				<div class="slide"><img src="img/1.png"/></div>
+				<div class="slide"><img src="img/2.png"/></div>
+				<div class="slide"><img src="img/3.png"/></div>
+				<div class="slide"><img src="img/4.png"/></div>
+				<div class="slide"><img src="img/5.png"/></div>
+				<div class="slide"><img src="img/6.png"/></div>
+				<div class="slide"><img src="img/7.png"/></div>
+				<div class="slide"><img src="img/8.png"/></div>
+				<div class="slide"><img src="img/9.png"/></div>
+			</div>
 		</div>
-		<script src="./js/fntmain.js"></script>
 	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>

@@ -1,40 +1,49 @@
-* {
-	margin: 0px;
-	padding: 0px;
+html,body { 
+	margin:0; 
+	padding:0; 
+	height:100%; 
+	width:100%; 
 }
 
-section {
-	padding-top: 90px;
+$slide-width: 400px;
+$slide-height: 200px;
+
+#slider {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    position: fixed;
 }
 
-ul {
-	list-style: none;
-	margin: 0px auto;
-	padding: 0px;
-	position: absolute;
+.slide {
+    width: $slide-width;
+    height: $slide-height;
+    float: left;
+    position: relative;
 }
 
-.container {
-	width: 100%;
-	height: 700px;
-	position: relative;
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0px;
-	padding: 0px;
+#slide-holder {
+    width: 900%;
+    position: relative;
+    left: 0;
+    animation: scroller 10s infinite;
 }
 
-li {
-	width: 1280px;	
-	height: 700px;
-	float: left;
-	margin: 0px auto;
-	padding: 0px;
+// need a step for each slide
+@keyframes scroller {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-$slide-width); }
+  66% { transform: translateX(-$slide-width*2); }
+  100% { transform: translateX(0); }
 }
 
-img{
-	width: 1280px;
-	height: 700px;
+// additional styling
+body {
+  font-family: sans-serif;
+}
+
+#slider {
+  margin: 0 auto;
 }
