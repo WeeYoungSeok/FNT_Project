@@ -8,43 +8,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Nickname Validation</title>
 <script type="text/javascript">
 
-	onload = function(){
+	onload = function() {
 		var nick = opener.document.getElementsByName("membernickname")[0].value;
 		document.getElementsByName("nick")[0].value = nick;
 	}
 	
-	function confirmid(bool) { 
+	function confirmnick(bool) { 
 		if (bool == "true") {
-			opener.document.getElementsByName("membernick")[0].title = 'y';
+			$("#NICKCHK").val("");
+			opener.document.getElementsByName("membernickname")[0].title = 'y';
 			opener.document.getElementsByName("memberbirth")[0].focus();
 		} else {
-			$('.NickChk').val('');
-			opener.document.getElementsByName("membernick")[0].focus();
+			$(".NickChk").val("");
+			$("#NICKCHK").val("a");
+			opener.document.getElementsByName("membernickname")[0].focus();
 		}
 		self.close(); 
 	}
 	
 </script>
+<%	String nicknotused = request.getParameter("nicknotused");%>
 </head>
-<body>
-<%
-	String nicknotused = request.getParameter("nicknotused");
-%>
-
-	
+<body>	
 	<table>
 		<tr>
-			<td><input type="text" name="id"/></td>
+			<td><input type="text" name="nick"/></td>
 		</tr>
 		<tr>
-			<td><%=nicknotused.equals("true") ? "사용 가능한 ID입니다!" : "이미 사용중인 ID입니다!" %></td>
+			<td><%=nicknotused.equals("true") ? "사용 가능한 Nickname입니다!" : "이미 사용중인 Nickname입니다!" %></td>
 		</tr>
 		<tr>
 			<td>
-				<button onclick="confirmid('<%=nicknotused%>')">확인</button>
+				<button onclick="confirmnick('<%=nicknotused%>')">확인</button>
 			</td>
 		</tr>
 	</table>

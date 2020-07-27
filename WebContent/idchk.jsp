@@ -8,27 +8,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<%	String idnotused = request.getParameter("idnotused");%>
+<title>ID Validation</title>
 <script type="text/javascript">
 
-	onload = function(){
+	onload = function() {
 		var id = opener.document.getElementsByName("memberid")[0].value;
 		document.getElementsByName("id")[0].value = id;
 	}
 	
 	function confirmid(bool) { 
 		if (bool == "true") {
+			$('#IDCHK').val("");
 			opener.document.getElementsByName("memberid")[0].title = 'y';
 			opener.document.getElementsByName("memberpw")[0].focus();
 		} else {
-			$('.IdChk').val('');
+			$('.IdChk').val("");
+			$('#IDCHK').val("a");
 			opener.document.getElementsByName("memberid")[0].focus();
 		}
 		self.close(); 
 	}
 	
 </script>
+<%	String idnotused = request.getParameter("idnotused");%>
 </head>
 <body>
 	<table>

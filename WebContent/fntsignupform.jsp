@@ -40,8 +40,8 @@
 	
 	<br/><br/>
 	
-	<script type="text/javascript">
-	$(function(){
+<script type="text/javascript">
+	$(function() {
 		$("form").on("submit", function() {
 		       
 			if($("#real").val() == "") {
@@ -51,12 +51,12 @@
 		    });
  	});
 	
-	function emailReal(url,name) {
-		if($("#email").val()=="") {
+	function emailReal(url, name) {
+		if($("#email").val() == "") {
 			alert("이메일을 입력해주세요.");
 			return false;
 		} else {
-		window.open(url + getParameterEmail(),name,"width=300, height=300");
+			window.open(url + getParameterEmail(), name, "width=300, height=300");
 		}
 	}
 	
@@ -69,27 +69,23 @@
 		// 히든에 발생한 난수를 가져옴
 	}
  
-	</script>
+</script>
 	
 	<form action="signup.do" id="form" name="form" method="post" >
 		<input type="hidden" name="command" value="signupform"/>
-		<input type="hidden" name="IDCHK" value=""/>
-		<input type="hidden" name="NICKCHK" value=""/>
-		<input type="hidden" name="real" value="" id="real"/>
+		<input type="hidden" value="" name="IDCHK" id="IDCHK"/>
+		<input type="hidden" value="" name="NICKCHK" id="NICKCHK"/>
+		<input type="hidden" value="" name="real" id="real"/>
 		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
 
 		<table>
 			<tr>
-				<td colspan="3" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td>
+				<td colspan="3" align="left"><p>* 반드시 <b>모든 항목</b>을 작성완료하셔야만 <b>정상 가입</b>됩니다 :)</p></td>
 			</tr>
 			<tr>
 				<th>ID</th>
-				<td>
-					<input class="IdChk" type="text" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/>
-				</td>
-				<td>
-					<button id="idchkbtn" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');">ID 중복 확인</button>
-				</td>
+				<td><input class="IdChk" type="text" id="id" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/></td>
+				<td><button id="idchkbtn" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');">ID 중복</button></td>
 			</tr>
 			<tr>
 				<th>Password</th>
@@ -101,10 +97,8 @@
 			</tr>
 			<tr>
 				<th>Nickname</th>
-				<td><input class="NickChk" type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" title="n" required="required"/></td>
-				<td>
-					<button id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');">Nick 중복 확인</button>
-				</td>
+				<td><input class="NickChk" type="text" id="nick" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" title="n" required="required"/></td>
+				<td><button id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');">Nickname 중복</button></td>
 			</tr>
 			<tr>
 				<th>Name</th>
@@ -120,21 +114,19 @@
 			</tr>
 			<tr>
 				<th>Address</th>
-				<td>
-					<input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로주소를 입력해주세요." required="required" onclick="goPopup();"/><br/>
-				</td>
-				<td><button class="in_btn" onclick="goPopup();">도로명주소 검색</button></td>
+				<td><input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로명주소를 입력해주세요." required="required" onclick="juso();"/><br/></td>
+				<td><button class="in_btn" onclick="juso();">도로명주소 검색</button></td>
 			</tr>
 			<tr>
 				<th>Email</th>
-				<td colspan="2"><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required"/>
-				<input type="button" value="이메일 인증" onclick="emailReal('signup.do?command=emailchk','name');"/>
-				</td>
-				
+				<td><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required"/></td>
+				<td><button class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');">Email 인증</button></td>
 			</tr>
-		</table><br/>
+		</table>
+		<br/>
 		<button id="resetbtn" type="reset">RESET</button>
 		<button id="submitbtn" type="submit">Sign Up</button>
+		<!-- 이거 뭐야??? -->
 		<button onclick="AA()">ㅎㅇㅎㅇ</button>
 	</form>
 

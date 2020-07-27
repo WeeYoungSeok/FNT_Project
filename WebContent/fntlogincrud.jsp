@@ -56,7 +56,7 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 
 <link href="css/fntlogincrud.css" rel="stylesheet" type="text/css"/>
 <%
-    String clientId = "T0e_dO0FJagJxo8igTCZ";//애플리케이션 클라이언트 아이디값";
+    String clientId = "T0e_dO0FJagJxo8igTCZ";
     String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/naversignup.do", "UTF-8");
     SecureRandom random = new SecureRandom();
     String state = new BigInteger(130, random).toString();
