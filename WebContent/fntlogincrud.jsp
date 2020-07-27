@@ -103,10 +103,10 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 			<td colspan="2">
 				<div class="social_login_btn">
 					<!-- navers -->
-					<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+					<a href="<%=apiURL%>"><img height="50" src="img/naver_btn.png"/></a>
 					
 					<!-- 카카오 -->
-					<img id="kakao_id_login" src="./img/login_btn_kakao.png" onclick="javascript:loginWithKakao()"/>
+					<img id="kakao_id_login" src="img/kakao_btn.png" height="50" onclick="javascript:loginWithKakao()"/>
 				</div>
 			</td>
 		</tr>

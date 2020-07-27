@@ -69,7 +69,7 @@ public class SignupController extends HttpServlet {
 		} else if (command.equals("signup")) {
 			response.sendRedirect("fntsignupform.jsp");
 		
-		// 아이디 중복 체크
+		// id 중복 체크
 		} else if (command.equals("idchk")) {
 			String id = request.getParameter("id");
 			MemberDto memberdto = dao.idchk(id);
@@ -78,6 +78,16 @@ public class SignupController extends HttpServlet {
 				idnotused = false;
 			}
 			response.sendRedirect("idchk.jsp?idnotused=" + idnotused);
+	
+		// nickname 중복 체크
+		} else if (command.equals("nickchk")) {
+			String nick = request.getParameter("nick");
+			MemberDto memberdto = dao.nickchk(nick);
+			boolean nicknotused = true;
+			if (memberdto != null) {
+				nicknotused = false;
+			}
+			response.sendRedirect("nickchk.jsp?nicknotused=" + nicknotused);
 			
 		// 회원가입 폼에서 member 테이블로 insert
 		} else if (command.contentEquals("signupform")) {
