@@ -17,25 +17,51 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
- table {
- 	margin-left: 100px;
- 	margin-top: 20px;
- } 
+ 
+ #ntable {
+ 	float: center;
+ }
  
  table {
- 	margin-left: 400px;
+ 	margin: 0 auto;
  	margin-top: 20px;
+ 	font-family: "Arial";
  } 
+ 
+ th {
+ 	background-color: #dddddd;
+ 	height: 26px;
+ 	font-weight: bold;
+ 	padding-top: 2px;
+ }
+ 
+ tr:hover {
+ 	background-color: #efefef;
+ }
  
  h1 {
- 	margin-top: 180px;
+ 	margin-top: 50px;
+ 	font-family: "Arial";
+ 	text-align: center;
  }
+ 
  span {
  	cursor: pointer;
+ 	margin-left: 10px;
  }
- a{
+ 
+ span:hover {
+ 	font-weight: bold;
+ }
+ 
+ a {
  	text-decoration: none;
  	color: black;
+ }
+ 
+ #nlistlast {
+ 	background-color: #dddddd;
+ 	height: 2px;
  }
  </style>
 </head>
@@ -50,16 +76,16 @@
 	<section>
 		
 		<h1>공지사항</h1>
-		
+		<div id="ntable">
 		<table>
 		
 			<col width="50">
-     		<col width="300">
+     		<col width="350">
      	 	<col width="100">
-      		<col width="300">
+      		<col width="200">
       		
       		<tr align="center">
-      			<th></th>
+      			<th>No.</th>
       			<th>제목</th>
       			<th>작성자</th>
       			<th>작성일</th>
@@ -102,7 +128,9 @@
 			<%
 				}
 			%>
-		</table>
+			<tr><td colspan="4" id="nlistlast"></td></tr>
+		</table></div>
+		<br/>
 	<jsp:include page="./paging/fntnoticepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>

@@ -1,46 +1,16 @@
-html,body { 
-	margin:0; 
-	padding:0; 
-	height:100%; 
-	width:100%; 
-}
+    #slide{
+      position:relative;
+      max-width: 100vw;
+    }
 
-#slider {
-    height: 100vh;
-    width: 100vw;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    position: fixed;
-}
+    #slide div{
+      position:absolute;
+      top:0;
+      left:0;
+      display:block;
+    }
 
-.slide {
-    width: $slide-width;
-    height: $slide-height;
-    float: left;
-    position: relative;
-}
-
-#slide-holder {
-    width: 900%;
-    position: relative;
-    left: 0;
-    animation: scroller 10s infinite;
-}
-
-// need a step for each slide
-@keyframes scroller {
-  0% { transform: translateX(0); }
-  33% { transform: translateX(-$slide-width); }
-  66% { transform: translateX(-$slide-width*2); }
-  100% { transform: translateX(0); }
-}
-
-// additional styling
-body {
-  font-family: sans-serif;
-}
-
-#slider {
-  margin: 0 auto;
-}
+    #slide img{
+      width: 100%;
+      height: auto;
+    }
