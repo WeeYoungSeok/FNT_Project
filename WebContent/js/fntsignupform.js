@@ -38,4 +38,6 @@
  	function jusoCallBack(roadFullAddr) {
  		// jusoPopup.jsp에서 주소 입력한 정보를 받아서, signupform.jsp에 정보를 등록
 		document.form.memberaddr.value = roadFullAddr;
+
  	}
+
