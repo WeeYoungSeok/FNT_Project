@@ -1,19 +1,8 @@
-	$(function() {
-		$("form").on("submit", function() {
-			if ($("#IDCHK").val() == "") {
-				alert("ID를 입력해주세요!");
-				return false;
-			} else if ($("#NICKCHK").val() == "") {
-				alert("Nickname을 입력해주세요!");
-				return false;
-			}
-		});
-	});
+
 
 // id 중복체크 팝업
 	function search_id(url, name) {
-		
-		if($("#id").val() == "") {
+		if($(".IdChk").val() == "") {
 			alert("ID를 입력해주세요!");
 			return false;
 		} else {

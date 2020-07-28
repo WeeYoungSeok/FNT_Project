@@ -25,10 +25,30 @@ a{
 </style>
 </head>
 <body>
+<%
+	String salesearch = (String)request.getAttribute("salesearch");
+	String salelist = (String)request.getAttribute("salelist");
+%>
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>
 	<section>
 		<table border="1">
+		<tr>
+			<td colspan="6">
+			<form action="dealboard.do" method="post">
+			<input type="hidden" name="command" value="salesearchlist"/>	
+				<select id="categorylist" name="categorylist">
+							<option value="CHECK">카테고리</option>
+							<option value="F">패션</option>
+							<option value="C">차량</option>
+							<option value="D">가전제품</option>
+							<option value="A">애완</option>
+							<option value="S">스포츠</option>
+				</select>
+					<input type="submit" value="필터적용">
+				</form>
+			</td>
+		</tr>
 			<tr>
 				<th>글 번 호</th>
 				<th>카테고리</th>
@@ -95,6 +115,20 @@ a{
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+	
+	
+	<form action="dealboard.do" method="post">
+		<input type="hidden" name="command" value="salesearch"/>
+		
+			<select name="salelist" id="search">
+				<option value="T">제목</option>
+				<option value="W">작성자</option>
+			</select>
+			<input type="text"  name="salesearch" id="salesearch" value="<%=salesearch%>" required="required" placeholder="내용을 입력하세요"/>
+			<input type="submit" value="검색"/>
+		</form>
+	
+	
 	</section>
 <%@ include file="./form/footer.jsp" %>	
 </body>

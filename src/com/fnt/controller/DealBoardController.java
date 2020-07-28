@@ -255,6 +255,7 @@ public class DealBoardController extends HttpServlet {
     	  
     	  dispatch("fntsearchdeal.jsp", request, response);
       } else if(command.equals("searchlist")) {
+    	  
     	  String orderlist = request.getParameter("orderlist");
     	  String categorylist = request.getParameter("categorylist");
     	  System.out.println("오더" + orderlist + "카테고리" + categorylist);
@@ -300,11 +301,91 @@ public class DealBoardController extends HttpServlet {
     		  request.setAttribute("list", list);
     		  request.setAttribute("searchdeal", searchdeal);
     		  dispatch("fntsearchdeal.jsp", request, response);
+    	  }  
+    	 
+      } else if (command.equals("buysearchlist")) {
+    	  String categorylist = request.getParameter("categorylist");
+    	  System.out.println("카테고리" + categorylist);
+    	  
+    	  List<DealBoardDto> list = null;
+    	  int page = 1;
+
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			Paging paging = new Paging();
+			int count = dao.buyGetAllCount(categorylist);
+
+			paging.setTotalcount(count);
+			paging.setPage(page);
+    	    if(categorylist.equals("CHECK")) {
+    	    	response.sendRedirect("dealboard.do?command=fntbuyboard");
+    	    } else {
+			list = dao.buysearchList(categorylist,paging);
+			request.setAttribute("categorylist", categorylist);
+			request.setAttribute("list", list);
+			request.setAttribute("paging", paging);
+			dispatch("fntbuyboard.jsp", request, response);
+    	    }
+    	  } else if(command.equals("search")) {
+    		  String search = request.getParameter("search");
+    		  String selecttw = request.getParameter("selecttw");
+    		  System.out.println("search" + search + "selecttw" + selecttw);
+    		  List<DealBoardDto> list = null;
+    		  if(selecttw.equals("T")) {
+    			  list = dao.searchdealtitle(search);
+    			  request.setAttribute("list", list);
+    			  request.setAttribute("search", search);
+    			  request.setAttribute("selecttw", selecttw);
+    			  dispatch("fntbuyboard.jsp", request, response);
+    		  } else {
+    			  System.out.println("else로 왔니?");
+    			  list = dao.searchdealwriter(search);
+    			  request.setAttribute("list", list);
+    			  request.setAttribute("search", search);
+    			  request.setAttribute("selecttw", selecttw);
+    			  dispatch("fntbuyboard.jsp", request, response);
+    		  }
+    	  }else if(command.equals("salesearchlist")) {
+    		  String categorylist = request.getParameter("categorylist");
+    		  System.out.println("컨트롤러에서 카테고리" + categorylist);
+    		  
+    		  List<DealBoardDto> list = null;
+    		  if(categorylist.equals("CHECK")) {
+      	    	response.sendRedirect("dealboard.do?command=fntbuyboard");
+    		  }else {
+    			  list = dao.salesearchList(categorylist);
+    			  request.setAttribute("list", list);
+    			  request.setAttribute("categorylist", categorylist);
+    			  
+    			  dispatch("fntsaleboard.jsp", request, response);
+    		  }
+    		  
+    	  }else if(command.equals("salesearch")) {
+    		  String salesearch = request.getParameter("salesearch");
+    		  String salelist = request.getParameter("salelist");
+    		  System.out.println("컨트롤러에서 salesearch : " + salesearch+ "그리고 리스트 : " +salelist);
+    		  
+    		  if(salelist.equals("T")) {
+    			  List<DealBoardDto> list = dao.salesearchtitle(salesearch);
+    			  request.setAttribute("list", list);
+    			  request.setAttribute("salelist", salelist);
+    			  request.setAttribute("salesearch", salesearch);
+    			  
+    			  dispatch("fntsaleboard.jsp", request, response);
+    		  }else {
+    			  List<DealBoardDto> list = dao.salesearchnick(salesearch);
+    			  request.setAttribute("list", list);
+    			  request.setAttribute("salelist", salelist);
+    			  request.setAttribute("salesearch", salesearch);
+    			  
+    			  dispatch("fntsaleboard.jsp", request, response);
+    		  }
     	  }
       }
       
       
-   }
+   
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
