@@ -154,6 +154,39 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 		}
 		return res;
 	}
+
+	@Override
+	public List<QnaBoardDto> searchList(String searchqna) {
+		SqlSession session = null;
+		List<QnaBoardDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"qnalist",searchqna);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public List<QnaBoardDto> searchWriter(String searchqna) {
+		SqlSession session = null;
+		List<QnaBoardDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"nicklist",searchqna);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
 	}
 	
 	

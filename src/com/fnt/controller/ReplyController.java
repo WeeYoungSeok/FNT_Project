@@ -53,6 +53,7 @@ public class ReplyController extends HttpServlet {
          //replyid = memberid
          int replyboardno = Integer.parseInt(request.getParameter("replyboardno"));
 
+
          ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
          
          //insert를 해준다.

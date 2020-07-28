@@ -107,4 +107,90 @@
 	<select id="counts" resultType="int">
  		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'S'
  	</select>
+ 	
+ 	<!-- 통합검색 구매, 판매 게시판 출력 -->
+ 	<select id="searchdeal" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
+ 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
+ 		FROM DEAL_BOARD
+ 		WHERE D_TITLE LIKE '%'||#{searchdeal}||'%'
+ 		ORDER BY D_BOARDNO DESC
+ 	</select>
+ 	
+ 	<select id="ascorder" resultMap="dealBoardDtoResultMap">
+		 SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
+ 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
+ 		FROM DEAL_BOARD
+ 		WHERE D_TITLE LIKE '%'||#{searchdeal}||'%'
+ 		ORDER BY D_BOARDNO ASC
+ 	</select>
+ 	
+ 	<select id="desccategory" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
+ 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
+ 		FROM DEAL_BOARD
+ 		WHERE D_TITLE LIKE '%'||#{searchdeal}||'%' AND D_CATEGORY = #{categorylist}
+ 		ORDER BY D_BOARDNO DESC
+ 	</select>
+ 	
+ 	<select id="asccategory" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
+ 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
+ 		FROM DEAL_BOARD
+ 		WHERE D_TITLE LIKE '%'||#{searchdeal}||'%' AND D_CATEGORY = #{categorylist}
+ 		ORDER BY D_BOARDNO ASC
+ 	</select>
+
+	 <select id="buycategorylist" parameterType="map" resultMap="dealBoardDtoResultMap">
+	 <![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE ,ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_FLAG = 'B' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="buycount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'B' AND D_CATEGORY = #{categorylist}
+ 	</select>
+ 	
+ 	<select id="searchdealtitle" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
+ 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
+ 		FROM DEAL_BOARD
+ 		WHERE D_TITLE LIKE '%'||#{search}||'%'
+ 		ORDER BY D_BOARDNO DESC
+ 	</select>
+ 	
+ 	<select id="searchdealwriter" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
+ 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
+ 		FROM DEAL_BOARD
+ 		WHERE D_NICKNAME LIKE '%'||#{search}||'%'
+ 		ORDER BY D_BOARDNO DESC
+ 	</select>
+ 	
+ 	<select id="salecategorylist" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 	 	SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 	 	FROM DEAL_BOARD
+ 	 	WHERE D_CATEGORY = #{categorylist} AND D_FLAG = 'S' 
+ 	 	ORDER BY D_BOARDNO
+ 	</select>
+ 	
+ 	<select id="saletitle" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 	 	FROM DEAL_BOARD
+ 	 	WHERE D_TITLE LIKE '%'||#{salesearch}||'%' AND D_FLAG = 'S'
+ 	 	ORDER BY D_BOARDNO
+ 	</select>
+ 	
+ 	<select id="salenick" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 	 	FROM DEAL_BOARD
+ 	 	WHERE D_NICKNAME LIKE '%'||#{salesearch}||'%' AND D_FLAG = 'S'
+ 	 	ORDER BY D_BOARDNO		
+ 	</select>
+ 	
 </mapper>

@@ -59,6 +59,8 @@ input {
 	font-weight: bold;
 	border: none;
 	cursor: pointer;
+	padding-left: 0px;
+	text-align: center;
 }
 
 #resetbtn {
