@@ -18,40 +18,24 @@
 <meta charset="UTF-8">
 <title>FNT - Sign Up</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="./js/fntsignupform.js"></script>
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript">
-	<%-- var profile = <%= request.getAttribute("profile") %>; --%>
-	  
-	var naverLogin = new naver.LoginWithNaverId({
-			clientId: "T0e_dO0FJagJxo8igTCZ",
-			callbackUrl: "http://127.0.0.1:8787/FNT_Project/fntsignupformnaver.jsp",
-			callbackHandle: true
-		});
-	naverLogin.init();
-	
-	window.addEventListener('load', function () {
-		naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				/* 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
-				var email = naverLogin.user.getEmail();
-				if( email == undefined || email == null) {
-					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-					/* 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
-					naverLogin.reprompt();
-					return;
-				}
-
-				window.location.replace("fntsignupformnaver.jsp");
-			} else {
-				console.log("callback 처리에 실패하였습니다.");
-			}
-		});
-	});
-</script>
-<script src="./js/fntsignupform.js"></script>
 </head>
 <body>
+<%!
+	public int getRandom(){
+	int random = 0;
+	random = (int)Math.floor((Math.random()*(99999-10000+1)))+10000;
+	return random;
+}
+%>
+
+<%
+	int res = getRandom();
+	// 내부적으로 비동기 실행시 랜덤함수가 두번실행돼서 
+	// 하나의 변수에 담아서 비교했을때 값이 일치하게 만들어주기 위해
+%>
 
 	<div>
 		<a href="fntmain.jsp">
@@ -59,26 +43,95 @@
 		</a>	
 	</div>
 	
+<script type="text/javascript">
+<%-- var profile = <%= request.getAttribute("profile") %>; --%>
+
+var naverLogin = new naver.LoginWithNaverId({
+		clientId: "T0e_dO0FJagJxo8igTCZ",
+		callbackUrl: "http://127.0.0.1:8787/FNT_Project/fntsignupformnaver.jsp",
+		callbackHandle: true
+	});
+naverLogin.init();
+
+window.addEventListener('load', function () {
+	naverLogin.getLoginStatus(function (status) {
+		if (status) {
+			/* 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
+			var email = naverLogin.user.getEmail();
+			if( email == undefined || email == null) {
+				alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+				/* 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
+				naverLogin.reprompt();
+				return;
+			}
+
+			window.location.replace("fntsignupformnaver.jsp");
+		} else {
+			console.log("callback 처리에 실패하였습니다.");
+		}
+	});
+});
+
+	$(function() {
+		$("form").on("submit", function(e) {
+		       
+			if($("#IDCHK").val() == "") {
+				alert("아이디 중복확인 해주세요");
+				e.preventDefault();		
+			} 
+			if($("#NICKCHK").val() == "") {
+				alert("닉네임 중복확은 해주세요");
+				e.preventDefault();	
+			}
+			if($("#real").val() == "") {
+				alert("이메일 인증을 해주세요");
+				return false;
+			} 
+			
+			
+		    });
+ 	});
+	
+	function emailReal(url, name) {
+		if($("#email").val() == "") {
+			alert("이메일을 입력해주세요.");
+			return false;
+		} else {
+			window.open(url + getParameterEmail(), name, "width=300, height=300");
+		}
+	}
+	
+	function getParameterEmail() {
+		var email = "&email=" + $("#email").val() + "&code_check=" + $("#code_check").val();
+		return email;
+		// ? 붙인 이유는 컨트롤러? 붙이듯이 붙여주기위해 ?를 붙임
+		// command를 선언하고
+		// 사용자가 입력한 이메일 값 받아오고
+		// 히든에 발생한 난수를 가져옴
+	}
+ 
+</script>
+	
 	<br/><br/>
 	
 	<form action="signup.do" id="form" name="form" method="post" >
 		<input type="hidden" name="command" value="signupform"/>
+		<input type="hidden" value="" name="IDCHK" id="IDCHK"/>
+		<input type="hidden" value="" name="NICKCHK" id="NICKCHK"/>
+		<input type="hidden" value="" name="real" id="real"/>
+		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
 		<table>
 			<tr>
 				<td colspan="3" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td>
 			</tr>
 			<tr>
 				<th>ID</th>
-				<td>
-					<input type="text" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/>
-				</td>
-				<td>
-					<button id="idchkbtn" class="in_btn" onclick="open_win('signup.do?command=idchk','idchk');">ID 중복 확인</button>
-				</td>
+				<td><input class="IdChk" type="text" id="id" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/></td>
+				<td><input type="button" id="idchkbtn" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');" value="ID 중복"/></td>
 			</tr>
 			<tr>
 				<th>Password</th>
-					<td colspan="2"><input class="Pw" type="password" name="memberpw" placeholder="비밀번호를 입력해주세요. (영문/숫자 포함 6~16자 이내)" maxlength="16" required="required"/></td>
+				<td colspan="2"><input class="Pw" type="password" name="memberpw" placeholder="비밀번호를 입력해주세요. (영문/숫자 포함 6~16자 이내)" maxlength="16" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Password Check</th>
@@ -86,7 +139,8 @@
 			</tr>
 			<tr>
 				<th>Nickname</th>
-				<td colspan="2"><input type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" required="required" value=<%=((JsonObject)request.getAttribute("profileJson")).get("nickname")%>/></td>
+				<td><input class="NickChk" type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" required="required" value=<%=((JsonObject)request.getAttribute("profileJson")).get("nickname")%>/></td>
+				<td><input type="button" id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');" value="Nickname 중복"></td>
 			</tr>
 			<tr>
 				<th>Name</th>
@@ -102,14 +156,13 @@
 			</tr>
 			<tr>
 				<th>Address</th>
-				<td>
-					<input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로주소를 입력해주세요." required="required" onclick="goPopup();"/><br/>
-				</td>
-				<td><button class="in_btn" onclick="goPopup();">도로명주소 검색</button></td>
+				<td><input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로주소를 입력해주세요." required="required" onclick="juso();"/></td>
+				<td><input type="button" value="도로명주소 검색" class="in_btn" onclick="juso();"/></td>
 			</tr>
 			<tr>
 				<th>Email</th>
-				<td colspan="2"><input type="email" name="memberemail" placeholder="이메일을 입력해주세요." required="required" value=<%=((JsonObject)request.getAttribute("profileJson")).get("email")%>/></td>
+				<td><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required" value=<%=((JsonObject)request.getAttribute("profileJson")).get("email")%>/></td>
+				<td><input type="button" class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');" value="Email 인증"></td>
 			</tr>
 		</table><br/>
 		<button id="resetbtn" type="reset">RESET</button>
