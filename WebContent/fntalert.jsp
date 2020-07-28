@@ -13,6 +13,9 @@
 	.alertone:nth-child(even){
 		background-color : gray;
 	}
+	h3{
+		text-align : center;
+	}
 </style>
 	<%
 		//세션에 값이 담긴 memberdto을 받아온다.
