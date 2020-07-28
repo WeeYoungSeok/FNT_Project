@@ -30,4 +30,6 @@ public class AlertBizImpl implements AlertBiz {
 		return dao.updateAlert(dboardno);
 	}
 
+	
+
 }

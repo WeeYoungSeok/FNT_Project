@@ -105,6 +105,14 @@ a{
 				</c:otherwise>
 			</c:choose>
 		</table>
+		<jsp:include page="./paging/fntsearchpaging.jsp">
+		<jsp:param value="<%=searchdeal %>" name="searchdeal"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 

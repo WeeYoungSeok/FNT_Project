@@ -18,7 +18,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
 <!-- include summernote css/js-->
@@ -26,27 +25,27 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <script type="text/javascript">
 
-	 $(document).ready(function() {
-	      $('#summernote').summernote({
-	        placeholder: '홍보 포스팅을 자유롭게 입력해주세요.',
-	        height: 500,
-	        width: 1000,
-	        lang: 'ko-KR',
-	        toolbar: [
-	                    // [groupName, [list of button]]
-	                    ['Font Style', ['fontname']],
-	                    ['style', ['bold', 'italic', 'underline']],
-	                    ['font', ['strikethrough']],
-	                    ['fontsize', ['fontsize']],
-	                    ['color', ['color']],
-	                    ['para', ['paragraph']],
-	                    ['height', ['height']],
-	                    ['Insert', ['picture']],
-	                    ['Insert', ['link']],
-	                    ['Misc', ['fullscreen']]
-	                 ]
-	      });
-	    });
+$(document).ready(function(){
+    $('#summernote').summernote({
+      placeholder: '홍보 포스팅을 자유롭게 입력해주세요.',
+      height: 500,
+      width: 1000,
+      lang: 'ko-KR',
+      toolbar: [
+                  // [groupName, [list of button]]
+                  ['Font Style', ['fontname']],
+                  ['style', ['bold', 'italic', 'underline']],
+                  ['font', ['strikethrough']],
+                  ['fontsize', ['fontsize']],
+                  ['color', ['color']],
+                  ['para', ['paragraph']],
+                  ['height', ['height']],
+                  ['Insert', ['picture']],
+                  ['Insert', ['link']],
+                  ['Misc', ['fullscreen']]
+               ]
+    });
+  });
 	
 	
 

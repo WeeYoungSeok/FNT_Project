@@ -23,13 +23,13 @@
  }
  
  h1 {
- 	margin-top: 50px;
+ 	margin-top: 18px;
  	font-family: "Arial";
  }
  
  table {
  	margin: 0 auto;
- 	margin-top: 20px;
+ 	margin-top: 10px;
  	font-family: "Arial";
  } 
  
@@ -40,12 +40,12 @@
  	padding-top: 2px;
  }
  
- td {
- 	height: 24px;
- }
- 
  tr:hover {
  	background-color: #efefef;
+ }
+ 
+ td {
+ 	height: 24px;
  }
  
  span {
@@ -83,6 +83,13 @@
  #nbbtn:hover {
  	font-weight: bold;
  	background-color: #bbbbbb;
+ }
+ 
+ #searchnotice {
+ 	margin-top: 6px;
+ 	height: 26px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
  }
  </style>
 </head>
@@ -138,9 +145,11 @@
 				if (memberdto == null || memberdto.getMemberrole().equals("USER")) {
 			%>
 			<tr><td colspan="4" id="nlistlast"></td></tr>
+			<tr><td id="btnline" colspan="4" align="right"></td></tr>
 			<%
 				} else {
 			%>
+			<tr><td colspan="4" id="nlistlast"></td></tr>
 			<tr>
 				<td id="btnline" colspan="4" align="right">
 					<button id="nbbtn" onclick="location.href='notice.do?command=noticeinsert'">글 작성</button>
@@ -151,7 +160,6 @@
 				}
 			%>
 		</table></div>
-		<br/>
 	<jsp:include page="./paging/fntnoticepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -162,8 +170,10 @@
 	
 	<form id="form1" action="notice.do?command=searchnotice" method="post">
 		
-		<input type="text" name="searchnotice" required="required" placeholder="공지사항 검색하기">		
-		<span><input type="submit" value="검색"></span>
+
+		<input type="text" name="searchnotice" id="searchnotice" required="required" placeholder="공지사항 검색하기">		
+		<span><input id="nbbtn" type="submit" value="검색"></span>
+
 	</form>
 	
 	</section>

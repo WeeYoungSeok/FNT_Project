@@ -1,3 +1,5 @@
+
+<%@page import="com.fnt.util.Paging"%>
 <%@page import="com.fnt.model.dto.DealBoardDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,13 +20,28 @@
  }
  
  h1 {
- 	margin-top: 50px;
+ 	margin-top: 18px;
  	font-family: "Arial";
+ }
+ 
+ #c_btn {
+ 	width: 50px;
+ 	height: 19px;
+ 	border: none;
+ 	border-radius: 2px 2px 2px 2px;
+ 	cursor: pointer;
+ 	color: white;
+ 	background-color: #595959;
+ 	margin-bottom: 10px;
+ }
+ 
+ #c_btn:hover {
+ 	font-weight: bold;
  }
  
  table {
  	margin: 0 auto;
- 	margin-top: 20px;
+ 	margin-top: 10px;
  	font-family: "Arial";
  } 
  
@@ -79,6 +96,21 @@
  	font-weight: bold;
  	background-color: #bbbbbb;
  }
+ 
+ #search {
+ 	margin-top: 6px;
+ 	height: 26px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
+ }
+ 
+ #salesearch {
+ 	margin-top: 8px;
+ 	height: 22px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
+ }
+ 
 </style>
 </head>
 <body>
@@ -86,8 +118,10 @@
 	String salesearch = (String)request.getAttribute("salesearch");
 	String salelist = (String)request.getAttribute("salelist");
 	String dnickname = (String)request.getAttribute("dnickname");
+	String categorylist = (String)request.getAttribute("categorylist");
 	List<DealBoardDto> list = (List<DealBoardDto>)request.getAttribute("list");
-	System.out.println("jsp :" + list);
+	Paging paging = (Paging)request.getAttribute("paging");
+
 %>
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>
@@ -114,7 +148,7 @@
 							<option value="A">애완</option>
 							<option value="S">스포츠</option>
 				</select>
-					<input type="submit" value="필터적용">
+					<input id="c_btn" type="submit" value="필터적용">
 				</form>
 			</td>
 		</tr>
@@ -177,13 +211,42 @@
 				</c:otherwise>
 			</c:choose>
 		</table></div>
-		<jsp:include page="./paging/fntsalepaging.jsp">
+		<%
+		if(categorylist == null) {
+			%>
+			<jsp:include page="./paging/fntsalepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+			<% 
+		} else {
+			if(categorylist.equals("A")||categorylist.equals("S")||categorylist.equals("D")||categorylist.equals("C")||categorylist.equals("F")) {
+		%>
+			<jsp:include page="./paging/fntsalecategorypaging.jsp">
+			<jsp:param value="<%=categorylist %>" name="dcategory"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+		<% 
+			} else {
+		%>
+		<jsp:include page="./paging/fntbuypaging.jsp">
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+	<%
+			}
+		}
+	%>
 	
 	
 	<form action="dealboard.do" method="post">
@@ -194,7 +257,7 @@
 				<option value="W">작성자</option>
 			</select>
 			<input type="text"  name="salesearch" id="salesearch" value="<%=salesearch%>" required="required" placeholder="내용을 입력하세요"/>
-			<input type="submit" value="검색"/>
+			<input id="sbbtn" type="submit" value="검색"/>
 		</form>
 	
 	

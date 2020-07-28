@@ -18,13 +18,28 @@
  }
  
  h1 {
- 	margin-top: 50px;
+ 	margin-top: 18px;
  	font-family: "Arial";
+ }
+ 
+ #c_btn {
+ 	width: 50px;
+ 	height: 19px;
+ 	border: none;
+ 	border-radius: 2px 2px 2px 2px;
+ 	cursor: pointer;
+ 	color: white;
+ 	background-color: #595959;
+ 	margin-bottom: 10px;
+ }
+ 
+ #c_btn:hover {
+ 	font-weight: bold;
  }
  
  table {
  	margin: 0 auto;
- 	margin-top: 20px;
+ 	margin-top: 10px;
  	font-family: "Arial";
  } 
  
@@ -79,6 +94,20 @@
  	font-weight: bold;
  	background-color: #bbbbbb;
  }
+ 
+ #searchttw {
+ 	margin-top: 6px;
+ 	height: 26px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
+ }
+ 
+ #searchbuy {
+ 	margin-top: 8px;
+ 	height: 22px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
+ }
 
 </style>
 </head>
@@ -109,6 +138,7 @@
 		<td colspan="6">
 		<form action="dealboard.do" method="post">
 			<input type="hidden" name="command" value="buysearchlist"/>	
+			<input type="hidden" name="search" value="asldjskalsjalsjdk"/>
 		<select id="categorylist" name="categorylist">
 							<option value="CHECK">카테고리</option>
 							<option value="F">패션</option>
@@ -117,7 +147,7 @@
 							<option value="A">애완</option>
 							<option value="S">스포츠</option>
 			</select>
-			<input type="submit" value="필터적용">
+			<input id="c_btn" type="submit" value="필터적용">
 			</form>
 			</td>
 			</tr>
@@ -182,18 +212,9 @@
 				</c:otherwise>
 			</c:choose>
 		</table></div>
-    
-		<form action="dealboard.do" method="post">
-		<input type="hidden" name="command" value="search"/>
-			<select name="selecttw" id="search">
-				<option value="T">제목</option>
-				<option value="W">작성자</option>
-			</select>
-			<input type="text"  name="search" value="<%=search%>" required="required" placeholder="내용을 입력하세요"/>
-			<input type="submit" value="검색"/>
-		</form>
+
 		<%
-		if(categorylist == null) {
+		if(categorylist == null || search == null) {
 			%>
 			<jsp:include page="./paging/fntbuypaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
@@ -207,6 +228,7 @@
 			if(categorylist.equals("A")||categorylist.equals("S")||categorylist.equals("D")||categorylist.equals("C")||categorylist.equals("F")) {
 		%>
 			<jsp:include page="./paging/fntbuycategorypaging.jsp">
+			<jsp:param value="<%=search %>" name="search"/>
 			<jsp:param value="<%=categorylist %>" name="dcategory"/>
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -215,7 +237,7 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 		<% 
-			} else {
+			} else if(categorylist.equals("CHECK")){
 		%>
 		<jsp:include page="./paging/fntbuypaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
@@ -225,22 +247,37 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 	<%
+			} else if(selecttw.equals("W") || selecttw.equals("T")) {
+				%>
+				<jsp:include page="./paging/fntbuysearchtitlepaging.jsp">
+				<jsp:param value="<%=selecttw %>" name="selecttw"/>
+			<jsp:param value="<%=search %>" name="search"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+				<% 
 			}
 		}
 	%>
+		<form action="dealboard.do" method="post">
+		<input type="hidden" name="command" value="search"/>
+		<input type="hidden" name="categorylist" value="Z"/>
+			<select name="selecttw" id="search">
+				<option value="T">제목</option>
+				<option value="W">작성자</option>
+			</select>
+			<input type="text"  name="search" value="" required="required" />
+			<input type="submit" value="검색"/>
+		</form>
 	</section>
 <%@ include file="./form/footer.jsp" %>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	   $("select[name='selecttw'] option[value="+"<%=selecttw%>"+"]").attr("selected", true);
-	   if($("input[name=search]").val() == "null") {
-	      $("input[name='search']").prop("value","");
-	   } else {
-	   $("input[name='search']").prop("value","<%=search%>");
-	}
-	})
+
 </script>
 </body>
 </html>

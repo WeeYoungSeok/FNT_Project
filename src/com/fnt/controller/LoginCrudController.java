@@ -25,6 +25,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+import com.fnt.model.biz.AlertBiz;
+import com.fnt.model.biz.impl.AlertBizImpl;
 import com.fnt.model.dao.LoginCrudDao;
 import com.fnt.model.dao.impl.LoginCrudDaoImpl;
 import com.fnt.model.dto.MemberDto;
@@ -63,11 +65,16 @@ public class LoginCrudController extends HttpServlet {
 			String memberid = request.getParameter("id");
 			String memberpw = request.getParameter("pw");
 			
+			System.out.println("로그인컨트롤러에서 id : " + memberid);
+			
 			MemberDto memberdto = dao.login(memberid, memberpw);
+			//71~77줄
+			
 			
 			
 			if(memberdto != null) {	//id 랑 pw가 있다면
 				session.setAttribute("memberdto", memberdto);
+				
 				if(memberdto.getMemberenabled().equals("R")) {
 					jsResponse("신고된 회원입니다.카카오 채널로 문의 해주세요.카카오 채널 ID: fnt_5", "fntmain.jsp", response);
 					session.invalidate();

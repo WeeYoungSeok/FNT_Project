@@ -21,8 +21,7 @@ public class Paging {
     private int endNum;
     
 
-    private NoticeBoardBiz noticeboardbiz = new NoticeBoardBizImpl();
-    int count = noticeboardbiz.getAllCount();
+    
     
     public int getStartNum() {
 		return totalcount - (page-1) * 10;
