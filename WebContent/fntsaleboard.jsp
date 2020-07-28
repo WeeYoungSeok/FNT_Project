@@ -131,5 +131,18 @@ a{
 	
 	</section>
 <%@ include file="./form/footer.jsp" %>	
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	   $("select[name='salelist'] option[value="+"<%=salelist%>"+"]").attr("selected", true);
+	   if($("input[name=salesearch]").val() == "null") {
+	      $("input[name='salesearch']").prop("value","");
+	   } else {
+	   $("input[name='salesearch']").prop("value","<%=salesearch%>");
+	}
+	})
+</script>
+
 </body>
 </html>
