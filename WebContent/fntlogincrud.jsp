@@ -15,37 +15,12 @@
 
 <script type="text/javascript">
 Kakao.init('290f8b616802bba9fad591226e4dab51');
-
-/*function loginWithKakao() {
-	Kakao.Auth.authorize({
-		redirectUri: '${pageContext.request.contextPath}/kakaosignup.do'
-	});	
-}*/
 	
 // 카카오 소셜 로그인
 	function loginWithKakao() {
 		Kakao.Auth.login({
 			success: function(authObj) {
 				location.href = '${pageContext.request.contextPath}/kakaosignup.do?access_token=' + authObj.access_token;
-				/*Kakao.API.request({
-				    url: '/v2/user/me',
-				    success: function(response) {
-				    	fetch('${pageContext.request.contextPath}/kakaosignup.do', {
-				    		method: 'POST',
-				    		headers: {
-				    			'Content-Type': 'application/json;charset=utf-8',
-				    		},
-				    		body: JSON.stringify({
-				    			response, access_token: authObj.access_token,
-				    		}),
-				    	})
-				    	.then(res => res.text())
-				    	.then(console.log);
-				    },
-				    fail: function(error) {
-				        console.log(error);
-				    }
-				});*/
 			},
 			fail: function(err) {
 				alert(JSON.stringify(err))
@@ -103,10 +78,10 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 			<td colspan="2">
 				<div class="social_login_btn">
 					<!-- navers -->
-					<a href="<%=apiURL%>"><img height="50" src="img/naver_btn.png"/></a>
+					<a href="<%=apiURL%>"><img id="naver_id_login" height="50" src="img/naver_btn.png"/></a>
 					
 					<!-- 카카오 -->
-					<img id="kakao_id_login" src="img/kakao_btn.png" height="50" onclick="javascript:loginWithKakao()"/>
+					<a><img id="kakao_id_login" src="img/kakao_btn.png" height="50" onclick="javascript:loginWithKakao()"/></a>
 				</div>
 			</td>
 		</tr>

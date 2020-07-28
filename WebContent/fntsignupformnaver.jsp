@@ -15,14 +15,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>FNT - Sign Up</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="./js/fntsignupform.js"></script>
-<link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-</head>
-<body>
 <%!
 	public int getRandom(){
 	int random = 0;
@@ -36,81 +28,49 @@
 	// 내부적으로 비동기 실행시 랜덤함수가 두번실행돼서 
 	// 하나의 변수에 담아서 비교했을때 값이 일치하게 만들어주기 위해
 %>
+<meta charset="UTF-8">
+<title>FNT - Sign Up</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript">
+<%-- var profile = <%= request.getAttribute("profile") %>; --%>
+
+	var naverLogin = new naver.LoginWithNaverId({
+		clientId: "T0e_dO0FJagJxo8igTCZ",
+		callbackUrl: "http://127.0.0.1:8787/FNT_Project/fntsignupformnaver.jsp",
+		callbackHandle: true
+	});
+	naverLogin.init();
+
+	window.addEventListener('load', function () {
+		naverLogin.getLoginStatus(function (status) {
+			if (status) {
+				/* 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
+				var email = naverLogin.user.getEmail();
+				if( email == undefined || email == null) {
+					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+					/* 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
+					naverLogin.reprompt();
+					return;
+				}
+	
+				window.location.replace("fntsignupformnaver.jsp");
+			} else {
+				console.log("callback 처리에 실패하였습니다.");
+			}
+		});
+	});
+</script>
+<script src="./js/fntsignupform.js"></script>
+</head>
+<body>
 
 	<div>
 		<a href="fntmain.jsp">
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
 		</a>	
 	</div>
-	
-<script type="text/javascript">
-<%-- var profile = <%= request.getAttribute("profile") %>; --%>
-
-var naverLogin = new naver.LoginWithNaverId({
-		clientId: "T0e_dO0FJagJxo8igTCZ",
-		callbackUrl: "http://127.0.0.1:8787/FNT_Project/fntsignupformnaver.jsp",
-		callbackHandle: true
-	});
-naverLogin.init();
-
-window.addEventListener('load', function () {
-	naverLogin.getLoginStatus(function (status) {
-		if (status) {
-			/* 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
-			var email = naverLogin.user.getEmail();
-			if( email == undefined || email == null) {
-				alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-				/* 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
-				naverLogin.reprompt();
-				return;
-			}
-
-			window.location.replace("fntsignupformnaver.jsp");
-		} else {
-			console.log("callback 처리에 실패하였습니다.");
-		}
-	});
-});
-
-	$(function() {
-		$("form").on("submit", function(e) {
-		       
-			if($("#IDCHK").val() == "") {
-				alert("아이디 중복확인 해주세요");
-				e.preventDefault();		
-			} 
-			if($("#NICKCHK").val() == "") {
-				alert("닉네임 중복확은 해주세요");
-				e.preventDefault();	
-			}
-			if($("#real").val() == "") {
-				alert("이메일 인증을 해주세요");
-				return false;
-			} 
-			
-			
-		    });
- 	});
-	
-	function emailReal(url, name) {
-		if($("#email").val() == "") {
-			alert("이메일을 입력해주세요.");
-			return false;
-		} else {
-			window.open(url + getParameterEmail(), name, "width=300, height=300");
-		}
-	}
-	
-	function getParameterEmail() {
-		var email = "&email=" + $("#email").val() + "&code_check=" + $("#code_check").val();
-		return email;
-		// ? 붙인 이유는 컨트롤러? 붙이듯이 붙여주기위해 ?를 붙임
-		// command를 선언하고
-		// 사용자가 입력한 이메일 값 받아오고
-		// 히든에 발생한 난수를 가져옴
-	}
- 
-</script>
 	
 	<br/><br/>
 	

@@ -20,8 +20,8 @@
 
 table {
 	font-family: "Arial";
-	margin-top: 160px;
-	margin-left: 460px;
+	margin: 0 auto;
+	margin-top: 14%;
 	border: 1px solid #dddddd;
 }
 
@@ -75,16 +75,16 @@ input {
 
 .social_login_btn {
 	display: flex;
+	text-align: center;
+}
+
+#naver_id_login {
+	margin-left: 20%;
 }
 
 #kakao_id_login {
 	cursor: pointer;
-	width: 160px;
-	height: 40px;
-	margin: 2px;
-}
-
-#naver_id_login {
-	text-align: right;
-	margin: 2px;
+	width: 132.5px;
+	height: 50px;
+	margin-left: 24%;
 }
