@@ -442,6 +442,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 			session.close();
 		}
 		return list;
+	}
 
 	public int getAllCountsearch(String searchdeal) {
 		SqlSession session = null;
