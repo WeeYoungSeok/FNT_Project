@@ -47,5 +47,25 @@ public class AlertDaoImpl implements AlertDao {
 		}
 		return alertlist;
 	}
+	
+	public int updateAlert(int dboardno) {
+		SqlSession session = null;
+		int alertres = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			alertres = session.update(namespace+"alertupdate",dboardno);
+		
+			if(alertres > 0) {
+				session.commit();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return alertres;
+	}
 
 }
