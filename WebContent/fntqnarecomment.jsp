@@ -130,7 +130,7 @@ table {
 		<tr>
 		<td align="right" colspan="2">
 			<input type="submit" value="완료">
-			<button onclick="location.href='qna.do?command=qnadelete&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">삭제</button>
+			<button onclick="location.href='qna.do?command=qnadetail&qbboardno=<%=qnaboardlistone.getQbboardno()%>'">취소</button>
 		</td>
 		</tr>
 		

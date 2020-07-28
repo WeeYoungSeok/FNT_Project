@@ -120,7 +120,7 @@ public class SignupController extends HttpServlet {
 			if (res > 0) {
 				response.sendRedirect("signup.do?command=main");
 			} else {
-				dispatch("signup.do?command=signup", request, response);
+				jsResponse("휴대폰 번호 중복입니다.", "fntsignupform.jsp", response);
 			}
 		
 		// 주소 검색
@@ -205,12 +205,14 @@ public class SignupController extends HttpServlet {
 	
 	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
 		String s = "<script type='text/javascript'>" + 
-				   "alert('" + msg + "');" + 
-				   "location.href = '" + url + "';" + 
-				   "</script>";
-		PrintWriter out = response.getWriter();
-		out.append(s);
+					"alert('" + msg + "');" +
+					"location.href='" + url + "';" +
+					"</script>";
+		
+		response.getWriter().append(s);
 	}
+	
+
 	
 	class MyAuthentication extends Authenticator{
 		PasswordAuthentication pa;

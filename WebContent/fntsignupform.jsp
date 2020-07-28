@@ -41,13 +41,24 @@
 	<br/><br/>
 	
 <script type="text/javascript">
+
 	$(function() {
-		$("form").on("submit", function() {
+		$("form").on("submit", function(e) {
 		       
+			if($("#IDCHK").val() == "") {
+				alert("아이디 중복확인 해주세요");
+				e.preventDefault();		
+			} 
+			if($("#NICKCHK").val() == "") {
+				alert("닉네임 중복확은 해주세요");
+				e.preventDefault();	
+			}
 			if($("#real").val() == "") {
 				alert("이메일 인증을 해주세요");
 				return false;
-			}
+			} 
+			
+			
 		    });
  	});
 	
@@ -85,7 +96,7 @@
 			<tr>
 				<th>ID</th>
 				<td><input class="IdChk" type="text" id="id" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/></td>
-				<td><input type="button" id="idchkbtn" value="ID 중복" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');"/></td>
+				<td><input type="button" id="idchkbtn" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');" value="ID 중복"/></td>
 			</tr>
 			<tr>
 				<th>Password</th>
@@ -98,7 +109,7 @@
 			<tr>
 				<th>Nickname</th>
 				<td><input class="NickChk" type="text" id="nick" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" title="n" required="required"/></td>
-				<td><input type="button" id="nickchkbtn" value="Nickname 중복" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');"/></td>
+				<td><input type="button" id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');" value="Nickname 중복"></td>
 			</tr>
 			<tr>
 				<th>Name</th>
@@ -120,14 +131,12 @@
 			<tr>
 				<th>Email</th>
 				<td><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required"/></td>
-				<td><input type="button" value="Email 인증" class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');"/></td>
+				<td><input type="button" class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');" value="Email 인증"></td>
 			</tr>
 		</table>
 		<br/>
 		<button id="resetbtn" type="reset">RESET</button>
 		<button id="submitbtn" type="submit">Sign Up</button>
-		<!-- 이거 뭐야??? -->
-		<button onclick="AA()">ㅎㅇㅎㅇ</button>
 	</form>
 
 </body>

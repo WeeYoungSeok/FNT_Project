@@ -27,5 +27,14 @@ public interface DealBoardDao {
 	public List<DealBoardDto> ascorder(String searchdeal);
 	public List<DealBoardDto> desccate(String searchdeal, String categorylist);
 	public List<DealBoardDto> asccate(String searchdeal, String categorylist);
+	public List<DealBoardDto> buysearchList(String categorylist, Paging paging);
+	public List<DealBoardDto> salesearchList(String categorylist);
+	public int buyGetAllCount(String categorylist);
+	
+	public List<DealBoardDto> searchdealtitle(String search);
+	public List<DealBoardDto> searchdealwriter(String search);
+	
+	public List<DealBoardDto> salesearchtitle(String salesearch);
+	public List<DealBoardDto> salesearchnick(String salesearch);
 	
 }

@@ -95,7 +95,6 @@
 		Paging paging = (Paging)request.getAttribute("paging");
 	%>
 	<section>
-		
 		<div id="ntable">
 		<h1>공지사항</h1>
 		<table>
@@ -160,6 +159,14 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+	
+	<form action="notice.do" method="post">
+		<input type="hidden" name="command" value="searchnotice">
+		
+		<input type="text" name="searchnotice" id="searchnotice" required="required" placeholder="공지사항 검색하기">		
+		<span><input type="submit" value="검색"></span>
+	</form>
+	
 	</section>
 
 	<%@ include file="./form/footer.jsp" %>

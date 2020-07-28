@@ -49,9 +49,10 @@ public class ReplyController extends HttpServlet {
     	  
     	  
 
-    	  System.out.println("컨트롤러에서 replydto : "+replydto);
+
+    	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
     	  
-    	  int res = replydao.insertReply(replydto);
+    	  
     	  
     	  //insert를 해준다.
     	  int alertres = alertbiz.insertAlert(new AlertDto(0, replyid, replyboardno, null));
@@ -64,8 +65,6 @@ public class ReplyController extends HttpServlet {
     	  //3단조인 해야하나??
     	  //근데 did나 alertid 전부 외래키가 memberid야
     	  //int res = replybiz.replyProc(replydto);
-
-    	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
     	 
     	 
     	  int res = replydao.insertReply(replydto);

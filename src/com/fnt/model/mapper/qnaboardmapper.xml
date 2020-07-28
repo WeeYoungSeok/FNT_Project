@@ -56,4 +56,22 @@
  		SET QB_TITLE = #{qbtitle}, QB_CONTENT = #{qbcontent}  
  		WHERE QB_BOARDNO = #{qbboardno} 
  	</update>
+ 	
+ 	<!-- 문의 게시판 검색 -->
+ 	<select id="qnalist" parameterType="String" resultMap="qnaboardDtoResultMap">
+ 		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET,
+ 				QB_FLAG, QB_REGDATE, QB_REDATE
+ 		FROM QNA_BOARD
+ 		WHERE QB_TITLE LIKE '%'||#{searchqna}||'%'
+ 		ORDER BY QB_BOARDNO DESC
+ 	</select>
+ 	
+ 	<select id="nicklist" parameterType="String" resultMap="qnaboardDtoResultMap">
+ 		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET,
+ 				QB_FLAG, QB_REGDATE, QB_REDATE
+ 		FROM QNA_BOARD
+ 		WHERE QB_NICKNAME LIKE '%'||#{searchqna}||'%'
+ 		ORDER BY QB_BOARDNO DESC
+ 	</select>
+ 	
 </mapper>

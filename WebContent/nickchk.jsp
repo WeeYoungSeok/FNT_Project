@@ -18,12 +18,11 @@
 	
 	function confirmnick(bool) { 
 		if (bool == "true") {
-			$("#NICKCHK").val("");
+			opener.document.getElementById("NICKCHK").value = "a";
 			opener.document.getElementsByName("membernickname")[0].title = 'y';
 			opener.document.getElementsByName("memberbirth")[0].focus();
 		} else {
-			$(".NickChk").val("");
-			$("#NICKCHK").val("a");
+			opener.document.getElementById("NICKCHK").value = "";
 			opener.document.getElementsByName("membernickname")[0].focus();
 		}
 		self.close(); 

@@ -86,9 +86,11 @@
  }
  </style>
 </head>
-<%
+	<%
 		List<QnaBoardDto> qnaboardlist = (List<QnaBoardDto>)request.getAttribute("qnaboardlist");
 		Paging paging = (Paging)request.getAttribute("paging");
+		String selectlist = (String)request.getAttribute("selectlist");
+		String searchqna = (String)request.getAttribute("searchqna");
 	%>
 <body>
 	<%@ include file="./form/header.jsp" %>
@@ -173,7 +175,7 @@
 							<td align="left"><span><a href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>"><%=qnaboardlist.get(i).getQbtitle() %></a></span></td>
 							<% 
 						
-						}
+						}  
 					}
 					%>
 					<td><%=qnaboardlist.get(i).getQbnickname() %></td>
@@ -197,8 +199,34 @@
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
-	</jsp:include>	
+	</jsp:include>
+	
+	<form action="qna.do" method="post">
+		<input type="hidden" name="command" value="searchqna">
+		
+		
+		<select id="selectlist" name="selectlist">
+			<option value="T">제목</option>
+			<option value="W">작성자</option>
+		</select>
+		<input type="text" name="searchqna" id="searchqna" value="<%=searchqna %>" required="required" placeholder="내용을 입력하세요.">		
+		<span><input id="ss" type="submit" value="검색"></span>
+	</form>
+		
 	</section>
 	<%@ include file="./form/footer.jsp" %>
+	
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("select[name='selectlist'] option[value="+"<%=selectlist%>"+"]").attr("selected", true);
+	if($("#searchqna").val() == "null") {
+		$("input[name='searchqna']").prop("value","");
+	} else {
+	$("input[name='searchqna']").prop("value","<%=searchqna%>");
+}
+})
+</script>
+	
 </body>
 </html>
