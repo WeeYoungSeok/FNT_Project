@@ -9,5 +9,6 @@ public interface ReplyDao {
 	public int insertReply(ReplyDto replydto);
 	public int updateReplyseq(int replyboardno, int replyno);
 	public int insertReReply(ReplyDto replydto);
-	public ReplyDto selectReply(ReplyDto replydto);
+	public List<ReplyDto> selectReply(ReplyDto replydto);
+	public int deletereply(int replyno);
 }

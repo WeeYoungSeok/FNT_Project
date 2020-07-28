@@ -102,6 +102,10 @@ public class DealBoardController extends HttpServlet {
          String dcontent = request.getParameter("dcontent");
          int dprice = biz.removecomma((request.getParameter("dprice")));
          
+         if(memberdto == null) {
+        	 jsResponse("로그인 해주세요", "dealboard.do?command=insertbuyboard", response);
+         }
+         
          String memberid = memberdto.getMemberid();
          String membernickname = memberdto.getMembernickname();
          
@@ -242,6 +246,7 @@ public class DealBoardController extends HttpServlet {
     	  //지후 : alert_flag를 y에서 n으로 바꿔주는.
     	  int alertres = alertbiz.updateAlert(dboardno);
     	  DealBoardDto dealboarddto = dao.selectDetail(dboardno);
+    	  List<ReplyDto> replylist = replydao.selectReplyList(dboardno);
     	  String memberid="";
     	  if(memberdto == null) {
     		  
@@ -253,6 +258,7 @@ public class DealBoardController extends HttpServlet {
  
     	  WishlistDto wishlistdto = wishlistdao.selectOneWishlist(memberid, wlsellnickname, dboardno);
 
+    	  request.setAttribute("replylist", replylist);
     	  request.setAttribute("wishlistdto", wishlistdto);
     	  request.setAttribute("dealboarddto", dealboarddto);
     	  dispatch("fntdetailsaleboard.jsp", request, response);

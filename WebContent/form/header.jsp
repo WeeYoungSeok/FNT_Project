@@ -53,6 +53,7 @@
 				</script>
 
 				<a href="javascript:newpop();">
+
 				
 				<% 
 					// alert == null
