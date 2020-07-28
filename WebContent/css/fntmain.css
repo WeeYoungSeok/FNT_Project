@@ -1,13 +1,13 @@
     #slide{
-      position:relative;
-      max-width: 100vw;
+      position: relative;
+      height: 100vh;
     }
 
     #slide div{
-      position:absolute;
-      top:0;
-      left:0;
-      display:block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
     }
 
     #slide img{

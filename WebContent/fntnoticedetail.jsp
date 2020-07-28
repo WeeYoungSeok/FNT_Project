@@ -11,38 +11,86 @@
 <title>FNT(Feel New Item) : <%=noticeboardlistone.getNbtitle() %></title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-	.notice{
-		margin-left: 300px;
-		margin-top: 200px;
-		border: 1px solid gray;
-		width: 600px;
-	}
-	.nickname{
-		margin-bottom: 30px;
-	}
-	.button{
-		margin-left: 300px;
-		
-	}
+
+#nboard {
+	margin-top: 20px;
+}
+	
+table {	
+	margin: 0 auto;
+	font-family: "Arial";
+}
+	
+#tolist {
+	cursor: pointer;
+}
+
+#tolist:hover {
+ 	font-weight: bold;
+}
+
+th {
+	width: 100px;
+	height: 26px;
+ 	background-color: #dddddd;
+ 	font-weight: bold;
+ 	padding-top: 2px;
+}
+
+td {
+	padding-left: 10px;
+ 	background-color: #f9f9f9;
+}
+ 
+ #nlistlast {
+ 	background-color: #dddddd;
+ 	height: 2px;
+ }
+ 
+ #btnline {
+ 	background-color: white;
+ }
+ 
+ #btnbox {
+ 	margin-top: 4px; 
+ 	float: right; 
+ 	display: flex;
+ }
+ 
+ #nbbtn {
+ 	width: 50px;
+ 	height: 26px;
+ 	border: none;
+ 	margin-left: 10px;
+ 	border-radius: 4px 4px 4px 4px;
+ 	cursor: pointer;
+ 	background-color: #cccccc;
+ }
+ 
+ #nbbtn:hover {
+ 	font-weight: bold;
+ 	background-color: #bbbbbb;
+ }
 </style>
 </head>
 <body>
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	<section>
-		<table border="1"> 
+		<div id="nboard">
+		<table> 
 			<tr>
-				<td>공지사항 > 
-				<button onclick="location.href='notice.do?command=notice'">목록</button></td>
-			<tr>
-			<tr>
-				<td><%=noticeboardlistone.getNbtitle() %></td>
-			</tr>
-			<tr>
+				<th>게시판</th>
+				<td id="tolist" onclick="location.href='notice.do?command=notice'">공지사항</td>
+				<th>작성자</th>
 				<td><%=noticeboardlistone.getNbnickname() %></td>
+			<tr>
+			<tr>
+				<th>제목</th>
+				<td colspan="3"><%=noticeboardlistone.getNbtitle() %></td>
 			</tr>
 			<tr>
-				<td width="400" height="200"><%=noticeboardlistone.getNbcontent() %></td>
+				<td colspan="4" width="800" height="360"><%=noticeboardlistone.getNbcontent() %></td>
 			</tr>
 	
 		<%
@@ -52,11 +100,14 @@
 		<%
 			} else if (memberdto.getMemberrole().equals("ADMIN")) {
 		%>
+		<tr><td colspan="4" id="nlistlast"></td></tr>
 		<tr>
-		<td align="right">
-			<button onclick="location.href='notice.do?command=noticeupdate&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">수정</button>
-			<button onclick="location.href='notice.do?command=noticedelete&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">삭제</button>
-		</td>
+			<td align="right" colspan="4" id="btnline">
+				<div id="btnbox">
+					<button id="nbbtn" onclick="location.href='notice.do?command=noticeupdate&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">수정</button>
+					<button id="nbbtn" onclick="location.href='notice.do?command=noticedelete&nbboardno=<%=noticeboardlistone.getNbboardno()%>'">삭제</button>
+				</div>
+			</td>
 		</tr>
 		<%
 			} else if (memberdto.getMemberrole().equals("USER")) {
@@ -65,7 +116,7 @@
 		<%
 			}
 		%>
-		</table>
+		</table></div>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 </body>

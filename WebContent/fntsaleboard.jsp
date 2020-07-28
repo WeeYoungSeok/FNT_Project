@@ -19,13 +19,28 @@
  }
  
  h1 {
- 	margin-top: 50px;
+ 	margin-top: 18px;
  	font-family: "Arial";
+ }
+ 
+ #c_btn {
+ 	width: 50px;
+ 	height: 19px;
+ 	border: none;
+ 	border-radius: 2px 2px 2px 2px;
+ 	cursor: pointer;
+ 	color: white;
+ 	background-color: #595959;
+ 	margin-bottom: 10px;
+ }
+ 
+ #c_btn:hover {
+ 	font-weight: bold;
  }
  
  table {
  	margin: 0 auto;
- 	margin-top: 20px;
+ 	margin-top: 10px;
  	font-family: "Arial";
  } 
  
@@ -80,6 +95,21 @@
  	font-weight: bold;
  	background-color: #bbbbbb;
  }
+ 
+ #search {
+ 	margin-top: 6px;
+ 	height: 26px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
+ }
+ 
+ #salesearch {
+ 	margin-top: 8px;
+ 	height: 22px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
+ }
+ 
 </style>
 </head>
 <body>
@@ -115,7 +145,7 @@
 							<option value="A">애완</option>
 							<option value="S">스포츠</option>
 				</select>
-					<input type="submit" value="필터적용">
+					<input id="c_btn" type="submit" value="필터적용">
 				</form>
 			</td>
 		</tr>
@@ -224,7 +254,7 @@
 				<option value="W">작성자</option>
 			</select>
 			<input type="text"  name="salesearch" id="salesearch" value="<%=salesearch%>" required="required" placeholder="내용을 입력하세요"/>
-			<input type="submit" value="검색"/>
+			<input id="sbbtn" type="submit" value="검색"/>
 		</form>
 	
 	
