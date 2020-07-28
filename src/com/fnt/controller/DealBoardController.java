@@ -87,6 +87,7 @@ public class DealBoardController extends HttpServlet {
 
 			dispatch("fntbuyboard.jsp", request, response);
 
+
 		} else if (command.equals("insertbuyboard")) { // 구매글작성form
 			response.sendRedirect("fntinsertbuyboardform.jsp");
 
@@ -255,6 +256,7 @@ public class DealBoardController extends HttpServlet {
 			String searchdeal = request.getParameter("searchdeal");
 			int page = 1;
 
+
 			if (request.getParameter("page") != null) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
@@ -267,6 +269,7 @@ public class DealBoardController extends HttpServlet {
 			List<DealBoardDto> list = dao.searchList(searchdeal,paging);
 
 			request.setAttribute("paging", paging);
+
 			request.setAttribute("list", list);
 			request.setAttribute("searchdeal", searchdeal);
 
@@ -461,5 +464,6 @@ public class DealBoardController extends HttpServlet {
 
 		response.getWriter().append(s);
 	}
+
 
 }

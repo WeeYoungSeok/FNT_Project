@@ -427,6 +427,22 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	}
 
 	@Override
+
+	public List<DealBoardDto> popNick(String dnickname) {
+		SqlSession session = null;
+		List<DealBoardDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"salepopnick",dnickname);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+
 	public int getAllCountsearch(String searchdeal) {
 		SqlSession session = null;
 		int count = 0;
@@ -479,6 +495,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 
 		return count;
 	}
+
 	}
 	
 	

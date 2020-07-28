@@ -1,3 +1,4 @@
+
 <%@page import="com.fnt.util.Paging"%>
 <%@page import="com.fnt.model.dto.DealBoardDto"%>
 <%@page import="java.util.List"%>
@@ -116,9 +117,11 @@
 <%
 	String salesearch = (String)request.getAttribute("salesearch");
 	String salelist = (String)request.getAttribute("salelist");
+	String dnickname = (String)request.getAttribute("dnickname");
 	String categorylist = (String)request.getAttribute("categorylist");
 	List<DealBoardDto> list = (List<DealBoardDto>)request.getAttribute("list");
 	Paging paging = (Paging)request.getAttribute("paging");
+
 %>
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>

@@ -14,6 +14,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
+function popnick(membernickname){
+	open("fntpopnick.jsp?popnick="+membernickname,"","width=200, height=250");
+}
 
 function delChk(dboardno){
 	if(confirm("삭제하시겠습니까?")){
@@ -178,7 +181,7 @@ section {
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${dealboarddto.dnickname }</td>
+				<td><a onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
 			</tr>
 			<tr>
 				<th>내용</th>
