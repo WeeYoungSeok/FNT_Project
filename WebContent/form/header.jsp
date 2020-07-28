@@ -53,7 +53,7 @@
 				</script>
 
 				<a href="javascript:newpop();">
-					<img id="alertbell" alt="alert" src="./img/bell.png"/>
+					
 				
 				<% 
 					// alert == null
