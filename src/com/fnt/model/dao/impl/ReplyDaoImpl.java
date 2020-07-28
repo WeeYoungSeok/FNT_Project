@@ -82,9 +82,9 @@ public class ReplyDaoImpl implements ReplyDao {
 		int res = 0;
 		
 		
+		
 		Map<String,Object> map = new HashMap<>();
 		map.put("parentreplyno",replydto.getReplyno());
-		System.out.println("dao에서 replyno : "+replydto.getReplyno());
 		map.put("replyid", replydto.getReplyid());
 		map.put("replynickname",replydto.getReplynickname());
 		map.put("replyboardno",replydto.getReplyboardno());
@@ -104,24 +104,51 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public ReplyDto selectReply(ReplyDto replydto) {
+	public List<ReplyDto> selectReply(ReplyDto replydto) {
 		SqlSession sqlsession = null;
-		ReplyDto returnreplydto = null;
+		List<ReplyDto> list = null;
+		
+		
+		System.out.println("selectReply DAO에서 넣어야하는 replydto : "+replydto);
 		
 		Map<String,Object> map = new HashMap<>();
 		map.put("replyid", replydto.getReplyid());
 		map.put("replynickname",replydto.getReplynickname());
 		map.put("replyboardno",replydto.getReplyboardno());
 		map.put("replytitle",replydto.getReplytitle());
+		
 		try {
 			sqlsession = getSqlSessionFactory().openSession(false);
-			returnreplydto = sqlsession.selectOne(namespace+"selectreply",map);
+			list = sqlsession.selectList(namespace+"selectreply",map);
+			
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlsession.close();
 		}
-		return returnreplydto;
+		return list;
+	}
+
+	@Override
+	public int deletereply(int replyno) {
+		SqlSession sqlsession = null;
+		int res = 0;
+		
+		try {
+			sqlsession = getSqlSessionFactory().openSession(false);
+			res = sqlsession.delete(namespace+"deletereply",replyno);
+			
+			if(res > 0) {
+				sqlsession.commit();
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		return res;
 	}
 	
 	
