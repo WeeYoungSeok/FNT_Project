@@ -7,11 +7,10 @@
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 구매 글쓰기</title>
 <!-- summernote 넣기 -->
-<link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="./js/summernote-lite.js"></script>
 <script src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="./js/summernote-lite.js"></script>
 <script src="./js/summernote-ko-KR.min.js"></script>
 <link rel="stylesheet" href="./css/summernote-lite.css">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
