@@ -3,9 +3,7 @@ package com.fnt.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,24 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fnt.model.biz.AdminPageBiz;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.fnt.model.biz.AlertBiz;
-import com.fnt.model.biz.DealBoardBiz;
 import com.fnt.model.biz.MyPageBiz;
-import com.fnt.model.biz.impl.AdminPageBizImpl;
 import com.fnt.model.biz.impl.AlertBizImpl;
-import com.fnt.model.biz.impl.DealBoardBizImpl;
 import com.fnt.model.biz.impl.MyPageBizImpl;
-import com.fnt.model.dao.AdminPageDao;
-import com.fnt.model.dao.DealBoardDao;
-import com.fnt.model.dao.impl.AdminPageDaoImpl;
-import com.fnt.model.dao.impl.DealBoardDaoImpl;
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
-import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.model.dto.QnaBoardDto;
 import com.fnt.model.dto.WishlistDto;
+import com.google.gson.Gson;
+
+import net.sf.json.JSONException;
+import sun.rmi.server.Dispatcher;
 
 
 @WebServlet("/mypage.do")
@@ -67,11 +63,49 @@ public class MypageController extends HttpServlet {
 		//알람창뜨게하기
 		if(command.equals("alert")) {
 			String memberid = request.getParameter("memberid");
-			List<AlertDto> alertlist = new ArrayList<AlertDto>();
+			List<AlertDto> alertlist = new ArrayList<>();
 			alertlist = alertbiz.AlertList(memberid);
 			
-			request.setAttribute("alertlist", alertlist);
-			dispatch("fntalert.jsp", request, response);
+			
+			JSONObject obj = new JSONObject();
+			try {
+				JSONArray jArray = new JSONArray();
+			 
+			for(int i = 0; i < alertlist.size(); i++) {
+				
+				JSONObject sObject = new JSONObject();
+				sObject.put("dtitle",alertlist.get(i).getDealboarddto().getDtitle());
+				sObject.put("alertno",alertlist.get(i).getAlertno()); 
+				sObject.put("dnickname",alertlist.get(i).getDealboarddto().getDnickname());
+				sObject.put("dboardno",alertlist.get(i).getDealboarddto().getDboardno());
+				sObject.put("alertboardno",alertlist.get(i).getAlertboardno()); 
+				jArray.add(sObject);
+				
+			}
+			
+			obj.put("ALERTLIST", jArray);
+			
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+			Gson gson = new Gson();
+			String jsonPlace = gson.toJson(obj);
+			
+			System.out.println("controller에서 ajax로 보내기 전 : " + jsonPlace);
+			//request.setAttribute("alertlist", alertlist);
+			
+			
+			PrintWriter out = response.getWriter();
+			out.print(jsonPlace);
+			
+			 
+			
+			//request.setAttribute("alertlist", alertlist);
+			//dispatch("fntalert.jsp", request, response);
+			
+			
+			//request.setAttribute("alertlist", alertlist);
 		}
 		
 		//마이페이지

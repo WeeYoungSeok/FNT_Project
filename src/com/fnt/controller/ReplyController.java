@@ -49,13 +49,11 @@ public class ReplyController extends HttpServlet {
     	  
     	  
 
-    	  System.out.println("컨트롤러에서 replydto : "+replydto);
     	  
-    	  int res = replydao.insertReply(replydto);
     	  
     	  //insert를 해준다.
     	  int alertres = alertbiz.insertAlert(new AlertDto(0, replyid, replyboardno, null));
-    	  System.out.println("replycontroller에서 받은 alertdto : " + alertres);
+    	  System.out.println("replycontroller에서 받은 alertres : " + alertres);
     	  
     	  //insert에 성공한 selectList를 여기서 출력해서 그 결과값을 fntalert.jsp에
     	  //setAttribute해서 보내고 fntalert.jsp에서 받아서 출력해준다.
@@ -71,6 +69,7 @@ public class ReplyController extends HttpServlet {
     	  int res = replydao.insertReply(replydto);
     	  ReplyDto returnReplyDto = null;
     	  returnReplyDto = replydao.selectReply(replydto);
+    	  System.out.println("컨트롤러에서 replydto : "+replydto);
     	
 			/*
 			 * Map<String,Object>map = new HashMap<>(); map.put()
