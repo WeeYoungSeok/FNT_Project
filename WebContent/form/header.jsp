@@ -17,14 +17,28 @@
 	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 %>
 	<header>
+		
+		<div id="headerzone">
+		
+		<!-- 로고 -->
+		<img class="fnt_logo" src="./img/fnt_logo.png" onclick="location.href='fntmain.jsp'"/>
+				
+		<!-- 통합검색 -->
+		<form id="searchzone" action="dealboard.do" method="post">
+			<input type="hidden" name="command" value="searchdeal">
+			<input type="text" name="searchdeal" id="searchdeal" required="required" placeholder="구매글 및 판매글만 검색 가능합니다.">		
+			<span>
+				<button class="headerbtn" type="submit">검색</button>
+			</span>
+		</form>
+	
 		<span class="mysection">
 			<!-- 마이페이지 -->
-			<!-- <a href=""></a> -->
 			<%
 				if(memberdto != null) {
 			%>
-				<p><a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>"><%=memberdto.getMembernickname() %></a>님 환영합니다.</p>
-				<button onclick="location.href='LoginCrudController?command=logout'">logout</button>
+				<p id="loginmsg"><b><a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>"><%=memberdto.getMembernickname() %></a></b>님<br/>환영합니다!</p>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
 				%>
@@ -37,28 +51,34 @@
 						open(url, "", option);
 					}
 				</script>
+
 				<a href="javascript:newpop();">
 					<img id="alertbell" alt="alert" src="./img/bell.png"/>
+				
+				<% 
+					// alert == null
+				%>
+					<img class="alertbell" alt="alert" src="./img/bell.png"/>
+				<%
+					// alert != null
+				%>
+					<img class="alertbell" alt="alert" src="./img/bell_a.png"/>
+
 				</a>
 				<%
 					}
 				} else {
 			%>
-				<button onclick="location.href='fntlogincrud.jsp'">로그인</button>
+				<button class="headerbtn" onclick="location.href='fntlogincrud.jsp'">Sign In</button>
 				<!-- 알림 -->
 			<%
 				}
 			%>
 			
-			
 			<!-- 번역 -->
-			<a id="trans" href="">KO/EN</a>
+			<button id="trans" onclick="">KO/EN</button>
 			
 		</span>
-		
-		<!-- 로고 -->
-		<div class="fnt_logo">
-			<img src="./img/fnt_logo.png" onclick="location.href='fntmain.jsp'"/>
 		</div>
 	</header>
 	

@@ -49,6 +49,8 @@ public class ReplyController extends HttpServlet {
     	  
     	  
 
+    	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
+    	  
     	  
     	  
     	  //insert를 해준다.
@@ -62,8 +64,6 @@ public class ReplyController extends HttpServlet {
     	  //3단조인 해야하나??
     	  //근데 did나 alertid 전부 외래키가 memberid야
     	  //int res = replybiz.replyProc(replydto);
-
-    	  ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
     	 
     	 
     	  int res = replydao.insertReply(replydto);

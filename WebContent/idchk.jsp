@@ -18,15 +18,15 @@
 	
 	function confirmid(bool) { 
 		if (bool == "true") {
-			$('#IDCHK').val("");
+			opener.document.getElementById("IDCHK").value = "a";
 			opener.document.getElementsByName("memberid")[0].title = 'y';
 			opener.document.getElementsByName("memberpw")[0].focus();
+			self.close(); 
 		} else {
-			$('.IdChk').val("");
-			$('#IDCHK').val("a");
+			opener.document.getElementById("IDCHK").value = "";
 			opener.document.getElementsByName("memberid")[0].focus();
-		}
 		self.close(); 
+		}
 	}
 	
 </script>

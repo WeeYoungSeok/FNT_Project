@@ -14,5 +14,7 @@ public interface QnaBoardDao {
 	public int insert(QnaBoardDto dto);
 	public int recomment(QnaBoardDto dto);
 	public int update(QnaBoardDto dto);
+	public List<QnaBoardDto> searchList(String searchqna);
+	public List<QnaBoardDto> searchWriter(String searchqna);
 	
 }
