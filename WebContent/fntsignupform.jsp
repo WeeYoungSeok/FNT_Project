@@ -85,7 +85,7 @@
 			<tr>
 				<th>ID</th>
 				<td><input class="IdChk" type="text" id="id" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/></td>
-				<td><button id="idchkbtn" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');">ID 중복</button></td>
+				<td><input type="button" id="idchkbtn" value="ID 중복" class="in_btn" onclick="search_id('signup.do?command=idchk','idchk');"/></td>
 			</tr>
 			<tr>
 				<th>Password</th>
@@ -98,7 +98,7 @@
 			<tr>
 				<th>Nickname</th>
 				<td><input class="NickChk" type="text" id="nick" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" title="n" required="required"/></td>
-				<td><button id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');">Nickname 중복</button></td>
+				<td><input type="button" id="nickchkbtn" value="Nickname 중복" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');"/></td>
 			</tr>
 			<tr>
 				<th>Name</th>
@@ -115,12 +115,12 @@
 			<tr>
 				<th>Address</th>
 				<td><input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로명주소를 입력해주세요." required="required" onclick="juso();"/><br/></td>
-				<td><button class="in_btn" onclick="juso();">도로명주소 검색</button></td>
+				<td><input type="button" value="도로명주소 검색" class="in_btn" onclick="juso();"/></td>
 			</tr>
 			<tr>
 				<th>Email</th>
 				<td><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required"/></td>
-				<td><button class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');">Email 인증</button></td>
+				<td><input type="button" value="Email 인증" class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');"/></td>
 			</tr>
 		</table>
 		<br/>

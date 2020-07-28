@@ -155,7 +155,7 @@
 						if (memberdto == null) {
 							if (qnaboardlist.get(i).getQbsecret().equals("Y")) {
 					%>
-							<td align="left"><span><a onclick="alert('비밀글입니다'); return false;" href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>">(비밀글)<%=qnaboardlist.get(i).getQbtitle() %></a></span></td>
+							<td align="left"><span><a onclick="alert('비밀글입니다'); return false;" href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>">[비밀글] <%=qnaboardlist.get(i).getQbtitle() %></a></span></td>
 					<%
 							} else {
 					%>
@@ -166,7 +166,7 @@
 						
 							if (qnaboardlist.get(i).getQbsecret().equals("Y")) {
 					%>
-							<td align="left"><span><a id="secret" onclick="<%=((qnaboardlist.get(i).getQbid().equals(memberdto.getMemberid())) || (memberdto.getMemberrole().equals("ADMIN"))) ? "return true;" : "alert('비밀글입니다'); return false;"%>" href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>">(비밀글)<%=qnaboardlist.get(i).getQbtitle() %></a></span></td>
+							<td align="left"><span><a id="secret" onclick="<%=((qnaboardlist.get(i).getQbid().equals(memberdto.getMemberid())) || (memberdto.getMemberrole().equals("ADMIN"))) ? "return true;" : "alert('비밀글입니다'); return false;"%>" href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>">[비밀글] <%=qnaboardlist.get(i).getQbtitle() %></a></span></td>
 					<%
 						} else {
 							%>
@@ -186,7 +186,7 @@
 			%>
 			<tr><td colspan="5" id="qlistlast"></td></tr>
 			<tr>
-				<td colspan="5" align="right">
+				<td id="btnline" colspan="5" align="right">
 					<button id="qbbtn" onclick="location.href='qna.do?command=qnainsert'">글 작성</button>
 				</td>
 			</tr>
