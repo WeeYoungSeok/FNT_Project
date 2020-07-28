@@ -249,7 +249,7 @@ public class DealBoardController extends HttpServlet {
     	  dispatch("fntdetailsaleboard.jsp", request, response);
       } else if(command.equals("searchdeal")) {		//통합검색 
     	  String searchdeal = request.getParameter("searchdeal");
-    	  System.out.println(searchdeal);
+    	  
     	  
     	  List<DealBoardDto> list = dao.searchList(searchdeal);
     	  request.setAttribute("list", list);
@@ -259,7 +259,7 @@ public class DealBoardController extends HttpServlet {
       } else if(command.equals("searchlist")) {
     	  String orderlist = request.getParameter("orderlist");
     	  String categorylist = request.getParameter("categorylist");
-    	  System.out.println("오더" + orderlist + "카테고리" + categorylist);
+    	  
     	  
     	  List<DealBoardDto> list = null;
     	  if(orderlist.equals("D") && categorylist.equals("CHECK")) {

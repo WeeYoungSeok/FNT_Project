@@ -54,5 +54,10 @@
 		WHERE NB_BOARDNO = #{nbboardno}
 	</delete>
 	
-	
+	<select id="searchnotice" parameterType="String" resultMap="noticeboardDtoResultMap">
+		SELECT NB_BOARDNO, NB_ID, NB_NICKNAME, NB_TITLE, NB_CONTENT, NB_REGDATE
+ 		FROM NOTICE_BOARD
+ 		WHERE NB_TITLE LIKE '%'||#{searchnotice}||'%'
+	</select>
+
 </mapper>

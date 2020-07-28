@@ -1,4 +1,4 @@
-package com.fnt.controller;
+ package com.fnt.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.fnt.model.biz.QnaBoardBiz;
 import com.fnt.model.biz.impl.QnaBoardBizImpl;
+import com.fnt.model.dao.QnaBoardDao;
+import com.fnt.model.dao.impl.QnaBoardDaoImpl;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.NoticeBoardDto;
 import com.fnt.model.dto.QnaBoardDto;
@@ -36,7 +38,7 @@ public class QnaController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		QnaBoardBiz qnaboardbiz = new QnaBoardBizImpl();
-
+		QnaBoardDao dao = new QnaBoardDaoImpl();
 		String command = request.getParameter("command");
 		HttpSession session = request.getSession();
 		MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
@@ -139,6 +141,27 @@ public class QnaController extends HttpServlet {
 				response.sendRedirect("qna.do?command=qnadetail&qbboardno="+qbboardno);
 			}
 		} else if (command.equals("qnadelete")) {
+			
+		}else if(command.equals("searchqna")) {
+			String searchqna = request.getParameter("searchqna");
+			String selectlist = request.getParameter("selectlist");
+			
+			if(selectlist.equals("T")) {
+				List<QnaBoardDto> list = dao.searchList(searchqna);
+				request.setAttribute("qnaboardlist", list);
+				request.setAttribute("selectlist", selectlist);
+				request.setAttribute("searchqna", searchqna);
+				
+				dispatch("fntqna.jsp", request, response);
+				
+			}else {
+				List<QnaBoardDto> list = dao.searchWriter(searchqna);
+				request.setAttribute("qnaboardlist", list);
+				request.setAttribute("selectlist", selectlist);
+				request.setAttribute("searchqna", searchqna);
+				
+				dispatch("fntqna.jsp", request, response);
+			}
 			
 		}
 	}
