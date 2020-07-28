@@ -22,6 +22,11 @@
  	float: center;
  }
  
+ h1 {
+ 	margin-top: 50px;
+ 	font-family: "Arial";
+ }
+ 
  table {
  	margin: 0 auto;
  	margin-top: 20px;
@@ -35,14 +40,12 @@
  	padding-top: 2px;
  }
  
- tr:hover {
- 	background-color: #efefef;
+ td {
+ 	height: 24px;
  }
  
- h1 {
- 	margin-top: 50px;
- 	font-family: "Arial";
- 	text-align: center;
+ tr:hover {
+ 	background-color: #efefef;
  }
  
  span {
@@ -63,6 +66,24 @@
  	background-color: #dddddd;
  	height: 2px;
  }
+ 
+ #btnline:hover {
+ 	background-color: white;
+ }
+ 
+ #nbbtn {
+ 	width: 50px;
+ 	height: 26px;
+ 	border: none;
+ 	border-radius: 4px 4px 4px 4px;
+ 	cursor: pointer;
+ 	background-color: #cccccc;
+ }
+ 
+ #nbbtn:hover {
+ 	font-weight: bold;
+ 	background-color: #bbbbbb;
+ }
  </style>
 </head>
 <body>
@@ -74,15 +95,14 @@
 		Paging paging = (Paging)request.getAttribute("paging");
 	%>
 	<section>
-	
-		<h1>공지사항</h1>
 		<div id="ntable">
+		<h1>공지사항</h1>
 		<table>
 		
-			<col width="50">
-     		<col width="350">
-     	 	<col width="100">
-      		<col width="200">
+			<col width="100">
+     		<col width="400">
+     	 	<col width="150">
+      		<col width="250">
       		
       		<tr align="center">
       			<th>No.</th>
@@ -103,7 +123,9 @@
 			%>
 				<tr align="center">
 					<td><%=noticeboardlist.get(i).getNbboardno() %></td>
-					<td align="left"><span onclick="location.href='notice.do?command=noticedetail&nbboardno=<%=noticeboardlist.get(i).getNbboardno()%>'"><%=noticeboardlist.get(i).getNbtitle() %></span></td>
+					<td align="left">
+						<span onclick="location.href='notice.do?command=noticedetail&nbboardno=<%=noticeboardlist.get(i).getNbboardno()%>'"><%=noticeboardlist.get(i).getNbtitle() %></span>
+					</td>
 					<td><%=noticeboardlist.get(i).getNbnickname() %></td>
 					<td><%=noticeboardlist.get(i).getNbregdate() %></td>
 				<tr>
@@ -113,22 +135,21 @@
 			
 			%>
 			<%
-				if (memberdto==null || memberdto.getMemberrole().equals("USER")) {
+				if (memberdto == null || memberdto.getMemberrole().equals("USER")) {
 			%>
-			
+			<tr><td colspan="4" id="nlistlast"></td></tr>
 			<%
 				} else {
 			%>
 			<tr>
-				<td colspan="4" align="right">
-					<button onclick="location.href='notice.do?command=noticeinsert'">글 작성</button>
+				<td id="btnline" colspan="4" align="right">
+					<button id="nbbtn" onclick="location.href='notice.do?command=noticeinsert'">글 작성</button>
 				</td>
 			</tr>
 			
 			<%
 				}
 			%>
-			<tr><td colspan="4" id="nlistlast"></td></tr>
 		</table></div>
 		<br/>
 	<jsp:include page="./paging/fntnoticepaging.jsp">

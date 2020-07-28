@@ -126,7 +126,7 @@
 			<tr>
 				<th>Address</th>
 				<td><input type="text" class="memberaddr" name="memberaddr" placeholder="거래 시 배송지로 이용될 도로명주소를 입력해주세요." required="required" onclick="juso();"/><br/></td>
-				<td><button class="in_btn" onclick="juso();">도로명주소 검색</button></td>
+				<td><input type="button" value="도로명주소 검색" class="in_btn" onclick="juso();"/></td>
 			</tr>
 			<tr>
 				<th>Email</th>

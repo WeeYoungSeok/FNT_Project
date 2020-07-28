@@ -8,20 +8,75 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매</title>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
 
-section {
-	padding-top: 90px;
-	padding-left: 240px;
-}
-a{
+#stable {
+	float: center;
+ }
+ 
+ h1 {
+ 	margin-top: 50px;
+ 	font-family: "Arial";
+ }
+ 
+ table {
+ 	margin: 0 auto;
+ 	margin-top: 20px;
+ 	font-family: "Arial";
+ } 
+ 
+ th {
+ 	background-color: #dddddd;
+ 	height: 26px;
+ 	font-weight: bold;
+ 	padding-top: 2px;
+ }
+ 
+ td {
+ 	height: 24px;
+ }
+ 
+ tr:hover {
+ 	background-color: #efefef;
+ }
+ 
+ span {
+ 	cursor: pointer;
+ 	margin-left: 10px;
+ }
+ 
+ span:hover {
+ 	font-weight: bold;
+ }
+ 
+ a {
 	text-decoration: none;
 	color: black;
-}
+ }
+ 
+ #slistlast {
+ 	background-color: #dddddd;
+ 	height: 2px;
+ }
+ 
+ #btnline:hover {
+ 	background-color: white;
+ }
+ 
+ #sbbtn {
+ 	width: 50px;
+ 	height: 26px;
+ 	border: none;
+ 	border-radius: 4px 4px 4px 4px;
+ 	cursor: pointer;
+ 	background-color: #cccccc;
+ }
+ 
+ #sbbtn:hover {
+ 	font-weight: bold;
+ 	background-color: #bbbbbb;
+ }
 </style>
 </head>
 <body>
@@ -32,7 +87,16 @@ a{
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>
 	<section>
-		<table border="1">
+
+		<div id="stable">
+		<h1>판매게시판</h1>
+		<table>
+				<col width="100">
+     			<col width="100">
+     	 		<col width="300">
+      			<col width="150">
+     	 		<col width="150">
+      			<col width="150">
 		<tr>
 			<td colspan="6">
 			<form action="dealboard.do" method="post">
@@ -50,12 +114,12 @@ a{
 			</td>
 		</tr>
 			<tr>
-				<th>글 번 호</th>
-				<th>카테고리</th>
-				<th>제      목</th>
-				<th>작 성 자</th>
-				<th>가      격</th>
-				<th>작 성 일</th>
+				<th>No.</th>
+				<th>분류</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>가격</th>
+				<th>작성일</th>
 			</tr>
 			<c:choose>
 				<c:when test="${empty list }">
@@ -84,22 +148,22 @@ a{
 								<td>스포츠</td>
 							</c:otherwise>
 							</c:choose>
-							<td>
-								<a href="dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}">${dealboarddto.dtitle }</a>
+							<td align="left">
+								<span onclick="location.href='dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}'">${dealboarddto.dtitle }</span>
 							</td>
 							<td>${dealboarddto.dnickname }</td>
 							<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>
 							<td>${dealboarddto.dregdate }</td>
 						</tr>
 					</c:forEach>
+					<tr><td colspan="6" id="slistlast"></td></tr>
 					<%
-					
 						MemberDto dto = (MemberDto) session.getAttribute("memberdto");
 						if(dto != null){
 					%>		
 					<tr>
-						<td colspan="6" align="right">
-							<input type="button" value="글작성" onclick="location.href='dealboard.do?command=insertsaleboard'">
+						<td id="btnline" colspan="6" align="right">
+							<button id="sbbtn" onclick="location.href='dealboard.do?command=insertsaleboard'">글 작성</button>
 						</td>
 					</tr>
 					<%
@@ -107,7 +171,7 @@ a{
 					%>
 				</c:otherwise>
 			</c:choose>
-		</table>
+		</table></div>
 		<jsp:include page="./paging/fntsalepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
