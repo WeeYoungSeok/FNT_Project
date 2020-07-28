@@ -3,7 +3,6 @@ package com.fnt.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,16 +19,9 @@ import com.fnt.model.biz.AdminPageBiz;
 import com.fnt.model.biz.ReportPageBiz;
 import com.fnt.model.biz.impl.AdminPageBizImpl;
 import com.fnt.model.biz.impl.ReportPageBizImpl;
-import com.fnt.model.dao.AdminPageDao;
-import com.fnt.model.dao.impl.AdminPageDaoImpl;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.ReportDto;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import net.sf.json.JSONException;
 
@@ -69,7 +61,6 @@ public class AdminController extends HttpServlet {
 		// enabled가 report이면 reportdto로 전체출력해주고 뿌려줘야한다.
 		if (command.equals("select")) {
 			String enabled = request.getParameter("enabled");
-			System.out.println(enabled + "<----");
 				List<MemberDto> list = new ArrayList<>();
 		        list = adminpagebiz.selectAll(enabled);
 		        List<ReportDto> list1 = new ArrayList<>();

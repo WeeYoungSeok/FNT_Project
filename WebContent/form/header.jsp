@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/header.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <%
@@ -43,11 +44,17 @@
 				%>
 				<script type="text/javascript">
 					function newpop(url, name){
-						var memberid = "<%=memberdto.getMemberid()%>";
-						window.open(url + "&memberid=" + memberid, name, "width=400, height=600");
+						var memberid = '<%=memberdto.getMemberid()%>';
+						var url = "fntalert.jsp?command=alert&memberid=" + memberid;
+						var option = "width=400, height=500";
+						
+						open(url, "", option);
 					}
 				</script>
-				<a href="javascript:newpop('mypage.do?command=alert', 'name');">
+
+				<a href="javascript:newpop();">
+					<img id="alertbell" alt="alert" src="./img/bell.png"/>
+				
 				<% 
 					// alert == null
 				%>
@@ -56,6 +63,7 @@
 					// alert != null
 				%>
 					<img class="alertbell" alt="alert" src="./img/bell_a.png"/>
+
 				</a>
 				<%
 					}
@@ -72,8 +80,8 @@
 			
 		</span>
 		</div>
-		
 	</header>
+	
 	
 
 </body>

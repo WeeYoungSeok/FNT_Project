@@ -13,8 +13,8 @@
 <script type="text/javascript">
 function getParameterValues(){
 	var queryString = "?command=select&enabled=" + $("select[name=enabled]").val();
-return queryString;
-}
+	return queryString;
+ }
 function enabledValue() {
 	var enabled = $("select[name=enabled]").val();
 	return enabled;
@@ -118,8 +118,6 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			         );
 			         $.each(data, function(key, val){
 			        	 if(key=="REPORT"){
-			        		 alert(key);
-			        		 alert(val);
 			               var list = val;
 			               for (var i = 0; i < list.length; i++) {
 			                  var str = list[i];

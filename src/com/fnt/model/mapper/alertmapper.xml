@@ -33,11 +33,10 @@
 	</insert>
 	
 	<select id="alertlist" parameterType="String" resultMap="alertDtoResultMap">
-		SELECT D.D_TITLE, A.ALERT_NO FROM DEAL_BOARD D
-			JOIN ALERT A ON D.D_ID = A.ALERT_ID 
+		SELECT D.D_TITLE, A.ALERT_NO, D.D_NICKNAME, D.D_BOARDNO, A.ALERT_BOARDNO FROM DEAL_BOARD D
+			JOIN ALERT A ON (D.D_BOARDNO = A.ALERT_BOARDNO)
 			WHERE D.D_ID = #{memberid}
 			AND A.ALERT_FLAG = 'Y'
-			AND D.D_FLAG = 'B'
 			ORDER BY A.ALERT_NO DESC
 	</select>
 </mapper>
