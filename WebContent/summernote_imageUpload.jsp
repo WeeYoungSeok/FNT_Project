@@ -9,6 +9,7 @@
    // getrealpath
     
    String realpath =  request.getSession().getServletContext().getRealPath("/");
+	System.out.println("realpath : " +realpath);
     
     System.out.println("[이미지 업로드 하는중]");
 //	String uploadPath = "D:/Project/FNT_Project/WebContent/upload/";

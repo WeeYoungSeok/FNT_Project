@@ -1,3 +1,6 @@
+<%@page import="com.fnt.util.Paging"%>
+<%@page import="com.fnt.model.dto.DealBoardDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -113,6 +116,9 @@
 <%
 	String salesearch = (String)request.getAttribute("salesearch");
 	String salelist = (String)request.getAttribute("salelist");
+	String categorylist = (String)request.getAttribute("categorylist");
+	List<DealBoardDto> list = (List<DealBoardDto>)request.getAttribute("list");
+	Paging paging = (Paging)request.getAttribute("paging");
 %>
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>
@@ -202,13 +208,42 @@
 				</c:otherwise>
 			</c:choose>
 		</table></div>
-		<jsp:include page="./paging/fntsalepaging.jsp">
+		<%
+		if(categorylist == null) {
+			%>
+			<jsp:include page="./paging/fntsalepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
     <jsp:param value="${paging.endPage}" name="endPage"/>
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+			<% 
+		} else {
+			if(categorylist.equals("A")||categorylist.equals("S")||categorylist.equals("D")||categorylist.equals("C")||categorylist.equals("F")) {
+		%>
+			<jsp:include page="./paging/fntsalecategorypaging.jsp">
+			<jsp:param value="<%=categorylist %>" name="dcategory"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+		<% 
+			} else {
+		%>
+		<jsp:include page="./paging/fntbuypaging.jsp">
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+	<%
+			}
+		}
+	%>
 	
 	
 	<form action="dealboard.do" method="post">
@@ -225,5 +260,18 @@
 	
 	</section>
 <%@ include file="./form/footer.jsp" %>	
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	   $("select[name='salelist'] option[value="+"<%=salelist%>"+"]").attr("selected", true);
+	   if($("input[name=salesearch]").val() == "null") {
+	      $("input[name='salesearch']").prop("value","");
+	   } else {
+	   $("input[name='salesearch']").prop("value","<%=salesearch%>");
+	}
+	})
+</script>
+
 </body>
 </html>

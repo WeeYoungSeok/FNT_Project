@@ -13,6 +13,9 @@
 	.alertone:nth-child(even){
 		background-color : gray;
 	}
+	h3{
+		text-align : center;
+	}
 </style>
 	<%
 		//세션에 값이 담긴 memberdto을 받아온다.
@@ -35,6 +38,7 @@
 	
 		onload=function(){
 			//이 창이 load되자마자 mypagecontroller에 meㄷmberid값을 전달해줘야한다.
+			
 			//setInterval(function(){
 			//$("#alertlist").empty();
 			console.log("!");
@@ -72,7 +76,7 @@
 					alert("연결 실패");
 				}
 			});
-		//}, 30000);
+		//}, 1000);
 	}
 		
 	</script>

@@ -23,16 +23,19 @@ public interface DealBoardDao {
 	public int updateDealBoard(DealBoardDto dto);
 	
 	//통합검색 리스트로 출력
-	public List<DealBoardDto> searchList(String searchdeal);
+	public List<DealBoardDto> searchList(String searchdeal,Paging paging);
+	public int getAllCountsearch(String searchdeal);
 	public List<DealBoardDto> ascorder(String searchdeal);
 	public List<DealBoardDto> desccate(String searchdeal, String categorylist);
 	public List<DealBoardDto> asccate(String searchdeal, String categorylist);
 	public List<DealBoardDto> buysearchList(String categorylist, Paging paging);
-	public List<DealBoardDto> salesearchList(String categorylist);
+	public List<DealBoardDto> salesearchList(String categorylist, Paging paging);
 	public int buyGetAllCount(String categorylist);
+	public int saleGetAllCount(String categorylist);
 	
-	public List<DealBoardDto> searchdealtitle(String search);
+	public List<DealBoardDto> searchdealtitle(String search,Paging paging);
 	public List<DealBoardDto> searchdealwriter(String search);
+	public int buysearchAllCount(String search);
 	
 	public List<DealBoardDto> salesearchtitle(String salesearch);
 	public List<DealBoardDto> salesearchnick(String salesearch);

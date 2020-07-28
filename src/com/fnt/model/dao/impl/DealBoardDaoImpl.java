@@ -198,13 +198,20 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	
 	//통합검색 리스트로 출력
 	@Override
-	public List<DealBoardDto> searchList(String searchdeal){
+	public List<DealBoardDto> searchList(String searchdeal,Paging paging){
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("searchdeal", searchdeal);
+		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"searchdeal", searchdeal);
+			list = session.selectList(namespace+"searchdeal", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -317,13 +324,23 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	}
 
 	@Override
-	public List<DealBoardDto> searchdealtitle(String search) {
+	public List<DealBoardDto> searchdealtitle(String search, Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("search", search);
+		System.out.println("startNum" + startNum);
+		System.out.println("endNum" + endNum);
+		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace + "searchdealtitle",search);
+			list = session.selectList(namespace + "searchdealtitle",map);
+			System.out.println("여기까진 왓니?");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -351,13 +368,22 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	}
 
 	@Override
-	public List<DealBoardDto> salesearchList(String categorylist) {
+	public List<DealBoardDto> salesearchList(String categorylist, Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("categorylist", categorylist);
+		System.out.println("startNum" + startNum);
+		System.out.println("endNum" + endNum);
+		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"salecategorylist",categorylist);
+			list = session.selectList(namespace+"salecategorylist",map);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -399,9 +425,64 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		}
 		return list;
 	}
+
+	@Override
+	public int getAllCountsearch(String searchdeal) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "countsearch",searchdeal);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+	}
+
+	@Override
+	public int saleGetAllCount(String categorylist) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "salecount",categorylist);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+	}
+
+	@Override
+	public int buysearchAllCount(String search) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "buysearchcount",search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+	}
+	}
 	
 	
 	
 
 	
-}
+

@@ -138,6 +138,7 @@
 		<td colspan="6">
 		<form action="dealboard.do" method="post">
 			<input type="hidden" name="command" value="buysearchlist"/>	
+			<input type="hidden" name="search" value="asldjskalsjalsjdk"/>
 		<select id="categorylist" name="categorylist">
 							<option value="CHECK">카테고리</option>
 							<option value="F">패션</option>
@@ -211,8 +212,9 @@
 				</c:otherwise>
 			</c:choose>
 		</table></div>
+
 		<%
-		if(categorylist == null) {
+		if(categorylist == null || search == null) {
 			%>
 			<jsp:include page="./paging/fntbuypaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
@@ -226,6 +228,7 @@
 			if(categorylist.equals("A")||categorylist.equals("S")||categorylist.equals("D")||categorylist.equals("C")||categorylist.equals("F")) {
 		%>
 			<jsp:include page="./paging/fntbuycategorypaging.jsp">
+			<jsp:param value="<%=search %>" name="search"/>
 			<jsp:param value="<%=categorylist %>" name="dcategory"/>
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -234,7 +237,7 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 		<% 
-			} else {
+			} else if(categorylist.equals("CHECK")){
 		%>
 		<jsp:include page="./paging/fntbuypaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
@@ -244,31 +247,37 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 	<%
+			} else if(selecttw.equals("W") || selecttw.equals("T")) {
+				%>
+				<jsp:include page="./paging/fntbuysearchtitlepaging.jsp">
+				<jsp:param value="<%=selecttw %>" name="selecttw"/>
+			<jsp:param value="<%=search %>" name="search"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+				<% 
 			}
 		}
 	%>
 		<form action="dealboard.do" method="post">
 		<input type="hidden" name="command" value="search"/>
-			<select name="selecttw" id="searchttw">
+		<input type="hidden" name="categorylist" value="Z"/>
+			<select name="selecttw" id="search">
 				<option value="T">제목</option>
 				<option value="W">작성자</option>
 			</select>
-			<input type="text" id="searchbuy" name="searchbuy" value="<%=search%>" required="required" placeholder="내용을 입력하세요"/>
-			<input id="bbbtn" type="submit" value="검색"/>
+			<input type="text"  name="search" value="" required="required" />
+			<input type="submit" value="검색"/>
 		</form>
 	</section>
 <%@ include file="./form/footer.jsp" %>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	   $("select[name='selecttw'] option[value="+"<%=selecttw%>"+"]").attr("selected", true);
-	   if($("input[name=search]").val() == "null") {
-	      $("input[name='search']").prop("value","");
-	   } else {
-	   $("input[name='search']").prop("value","<%=search%>");
-	}
-	})
+
 </script>
 </body>
 </html>

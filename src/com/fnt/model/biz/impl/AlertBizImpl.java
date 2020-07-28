@@ -25,4 +25,11 @@ public class AlertBizImpl implements AlertBiz {
 		return dao.AlertList(memberid);
 	}
 
+	@Override
+	public int updateAlert(int dboardno) {
+		return dao.updateAlert(dboardno);
+	}
+
+	
+
 }

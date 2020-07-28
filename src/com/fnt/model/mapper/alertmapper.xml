@@ -33,10 +33,21 @@
 	</insert>
 	
 	<select id="alertlist" parameterType="String" resultMap="alertDtoResultMap">
-		SELECT D.D_TITLE, A.ALERT_NO, D.D_NICKNAME, D.D_BOARDNO, A.ALERT_BOARDNO FROM DEAL_BOARD D
-			JOIN ALERT A ON (D.D_BOARDNO = A.ALERT_BOARDNO)
+		SELECT D.D_TITLE, A.ALERT_NO, D.D_NICKNAME, D.D_BOARDNO, A.ALERT_BOARDNO, A.ALERT_FLAG
+		FROM ALERT A
+			JOIN DEAL_BOARD D ON (D.D_BOARDNO = A.ALERT_BOARDNO)
 			WHERE D.D_ID = #{memberid}
 			AND A.ALERT_FLAG = 'Y'
 			ORDER BY A.ALERT_NO DESC
+	</select>
+	
+	<update id="alertupdate" parameterType="int">
+		UPDATE ALERT SET ALERT_FLAG = 'N'
+		WHERE ALERT_BOARDNO = #{dboardno}
+	</update>
+	
+	<select id="alertcount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM ALERT WHERE ALERT_FLAG = 'Y'
+		AND ALERT_ID = #{memberid}
 	</select>
 </mapper>

@@ -13,15 +13,16 @@
 		<result property="replyregdate" column="REPLY_REGDATE"/>
 	</resultMap>
 	
-<!-- 댓글 하나 찾아오기 -->
+<!-- 댓글  찾아오기 -->
 <select id ="selectreply" parameterType="map" resultMap="replyDtoResultMap">
 	SELECT REPLY_NO, REPLY_ID, REPLY_NICKNAME, REPLY_BOARDNO, REPLY_GROUPNO, 
-		REPLY_GROUPNOSEQ, REPLY_TITLETAB, REPLY_TITLE, REPLY_REGDATE
+			REPLY_GROUPNOSEQ, REPLY_TITLETAB, REPLY_TITLE, REPLY_REGDATE
 	FROM REPLY
 	WHERE REPLY_ID = #{replyid}
 	AND REPLY_NICKNAME = #{replynickname}
 	AND REPLY_TITLE = #{replytitle}
 	AND REPLY_BOARDNO = #{replyboardno}
+	ORDER BY REPLY_NO
 </select>
 	
 <!-- 댓글 리스트 가져오기 -->
@@ -37,7 +38,7 @@
 				REPLY_REGDATE
 		FROM REPLY
 		WHERE REPLY_BOARDNO = #{replyboardno}
-		ORDER BY REPLY_GROUPNO DESC, REPLY_GROUPNOSEQ
+		ORDER BY REPLY_GROUPNO, REPLY_REGDATE	
 	</select>
 	
 <!-- 댓글 등록 -->
@@ -74,13 +75,13 @@
 	<update id="updatereply" parameterType="map">
 		UPDATE REPLY
 		SET REPLY_GROUPNOSEQ = REPLY_GROUPNOSEQ +1
-		WHERE REPLY_GROUPNO = (SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_NO = #{replyno})
-		AND REPLY_GROUPNOSEQ > (SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_NO = #{replyno})
+		WHERE (REPLY_GROUPNO = (SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_NO = #{replyno})
+		AND REPLY_GROUPNOSEQ > (SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_NO = #{replyno}))
 		AND REPLY_BOARDNO = #{replyboardno}
 	</update>
-	
+	 
 <!-- 댓글 삭제 -->
 	<delete id="deletereply" parameterType="int">
-		DELETE REPLY FROM REPLY_NO = ${replyno}
+		DELETE REPLY WHERE REPLY_NO = #{replyno}
 	</delete>
 </mapper>
