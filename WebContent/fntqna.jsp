@@ -23,13 +23,13 @@
  }
  
  h1 {
- 	margin-top: 50px;
+ 	margin-top: 18px;
  	font-family: "Arial";
  }
  
  table {
  	margin: 0 auto;
- 	margin-top: 20px;
+ 	margin-top: 10px;
  	font-family: "Arial";
  } 
  
@@ -83,6 +83,20 @@
  #qbbtn:hover {
  	font-weight: bold;
  	background-color: #bbbbbb;
+ }
+ 
+ #selectlist {
+ 	margin-top: 6px;
+ 	height: 26px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
+ }
+ 
+ #searchqna {
+ 	margin-top: 8px;
+ 	height: 24px;
+ 	border: 2px solid #cccccc;
+ 	padding-left: 10px;
  }
  </style>
 </head>
@@ -204,13 +218,12 @@
 	<form action="qna.do" method="post">
 		<input type="hidden" name="command" value="searchqna">
 		
-		
 		<select id="selectlist" name="selectlist">
 			<option value="T">제목</option>
 			<option value="W">작성자</option>
 		</select>
 		<input type="text" name="searchqna" id="searchqna" value="<%=searchqna %>" required="required" placeholder="내용을 입력하세요.">		
-		<span><input id="ss" type="submit" value="검색"></span>
+		<span><input id="qbbtn" type="submit" value="검색"></span>
 	</form>
 		
 	</section>
