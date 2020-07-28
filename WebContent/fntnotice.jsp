@@ -160,15 +160,14 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 	
-	<form action="notice.do" method="post">
-		<input type="hidden" name="command" value="searchnotice">
+	<form id="form1" action="notice.do?command=searchnotice" method="post">
 		
-		<input type="text" name="searchnotice" id="searchnotice" required="required" placeholder="공지사항 검색하기">		
+		<input type="text" name="searchnotice" required="required" placeholder="공지사항 검색하기">		
 		<span><input type="submit" value="검색"></span>
 	</form>
 	
 	</section>
-
+	
 	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>

@@ -41,6 +41,7 @@ public class NoticeController extends HttpServlet {
 		NoticeBoardBiz noticeboardbiz = new NoticeBoardBizImpl();
 
 		String command = request.getParameter("command");
+		System.out.println(command);
 		HttpSession session = request.getSession();
 
 		NoticeBoardDao dao = new NoticeBoardDaoImpl();
@@ -126,7 +127,7 @@ public class NoticeController extends HttpServlet {
 			String searchnotice = request.getParameter("searchnotice");
 			List<NoticeBoardDto> list = dao.searchlist(searchnotice);
 			request.setAttribute("noticeboardlist", list);
-			dispatch("fntnotice.jsp ", request, response);
+			dispatch("fntnotice.jsp", request, response);
 		}
 	}
 
