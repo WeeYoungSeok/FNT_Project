@@ -19,8 +19,9 @@ header {
 }
 
 .fnt_logo {
-	width: 180px;
-	height: 80px;
+	width: 16%;
+	height: 16%;
+	margin-top: 0.5%;
 }
 
 #searchzone {

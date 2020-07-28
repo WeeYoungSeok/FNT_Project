@@ -36,8 +36,8 @@
 			<%
 				if(memberdto != null) {
 			%>
-				<p id="loginmsg"><a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>"><%=memberdto.getMembernickname() %></a>님<br/>환영합니다!</p>
-				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">logout</button>
+				<p id="loginmsg"><b><a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>"><%=memberdto.getMembernickname() %></a></b>님<br/>환영합니다!</p>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
 				%>
@@ -61,7 +61,7 @@
 					}
 				} else {
 			%>
-				<button class="headerbtn" onclick="location.href='fntlogincrud.jsp'">로그인</button>
+				<button class="headerbtn" onclick="location.href='fntlogincrud.jsp'">Sign In</button>
 				<!-- 알림 -->
 			<%
 				}
