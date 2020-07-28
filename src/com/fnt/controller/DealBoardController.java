@@ -316,7 +316,6 @@ public class DealBoardController extends HttpServlet {
     	 
       } else if (command.equals("buysearchlist")) {
     	  String categorylist = request.getParameter("categorylist");
-    	  System.out.println("카테고리" + categorylist);
     	  
     	  List<DealBoardDto> list = null;
     	  int page = 1;
@@ -350,7 +349,6 @@ public class DealBoardController extends HttpServlet {
     			  request.setAttribute("selecttw", selecttw);
     			  dispatch("fntbuyboard.jsp", request, response);
     		  } else {
-    			  System.out.println("else로 왔니?");
     			  list = dao.searchdealwriter(search);
     			  request.setAttribute("list", list);
     			  request.setAttribute("search", search);
@@ -359,7 +357,6 @@ public class DealBoardController extends HttpServlet {
     		  }
     	  }else if(command.equals("salesearchlist")) {
     		  String categorylist = request.getParameter("categorylist");
-    		  System.out.println("컨트롤러에서 카테고리" + categorylist);
     		  
     		  List<DealBoardDto> list = null;
     		  if(categorylist.equals("CHECK")) {
@@ -392,7 +389,14 @@ public class DealBoardController extends HttpServlet {
     			  
     			  dispatch("fntsaleboard.jsp", request, response);
     		  }
+    	  }else if(command.equals("popnick")) {
+    		  String dnickname = request.getParameter("membernickname");
+    		  List<DealBoardDto> list = dao.popNick(dnickname);
+
+    		  request.setAttribute("list", list);
+    		  dispatch("fntsaleboard.jsp", request, response);
     	  }
+    		  
       }
       
       

@@ -1,3 +1,5 @@
+<%@page import="com.fnt.model.dto.DealBoardDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -83,6 +85,9 @@
 <%
 	String salesearch = (String)request.getAttribute("salesearch");
 	String salelist = (String)request.getAttribute("salelist");
+	String dnickname = (String)request.getAttribute("dnickname");
+	List<DealBoardDto> list = (List<DealBoardDto>)request.getAttribute("list");
+	System.out.println("jsp :" + list);
 %>
 <%@ include file="./form/header.jsp"%>
 <%@ include file="./form/aside.jsp"%>

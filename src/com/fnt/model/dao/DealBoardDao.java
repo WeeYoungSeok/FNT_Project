@@ -37,4 +37,7 @@ public interface DealBoardDao {
 	public List<DealBoardDto> salesearchtitle(String salesearch);
 	public List<DealBoardDto> salesearchnick(String salesearch);
 	
+	//팝업 창 판매자 글 목록
+	public List<DealBoardDto> popNick(String dnickname);
+	
 }

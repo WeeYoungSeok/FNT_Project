@@ -399,6 +399,23 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		}
 		return list;
 	}
+
+	@Override
+	public List<DealBoardDto> popNick(String dnickname) {
+		SqlSession session = null;
+		List<DealBoardDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"salepopnick",dnickname);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
 	
 	
 	

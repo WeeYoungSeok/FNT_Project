@@ -10,7 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/header.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <%

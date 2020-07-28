@@ -52,7 +52,7 @@ section {
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${dealboarddto.dnickname }</td>
+				<td><a onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
 			</tr>
 			<tr>
 				<th>내용</th>
@@ -167,7 +167,9 @@ section {
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-
+function popnick(membernickname){
+	open("fntpopnick.jsp?popnick="+membernickname,"","width=200, height=250");
+}
 
 function delChk(dboardno){
 	if(confirm("삭제하시겠습니까?")){

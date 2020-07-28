@@ -193,4 +193,11 @@
  	 	ORDER BY D_BOARDNO		
  	</select>
  	
+ 	<select id="salepopnick" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 	 	FROM DEAL_BOARD
+ 	 	WHERE D_NICKNAME = #{dnickname} AND D_FLAG = 'S'
+ 	 	ORDER BY D_BOARDNO		
+ 	</select>
+ 	
 </mapper>
