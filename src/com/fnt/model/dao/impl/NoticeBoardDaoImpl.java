@@ -150,4 +150,23 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 		return res;
 	}
 
+	@Override
+	public List<NoticeBoardDto> searchlist(String searchnotice) {
+		SqlSession session = null;
+		List<NoticeBoardDto> list = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"searchnotice",searchnotice);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
+	
+
 }

@@ -15,5 +15,7 @@ public interface NoticeBoardDao {
 	public int delete(int nbboardno);
 	public List<NoticeBoardDto> selectAllMember(Paging paging);
 	public int getAllCount();
+	public List<NoticeBoardDto> searchlist(String searchnotice);
+	
 
 }

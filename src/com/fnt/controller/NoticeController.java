@@ -43,6 +43,8 @@ public class NoticeController extends HttpServlet {
 		String command = request.getParameter("command");
 		HttpSession session = request.getSession();
 
+		NoticeBoardDao dao = new NoticeBoardDaoImpl();
+		
 		MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
 
 		if (command.equals("notice")) {
@@ -120,6 +122,11 @@ public class NoticeController extends HttpServlet {
 			} else {
 				response.sendRedirect("notice.do?command=noticedetail&nbboardno="+nbboardno);
 			}
+		}else if(command.equals("searchnotice")) {
+			String searchnotice = request.getParameter("searchnotice");
+			List<NoticeBoardDto> list = dao.searchlist(searchnotice);
+			request.setAttribute("noticeboardlist", list);
+			dispatch("fntnotice.jsp ", request, response);
 		}
 	}
 
