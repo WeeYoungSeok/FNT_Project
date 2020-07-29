@@ -14,6 +14,7 @@
 	<result property="dflag" column="D_FLAG"/>
 	<result property="dlongitude" column="D_LONGITUDE"/>
 	<result property="dlatitude" column="D_LATITUDE"/>
+	<result property="dsellflag" column="D_SELLFLAG"/>
 </resultMap>
 <!-- 판매목록 -->
 	<select id="selectsalelist" parameterType="map" resultMap="dealBoardDtoResultMap">
@@ -267,5 +268,14 @@
  	 	ORDER BY D_BOARDNO		
  	</select>
 
+	<select id="cashselect" parameterType="int" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 	 	FROM DEAL_BOARD
+ 	 	WHERE D_BOARDNO = #{dboardno}
+ 	</select>
+ 	
+ 	<update id="updatesellflag" parameterType="int">
+ 		UPDATE DEAL_BOARD SET D_SELLFLAG = 'Y' WHERE D_BOARDNO = #{dboardno}
+ 	</update>
  	
 </mapper>

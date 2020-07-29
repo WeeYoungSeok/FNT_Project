@@ -1,6 +1,7 @@
 package com.fnt.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,13 +18,16 @@ import com.fnt.model.biz.DealBoardBiz;
 import com.fnt.model.biz.impl.AlertBizImpl;
 import com.fnt.model.biz.impl.DealBoardBizImpl;
 import com.fnt.model.dao.DealBoardDao;
+import com.fnt.model.dao.OrderListDao;
 import com.fnt.model.dao.ReplyDao;
 import com.fnt.model.dao.WishlistDao;
 import com.fnt.model.dao.impl.DealBoardDaoImpl;
+import com.fnt.model.dao.impl.OrderListDaoImpl;
 import com.fnt.model.dao.impl.ReplyDaoImpl;
 import com.fnt.model.dao.impl.WishlistDaoImpl;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.OrderlistDto;
 import com.fnt.model.dto.ReplyDto;
 import com.fnt.model.dto.WishlistDto;
 import com.fnt.util.Paging;
@@ -43,7 +47,7 @@ public class DealBoardController extends HttpServlet {
 		WishlistDao wishlistdao = new WishlistDaoImpl();
 		ReplyDao replydao = new ReplyDaoImpl();
 		AlertBiz alertbiz = new AlertBizImpl();
-
+		OrderListDao orderlistdao = new OrderListDaoImpl();
 		MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
 
 		String command = request.getParameter("command");
@@ -550,14 +554,35 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDfilename(roadname); //원래 roadname 컬럼 만들어야하는데 일단 dfilename 사용중
 
 			int res = dao.updateDealBoard(dealboarddto);
-			System.out.println("컨트롤러에서 성공했는지? "+res);
-
+			
 			if (res > 0) {
 				jsResponse("수정 성공", "dealboard.do?command=fntsaleboard", response);
 
 			} else {
 				jsResponse("수정 실패", "dealboard.do?command=updatesaleboard&dboardno="+dboardno, response);
 			}
+         } else if (command.equals("cash")) {
+        	 int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+        	 DealBoardDto dto = dao.cashselect(dboardno);
+        	 
+        	 request.setAttribute("dto", dto);
+        	 dispatch("kakaocash.jsp", request, response);
+         } else if (command.equals("cashupdate")) {
+        	 int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+        	 DealBoardDto dto = dao.cashselect(dboardno);
+        	 
+        	 int insertres = orderlistdao.insert(new OrderlistDto(0,memberdto.getMemberid(),dto.getDnickname(),0,dboardno));
+        	 int updateres = dao.updatesellflag(dboardno);
+        	 
+        	 if(insertres + updateres > 1) {
+        	 String msg = "결제가 완료되었습니다";
+        	 PrintWriter out = response.getWriter();
+             out.append("<script type='text/javascript'>" + 
+                   "alert('" + msg + "');" +
+                   "self.close();" +
+                   "</script>");
+        	 } 
+          
          }
 	}
 

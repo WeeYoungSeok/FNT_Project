@@ -68,4 +68,10 @@ public interface DealBoardDao {
 	//팝업 창 판매자 글 목록
 	public List<DealBoardDto> popNick(String dnickname);
 	
+	//결제 폼으로 보내줄 정보
+	public DealBoardDto cashselect(int dbboard);
+	
+	//판매완료 글로 바꾸기
+	public int updatesellflag(int dboardno);
+	
 }

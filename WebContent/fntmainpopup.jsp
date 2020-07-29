@@ -9,7 +9,8 @@
 </head>
 <body>
 
-	<img alt="kakaopopup" src="img/fnt_popup_480x640.png" style="width:100vw; height:auto;">
+
+	<img alt="kakaopopup" src="img/fnt_popup_480x640.png"  style="width:100vw; height:auto;">
 
 </body>
 </html>

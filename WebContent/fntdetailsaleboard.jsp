@@ -48,7 +48,7 @@ section {
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>
+				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 <span><a href="javascript:cashpop()">결제하기🤑</a></span></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -388,17 +388,27 @@ geocoder.addressSearch(roadname, function(result, status) {
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">여기서 만나요!</div>'
+            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;">여기서 만나요!</div>'
  					+'<div> 주소 : '+roadname+'</div>'
       
         });
         infowindow.open(map, marker);
-
+	
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
     } 
 });  
 
+$(function(){
+	$("#mapcontent").parent().parent().attr('border-radius','20px;');
+	
+});
+
+	function cashpop() {
+		var url = "dealboard.do?command=cash&dboardno="+${dealboarddto.dboardno };
+		var option = "width=500, height=600";
+		window.open(url,"",option);
+	}
 
 </script>
 	
