@@ -52,18 +52,9 @@
 				</script>
 
 				<a href="javascript:newpop();">
-				
-				<% 
-					
-				%>
 					<img class="alertbell" alt="alert" src="./img/bell.png"/>
-				<%
-					// alert != null
-				%>
-					<!-- <img class="alertbell" alt="alert" src="./img/bell_a.png"/> -->
 				</a>
 				<%
-					
 					}
 				} else {
 			%>

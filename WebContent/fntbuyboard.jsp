@@ -41,8 +41,10 @@
  #bbbtn {width: 50px; height: 26px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
  #bbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
  
- #searchttw {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
+ #search {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
  #searchbuy {margin-top: 8px; height: 22px; border: 2px solid #cccccc; padding-left: 10px;}
+ 
+ #form1 {margin-top: 4%;}
 
 </style>
 </head>
@@ -198,15 +200,15 @@
 			}
 		}
 	%>
-		<form action="dealboard.do" method="post">
+		<form id="form1" action="dealboard.do" method="post">
 		<input type="hidden" name="command" value="search"/>
 		<input type="hidden" name="categorylist" value="Z"/>
 			<select name="selecttw" id="search">
 				<option value="T">제목</option>
 				<option value="W">작성자</option>
 			</select>
-			<input type="text"  name="search" value="" required="required" />
-			<input type="submit" value="검색"/>
+			<input id="searchbuy" type="text"  name="search" value="" required="required" />
+			<input id="bbbtn" type="submit" value="검색"/>
 		</form>
 	</section>
 <%@ include file="./form/footer.jsp" %>
