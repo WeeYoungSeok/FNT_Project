@@ -4,8 +4,9 @@
 }
 
 section {
-	padding-top: 90px;
-	padding-left: 246px;
+	padding-top: 7%;
+	padding-left: 14%;
+	height: 100%;
 	overflow: auto;
 	padding-bottom: 30px;
 }
