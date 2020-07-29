@@ -93,6 +93,7 @@ td {
 				<td colspan="3"><%=noticeboardlistone.getNbtitle() %></td>
 			</tr>
 			<tr>
+				<th>내용</th>
 				<td colspan="4" width="800" height="360"><%=noticeboardlistone.getNbcontent() %></td>
 			</tr>
 	
