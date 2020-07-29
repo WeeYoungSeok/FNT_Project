@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 고객센터 글 작성</title>
+<link href="css/section.css" rel="stylesheet" type="text/css" />
 <link href="css/fntnoticeinsert.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- include libraries(jQuery, bootstrap) -->
@@ -46,37 +47,9 @@ $(document).ready(function(){
                ]
     });
   });
-	
-	
 
 </script>
-<style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-section {
-	padding-top: 90px;
-	padding-left: 240px;
-}
-span {
-	color: red;
-}
-
-table {
-	margin-top: 100px;
-	margin-left: 100px;
-}
-
-.form-control {
-	height: 38px;
-}
-
-
-
-</style>
-
+<style type="text/css">th{text-align:center;}.panel{margin-bottom: 0px;}</style>
 
 <script type="text/javascript">
 	$(function(){
@@ -102,7 +75,17 @@ table {
 <body>
 	
 	<%@ include file="./form/header.jsp"%>
-	<%@ include file="./form/aside.jsp"%>
+	
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
+	
 	<section>
 	<%
 		if(memberdto == null) {
@@ -115,31 +98,34 @@ table {
 	<%
 		} else {
 	%>
+		<div id="ntable">
 		<form action="qna.do" method="post" onsubmit="postForm()">
 			<input type="hidden" value="qnainsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
-			<table>
+			<table border="1">
+				<col width="100">
+				<col width="1000">
 				<tr>
-				<td>제목</td>
-				<td>
-				<input type="text" name="qbtitle"/> <input type="checkbox" name="qbsecret" id="chk" value="N" />비밀글 
-				</td>
-			</tr>
-			<tr>
-				<td>
-				내용
-				</td>
-				<td><textarea cols="50" rows="5" name="qbcontent" id="summernote"></textarea></td>
-			</tr>
-			<tr>
-			<td align="right" colspan="2">
-				<input type="button" value="취소"
-					onclick="location.href='qna.do?command=qna'" />
-					 <input type="submit" value="완료" />
-					 </td>
-			</tr>
+					<th>제목</th>
+					<td style="display:flex;">
+						<input type="text" id="nbtitle" name="qbtitle" placeholder="제목을 입력해주세요." style="width:90%;"/>
+						<input type="checkbox" name="qbsecret" id="chk" value="N" style="margin-right:10px;"/>비밀글
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea cols="50" rows="5" name="qbcontent" id="summernote"></textarea></td>
+				</tr>
+				<tr>
+					<td align="right" colspan="2">
+						<input id="nbbtn" type="button" value="취소"
+							onclick="location.href='qna.do?command=qna'" />
+						<input id="nbbtn" type="submit" value="완료" />
+					</td>
+				</tr>
 			</table>
 		</form>
+		</div>
 	</section>
 	<%@ include file="./form/footer.jsp"%>
 	
