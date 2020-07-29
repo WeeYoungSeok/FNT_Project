@@ -8,13 +8,40 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style type="text/css">
-body{
-    text-align:center;
-}
-#paging{
-    font-size: 22pt;
+body {
+    text-align: center;
+    position: relative;
 }
 
+#paging {
+	display: flex;
+	float: center;
+	position: absolute;
+	left: 50%;
+}
+
+.thispage {
+	font-family: "Arial";
+    font-size: 16pt;
+    width: 38px;
+    height: 30px;
+    padding-top: 8px;
+    margin-right: 6px;
+    border: 2px solid #aaaaaa;
+    background-color: #eeeeee;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.otherpage {
+	font-family: "Arial";
+    font-size: 16pt;
+    width: 38px;
+    height: 30px;
+    padding-top: 8px;
+    margin-right: 6px;
+    border: 2px solid #dddddd;
+    border-radius: 20px 20px 20px 20px;
+}
 </style>
 </head>
 <body>
@@ -27,10 +54,10 @@ body{
 <c:forEach begin="${param.beginPage}" end="${param.endPage}" step="1" var="index">
     <c:choose>
         <c:when test="${param.page==index}">
-            <a id="onePage">${index}</a>
+            <div class="thispage"><a id="onePage">${index}</a></div>
         </c:when>
         <c:otherwise>
-            <a href="${action}?page=${index}&command=search&search=${param.search}&selecttw=${param.selecttw}&categorylist=${param.categorylist}">${index}</a>
+            <div class="otherpage"><a href="${action}?page=${index}&command=search&search=${param.search}&selecttw=${param.selecttw}&categorylist=${param.categorylist}">${index}</a></div>
         </c:otherwise>
     </c:choose>
 </c:forEach>

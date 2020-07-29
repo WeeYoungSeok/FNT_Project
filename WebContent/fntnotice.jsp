@@ -42,6 +42,8 @@
  #nbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
  
  #searchnotice {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
+ 
+ #form1 {margin-top: 4%;}
  </style>
 </head>
 <body>
