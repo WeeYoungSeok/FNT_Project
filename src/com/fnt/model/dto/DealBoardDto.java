@@ -15,12 +15,34 @@ public class DealBoardDto {
 	private String dflag;
 	private String dlongitude;
 	private String dlatitude;
+	private String dsellflag;
 	
 	public DealBoardDto() {
 		
 	}
-	
-	
+
+	public DealBoardDto(int dboardno, String did, String dnickname, String dtitle, String dfilename, String dcontent,
+			int dprice, Date dregdate, String dcategory, String dflag, String dlongitude, String dlatitude,
+			String dsellflag) {
+		super();
+		this.dboardno = dboardno;
+		this.did = did;
+		this.dnickname = dnickname;
+		this.dtitle = dtitle;
+		this.dfilename = dfilename;
+		this.dcontent = dcontent;
+		this.dprice = dprice;
+		this.dregdate = dregdate;
+		this.dcategory = dcategory;
+		this.dflag = dflag;
+		this.dlongitude = dlongitude;
+		this.dlatitude = dlatitude;
+		this.dsellflag = dsellflag;
+	}
+
+
+
+
 	public DealBoardDto(int dboardno, String did, String dnickname, String dtitle, String dfilename, String dcontent,
 			int dprice, Date dregdate, String dcategory, String dflag, String dlongitude, String dlatitude) {
 		super();
@@ -132,6 +154,14 @@ public class DealBoardDto {
 
 	public void setDlatitude(String dlatitude) {
 		this.dlatitude = dlatitude;
+	}
+	
+	public String getDsellflag() {
+		return dsellflag;
+	}
+
+	public void setDsellflag(String dsellflag) {
+		this.dsellflag = dsellflag;
 	}
 
 
