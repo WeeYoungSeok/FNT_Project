@@ -15,106 +15,36 @@
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 
-#stable {
-	float: center;
- }
+#stable {float: center;}
  
- h1 {
- 	margin-top: 5%;
- 	font-family: "Arial";
- }
- #categorylist {
- 	cursor: pointer;
- }
- #c_btn {
- 	width: 50px;
- 	height: 19px;
- 	border: none;
- 	border-radius: 2px 2px 2px 2px;
- 	cursor: pointer;
- 	color: white;
- 	background-color: #595959;
- 	margin-bottom: 10px;
- }
+ h1 {margin-top: 5%; font-family: "Arial";}
  
- #c_btn:hover {
- 	font-weight: bold;
- }
+ #categorylist {cursor: pointer;}
  
- table {
- 	font-size: 14pt;
- 	margin: 0 auto;
-	margin-top: 3%;
- 	width: 80%;
- 	height: auto;
- 	font-family: "Arial";
- } 
+ #c_btn {width: 50px; height: 19px; border: none; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: #595959; margin-bottom: 10px;}
+ #c_btn:hover {font-weight: bold;}
  
- th {
- 	background-color: #dddddd;
- 	height: 30px;
- 	font-weight: bold;
- 	padding-top: 2px;
- }
+ table {font-size: 14pt; margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
  
- td {
- 	height: 24px;
- }
+ tr:hover {background-color: #efefef;}
  
- tr:hover {
- 	background-color: #efefef;
- }
+ th {background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
  
- span {
- 	cursor: pointer;
- 	margin-left: 10px;
- }
+ td {height: 24px;}
  
- span:hover {
- 	font-weight: bold;
- }
+ span {cursor: pointer; margin-left: 10px;}
+ span:hover {font-weight: bold;}
  
- a {
-	text-decoration: none;
-	color: black;
- }
+ a {text-decoration: none; color: black;}
  
- #slistlast {
- 	background-color: #dddddd;
- 	height: 2px;
- }
+ #slistlast {background-color: #dddddd; height: 2px;}
  
- #btnline:hover {
- 	background-color: white;
- }
+ #btnline:hover {background-color: white;}
+ #sbbtn {width: 50px; height: 26px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
+ #sbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
  
- #sbbtn {
- 	width: 50px;
- 	height: 26px;
- 	border: none;
- 	border-radius: 4px 4px 4px 4px;
- 	cursor: pointer;
- 	background-color: #cccccc;
- }
- 
- #sbbtn:hover {
- 	font-weight: bold;
- 	background-color: #bbbbbb;
- }
- 
- #search {
- 	margin-top: 6px;
- 	height: 26px;
- 	border: 2px solid #cccccc;
- 	padding-left: 10px;
- }
- 
- #salesearch {
- 	margin-top: 8px;
- 	height: 22px;
- 	border: 2px solid #cccccc;
- 	padding-left: 10px;
- }
+ #search {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
+ #salesearch {margin-top: 8px; height: 22px; border: 2px solid #cccccc; padding-left: 10px;}
  
 </style>
 </head>
