@@ -579,10 +579,47 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return count;
 	}
 
+	@Override
+	public DealBoardDto cashselect(int dbboard) {
+		SqlSession session = null;
+		DealBoardDto dto = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			dto = session.selectOne(namespace+"cashselect", dbboard);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		
+		return dto;
+
+	}
+
+	@Override
+	public int updatesellflag(int dboardno) {
+		SqlSession session = null;
+		int res = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.update(namespace + "updatesellflag",dboardno);
+			if(res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return res;
 	}
 	
 	
-	
+}
 
 	
 

@@ -5,12 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	#reportcontent{
-		resize: none;
-	}
-</style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>	
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <%
@@ -18,7 +13,7 @@
 %>
 	<h2><%=membernickname %>님 신고하기</h2>
 	<form action="LoginCrudController" method="post">
-	<input type="hidden" name="command" value="reportform">
+	<input type="hidden" name="command" value="reportform2">
 	<input type="hidden" name="membernickname" value="<%=membernickname%>">
 	<table border="1">
 		<tr>
@@ -48,7 +43,5 @@
 		location.href = "fntpopnick.jsp?popnick="+"<%=membernickname%>";
 	}
 </script>
-
-
 </body>
 </html>

@@ -38,9 +38,7 @@ td {
 
 	<h2>내 정보 보기</h2>
 	<section>
-	<%
-		System.out.println("@@@@@@@@@@@@@@@"+memberdto.getMemberpw());	
-	%>
+	
 	<table border="1">
 		<tr>
 			<th>Id</th>
