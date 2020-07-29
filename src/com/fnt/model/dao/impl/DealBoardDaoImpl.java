@@ -151,6 +151,8 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		try {
 			sqlsession = getSqlSessionFactory().openSession(false);
 			res = sqlsession.update(namespace+"updatedealboard",dto);
+			System.out.println("dto잘 들어옴? "+dto);
+			System.out.println("mapper 잘 진행했지? res는? "+res);
 			if(res > 0) {
 				sqlsession.commit();
 			}

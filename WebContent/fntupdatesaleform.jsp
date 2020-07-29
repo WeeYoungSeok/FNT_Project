@@ -112,7 +112,10 @@ td {
 					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" value="${dealboarddto.dprice }"/>
 				</tr>
 				<tr>
-					<td colspan="2" align="right"><input type="submit" value="전송" style="width:100px"></td>
+					<td colspan="2" align="right"><input type="submit" value="전송" style="width:100px">
+						<input type="hidden" name="coords" id="coords" value="">
+						<input type="hidden" name="roadname" id="roadname" value="">					
+					</td>
 				</tr>
 			</table>
 			<span style="font-weight:bold">직거래시 원하는 장소를 검색 후 클릭해주세요!</span>
@@ -229,6 +232,21 @@ function removeCommas(x) {
     else return x.split(",").join("");
 }
 
+// 목록 누르면 누른 도로명 값 가져오기
+function loadinfo(me){
+	roadname = $(me).children("#roadname").text();
+	
+	if(!roadname){
+		roadname = $(me).children("#placename").text();
+	}
+	
+	if(confirm(roadname+"에서 만나겠습니까?")){
+		console.log(roadname);
+		console.log('x좌표'+$(me).children("#x").val());
+	}
+	
+}
+
 /*************** 카카오 map 시작 ****************/
 //마커를 담을 배열입니다
 var markers = [];
@@ -338,11 +356,12 @@ function displayPlaces(places) {
      var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
          marker = addMarker(placePosition, i), 
          itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
+	
+         
      // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
      // LatLngBounds 객체에 좌표를 추가합니다
      bounds.extend(placePosition);
-
+ 
      // 마커와 검색결과 항목에 mouseover 했을때
      // 해당 장소에 인포윈도우에 장소명을 표시합니다
      // mouseout 했을 때는 인포윈도우를 닫습니다
@@ -367,15 +386,21 @@ function displayPlaces(places) {
          	displayHERE(marker, title);
          	langitude = placePosition;
          };
-         
-         kakao.maps.event.addListener(marker, 'click', function() {
+          
+//        마크를 클릭했을 때 클릭한 자체의 주소를 알고 싶은데 그게 안되네
+/* 			kakao.maps.event.addListener(marker, 'click', function() {
          	//infowindow.close();
          	displayHERE(marker, title);
          	langitude = placePosition;
          	
+         	if(confirm(places[marker.getTexts()].road_address_name+"에서 만나겠습니까?")){
+	         	roadname = places[marker.getTexts()].road_address_name;
+	         	console.log(roadname);
+         	}
+         	
          	
          //	console.log(langitude);
-         });
+         });  */
          
          
      })(marker, places[i].place_name);
