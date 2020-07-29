@@ -133,6 +133,10 @@ public class DealBoardController extends HttpServlet {
 			String dcontent = request.getParameter("dcontent");
 			int dprice = biz.removecomma((request.getParameter("dprice")));
 			String coords = request.getParameter("coords");
+			String roadname = request.getParameter("roadname");
+			
+			System.out.println("지도 : "+coords);
+			System.out.println("길 이름 : "+roadname);
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 
@@ -143,9 +147,10 @@ public class DealBoardController extends HttpServlet {
 				String[] str = coords.split(",");
 				String dlongitude = str[0].substring(1);
 
-				int last = str[1].length() - 1;
-				String dlatitude = str[1].substring(0, last);
-				System.out.println("dlatitude : " + dlatitude);
+				int last = str[1].trim().length()-1;
+				
+				String dlatitude = str[1].trim().substring(0, last);
+				System.out.println("dlatitude :" + dlatitude);
 
 				dealboarddto.setDlongitude(dlongitude);
 				dealboarddto.setDlatitude(dlatitude);
@@ -160,7 +165,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcategory(dcategory);
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
-			dealboarddto.setDfilename("none");
+			dealboarddto.setDfilename(roadname); //원래 roadname 컬럼 만들어야하는데 일단 dfilename 사용중
 
 			int res = dao.insertSaleBoard(dealboarddto);
 
@@ -179,6 +184,7 @@ public class DealBoardController extends HttpServlet {
 
 			request.setAttribute("replylist", replylist);
 			request.setAttribute("dealboarddto", dealboarddto);
+			
 			dispatch("fntdetailboard.jsp", request, response);
 
 		} else if (command.equals("deletebuyboard")) { // 구매 글 삭제하기
@@ -447,6 +453,63 @@ public class DealBoardController extends HttpServlet {
 
             request.setAttribute("list", list);
             dispatch("fntsaleboard.jsp", request, response);
+            
+         }else if(command.equals("updatesaleboard")){ /* 판매글 수정하기 */
+        	 int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+ 			DealBoardDto dealboarddto = dao.selectDetail(dboardno);
+ 			
+ 			request.setAttribute("dealboarddto", dealboarddto);
+ 			dispatch("fntupdatesaleform.jsp", request, response);
+        	 
+         }else if(command.equals("updatesaleboardres")) { /* 판매글 수정완료 */
+        	int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+ 			String dtitle = request.getParameter("dtitle");
+ 			String dcategory = request.getParameter("dcategory");
+ 			String dcontent = request.getParameter("dcontent");
+ 			int dprice = biz.removecomma((request.getParameter("dprice")));
+			String coords = request.getParameter("coords");
+			String roadname = request.getParameter("roadname");
+			
+			System.out.println("지도 : "+coords);
+			System.out.println("길 이름 : "+roadname);
+
+			DealBoardDto dealboarddto = new DealBoardDto();
+
+			if (coords.equals("undefined")) {
+				dealboarddto.setDlongitude("");
+				dealboarddto.setDlatitude("");
+			} else {
+				String[] str = coords.split(",");
+				String dlongitude = str[0].substring(1);
+
+				int last = str[1].trim().length()-1;
+				
+				String dlatitude = str[1].trim().substring(0, last);
+				System.out.println("dlatitude :" + dlatitude);
+
+				dealboarddto.setDlongitude(dlongitude);
+				dealboarddto.setDlatitude(dlatitude);
+			}
+
+			String memberid = memberdto.getMemberid();
+			String membernickname = memberdto.getMembernickname();
+
+			dealboarddto.setDid(memberid);
+			dealboarddto.setDnickname(membernickname);
+			dealboarddto.setDtitle(dtitle);
+			dealboarddto.setDcategory(dcategory);
+			dealboarddto.setDcontent(dcontent);
+			dealboarddto.setDprice(dprice);
+			dealboarddto.setDfilename(roadname); //원래 roadname 컬럼 만들어야하는데 일단 dfilename 사용중
+
+			int res = dao.updateDealBoard(dealboarddto);
+
+			if (res > 0) {
+				jsResponse("수정 성공", "dealboard.do?command=fntsaleboard", response);
+
+			} else {
+				jsResponse("수정 실패", "dealboard.do?command=updatesaleboard&dboardno="+dboardno, response);
+			}
          }
 	}
 
