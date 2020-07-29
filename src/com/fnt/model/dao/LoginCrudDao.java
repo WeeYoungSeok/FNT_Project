@@ -24,4 +24,7 @@ public interface LoginCrudDao {
 	
 	public int updatepw(String memberpw, String memberpwchk, String memberid);
 	
+	public int reportinsert(String membernickname, String reporttitle, String reportcontent, String receiveid, String sendid, String sendnickname);
+	public MemberDto receivenickname(String membernickname);
+	
 }

@@ -444,7 +444,9 @@ public class DealBoardController extends HttpServlet {
 		} else if(command.equals("popnick")) {
             String dnickname = request.getParameter("membernickname");
             List<DealBoardDto> list = dao.popNick(dnickname);
-
+            
+            
+            request.setAttribute("popnick", dnickname);
             request.setAttribute("list", list);
             dispatch("fntsaleboard.jsp", request, response);
          }

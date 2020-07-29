@@ -82,5 +82,17 @@
   	WHERE MEMBER_ID = #{memberid}
   </update>
   
+  <!-- receiveid 찾기 -->
+  <select id="receivenickname" parameterType="String" resultMap="memberDtoResultMap">
+  	SELECT MEMBER_ID, MEMBER_PW, MEMBER_PWCHK, MEMBER_NICKNAME,
+  			MEMBER_NAME, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDR,
+  			MEMBER_EMAIL, MEMBER_ROLE, ENABLED, REGDATE
+  			FROM MEMBER WHERE MEMBER_NICKNAME = #{membernickname}
+  </select>
+  
+  <insert id="insertreport" parameterType="map">
+  	INSERT INTO REPORT
+  	VALUES(REPORT_NO_SEQ.NEXTVAL, #{sendid}, #{receiveid}, #{sendnickname}, #{membernickname}, #{reporttitle}, #{reportcontent}, SYSDATE)
+  </insert>
   
 </mapper>

@@ -367,7 +367,6 @@ public class LoginCrudController extends HttpServlet {
 			System.out.println("id : " + memberid);
 			System.out.println("pw : "+memberpw + "pwchk : " + memberpwchk);
 			MemberDto dto = new MemberDto();
-			System.out.println(dto);
 			int res = dao.updatepw(memberpw, memberpwchk,memberid);
 			
 			if(res > 0) {
@@ -376,6 +375,34 @@ public class LoginCrudController extends HttpServlet {
 			}else {
 				jsResponse("비밀번호가 맞는지 확인해주세요!", "LoginCrudController?command=updatepw", response);
 			}
+		} else if(command.equals("report")) {
+			String membernickname = request.getParameter("membernickname");
+			System.out.println("컨트롤러에서 nick : " + membernickname);
+			request.setAttribute("membernickname", membernickname);
+			dispatch("fntreportform.jsp", request, response);
+		} else if(command.equals("reportform")) {
+			//신고당한 사람의 닉네임
+			String membernickname = request.getParameter("membernickname");
+			String reporttitle = request.getParameter("reporttitle");
+			String reportcontent = request.getParameter("reportcontent");
+			System.out.println("닉네임 : " + membernickname + "신고제목 : " + reporttitle + "신고 내용 : " + reportcontent);
+			//신고당한 사람의 닉네임으로 id를 가져와서 String에 담아줌.
+			MemberDto memberdto = dao.receivenickname(membernickname);
+			String receiveid = memberdto.getMemberid();
+			System.out.println("로그인 다오에서 받아온 receiveid : " + receiveid);
+			
+			//로그인한 아이디를 가져오기 위한 객체생성
+			MemberDto memberdto1 = (MemberDto)session.getAttribute("memberdto");
+			String sendid = memberdto1.getMemberid();
+			String sendnickname = memberdto1.getMembernickname();
+			int res = dao.reportinsert(membernickname, reporttitle, reportcontent, receiveid, sendid, sendnickname);
+			System.out.println(res);
+			
+			System.out.println("로그인crud에서 받아온 membernickname으로 구한 receiveid : " + receiveid);
+			System.out.println("로그인crud에서 받아온 membernickname으로 구한 reporttitle : " + reporttitle);
+			System.out.println("로그인crud에서 받아온 membernickname으로 구한 reportcontent : " + reportcontent);
+			
+			
 		}
 		
 	

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FNT(Feel New Item)</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	<% String membernickname = request.getParameter("popnick"); %>
@@ -12,6 +12,11 @@
 		opener.location.href='dealboard.do?command=popnick&membernickname=<%=membernickname%>';
 		self.close();
 	}
+	function reportform(){
+		open("LoginCrudController?command=report&membernickname=<%=membernickname%>","","width=700, height=550");
+		self.close();
+	}
+	
 
 </script>
 </head>
@@ -25,7 +30,7 @@
 			<td><input type="button" value="판매목록보기" onclick="closePop();"></td>
 		</tr>
 		<tr>
-			<td><input type="button" value="신고하기" onclick=""></td>
+			<td><input type="button" value="신고하기" onclick="reportform();"></td>
 		</tr>
 		<tr>
 			<td><input type="button" value="채팅하기" onclick=""></td>
