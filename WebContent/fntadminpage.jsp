@@ -49,7 +49,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	 	            }
 	         $.each(data, function(key, val){
 	         	
-	        	 if(key == "LIST"){
+	        	 if(val.length != 0){
 	               var list = val;
 	               for (var i = 0; i < list.length; i++) {
 	                  var str = list[i];
@@ -85,9 +85,9 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	     	                  );	  
 	                  }
 	               }
-	            } else if(key.val == null){
+	            } else{
               	  $("tbody").append(
-	                		"<tr><td>-----조회된 회원이 없습니다.-----</td></tr>"	  
+	                		"<tr><td colspan='9 ' align='center'>-----조회된 회원이 없습니다.-----</td></tr>"	  
 	              );
 	              }
 	         });
@@ -117,7 +117,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			            "</tr>"
 			         );
 			         $.each(data, function(key, val){
-			        	 if(key=="REPORT"){
+			        	 if(val.length != 0){
 			               var list = val;
 			               for (var i = 0; i < list.length; i++) {
 			                  var str = list[i];
@@ -134,9 +134,9 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			                     "</tr>"
 			                  );
 			               }
-			        	 }  else if(key.val == null){
+			        	 }  else {
 			        		 $("tbody").append(
-			        			"<tr><td>-----신고받은 회원이 없습니다.-----</td></tr>"		 
+			        			"<tr><td colspan='8' align='center'>-----신고받은 회원이 없습니다.-----</td></tr>"		 
 			        		 );
 			        	 } 
 			            

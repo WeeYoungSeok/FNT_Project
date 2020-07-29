@@ -240,6 +240,9 @@ VALUES(REPORT_SEQ.NEXTVAL, 'test', 'zxcv', '문의열리네요', '미친개발�
 
 SELECT * FROM REPORT;
 
+DELETE FROM REPORT;
+
+
 
 --찜목록
 DELETE FROM WISH_LIST;
