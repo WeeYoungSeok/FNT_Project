@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,7 @@ a:hover {
 						<td><%=orderlist.get(i).getOlno() %></td>
 						<td><%=orderlist.get(i).getOlsellnickname() %></td>
 						<td><%=orderlist.get(i).getDealboarddto().getDtitle() %></td>
-						<td><%=orderlist.get(i).getDealboarddto().getDprice() %></td>
+						<td><fmt:formatNumber value="<%=orderlist.get(i).getDealboarddto().getDprice()%>" pattern="#,###"/>원</td>
 						<td><%=orderlist.get(i).getOlinvoice() %></td>
 						<td>
 							<input type="button" value="배송조회" onclick="invoicechk();"/>

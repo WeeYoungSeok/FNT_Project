@@ -43,6 +43,8 @@
  
  #selectlist {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
  #searchqna {margin-top: 8px; height: 24px; border: 2px solid #cccccc; padding-left: 10px;}
+ 
+ #form1 {margin-top: 4%;}
  </style>
 </head>
 	<%
@@ -160,7 +162,7 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 	
-	<form action="qna.do" method="post">
+	<form id="form1" action="qna.do" method="post">
 		<input type="hidden" name="command" value="searchqna">
 		
 		<select id="selectlist" name="selectlist">
