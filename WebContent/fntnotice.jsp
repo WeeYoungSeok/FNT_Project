@@ -85,7 +85,7 @@
 						<span onclick="location.href='notice.do?command=noticedetail&nbboardno=<%=noticeboardlist.get(i).getNbboardno()%>'"><%=noticeboardlist.get(i).getNbtitle() %></span>
 					</td>
 					<td><%=noticeboardlist.get(i).getNbnickname() %></td>
-					<td><%=noticeboardlist.get(i).getNbregdate() %></td>
+					<td><%=noticeboardlist.get(i).getNbregdate().substring(0,10) %></td>
 				<tr>
 			<%
 				}	

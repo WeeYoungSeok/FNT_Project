@@ -138,7 +138,7 @@
 					}
 					%>
 					<td><%=qnaboardlist.get(i).getQbnickname() %></td>
-					<td><%=qnaboardlist.get(i).getQbregdate() %></td>
+					<td><%=qnaboardlist.get(i).getQbregdate().substring(0,10) %></td>
 				<tr>
 			<%
 				}	
