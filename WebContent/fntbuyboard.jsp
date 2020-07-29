@@ -22,6 +22,10 @@
  	font-family: "Arial";
  }
  
+ #categorylist {
+ 	cursor: pointer;
+ }
+ 
  #c_btn {
  	width: 50px;
  	height: 19px;
@@ -38,14 +42,17 @@
  }
  
  table {
+ 	font-size: 14pt;
  	margin: 0 auto;
- 	margin-top: 10px;
+ 	margin-top: 3%;
+ 	width: 80%;
+ 	height: auto;
  	font-family: "Arial";
  } 
  
  th {
  	background-color: #dddddd;
- 	height: 26px;
+ 	height: 30px;
  	font-weight: bold;
  	padding-top: 2px;
  }
@@ -135,7 +142,7 @@
 
 		
 		<tr>
-		<td colspan="6">
+		<td colspan="6" id="btnline">
 		<form action="dealboard.do" method="post">
 			<input type="hidden" name="command" value="buysearchlist"/>	
 			<input type="hidden" name="search" value="asldjskalsjalsjdk"/>

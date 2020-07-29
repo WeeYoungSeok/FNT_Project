@@ -28,14 +28,17 @@
  }
  
  table {
+ 	font-size: 14pt;
  	margin: 0 auto;
- 	margin-top: 10px;
+ 	margin-top: 3%;
+ 	width: 80%;
+ 	height: auto;
  	font-family: "Arial";
  } 
  
  th {
  	background-color: #dddddd;
- 	height: 26px;
+ 	height: 30px;
  	font-weight: bold;
  	padding-top: 2px;
  }
