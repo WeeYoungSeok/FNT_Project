@@ -33,7 +33,7 @@
  span {cursor: pointer; margin-left: 10px;}
  span:hover {font-weight: bold;}
  
- a {text-decoration: none; color: black;}
+
  
  #nlistlast {background-color: #dddddd; height: 2px;}
  
