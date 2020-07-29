@@ -125,7 +125,20 @@ public class NoticeController extends HttpServlet {
 			}
 		}else if(command.equals("searchnotice")) {
 			String searchnotice = request.getParameter("searchnotice");
-			List<NoticeBoardDto> list = dao.searchlist(searchnotice);
+			int page = 1;
+
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			Paging paging = new Paging();
+			int count = dao.getSearchCount(searchnotice);
+
+			paging.setTotalcount(count);
+			paging.setPage(page);
+			
+			List<NoticeBoardDto> list = dao.searchlist(searchnotice,paging);
+			request.setAttribute("paging", paging);
+			request.setAttribute("searchnotice", searchnotice);
 			request.setAttribute("noticeboardlist", list);
 			dispatch("fntnotice.jsp", request, response);
 		}

@@ -147,7 +147,18 @@ public class QnaController extends HttpServlet {
 			String selectlist = request.getParameter("selectlist");
 			
 			if(selectlist.equals("T")) {
-				List<QnaBoardDto> list = dao.searchList(searchqna);
+				int page = 1;
+
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.getTitleCount(searchqna);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+				List<QnaBoardDto> list = dao.searchList(searchqna,paging);
+				request.setAttribute("paging", paging);
 				request.setAttribute("qnaboardlist", list);
 				request.setAttribute("selectlist", selectlist);
 				request.setAttribute("searchqna", searchqna);
@@ -155,7 +166,18 @@ public class QnaController extends HttpServlet {
 				dispatch("fntqna.jsp", request, response);
 				
 			}else {
-				List<QnaBoardDto> list = dao.searchWriter(searchqna);
+				int page = 1;
+
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.getWriterCount(searchqna);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+				List<QnaBoardDto> list = dao.searchWriter(searchqna,paging);
+				request.setAttribute("paging", paging);
 				request.setAttribute("qnaboardlist", list);
 				request.setAttribute("selectlist", selectlist);
 				request.setAttribute("searchqna", searchqna);

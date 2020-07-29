@@ -51,6 +51,7 @@
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	<%
+		String searchnotice = (String)request.getAttribute("searchnotice");
 		List<NoticeBoardDto> noticeboardlist = (List<NoticeBoardDto>)request.getAttribute("noticeboardlist");
 		Paging paging = (Paging)request.getAttribute("paging");
 	%>
@@ -113,6 +114,10 @@
 				}
 			%>
 		</table></div>
+		
+		<%
+			if(searchnotice == null) {
+		%>
 	<jsp:include page="./paging/fntnoticepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -120,7 +125,20 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
-	
+	<%
+			} else {
+	%>
+		<jsp:include page="./paging/fntnoticesearchpaging.jsp">
+		<jsp:param value="<%=searchnotice %>" name="searchnotice"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+	<%
+			}
+	%>
 	<form id="form1" action="notice.do?command=searchnotice" method="post">
 		
 
