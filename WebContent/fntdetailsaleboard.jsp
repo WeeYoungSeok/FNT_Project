@@ -168,7 +168,13 @@ section {
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 function popnick(membernickname){
-	open("fntpopnick.jsp?popnick="+membernickname,"","width=200, height=250");
+	var memberdto = "<%=memberdto%>";
+	if(memberdto == "null"){	//문자열로 null 선언해줘야함
+		alert("로그인이 필요합니다");
+		location.href="fntlogincrud.jsp";
+	}else{
+	open("fntpopnick.jsp?popnick="+membernickname,"","width=200, height=250");	
+	}
 }
 
 function delChk(dboardno){

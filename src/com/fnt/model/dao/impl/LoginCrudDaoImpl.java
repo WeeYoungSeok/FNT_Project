@@ -232,6 +232,63 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		}
 		return res;
 	}
+
+
+	@Override
+	public MemberDto receivenickname(String membernickname) {
+		SqlSession session = null;
+		MemberDto receivenickname = null;
+		
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			receivenickname = session.selectOne(namespace+"receivenickname",membernickname);
+			System.out.println("LoginCRUD에서 결과를 출력해온 receivenickname : " + receivenickname);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return receivenickname;
+	}
+
+
+
+
+	@Override
+	public int reportinsert(String membernickname, String reporttitle, String reportcontent, String receiveid,
+		String sendid, String sendnickname) {
+		SqlSession session = null;
+		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("membernickname", membernickname);
+		map.put("reporttitle", reporttitle);
+		map.put("reportcontent", reportcontent);
+		map.put("receiveid", receiveid);
+		map.put("sendid", sendid);
+		map.put("sendnickname", sendnickname);
+		System.out.println("왜 차세요?? 아파요" + map.toString());
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace+"insertreport", map);
+			
+			if(res > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+ 		} finally {
+ 			session.close();
+ 		}
+		return res;
+	}
+
+
+
+
+	
 	
 	
 

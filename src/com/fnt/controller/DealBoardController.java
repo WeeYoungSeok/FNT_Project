@@ -494,7 +494,9 @@ public class DealBoardController extends HttpServlet {
 		} else if(command.equals("popnick")) { //팝업 띄우서 D닉네임 가져가기 (판매글)
             String dnickname = request.getParameter("membernickname");
             List<DealBoardDto> list = dao.popNick(dnickname);
-
+            
+            
+            request.setAttribute("popnick", dnickname);
             request.setAttribute("list", list);
             dispatch("fntsaleboard.jsp", request, response);
             
