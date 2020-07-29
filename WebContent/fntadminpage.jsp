@@ -59,7 +59,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	                        "<td>"+str.memberid+"</td>"+
 	                        "<td>"+str.membernickname+"</td>"+
 	                        "<td>"+str.membername+"</td>"+
-	                        "<td>"+str.memberbirth+"</td>"+
+	                        "<td>"+s tr.memberbirth+"</td>"+
 	                        "<td>"+str.memberphone+"</td>"+
 	                        "<td>"+str.memberaddr+"</td>"+
 	                        "<td>"+str.memberemail+"</td>"+
