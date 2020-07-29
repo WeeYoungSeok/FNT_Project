@@ -48,7 +48,7 @@ section {
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 <span><a href="">결제하기🤑</a></span></td>
+				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 <span><a href="javascript:cashpop()">결제하기🤑</a></span></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -404,7 +404,11 @@ $(function(){
 	
 });
 
-
+	function cashpop() {
+		var url = "dealboard.do?command=cash&dboardno="+${dealboarddto.dboardno };
+		var option = "width=500, height=600";
+		window.open(url,"",option);
+	}
 
 </script>
 	
