@@ -110,12 +110,13 @@ td {
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px"/>
+					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" maxlength="8"/>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">
 						<input type="submit" value="전송" style="width:100px">
 						<input type="hidden" name="coords" id="coords" value="">
+						<input type="hidden" name="roadname" id="roadname" value="">
 					</td>
 				</tr>
 			</table>
@@ -177,8 +178,9 @@ $(function(){
 	});	
 	
 	$("#insertform").on("submit",function(){
-	//	alert(langitude);
+		//alert(langitude);
 		document.getElementById("coords").value=langitude;
+		document.getElementById("roadname").value=roadname;
 		
 	});
 
@@ -199,7 +201,7 @@ var markersList =[];
 var infowindowList = [];
 
 function loadinfo(me){
-	var roadname = $(me).children("#roadname").text();
+	roadname = $(me).children("#roadname").text();
 	
 	if(!roadname){
 		roadname = $(me).children("#placename").text();
@@ -441,6 +443,7 @@ function displayPlaces(places) {
             	displayHERE(marker, title);
             	langitude = placePosition;
             	
+            	
             //	console.log(langitude);
             });
             
@@ -458,7 +461,7 @@ function displayPlaces(places) {
     map.setBounds(bounds);
     
 }
-
+var roadname;
 var langitude;
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {

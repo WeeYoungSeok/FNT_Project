@@ -167,7 +167,7 @@ input {
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px"/>
+					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" maxlength="8"/>
 				</tr>
 				<tr>
 					<td colspan="2" align="right"><input type="submit" value="전송" style="width:100px"></td>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT(Feel New Item) : 글 수정하기</title>
+<title>FNT(Feel New Item) : 구매글 수정하기</title>
 <!-- summernote 넣기 -->
 <link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>

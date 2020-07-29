@@ -95,6 +95,9 @@
 			D_CONTENT = #{dcontent},
 			D_PRICE = #{dprice},
 			D_CATEGORY = #{dcategory}
+			D_FILENAME = #{dfilename}
+			D_LONGITUDE = #{dlongitude}
+			D_LATITUDE = #{dlatitude}
 		WHERE D_BOARDNO = #{dboardno}
 	</update>
 	

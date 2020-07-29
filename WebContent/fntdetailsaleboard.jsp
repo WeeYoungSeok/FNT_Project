@@ -85,7 +85,7 @@ section {
 	%>
 			<tr>
 				<td colspan="2" align="right">
-					<input type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatebuyboard&dboardno=${dealboarddto.dboardno}'">
+					<input type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatesaleboard&dboardno=${dealboarddto.dboardno}'">
 					<input type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
 				</td>
 			</tr>
@@ -325,7 +325,7 @@ function delChk(dboardno){
 	}
 }
 
-/* 카카오 맵  */
+/********** 카카오 맵  **********/
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 
 mapOption = { 
@@ -347,7 +347,7 @@ position: markerPosition
 marker.setMap(map);
 var infowindow = new kakao.maps.InfoWindow({zindex:1}); 
 var geocoder = new kakao.maps.services.Geocoder();
-var latlng = new kakao.maps.LatLng($("#longitude").val(), $("#latitude").val());
+/* var latlng = new kakao.maps.LatLng($("#longitude").val(), $("#latitude").val());
 function searchDetailAddrFromCoords(coords, callback) {
     // 좌표로 법정동 상세 주소 정보를 요청합니다
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
@@ -365,8 +365,33 @@ searchDetailAddrFromCoords(latlng,function(result, status){
         infowindow.setContent(content);
         infowindow.open(map, marker);
     }
-});
+}); */
 
+var roadname = '${dealboarddto.dfilename}';
+//주소로 좌표를 검색합니다
+geocoder.addressSearch(roadname, function(result, status) {
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">여기서 만나요!</div>'
+ 					+'<div> 주소 : '+roadname+'</div>'
+      
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});  
 
 
 </script>
