@@ -550,8 +550,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDfilename(roadname); //원래 roadname 컬럼 만들어야하는데 일단 dfilename 사용중
 
 			int res = dao.updateDealBoard(dealboarddto);
-			System.out.println("컨트롤러에서 성공했는지? "+res);
-
+			
 			if (res > 0) {
 				jsResponse("수정 성공", "dealboard.do?command=fntsaleboard", response);
 
