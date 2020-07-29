@@ -33,8 +33,9 @@
 			<div id="selllist">
 				<table border="1">
 					<tr>
-						<th>찜목록번호</th>
-						<th>찜목록한 글의 제목</th>
+						<th>찜한 글번호</th>
+						<th>찜한 글의 제목</th>
+						<th>찜한 상품 가격</th>
 						<th>판매자 닉네임</th>
 						<th>판매글올린날짜</th>
 					</tr>
@@ -68,6 +69,7 @@
 								}
 								%>
 								
+								<td><%=wishlist.get(i).getDealboarddto().getDprice()%></td>
 								<td><%=wishlist.get(i).getWlsellnickname()%></td>
 								<td><%=wishlist.get(i).getDealboarddto().getDregdate()%></td>
 							</tr>

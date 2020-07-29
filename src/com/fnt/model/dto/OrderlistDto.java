@@ -6,7 +6,24 @@ public class OrderlistDto {
 	private String olsellnickname;
 	private int olinvoice;
 	private int olboardno;
+	private DealBoardDto dealboarddto;
+	public OrderlistDto(int olno, String olid, String olsellnickname, int olinvoice, int olboardno,
+			DealBoardDto dealboarddto) {
+		super();
+		this.olno = olno;
+		this.olid = olid;
+		this.olsellnickname = olsellnickname;
+		this.olinvoice = olinvoice;
+		this.olboardno = olboardno;
+		this.dealboarddto = dealboarddto;
+	}
 	
+	public DealBoardDto getDealboarddto() {
+		return dealboarddto;
+	}
+	public void setDealboarddto(DealBoardDto dealboarddto) {
+		this.dealboarddto = dealboarddto;
+	}
 	public OrderlistDto() {
 		
 	}

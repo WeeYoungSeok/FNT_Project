@@ -23,6 +23,7 @@ import com.fnt.model.biz.impl.MyPageBizImpl;
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
+import com.fnt.model.dto.OrderlistDto;
 import com.fnt.model.dto.QnaBoardDto;
 import com.fnt.model.dto.WishlistDto;
 import com.google.gson.Gson;
@@ -56,9 +57,11 @@ public class MypageController extends HttpServlet {
 		//세션 객체 만들어준다.
 		HttpSession session = request.getSession();
 		
+		
 		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 		MyPageBiz mypagebiz = new MyPageBizImpl();
 		AlertBiz alertbiz = new AlertBizImpl();
+		
 		
 		//알람창뜨게하기
 		if(command.equals("alert")) {
@@ -156,8 +159,15 @@ public class MypageController extends HttpServlet {
 		}else if(command.equals("orderlist")) {
 			String memberid = request.getParameter("memberid");
 			
-			response.sendRedirect("fntmypageorder.jsp");
+			List<OrderlistDto> orderlist = null;
+			orderlist = mypagebiz.Orderlist(memberid);
+			
+			request.setAttribute("orderlist", orderlist);
+			dispatch("fntmypageorder.jsp", request, response);
+			
 			//내가 주문한 상품 클릭 시
+		}else if(command.equals("invoicechk")) {
+			response.sendRedirect("fntinvoicecheck.jsp");
 		}
 		
 	}

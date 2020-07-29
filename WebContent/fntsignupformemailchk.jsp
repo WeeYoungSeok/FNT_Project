@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Email Validation</title>
+<title>FNT - Email Validation</title>
 </head>
 <body>
 <%

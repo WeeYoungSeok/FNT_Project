@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FNT(Feel New Item)이메일확인</title>
 </head>
 <body>
 <%

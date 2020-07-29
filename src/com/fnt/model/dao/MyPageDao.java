@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.NoticeBoardDto;
+import com.fnt.model.dto.OrderlistDto;
 import com.fnt.model.dto.QnaBoardDto;
 import com.fnt.model.dto.WishlistDto;
 
@@ -23,6 +24,6 @@ public interface MyPageDao {
 	//내 찜목록
 	public List<WishlistDto> Wishlist(String memberid);
 	//내 주문내역
-	public List<DealBoardDto> Orderlist(String memberid);
+	public List<OrderlistDto> Orderlist(String memberid);
 
 }
