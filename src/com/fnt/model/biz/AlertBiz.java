@@ -8,4 +8,5 @@ public interface AlertBiz {
 	public int insertAlert(AlertDto alertdto);
 	public List<AlertDto> AlertList(String memberid);
 	public int updateAlert(int dboardno);
+	public int alertCount(String memberid);
 }

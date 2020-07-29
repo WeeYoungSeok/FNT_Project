@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 조회</title>
+<title>FNT(Feel New Item)회원 조회</title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>

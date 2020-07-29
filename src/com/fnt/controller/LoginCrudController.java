@@ -60,7 +60,6 @@ public class LoginCrudController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		
 		if(command.equals("login")) {
 			String memberid = request.getParameter("id");
 			String memberpw = request.getParameter("pw");
@@ -68,7 +67,6 @@ public class LoginCrudController extends HttpServlet {
 			System.out.println("로그인컨트롤러에서 id : " + memberid);
 			
 			MemberDto memberdto = dao.login(memberid, memberpw);
-			//71~77줄
 			
 			
 			

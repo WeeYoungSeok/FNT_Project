@@ -11,6 +11,7 @@ import com.fnt.model.dao.impl.MyPageDaoImpl;
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.NoticeBoardDto;
+import com.fnt.model.dto.OrderlistDto;
 import com.fnt.model.dto.QnaBoardDto;
 import com.fnt.model.dto.WishlistDto;
 
@@ -49,7 +50,7 @@ public class MyPageBizImpl implements MyPageBiz {
 
 	//주문내역
 	@Override
-	public List<DealBoardDto> Orderlist(String memberid) {
+	public List<OrderlistDto> Orderlist(String memberid) {
 		// TODO Auto-generated method stub
 		return dao.Orderlist(memberid);
 	}

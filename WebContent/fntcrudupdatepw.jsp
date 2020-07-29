@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PW 새로 만들기</title>
+<title>FNT(Feel New Item)PW 새로 만들기</title>
 <style type="text/css">
 * {
    margin: 0px;

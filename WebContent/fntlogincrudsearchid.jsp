@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ID 찾기</title>
+<title>FNT(Feel New Item)ID 찾기</title>
 <style type="text/css">
 	* {
    margin: 0px;

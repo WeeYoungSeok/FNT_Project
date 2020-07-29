@@ -10,6 +10,7 @@ import com.fnt.model.dao.MyPageDao;
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.NoticeBoardDto;
+import com.fnt.model.dto.OrderlistDto;
 import com.fnt.model.dto.QnaBoardDto;
 import com.fnt.model.dto.WishlistDto;
 
@@ -100,9 +101,19 @@ public class MyPageDaoImpl implements MyPageDao {
 
 	//주문내역
 	@Override
-	public List<DealBoardDto> Orderlist(String memberid) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderlistDto> Orderlist(String memberid) {
+		SqlSession session = null;
+		List<OrderlistDto> orderlist = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			orderlist = session.selectList(namespace+"orderlist", memberid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return orderlist;
 	}
 
 	

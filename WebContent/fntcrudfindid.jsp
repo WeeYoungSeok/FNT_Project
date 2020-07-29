@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FNT(Feel New Item)아이디찾기</title>
 </head>
 <body>
 

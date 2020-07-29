@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FNT - Sign Up</title>
+<title>FNT(Feel New Item) - Sign Up</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">

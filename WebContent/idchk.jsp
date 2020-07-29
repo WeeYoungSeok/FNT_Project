@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ID Validation</title>
+<title>FNT - ID Validation</title>
 <script type="text/javascript">
 
 	onload = function() {

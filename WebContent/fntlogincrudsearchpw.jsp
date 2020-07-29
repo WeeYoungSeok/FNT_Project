@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PW 찾기</title>
+<title>FNT(Feel New Item)PW 찾기</title>
 <style type="text/css">
 	* {
    margin: 0px;

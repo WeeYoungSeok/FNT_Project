@@ -67,5 +67,23 @@ public class AlertDaoImpl implements AlertDao {
 		}
 		return alertres;
 	}
+	public int alertCount(String memberid) {
+		SqlSession session = null;
+		int alertcount = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			alertcount = session.selectOne(namespace+"alertcount", memberid);
+			
+			if(alertcount > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return alertcount;
+	}
 
 }

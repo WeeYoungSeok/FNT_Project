@@ -29,6 +29,9 @@ public class AlertBizImpl implements AlertBiz {
 	public int updateAlert(int dboardno) {
 		return dao.updateAlert(dboardno);
 	}
+	public int alertCount(String memberid) {
+		return dao.alertCount(memberid);
+	}
 
 	
 

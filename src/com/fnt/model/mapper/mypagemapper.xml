@@ -37,12 +37,21 @@
 	  	<collection property="dealboarddto" resultMap="dealBoardDtoResultMap"></collection>
   	</resultMap> 
   	
+  	<resultMap type="orderlistdto" id="orderlistDtoResultMap">
+ 		<result property="olno" column="OL_NO"></result>
+ 		<result property="olid" column="OL_ID"></result>
+ 		<result property="olsellnickname" column="OL_SELL_NICKNAME"></result>
+ 		<result property="olinvoice" column="OL_INVOICE"></result>
+ 		<result property="olboardno" column="OL_BOARDNO"></result>
+ 		<collection property="dealboarddto" resultMap="dealBoardDtoResultMap"></collection>
+ 	</resultMap>
+  	
   	
   	
   	
    	<!-- 찜목록 조회할거야 -->
   	<select id="wishlist" parameterType="String" resultMap="wishlistDtoResultMap">
-  		SELECT W.WL_NO, D.D_TITLE, W.WL_SELL_NICKNAME, D.D_REGDATE, D.D_FLAG, D.D_BOARDNO
+  		SELECT W.WL_NO, D.D_TITLE, W.WL_SELL_NICKNAME, D.D_REGDATE, D.D_FLAG, D.D_BOARDNO, D.D_PRICE
 			FROM WISH_LIST W INNER JOIN DEAL_BOARD D ON W.WL_BOARDNO = D.D_BOARDNO 
 			WHERE W.WL_ID = #{memberid} ORDER BY W.WL_NO ASC
   	</select>
@@ -64,6 +73,12 @@
 	<select id="qnalist" parameterType="String" resultMap="qnaboardDtoResultMap">
 		 SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE, QB_REDATE
 		 FROM QNA_BOARD WHERE QB_ID = #{memberid}
+	</select>
+	
+	<select id="orderlist" parameterType="String" resultMap="orderlistDtoResultMap">
+		SELECT O.OL_NO, O.OL_SELL_NICKNAME, O.OL_INVOICE, D.D_TITLE, D.D_PRICE
+		FROM ORDER_LIST O JOIN DEAL_BOARD D ON O.OL_BOARDNO = D.D_BOARDNO
+		WHERE O.OL_ID = #{memberid}
 	</select>
 
 
