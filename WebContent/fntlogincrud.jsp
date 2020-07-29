@@ -68,14 +68,14 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 		</tr>
 		
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="center">
 				<input class="findbtn" type="button" value="ID 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchid'">
 				<input class="findbtn" type="button" value="PW 찾기 " onclick="location.href='LoginCrudController?command=logincrudsearchpw'">
 
 			</td>
 		</tr> 
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="center">
 				<div class="social_login_btn">
 					<!-- navers -->
 					<a href="<%=apiURL%>"><img id="naver_id_login" height="50" src="img/naver_btn.png"/></a>

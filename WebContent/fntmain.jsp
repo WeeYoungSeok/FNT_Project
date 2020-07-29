@@ -13,7 +13,7 @@
 <script type="text/javascript">
 
 // 주석 해제하면 메인에서 카카오채널 팝업 띄움 
-// window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=360,height=484");
+//  window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=360,height=484");
 
 imgslide(); 						// 페이지 로딩될 때 함수 실행
 
