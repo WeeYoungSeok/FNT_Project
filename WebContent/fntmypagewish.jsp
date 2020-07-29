@@ -6,6 +6,7 @@
 <%@page import="com.fnt.model.dto.DealBoardDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,8 +69,7 @@
 									}
 								}
 								%>
-								
-								<td><%=wishlist.get(i).getDealboarddto().getDprice()%></td>
+								<td><fmt:formatNumber value="<%=wishlist.get(i).getDealboarddto().getDprice()%>" pattern="#,###"/>원</td>
 								<td><%=wishlist.get(i).getWlsellnickname()%></td>
 								<td><%=wishlist.get(i).getDealboarddto().getDregdate()%></td>
 							</tr>
