@@ -25,8 +25,8 @@
 %>
 <meta charset="UTF-8">
 <title>FNT - Sign Up</title>
-<script src="./js/fntsignupform.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="./js/fntsignupform.js"></script>
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>

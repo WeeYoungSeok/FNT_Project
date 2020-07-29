@@ -257,6 +257,7 @@ public class DealBoardController extends HttpServlet {
 			request.setAttribute("wishlistdto", wishlistdto);
 			request.setAttribute("dealboarddto", dealboarddto);
 			dispatch("fntdetailsaleboard.jsp", request, response);
+			
 		} else if (command.equals("searchdeal")) { // 통합검색
 			String searchdeal = request.getParameter("searchdeal");
 			int page = 1;
@@ -277,7 +278,8 @@ public class DealBoardController extends HttpServlet {
 			request.setAttribute("searchdeal", searchdeal);
 
 			dispatch("fntsearchdeal.jsp", request, response);
-		} else if (command.equals("searchlist")) {
+			
+		} else if (command.equals("searchlist")) { // 통합검색 연쇄작용
 
 			String orderlist = request.getParameter("orderlist");
 			String categorylist = request.getParameter("categorylist");
@@ -343,7 +345,6 @@ public class DealBoardController extends HttpServlet {
 		} else if (command.equals("buysearchlist")) { // 구매글 카테고리(페이징 적용)
 			String categorylist = request.getParameter("categorylist");
 			String search = request.getParameter("search");
-			System.out.println("카테고리" + categorylist + "서치" + search);
 
 			List<DealBoardDto> list = null;
 			int page = 1;
@@ -366,11 +367,10 @@ public class DealBoardController extends HttpServlet {
 				request.setAttribute("paging", paging);
 				dispatch("fntbuyboard.jsp", request, response);
 			}
-		} else if (command.equals("search")) { // 구매글 검색
+		} else if (command.equals("search")) { // 구매글 검색(페이징 적용)
 			String search = request.getParameter("search");
 			String selecttw = request.getParameter("selecttw");
 			String categorylist = request.getParameter("categorylist");
-			System.out.println(search + ":" + selecttw+ ":" + categorylist);
 			List<DealBoardDto> list = null;
 			if (selecttw.equals("T")) {
 				int page = 1;
@@ -384,7 +384,7 @@ public class DealBoardController extends HttpServlet {
 				paging.setTotalcount(count);
 				paging.setPage(page);
 				list = dao.searchdealtitle(search,paging);
-				System.out.println("여기는왔고?");
+				
 				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
@@ -393,7 +393,6 @@ public class DealBoardController extends HttpServlet {
 				dispatch("fntbuyboard.jsp", request, response);
 				
 			} else {
-				System.out.println("else로 왔니?");
 				int page = 1;
 
 				if (request.getParameter("page") != null) {
@@ -405,20 +404,21 @@ public class DealBoardController extends HttpServlet {
 				paging.setTotalcount(count);
 				paging.setPage(page);
 				list = dao.searchdealwriter(search,paging);
-				System.out.println("여기는왔고?");
+				
 				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
 				request.setAttribute("search", search);
 				request.setAttribute("selecttw", selecttw);
-				System.out.println("컨트롤러에서 리스트 사이즈" + list.size());
 				
 				dispatch("fntbuyboard.jsp", request, response); 
 			}
-		} else if (command.equals("salesearchlist")) { //판매글 카테고리
+			
+			
+		} else if (command.equals("salesearchlist")) { //판매글 카테고리 (페이징 적용)
 
 			String categorylist = request.getParameter("categorylist");
-			System.out.println("카테고리" + categorylist);
+			String salesearch = request.getParameter("salesearch");
 
 			List<DealBoardDto> list = null;
 			int page = 1;
@@ -436,6 +436,7 @@ public class DealBoardController extends HttpServlet {
 				response.sendRedirect("dealboard.do?command=fntsaleboard");
 			} else {
 				list = dao.salesearchList(categorylist,paging);
+				request.setAttribute("salesearch", salesearch);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
 				request.setAttribute("categorylist", categorylist);
@@ -443,27 +444,54 @@ public class DealBoardController extends HttpServlet {
 				dispatch("fntsaleboard.jsp", request, response);
 			}
 
-		} else if (command.equals("salesearch")) {	// 판매글 검색
+		} else if (command.equals("salesearch")) {	// 판매글 검색 (페이징 적용)
 			String salesearch = request.getParameter("salesearch");
 			String salelist = request.getParameter("salelist");
-			System.out.println("컨트롤러에서 salesearch : " + salesearch + "그리고 리스트 : " + salelist);
+			String categorylist = request.getParameter("categorylist");
 
 			if (salelist.equals("T")) {
-				List<DealBoardDto> list = dao.salesearchtitle(salesearch);
+				int page = 1;
+
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.salesearchTitleCount(salesearch);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+				
+				List<DealBoardDto> list = dao.salesearchtitle(salesearch,paging);
+				request.setAttribute("paging", paging);
+				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("list", list);
 				request.setAttribute("salelist", salelist);
 				request.setAttribute("salesearch", salesearch);
 
 				dispatch("fntsaleboard.jsp", request, response);
 			} else {
-				List<DealBoardDto> list = dao.salesearchnick(salesearch);
+				int page = 1;
+
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.salesearchNicknameCount(salesearch);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+				
+				List<DealBoardDto> list = dao.salesearchnick(salesearch,paging);
+				request.setAttribute("paging", paging);
+				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("list", list);
 				request.setAttribute("salelist", salelist);
 				request.setAttribute("salesearch", salesearch);
 
 				dispatch("fntsaleboard.jsp", request, response);
 			}
-		} else if(command.equals("popnick")) {
+			
+		} else if(command.equals("popnick")) { //팝업 띄우서 D닉네임 가져가기 (판매글)
             String dnickname = request.getParameter("membernickname");
             List<DealBoardDto> list = dao.popNick(dnickname);
 

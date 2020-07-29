@@ -23,11 +23,9 @@
  	margin-top: 5%;
  	font-family: "Arial";
  }
- 
  #categorylist {
  	cursor: pointer;
  }
- 
  #c_btn {
  	width: 50px;
  	height: 19px;
@@ -46,7 +44,7 @@
  table {
  	font-size: 14pt;
  	margin: 0 auto;
- 	margin-top: 3%;
+	margin-top: 3%;
  	width: 80%;
  	height: auto;
  	font-family: "Arial";
@@ -147,6 +145,7 @@
 			<td colspan="6" id="btnline">
 			<form action="dealboard.do" method="post">
 			<input type="hidden" name="command" value="salesearchlist"/>	
+			<input type="hidden" name="salesearch" value="sadjklsjwklsadlsa"/>
 				<select id="categorylist" name="categorylist">
 							<option value="CHECK">카테고리</option>
 							<option value="F">패션</option>
@@ -219,7 +218,7 @@
 			</c:choose>
 		</table></div>
 		<%
-		if(categorylist == null) {
+		if(categorylist == null || salesearch == null) {
 			%>
 			<jsp:include page="./paging/fntsalepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
@@ -233,6 +232,7 @@
 			if(categorylist.equals("A")||categorylist.equals("S")||categorylist.equals("D")||categorylist.equals("C")||categorylist.equals("F")) {
 		%>
 			<jsp:include page="./paging/fntsalecategorypaging.jsp">
+			<jsp:param value="<%=salesearch %>" name="salesearch"/>
 			<jsp:param value="<%=categorylist %>" name="dcategory"/>
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -241,9 +241,9 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 		<% 
-			} else {
+			} else if(categorylist.equals("CHECK")){
 		%>
-		<jsp:include page="./paging/fntbuypaging.jsp">
+		<jsp:include page="./paging/fntsalepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
     <jsp:param value="${paging.endPage}" name="endPage"/>
@@ -251,6 +251,19 @@
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
 	<%
+			} else if(salelist.equals("W") || salelist.equals("T")) {
+				%>
+				<jsp:include page="./paging/fntsalesearchtitlepaging.jsp">
+				<jsp:param value="<%=salelist %>" name="salelist"/>
+				<jsp:param value="<%=categorylist %>" name="categorylist"/>
+			<jsp:param value="<%=salesearch %>" name="salesearch"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+				<% 
 			}
 		}
 	%>
@@ -258,7 +271,7 @@
 	
 	<form action="dealboard.do" method="post">
 		<input type="hidden" name="command" value="salesearch"/>
-		
+		<input type="hidden" name="categorylist" value="Z"/>
 			<select name="salelist" id="search">
 				<option value="T">제목</option>
 				<option value="W">작성자</option>

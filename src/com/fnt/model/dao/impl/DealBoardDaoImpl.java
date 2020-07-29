@@ -19,7 +19,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	private String namespace = "dealboardmapper.";
 	
 	
-	@Override
 	public List<DealBoardDto> selectSaleList(Paging paging) {
 		int startNum = paging.getStartNum();
 		int endNum = paging.getEndNum();
@@ -43,7 +42,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 	
-	@Override
 	public List<DealBoardDto> selectBuylist(Paging paging) {
 		int startNum = paging.getStartNum();
 		int endNum = paging.getEndNum();
@@ -170,7 +168,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 			session = getSqlSessionFactory().openSession(false);
 			count = session.selectOne(namespace + "count");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -187,7 +184,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 			session = getSqlSessionFactory().openSession(false);
 			count = session.selectOne(namespace + "counts");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -196,7 +192,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return count;
 	}
 	
-	//통합검색 리스트로 출력
+	//통합검색 리스트로 출력 (페이징 출력)
 	@Override
 	public List<DealBoardDto> searchList(String searchdeal,Paging paging){
 		int startNum = paging.getStartNum();
@@ -221,7 +217,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
+	//통합검색 asc 출력 (오래된 순)
 	public List<DealBoardDto> ascorder(String searchdeal) {
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -238,7 +234,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
+	//통합검색 desc 출력 + 카테고리 (최근순)
 	public List<DealBoardDto> desccate(String searchdeal, String categorylist) {
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -258,7 +254,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
+	//통합검생 asc 출려 + 카테고리 (오래된 순)
 	public List<DealBoardDto> asccate(String searchdeal, String categorylist) {
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -279,7 +275,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	
 	}
 
-	@Override
+	//구매 게시판 카테고리 리스트 페이징 적용
 	public List<DealBoardDto> buysearchList(String categorylist, Paging paging) {
 		int startNum = paging.getStartNum();
 		int endNum = paging.getEndNum();
@@ -305,7 +301,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
+	//구매 게시판 카테고리 페이징 카운트 수
 	public int buyGetAllCount(String categorylist) {
 		SqlSession session = null;
 		int count = 0;
@@ -323,7 +319,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return count;
 	}
 
-	@Override
+	// 구매글 타이틀 검색(페이징)
 	public List<DealBoardDto> searchdealtitle(String search, Paging paging) {
 		int startNum = paging.getStartNum();
 		int endNum = paging.getEndNum();
@@ -350,7 +346,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
+	// 구매글 작성자 검색(페이징 적용)
 	public List<DealBoardDto> searchdealwriter(String search,Paging paging) {
 		int startNum = paging.getStartNum();
 		int endNum = paging.getEndNum();
@@ -378,7 +374,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
+	// 판매글 카테고리 검색 (페이징 적용)
 	public List<DealBoardDto> salesearchList(String categorylist, Paging paging) {
 		int startNum = paging.getStartNum();
 		int endNum = paging.getEndNum();
@@ -405,14 +401,23 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
-	public List<DealBoardDto> salesearchtitle(String salesearch) {
+	// 판매글 타이틀 검색 (페이징 적용)
+	public List<DealBoardDto> salesearchtitle(String salesearch,Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("salesearch", salesearch);
+		System.out.println("startNum" + startNum);
+		System.out.println("endNum" + endNum);
+		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"saletitle",salesearch);
+			list = session.selectList(namespace+"saletitle",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -421,14 +426,22 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
-	public List<DealBoardDto> salesearchnick(String salesearch) {
+	// 판매글 작성자 검색 (페이징 적용)
+	public List<DealBoardDto> salesearchnick(String salesearch, Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("salesearch", salesearch);
+		System.out.println("startNum" + startNum);
+		System.out.println("endNum" + endNum);
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"salenick",salesearch);
+			list = session.selectList(namespace+"salenick",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -437,8 +450,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
-	@Override
-
+	//팝업 띄우서 D닉네임 가져가기 (판매글)
 	public List<DealBoardDto> popNick(String dnickname) {
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -455,6 +467,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return list;
 	}
 
+	//통합검색 페이징 카운트 수
 	public int getAllCountsearch(String searchdeal) {
 		SqlSession session = null;
 		int count = 0;
@@ -472,7 +485,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return count;
 	}
 
-	@Override
+	//판매 게시판 카테고리 페이징 카운트 수
 	public int saleGetAllCount(String categorylist) {
 		SqlSession session = null;
 		int count = 0;
@@ -490,7 +503,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return count;
 	}
 
-	@Override
+	// 구매 게시판 타이틀 검색 카운트 수
 	public int buysearchTitleCount(String search) {
 		SqlSession session = null;
 		int count = 0;
@@ -508,7 +521,7 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return count;
 	}
 
-	@Override
+	// 구매 게시판 작성자 검색 카운트 수
 	public int buysearchNicknameCount(String search) {
 		SqlSession session = null;
 		int count = 0;
@@ -516,6 +529,44 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			count = session.selectOne(namespace + "buynicksearchcount",search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+	}
+
+
+	// 판매 게시판 타이틀 검색 카운트 수 
+	public int salesearchTitleCount(String salesearch) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "salesearchcount",salesearch);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+
+	}
+
+	// 판매 게시판 작성자 검색 카운트 수
+	public int salesearchNicknameCount(String salesearch) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "salenicksearchcount",salesearch);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
