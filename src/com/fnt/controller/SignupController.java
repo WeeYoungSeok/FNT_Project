@@ -1,13 +1,7 @@
 package com.fnt.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,19 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import com.fnt.model.dto.MemberDto;
-import com.fnt.model.util.DatetimeUtil;
-import com.sun.glass.ui.Window;
-import com.sun.javafx.scene.control.skin.Utils;
-
-import javafx.stage.Popup;
-
-import com.fnt.controller.LoginCrudController.MyAuthentication;
 import com.fnt.model.dao.SignupDao;
-import com.fnt.model.util.DatetimeUtil;
 import com.fnt.model.dao.impl.SignupDaoImpl;
 
 @WebServlet("/signup.do")

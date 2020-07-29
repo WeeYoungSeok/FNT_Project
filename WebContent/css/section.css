@@ -6,4 +6,6 @@
 section {
 	padding-top: 90px;
 	padding-left: 246px;
+	overflow: auto;
+	padding-bottom: 30px;
 }

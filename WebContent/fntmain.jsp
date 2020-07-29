@@ -12,21 +12,27 @@
 <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
-imgslide(); //페이지가 로딩될때 함수를 실행합니다
+imgslide(); 						// 페이지 로딩될 때 함수 실행
 
 function imgslide() {
-	$val = $("#slide").attr("val"); //현재 이미지 번호를 가져옵니다
-	$mx = $("#slide").attr("mx"); //총 이미지 개수를 가져옵니다
-	$("#img" + $val).hide(); //현재 이미지를 사라지게 합니다.
-	if( $val == $mx ) {
+
+	$val = $("#slide").attr("val"); // 현재 이미지 번호
+	$mx = $("#slide").attr("mx"); 	// 총 이미지 개수
+
+	$("#img" + $val).fadeOut(1000);	// 현재 이미지 사라지게
+
+	if( $val == $mx ) { 			// 현재 이미지가 마지막 번호라면 다시 1번으로
 		$val = 1; 
-	} //현재이미지가 마지막 번호라면 1번으로 되돌립니다.
-	else { 
+	} else { 						// 마지막 번호 아니라면 카운트 증가
 		$val++; 
-	} //마지막 번호가 아니라면 카운트를 증가시켜줍니다
-	$("#img" + $val).fadeIn(1000); //변경된 번호의 이미지영역을 나타나게 합니다.괄호 안에 숫자는 페이드인 되는 시간을 나타냅니다.
-	$("#slide").attr('val', $val); //변경된 이미지영역의 번호를 부여합니다.
-	setTimeout('imgslide()', 2000); //1초 뒤에 다시 함수를 호출합니다.(숫자값 1000당 1초)
+	}
+
+	$("#img" + $val).fadeIn(1000); 	// 변경된 번호의 이미지 나타나게 (괄호 안 숫자 : 페이드인 소요 시간)
+
+	$("#slide").attr('val', $val); 	// 변경된 이미지의 번호 부여
+
+	setTimeout('imgslide()', 1000); // 1초 뒤 다시 함수 호출 (숫자 1000 : 1초)
+
 }
 
 </script>
@@ -37,32 +43,20 @@ function imgslide() {
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	
-	<div  id="slide" val="1" mx="9">
+	<div  id="slide" val="1" mx="5">
 		<div id="img1">
-			<img src="img/1.png"/>
-		</div>
-		<div id="img2">
 			<img src="img/2.png"/>
 		</div>
-		<div id="img3">
-			<img src="img/3.png"/>
-		</div>
-		<div id="img4">
+		<div id="img2">
 			<img src="img/4.png"/>
 		</div>
-		<div id="img5">
-			<img src="img/5.png"/>
-		</div>
-		<div id="img6">
-			<img src="img/6.png"/>
-		</div>
-		<div id="img7">
+		<div id="img3">
 			<img src="img/7.png"/>
 		</div>
-		<div id="img8">
+		<div id="img4">
 			<img src="img/8.png"/>
 		</div>
-		<div id="img9">
+		<div id="img5">
 			<img src="img/9.png"/>
 		</div>
 	</div>
