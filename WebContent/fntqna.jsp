@@ -18,89 +18,31 @@
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 
-#qtable {
- 	float: center;
- }
+#qtable {float: center;}
  
- h1 {
- 	margin-top: 6%;
- 	font-family: "Arial";
- }
+ h1 {margin-top: 6%; font-family: "Arial";}
  
- table {
- 	font-size: 14pt;
- 	margin: 0 auto;
- 	margin-top: 3%;
- 	width: 80%;
- 	height: auto;
- 	font-family: "Arial";
- } 
+ table {font-size: 14pt; margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
  
- th {
- 	background-color: #dddddd;
- 	height: 30px;
- 	font-weight: bold;
- 	padding-top: 2px;
- }
+ tr:hover {background-color: #efefef;}
  
- td {
- 	height: 24px;
- }
+ th {background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
  
- tr:hover {
- 	background-color: #efefef;
- }
+ td {height: 24px;}
  
- span {
- 	cursor: pointer;
- 	margin-left: 10px;
- }
+ span {cursor: pointer; margin-left: 10px;}
+ span:hover {font-weight: bold;}
  
- span:hover {
- 	font-weight: bold;
- }
+ a {text-decoration: none; color: black;}
  
- a {
- 	text-decoration: none;
- 	color: black;
- }
+ #qlistlast {background-color: #dddddd; height: 2px;}
  
- #qlistlast {
- 	background-color: #dddddd;
- 	height: 2px;
- }
+ #btnline:hover {background-color: white;}
+ #qbbtn {width: 50px; height: 26px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
+ #qbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
  
- #btnline:hover {
- 	background-color: white;
- }
- 
- #qbbtn {
- 	width: 50px;
- 	height: 26px;
- 	border: none;
- 	border-radius: 4px 4px 4px 4px;
- 	cursor: pointer;
- 	background-color: #cccccc;
- }
- 
- #qbbtn:hover {
- 	font-weight: bold;
- 	background-color: #bbbbbb;
- }
- 
- #selectlist {
- 	margin-top: 6px;
- 	height: 26px;
- 	border: 2px solid #cccccc;
- 	padding-left: 10px;
- }
- 
- #searchqna {
- 	margin-top: 8px;
- 	height: 24px;
- 	border: 2px solid #cccccc;
- 	padding-left: 10px;
- }
+ #selectlist {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
+ #searchqna {margin-top: 8px; height: 24px; border: 2px solid #cccccc; padding-left: 10px;}
  </style>
 </head>
 	<%

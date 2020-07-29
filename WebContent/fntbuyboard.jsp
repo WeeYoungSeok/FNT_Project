@@ -13,108 +13,36 @@
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 
-#btable {
-	float: center;
- }
+ #btable {float: center;}
  
- h1 {
- 	margin-top: 5%;
- 	font-family: "Arial";
- }
+ h1 {margin-top: 5%; font-family: "Arial";}
  
- #categorylist {
- 	cursor: pointer;
- }
+ #categorylist {cursor: pointer;}
  
- #c_btn {
- 	width: 50px;
- 	height: 19px;
- 	border: none;
- 	border-radius: 2px 2px 2px 2px;
- 	cursor: pointer;
- 	color: white;
- 	background-color: #595959;
- 	margin-bottom: 10px;
- }
+ #c_btn {width: 50px; height: 19px; border: none; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: #595959; margin-bottom: 10px;}
+ #c_btn:hover {font-weight: bold;}
  
- #c_btn:hover {
- 	font-weight: bold;
- }
+ table {font-size: 14pt; margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
  
- table {
- 	font-size: 14pt;
- 	margin: 0 auto;
- 	margin-top: 3%;
- 	width: 80%;
- 	height: auto;
- 	font-family: "Arial";
- } 
+ tr:hover {background-color: #efefef;}
  
- th {
- 	background-color: #dddddd;
- 	height: 30px;
- 	font-weight: bold;
- 	padding-top: 2px;
- }
+ th {background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
  
- td {
- 	height: 24px;
- }
+ td {height: 24px;}
  
- tr:hover {
- 	background-color: #efefef;
- }
+ span {cursor: pointer; margin-left: 10px;}
+ span:hover {font-weight: bold;}
  
- span {
- 	cursor: pointer;
- 	margin-left: 10px;
- }
+ a {text-decoration: none; color: black;}
  
- span:hover {
- 	font-weight: bold;
- }
+ #blistlast {background-color: #dddddd; height: 2px;}
  
- a {
-	text-decoration: none;
-	color: black;
- }
+ #btnline:hover {background-color: white;}
+ #bbbtn {width: 50px; height: 26px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
+ #bbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
  
- #blistlast {
- 	background-color: #dddddd;
- 	height: 2px;
- }
- 
- #btnline:hover {
- 	background-color: white;
- }
- 
- #bbbtn {
- 	width: 50px;
- 	height: 26px;
- 	border: none;
- 	border-radius: 4px 4px 4px 4px;
- 	cursor: pointer;
- 	background-color: #cccccc;
- }
- 
- #bbbtn:hover {
- 	font-weight: bold;
- 	background-color: #bbbbbb;
- }
- 
- #searchttw {
- 	margin-top: 6px;
- 	height: 26px;
- 	border: 2px solid #cccccc;
- 	padding-left: 10px;
- }
- 
- #searchbuy {
- 	margin-top: 8px;
- 	height: 22px;
- 	border: 2px solid #cccccc;
- 	padding-left: 10px;
- }
+ #searchttw {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
+ #searchbuy {margin-top: 8px; height: 22px; border: 2px solid #cccccc; padding-left: 10px;}
 
 </style>
 </head>

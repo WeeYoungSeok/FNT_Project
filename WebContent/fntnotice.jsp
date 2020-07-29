@@ -18,82 +18,30 @@
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
  
- #ntable {
- 	float: center;
- }
+ #ntable {float: center;}
  
- h1 {
- 	margin-top: 6%;
- 	font-family: "Arial";
- }
+ h1 {margin-top: 6%; font-family: "Arial";}
  
- table {
- 	font-size: 14pt;
- 	margin: 0 auto;
- 	margin-top: 3%;
- 	width: 80%;
- 	height: auto;
- 	font-family: "Arial";
- } 
+ table {font-size: 14pt; margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
  
- th {
- 	background-color: #dddddd;
- 	height: 30px;
- 	font-weight: bold;
- 	padding-top: 2px;
- }
+ tr:hover {background-color: #efefef;}
  
- tr:hover {
- 	background-color: #efefef;
- }
+ th {background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
  
- td {
- 	height: 24px;
- }
+ td {height: 24px;}
  
- span {
- 	cursor: pointer;
- 	margin-left: 10px;
- }
+ span {cursor: pointer; margin-left: 10px;}
+ span:hover {font-weight: bold;}
  
- span:hover {
- 	font-weight: bold;
- }
+ a {text-decoration: none; color: black;}
  
- a {
- 	text-decoration: none;
- 	color: black;
- }
+ #nlistlast {background-color: #dddddd; height: 2px;}
  
- #nlistlast {
- 	background-color: #dddddd;
- 	height: 2px;
- }
+ #btnline:hover {background-color: white;}
+ #nbbtn {width: 50px; height: 26px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
+ #nbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
  
- #btnline:hover {
- 	background-color: white;
- }
- 
- #nbbtn {
- 	width: 50px;
- 	height: 26px;
- 	border: none;
- 	border-radius: 4px 4px 4px 4px;
- 	cursor: pointer;
- 	background-color: #cccccc;
- }
- 
- #nbbtn:hover {
- 	font-weight: bold;
- 	background-color: #bbbbbb;
- }
- 
- #searchnotice {
- 	margin-top: 6px;
- 	height: 26px;
- 	border: 2px solid #cccccc;
- 	padding-left: 10px;
- }
+ #searchnotice {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
  </style>
 </head>
 <body>
