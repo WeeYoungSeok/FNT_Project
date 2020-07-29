@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 공지사항 글 작성</title>
+<link href="css/section.css" rel="stylesheet" type="text/css" />
 <link href="css/fntnoticeinsert.css" rel="stylesheet" type="text/css" />
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -46,77 +47,52 @@
 	                 ]
 	      });
 	    });
-	
-	
 
 </script>
-<style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-section {
-	padding-top: 90px;
-	padding-left: 240px;
-}
-span {
-	color: red;
-}
-
-table {
-	margin-top: 100px;
-	margin-left: 100px;
-}
-
-.form-control {
-	height: 38px;
-}
-
-
-
-</style>
+<style type="text/css">th{text-align:center;}.panel{margin-bottom: 0px;}</style>
 </head>
 <body>
 	
 	<%@ include file="./form/header.jsp"%>
-	<%@ include file="./form/aside.jsp"%>
+	
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
 	
 	<section>
-	
-
+		<div id="ntable">
 		<form action="notice.do" method="post">
 			<input type="hidden" value="noticeinsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
-			<table>
+			<table border="1">
 			<col width="100">
 			<col width="1000">
-				<tr>
-				<td>
-				제목
-				</td>
-				<td>
-				<input type="text" name="nbtitle"/>
-				</td>
+			<tr>
+				<th>제목</th>
+				<td><input type="text" id="nbtitle" name="nbtitle" placeholder="제목을 입력해주세요."/></td>
 			</tr>
 			<tr>
-				<td>
-				내용
-				</td>
+				<th>내용</th>
 				<td><textarea name="nbcontent" id="summernote" ></textarea></td>
 			</tr>
 			<tr>
-			<td align="right" colspan="2">
-				<input type="button" value="취소"
-					onclick="location.href='notice.do?command=notice'" />
-					 <input type="submit" value="완료" />
-					 </td>
+				<td align="right" colspan="2">
+					<input id="nbbtn" type="button" value="취소" onclick="location.href='notice.do?command=notice'" />
+					<input id="nbbtn" type="submit" value="완료" />
+				</td>
 			</tr>
 			</table>
 		</form>
+		</div>
 	</section>
-	<%@ include file="./form/footer.jsp"%>
 	
+	<%@ include file="./form/footer.jsp"%>
 	
 </body>
 </html>

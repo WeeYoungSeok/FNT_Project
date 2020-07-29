@@ -13,11 +13,14 @@
 <style type="text/css">
 
 #nboard {
-	margin-top: 20px;
+	margin-top: 6%;
 }
 	
 table {	
+ 	font-size: 14pt;
 	margin: 0 auto;
+	width: 80%;
+	height: auto;
 	font-family: "Arial";
 }
 	
@@ -31,7 +34,7 @@ table {
 
 th {
 	width: 100px;
-	height: 26px;
+	height: 30px;
  	background-color: #dddddd;
  	font-weight: bold;
  	padding-top: 2px;
