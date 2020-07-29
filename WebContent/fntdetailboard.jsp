@@ -143,6 +143,8 @@ function deletereply(replyno,replyboardno){
 	}
 }
 
+
+
 </script>
 <style type="text/css">
 * {
@@ -277,6 +279,18 @@ section {
 		</c:otherwise>
 	</c:choose>
 	</section>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+function popnick(membernickname){
+	var memberdto = "<%=memberdto%>";
+	if(memberdto == "null"){	//문자열로 null 선언해줘야함
+		alert("로그인이 필요합니다");
+		location.href="fntlogincrud.jsp";
+	}else{
+	open("fntpopnick2.jsp?popnick="+membernickname,"","width=200, height=250");	
+	}
+}
+</script>
 <%@ include file="./form/footer.jsp" %>
 </body>
 </html>
