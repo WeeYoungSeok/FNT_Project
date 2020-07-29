@@ -25,7 +25,7 @@ header {
 }
 
 #searchzone {
-   margin-left: 8%;
+   margin-left: 7%;
    display: flex;
    flex-decoration: row;
    margin-top: 2%;
@@ -33,13 +33,13 @@ header {
 
 #searchdeal {
    width: 400px;
-   height: 30px;
+   height: 34px;
    padding-left: 10px;
    border: 2px solid #dedede;
 }
 
 .mysection {
-   margin-left: 6%;
+   margin-left: 7%;
    display: flex;
    flex-decoration: row;
    margin-top: 2%;
@@ -47,7 +47,7 @@ header {
 
 .headerbtn {
    width: 70px;
-   height: 34px;
+   height: 38px;
    border: none;
    border-radius: 2px 2px 2px 2px;
    margin-left: 10px;
@@ -61,8 +61,8 @@ header {
 }
 
 .alertbell {
-   width: 20px;
-   height: 20px;
+   width: 22px;
+   height: 26px;
    margin-left: 10px;
    margin-top: 14%;
 }
@@ -75,7 +75,7 @@ header {
 
 #trans {
    width: 70px;
-   height: 34px;
+   height: 38px;
    border: none;
    border-radius: 2px 2px 2px 2px;
    margin-left: 10px;

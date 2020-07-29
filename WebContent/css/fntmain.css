@@ -1,16 +1,17 @@
-    #slide{
-      position: relative;
-      height: 100vh;
-    }
+#slide {
+	position: relative;
+	width: 111.1vw;
+	height: auto;
+}
 
-    #slide div{
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-    }
+#slide > div {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: block;
+}
 
-    #slide img{
-      width: 100%;
-      height: auto;
-    }
+div > img {
+	width: 111.1%;
+	height: auto;
+}

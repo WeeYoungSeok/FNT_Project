@@ -23,7 +23,7 @@
  }
  
  h1 {
- 	margin-top: 18px;
+ 	margin-top: 6%;
  	font-family: "Arial";
  }
  

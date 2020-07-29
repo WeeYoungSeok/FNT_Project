@@ -20,7 +20,7 @@
  }
  
  h1 {
- 	margin-top: 18px;
+ 	margin-top: 5%;
  	font-family: "Arial";
  }
  
