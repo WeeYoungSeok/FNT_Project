@@ -256,7 +256,7 @@
 				<option value="T">제목</option>
 				<option value="W">작성자</option>
 			</select>
-			<input type="text"  name="salesearch" id="salesearch" value="<%=salesearch%>" required="required" placeholder="내용을 입력하세요"/>
+			<input type="text"  name="salesearch" id="salesearch" value="" required="required" placeholder="내용을 입력하세요"/>
 			<input id="sbbtn" type="submit" value="검색"/>
 		</form>
 	
@@ -265,16 +265,7 @@
 <%@ include file="./form/footer.jsp" %>	
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	   $("select[name='salelist'] option[value="+"<%=salelist%>"+"]").attr("selected", true);
-	   if($("input[name=salesearch]").val() == "null") {
-	      $("input[name='salesearch']").prop("value","");
-	   } else {
-	   $("input[name='salesearch']").prop("value","<%=salesearch%>");
-	}
-	})
-</script>
+
 
 </body>
 </html>

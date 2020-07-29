@@ -34,8 +34,9 @@ public interface DealBoardDao {
 	public int saleGetAllCount(String categorylist);
 	
 	public List<DealBoardDto> searchdealtitle(String search,Paging paging);
-	public List<DealBoardDto> searchdealwriter(String search);
-	public int buysearchAllCount(String search);
+	public List<DealBoardDto> searchdealwriter(String search, Paging paging);
+	public int buysearchTitleCount(String search);
+	public int buysearchNicknameCount(String search);
 	
 	public List<DealBoardDto> salesearchtitle(String salesearch);
 	public List<DealBoardDto> salesearchnick(String salesearch);

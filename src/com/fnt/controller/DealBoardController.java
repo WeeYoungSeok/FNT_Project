@@ -337,7 +337,7 @@ public class DealBoardController extends HttpServlet {
 		} else if (command.equals("buysearchlist")) { // 구매글 카테고리(페이징 적용)
 			String categorylist = request.getParameter("categorylist");
 			String search = request.getParameter("search");
-			System.out.println("카테고리" + categorylist);
+			System.out.println("카테고리" + categorylist + "서치" + search);
 
 			List<DealBoardDto> list = null;
 			int page = 1;
@@ -364,7 +364,7 @@ public class DealBoardController extends HttpServlet {
 			String search = request.getParameter("search");
 			String selecttw = request.getParameter("selecttw");
 			String categorylist = request.getParameter("categorylist");
-			System.out.println(search + ":" + selecttw);
+			System.out.println(search + ":" + selecttw+ ":" + categorylist);
 			List<DealBoardDto> list = null;
 			if (selecttw.equals("T")) {
 				int page = 1;
@@ -373,7 +373,7 @@ public class DealBoardController extends HttpServlet {
 					page = Integer.parseInt(request.getParameter("page"));
 				}
 				Paging paging = new Paging();
-				int count = dao.buysearchAllCount(search);
+				int count = dao.buysearchTitleCount(search);
 
 				paging.setTotalcount(count);
 				paging.setPage(page);
@@ -385,13 +385,29 @@ public class DealBoardController extends HttpServlet {
 				request.setAttribute("search", search);
 				request.setAttribute("selecttw", selecttw);
 				dispatch("fntbuyboard.jsp", request, response);
+				
 			} else {
 				System.out.println("else로 왔니?");
-				list = dao.searchdealwriter(search);
+				int page = 1;
+
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.buysearchNicknameCount(search);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+				list = dao.searchdealwriter(search,paging);
+				System.out.println("여기는왔고?");
+				request.setAttribute("categorylist", categorylist);
+				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
 				request.setAttribute("search", search);
 				request.setAttribute("selecttw", selecttw);
-				dispatch("fntbuyboard.jsp", request, response);
+				System.out.println("컨트롤러에서 리스트 사이즈" + list.size());
+				
+				dispatch("fntbuyboard.jsp", request, response); 
 			}
 		} else if (command.equals("salesearchlist")) { //판매글 카테고리
 

@@ -351,13 +351,24 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	}
 
 	@Override
-	public List<DealBoardDto> searchdealwriter(String search) {
+	public List<DealBoardDto> searchdealwriter(String search,Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("search", search);
+		System.out.println("startNum" + startNum);
+		System.out.println("endNum" + endNum);
+		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace + "searchdealwriter",search);
+			list = session.selectList(namespace + "searchdealwriter",map);
+			System.out.println("다오에서의 list 사이즈"+list.size());
+			System.out.println("여기까진 왓니? 작성자");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -480,13 +491,31 @@ public class DealBoardDaoImpl implements DealBoardDao{
 	}
 
 	@Override
-	public int buysearchAllCount(String search) {
+	public int buysearchTitleCount(String search) {
 		SqlSession session = null;
 		int count = 0;
 
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			count = session.selectOne(namespace + "buysearchcount",search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+	}
+
+	@Override
+	public int buysearchNicknameCount(String search) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "buynicksearchcount",search);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

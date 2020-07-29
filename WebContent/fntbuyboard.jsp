@@ -251,6 +251,7 @@
 				%>
 				<jsp:include page="./paging/fntbuysearchtitlepaging.jsp">
 				<jsp:param value="<%=selecttw %>" name="selecttw"/>
+				<jsp:param value="<%=categorylist %>" name="categorylist"/>
 			<jsp:param value="<%=search %>" name="search"/>
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>

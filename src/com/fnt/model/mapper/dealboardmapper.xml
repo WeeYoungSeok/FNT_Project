@@ -185,12 +185,22 @@
  		]]>
  	</select>
  	
- 	<select id="searchdealwriter" parameterType="String" resultMap="dealBoardDtoResultMap">
- 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
- 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE
- 		FROM DEAL_BOARD
- 		WHERE D_NICKNAME LIKE '%'||#{search}||'%'
+ 	<!-- 구매 게시판 검색시 페이징(작성자 검색) -->
+ 	<select id="searchdealwriter" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		<![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE ,ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE FROM DEAL_BOARD WHERE D_FLAG = 'B' AND D_NICKNAME LIKE '%'||#{search}||'%' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
  		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	
+ 	<!-- 구매 게시판 검색시 페이징(작성자 검색) 카운트 수 -->
+ 	<select id="buynicksearchcount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG='B' AND D_NICKNAME LIKE '%'||#{search}||'%'
  	</select>
  	
  	<!-- 판매 게시판 카테골이 검색 페이징에 쓰일 카운트 -->
