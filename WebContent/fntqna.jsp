@@ -154,6 +154,10 @@
 				</td>
 			</tr>
 		</table></div>
+		
+		<%
+			if(selectlist == null || searchqna == null) {
+		%>
 	<jsp:include page="./paging/fntqnapaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -161,7 +165,21 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
-	
+		<%
+			} else if (selectlist.equals("W") || selectlist.equals("T")) {
+				%>
+	<jsp:include page="./paging/fntqnasearchpaging.jsp">
+	<jsp:param value="<%=searchqna %>" name="searchqna"/>
+	<jsp:param value="<%=selectlist %>" name="selectlist"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+				<%
+			}
+		%>
 	<form id="form1" action="qna.do" method="post">
 		<input type="hidden" name="command" value="searchqna">
 		
@@ -169,7 +187,7 @@
 			<option value="T">제목</option>
 			<option value="W">작성자</option>
 		</select>
-		<input type="text" name="searchqna" id="searchqna" value="<%=searchqna %>" required="required" placeholder="내용을 입력하세요.">		
+		<input type="text" name="searchqna" id="searchqna" value="" required="required">		
 		<span><input id="qbbtn" type="submit" value="검색"></span>
 	</form>
 		
@@ -177,16 +195,7 @@
 	<%@ include file="./form/footer.jsp" %>
 	
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("select[name='selectlist'] option[value="+"<%=selectlist%>"+"]").attr("selected", true);
-	if($("#searchqna").val() == "null") {
-		$("input[name='searchqna']").prop("value","");
-	} else {
-	$("input[name='searchqna']").prop("value","<%=searchqna%>");
-}
-})
-</script>
+
 	
 </body>
 </html>

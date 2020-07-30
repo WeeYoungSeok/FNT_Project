@@ -11,6 +11,9 @@
 <title>FNT(Feel New Item)주문내역 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
 <link href="css/fntmydealpage.css" rel="stylesheet" type="text/css" />
+<%
+	List<OrderlistDto> orderlist = (List<OrderlistDto>) request.getAttribute("orderlist");
+%>
 
 </head>
 <body>

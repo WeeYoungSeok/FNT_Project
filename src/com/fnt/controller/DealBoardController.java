@@ -247,6 +247,9 @@ public class DealBoardController extends HttpServlet {
 			DealBoardDto dealboarddto = dao.selectDetail(dboardno);
 			List<ReplyDto> replylist = replydao.selectReplyList(dboardno);
 			String memberid = "";
+			String invoice = orderlistdao.selectInvoiceByBoardno(dboardno);
+			
+			
 			if (memberdto == null) {
 
 			} else {
@@ -256,7 +259,8 @@ public class DealBoardController extends HttpServlet {
 			String wlsellnickname = dealboarddto.getDnickname();
 
 			WishlistDto wishlistdto = wishlistdao.selectOneWishlist(memberid, wlsellnickname, dboardno);
-
+			
+			request.setAttribute("invoice", invoice);
 			request.setAttribute("replylist", replylist);
 			request.setAttribute("wishlistdto", wishlistdto);
 			request.setAttribute("dealboarddto", dealboarddto);
@@ -571,7 +575,7 @@ public class DealBoardController extends HttpServlet {
         	 int dboardno = Integer.parseInt(request.getParameter("dboardno"));
         	 DealBoardDto dto = dao.cashselect(dboardno);
         	 
-        	 int insertres = orderlistdao.insert(new OrderlistDto(0,memberdto.getMemberid(),dto.getDnickname(),0,dboardno));
+        	 int insertres = orderlistdao.insert(new OrderlistDto(0,memberdto.getMemberid(),dto.getDnickname(),"",dboardno));
         	 int updateres = dao.updatesellflag(dboardno);
         	 
         	 if(insertres + updateres > 1) {

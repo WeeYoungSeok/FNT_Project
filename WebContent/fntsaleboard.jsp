@@ -126,7 +126,14 @@
 							</c:otherwise>
 							</c:choose>
 							<td align="left">
-								<span onclick="location.href='dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}'">${dealboarddto.dtitle }</span>
+								<span onclick="location.href='dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}'">
+								<c:choose>
+									<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+										[판매완료]
+									</c:when>
+								</c:choose>
+								${dealboarddto.dtitle }
+								</span>
 							</td>
 							<td>${dealboarddto.dnickname }</td>
 							<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>
@@ -208,7 +215,7 @@
 				<option value="T">제목</option>
 				<option value="W">작성자</option>
 			</select>
-			<input type="text"  name="salesearch" id="salesearch" value="" required="required" placeholder="내용을 입력하세요"/>
+			<input type="text"  name="salesearch" id="salesearch" value="" required="required" />
 			<input id="sbbtn" type="submit" value="검색"/>
 		</form>
 	
