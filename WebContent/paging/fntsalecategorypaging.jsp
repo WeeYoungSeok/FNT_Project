@@ -14,6 +14,7 @@ body {
 }
 
 #paging {
+	margin-top: 1%;
 	display: flex;
 	float: center;
 	position: absolute;
