@@ -208,7 +208,7 @@
 				<option value="T">제목</option>
 				<option value="W">작성자</option>
 			</select>
-			<input type="text"  name="salesearch" id="salesearch" value="" required="required" placeholder="내용을 입력하세요"/>
+			<input type="text"  name="salesearch" id="salesearch" value="" required="required" />
 			<input id="sbbtn" type="submit" value="검색"/>
 		</form>
 	
