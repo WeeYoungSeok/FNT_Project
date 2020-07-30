@@ -1,0 +1,94 @@
+h1 {
+	margin-top: 4%;
+	margin-bottom: 1%;
+	text-align: center;
+	font-family: "Arial";
+}
+
+#list {
+	display: flex;
+	width: 80%;
+	height: 50px;
+	margin: 0px auto;
+	margin-bottom: 2%;
+}
+
+.thislistbox {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	padding-top: 1.2%;
+	font-size: 14pt;
+	font-family: "Arial";
+	font-weight: bold;
+	background-color: #fee500;
+	cursor: pointer;
+}
+
+.listbox {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	padding-top: 1.2%;
+	font-size: 14pt;
+	font-family: "Arial";
+	background-color: #eeeeee;
+	cursor: pointer;
+}
+
+.listbox:hover {
+	font-weight: bold;
+	background-color: #fee500;
+}
+
+#selllist {
+	width: 80%;
+	margin: 0px auto;
+	font-size: 14pt;
+	font-family: "Arial";
+}
+
+tr:hover {
+	background-color: #efefef;
+	font-weight: bold;
+}
+
+th {
+	background-color: #cccccc;
+	font-weight: bold;
+	height: 30px;
+	text-align: center;
+}
+
+td {
+	height: 28px;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+#listlast {
+	background-color: #dddddd; 
+	height: 2px;
+}
+
+#mybtn {
+	width: 100px; 
+	height: 28px; 
+	border: none; 
+	border-radius: 4px 4px 4px 4px; 
+	cursor: pointer; 
+	background-color: #cccccc;
+	float: right;
+	margin-top: 0.4%;
+	margin-right: 10%;
+	margin-bottom: 4%;
+}
+
+#mybtn:hover {
+	font-weight: bold; 
+	background-color: #bbbbbb;
+}

@@ -66,7 +66,7 @@
 			<col width="100">
      		<col width="300">
      	 	<col width="150">
-      		<col width="250">
+      		<col width="200">
       		
       		<tr align="center">
       			<th>No.</th>
