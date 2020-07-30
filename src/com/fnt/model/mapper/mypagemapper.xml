@@ -27,6 +27,7 @@
 		<result property="dregdate" column="D_REGDATE"/>
 		<result property="dcategory" column="D_CATEGORY"/>
 		<result property="dflag" column="D_FLAG"/>
+		<result property="dsellflag" column="D_SELLFLAG"/>
 	</resultMap>
  	
  	<resultMap type="wishlistdto" id="wishlistDtoResultMap">
@@ -59,7 +60,7 @@
     	
 	<!-- 내가 쓴 판매글 조회할거야. -->
 	<select id="selllist" parameterType="String" resultMap="dealBoardDtoResultMap">
-		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_SELLFLAG
 		FROM DEAL_BOARD WHERE D_ID = #{did} AND D_FLAG = 'S'
 		ORDER BY D_BOARDNO ASC
 	</select>
@@ -77,7 +78,7 @@
 		 FROM QNA_BOARD WHERE QB_ID = #{memberid}
 		 ORDER BY QB_BOARDNO ASC
 	</select>
-	
+	<!-- 내가 한 주문내역 조회 -->
 	<select id="orderlist" parameterType="String" resultMap="orderlistDtoResultMap">
 		SELECT O.OL_NO, O.OL_SELL_NICKNAME, O.OL_INVOICE, D.D_TITLE, D.D_PRICE
 		FROM ORDER_LIST O JOIN DEAL_BOARD D ON O.OL_BOARDNO = D.D_BOARDNO
