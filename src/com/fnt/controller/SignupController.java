@@ -149,7 +149,7 @@ public class SignupController extends HttpServlet {
 	             
 	            // 이메일 제목
 	            msg.setSubject("FNT(Feel New Item)에서 보내는 메일 입니다.\n"
-	            		+ "아이디를 찾기 위한 인증번호 입니다. 정확하게 입력해 주세요!\n", "UTF-8");
+	            		+ "이메  일 인증을 위한 인증번호 입니다. 정확하게 입력해 주세요!\n", "UTF-8");
 	             
 	            // 이메일 내용 
 
