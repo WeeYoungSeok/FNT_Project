@@ -14,5 +14,17 @@
 		INSERT INTO ORDER_LIST 
 		VALUES (OL_NO_SEQ.NEXTVAL, #{olid}, #{olsellnickname}, 0, #{olboardno})
 	</insert>
+	
+	<update id="updateinvoice" parameterType="map">
+		UPDATE ORDER_LIST SET OL_INVOICE = #{invoice}
+		WHERE OL_ID = #{memberid}
+		AND OL_BOARDNO = #{olboardno}
+	</update>
+	
+	<select id="selectInvoiceByBoardno" parameterType="int" resultType="String">
+		SELECT OL_INVOICE
+		FROM ORDER_LIST
+		WHERE OL_BOARDNO = #{dboardno}
+	</select>
 
 </mapper>

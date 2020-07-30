@@ -119,11 +119,13 @@ section {
 	%> 
 		<c:choose>
 			<c:when test="${dealboarddto.dsellflag eq 'Y' && dealboarddto.dnickname eq memberdto.membernickname }">
-				<form action="">
+				<form action="mypage.do">
 					<tr>
 						<td colspan="2" align="right">
 							<em><strong style="color:red">송장번호를 입력해주세요</strong></em>
-							<input type="text" name="invoice" placeholder="ex)1234567(CJ대한통운)">
+							<input type="hidden" name="command" value="invoiceinsert"/>
+							<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
+							<input type="text" name="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
 							<input type="submit" value="등록하기">
 						</td>
 					</tr>	

@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +50,14 @@
 							<tr>
 								<td><%=selllist.get(i).getDboardno() %></td>
 								<td>
+								<%
+									if(selllist.get(i).getDsellflag().equals("Y")){
+								%>
+										[판매완료]
+								<%		
+									}
+								%>
+
 									<a href="dealboard.do?command=detailsaleboard&dboardno=<%=selllist.get(i).getDboardno()%>"><%=selllist.get(i).getDtitle() %></a>
 								</td>
 								<td><%=selllist.get(i).getDregdate() %></td>
