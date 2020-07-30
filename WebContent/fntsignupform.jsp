@@ -32,7 +32,7 @@
 	// 내부적으로 비동기 실행시 랜덤함수가 두번실행돼서 
 	// 하나의 변수에 담아서 비교했을때 값이 일치하게 만들어주기 위해
 %>
-	<div>
+	<div class="topbar">
 		<a href="fntmain.jsp">
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
 		</a>	
@@ -40,6 +40,7 @@
 	
 	<br/><br/>
 	
+	<div class="formtable">
 	<form action="signup.do" id="form" name="form" method="post" >
 		<input type="hidden" name="command" value="signupform"/>
 		<input type="hidden" value="" name="IDCHK" id="IDCHK"/>
@@ -48,6 +49,9 @@
 		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
 
 		<table>
+			<col width="200">
+			<col width="500">
+			<col width="140">
 			<tr>
 				<td colspan="3" align="left"><p>* 반드시 <b>모든 항목</b>을 작성완료하셔야만 <b>정상 가입</b>됩니다 :)</p></td>
 			</tr>
@@ -92,10 +96,10 @@
 				<td><input type="button" class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');" value="Email 인증"></td>
 			</tr>
 		</table>
-		<br/>
 		<button id="resetbtn" type="reset">RESET</button>
 		<button id="submitbtn" type="submit">Sign Up</button>
 	</form>
+	</div>
 
 </body>
 </html>

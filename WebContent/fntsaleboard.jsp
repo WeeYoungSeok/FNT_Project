@@ -46,7 +46,7 @@
  #search {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
  #salesearch {margin-top: 8px; height: 22px; border: 2px solid #cccccc; padding-left: 10px;}
  
- #form1 {margin-top: 4%;}
+ #form1 {margin-top: 5%;}
  
 </style>
 </head>
