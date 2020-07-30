@@ -17,9 +17,6 @@
 
 </head>
 <body>
-<%
-	List<OrderlistDto> orderlist = (List<OrderlistDto>) request.getAttribute("orderlist");
-%>
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
 	<script type="text/javascript">
