@@ -56,7 +56,7 @@
 					<td style="text-align:left; padding-left: 40px;">
 						<a href="qna.do?command=qnadetail&qbboardno=<%=qnalist.get(i).getQbboardno()%>"><%=qnalist.get(i).getQbtitle() %></a>
 					</td>
-					<td><%=qnalist.get(i).getQbregdate() %></td>
+					<td><%=qnalist.get(i).getQbregdate().substring(0,10) %></td>
 				</tr>
 				<%
 						}
