@@ -126,7 +126,14 @@
 							</c:otherwise>
 							</c:choose>
 							<td align="left">
-								<span onclick="location.href='dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}'">${dealboarddto.dtitle }</span>
+								<span onclick="location.href='dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}'">
+								<c:choose>
+									<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+										[판매완료]
+									</c:when>
+								</c:choose>
+								${dealboarddto.dtitle }
+								</span>
 							</td>
 							<td>${dealboarddto.dnickname }</td>
 							<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>
