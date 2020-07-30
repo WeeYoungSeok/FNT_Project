@@ -31,7 +31,14 @@ section {
 		<table border="1">
 			<tr>
 				<th>제  목</th>
-				<td>${dealboarddto.dtitle }</td>
+				<td>
+					<c:choose>
+						<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+							[판매완료]
+						</c:when>
+					</c:choose>
+						${dealboarddto.dtitle }
+				</td>
 			</tr>
 			<tr>
 				<th>찜</th>
@@ -48,7 +55,12 @@ section {
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 <span><a href="javascript:cashpop()">결제하기🤑</a></span></td>
+				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 
+				<c:choose>
+					<c:when test="${!empty memberdto }">
+						<span><a href="javascript:cashpop()">결제하기🤑</a></span></td>
+					</c:when>
+				</c:choose>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -56,7 +68,15 @@ section {
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><div>${dealboarddto.dcontent }</div></td>
+				<td>
+				<c:choose>
+					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+						<div align="center;"><strong>판매 완료된 글입니다.</strong></div>
+					</c:when>
+					<c:otherwise>
+						<div>${dealboarddto.dcontent }</div></td>					
+					</c:otherwise>
+				</c:choose>
 			</tr>		
 	<%
 		DealBoardDto dealboarddto = (DealBoardDto) request.getAttribute("dealboarddto");
@@ -69,7 +89,7 @@ section {
 				<input type="hidden" name="longitude" id="longitude" value="${dealboarddto.dlongitude }">
 				<input type="hidden" name="latitude" id="latitude" value="${dealboarddto.dlatitude }">
 			</tr>
-			
+
 
 	<%
 		}
@@ -97,6 +117,19 @@ section {
 				}
 		}
 	%> 
+		<c:choose>
+			<c:when test="${dealboarddto.dsellflag eq 'Y' && dealboarddto.dnickname eq memberdto.membernickname }">
+				<form action="">
+					<tr>
+						<td colspan="2" align="right">
+							<em><strong style="color:red">송장번호를 입력해주세요</strong></em>
+							<input type="text" name="invoice" placeholder="ex)1234567(CJ대한통운)">
+							<input type="submit" value="등록하기">
+						</td>
+					</tr>	
+				</form>	
+			</c:when>
+		</c:choose>
 		</table>
 	<%
 		if(memberdto==null) {
@@ -106,6 +139,7 @@ section {
 	<%
 		}else{
 	%>
+	
 		<table>
 			<tr>
 				<th><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="width:80px"></th>
