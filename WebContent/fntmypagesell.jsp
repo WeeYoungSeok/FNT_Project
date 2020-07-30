@@ -9,14 +9,7 @@
 <title>FNT(Feel New Item)판매글 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
 
-<style type="text/css">
-a{
-	text-decoration : none;
-}
-a:hover{
-	color : orange;
-}
-</style>
+
 
 </head>
 <body>

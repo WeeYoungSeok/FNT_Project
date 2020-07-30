@@ -14,15 +14,7 @@
 	List<OrderlistDto> orderlist = (List<OrderlistDto>) request.getAttribute("orderlist");
 %>
 
-<style type="text/css">
-a {
-	text-decoration: none;
-}
 
-a:hover {
-	color: orange;
-}
-</style>
 
 </head>
 <body>
