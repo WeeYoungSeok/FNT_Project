@@ -32,44 +32,43 @@
 				<p class="listbox" onclick="location.href='mypage.do?command=orderlist&memberid=<%=memberdto.getMemberid()%>'">내가 주문한 상품</p>
 			</div>
 			
-
-			<div id="selllist">
-				<table border="1">
+				<table id="selllist">
+					<col width="15%">
+					<col width="60%">
+					<col width="25%">
 					<tr>
-						<th>글번호</th>
-						<th>글제목</th>
-						<th>작성날짜</th>
+						<th>No.</th>
+						<th>제목</th>
+						<th>작성일</th>
 					</tr>
 					<%
 						if(selllist.size() == 0){
 					%>
-						<tr>
-							<td colspan="3">-----조회된 글이 없습니다.-----</td>
-						</tr>
+					<tr>
+						<td colspan="3">-----조회된 글이 없습니다.-----</td>
+					</tr>
 					<%
 						} else {
-							for(int i = 0; i < selllist.size(); i++){
+							for (int i = 0; i < selllist.size(); i++) {
 					%>
-							<tr>
-								<td><%=selllist.get(i).getDboardno() %></td>
-								<td>
-								<%
-									if(selllist.get(i).getDsellflag().equals("Y")){
-								%>
-										[판매완료]
-								<%		
-									}
-								%>
-
-									<a href="dealboard.do?command=detailsaleboard&dboardno=<%=selllist.get(i).getDboardno()%>"><%=selllist.get(i).getDtitle() %></a>
-								</td>
-								<td><%=selllist.get(i).getDregdate() %></td>
-							</tr>
+					<tr>
+						<td><%=selllist.get(i).getDboardno() %></td>
+						<td>
 					<%
-
+								if (selllist.get(i).getDsellflag().equals("Y")) {
+					%>
+						[판매완료]
+					<%		
+								}
+					%>
+							<a href="dealboard.do?command=detailsaleboard&dboardno=<%=selllist.get(i).getDboardno()%>"><%=selllist.get(i).getDtitle() %></a>
+						</td>
+						<td><%=selllist.get(i).getDregdate() %></td>
+					</tr>
+					<%
+							}
 						}
-					}
-				%>
+					%>
 				<tr><td id="listlast" colspan="3"></td></tr>
 			</table>
 			<input id="mybtn" type="button" value="내 정보 보기" onclick="location.href='LoginCrudController?command=cruddetail&memberid=<%=memberdto.getMemberid()%>'">
