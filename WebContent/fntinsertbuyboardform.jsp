@@ -14,8 +14,11 @@
 <script src="./js/summernote-ko-KR.min.js"></script>
 <link rel="stylesheet" href="./css/summernote-lite.css">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+<link href="css/section.css" rel="stylesheet" type="text/css" />
+<link href="css/fntinsertsaleboardform.css" rel="stylesheet" type="text/css" />
 
 <script>
+
 $(function(){
 	$('#summernote').summernote({
 		  height: 300,   // 에디터 높이
@@ -47,13 +50,9 @@ $(function(){
 			}, 
 		});
 	
-
 	$("input[name=dprice]").on("keyup", function() {
 	    $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
 	});	
-	
-
-	
 });
 
 var postForm = function() {
@@ -65,7 +64,6 @@ var postForm = function() {
 	   	return true;
 	}
 }
-
 
  function sendFile(file,editor){
  	var data = new FormData();
@@ -83,8 +81,6 @@ var postForm = function() {
         	   var image =$("<img>").attr("src",img_name);
         	//   $(".summernote").summernote('insertImage', img_name);
         	   $(".summernote").summernote('insertNode', image[0]);
-    
-        	   
            },
            error:function(){
         	   alert("실패!");
@@ -92,55 +88,36 @@ var postForm = function() {
 	    });
 	  } 
 
-	  
-
 function addCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
  
-
 //모든 콤마 제거
 function removeCommas(x) {
     if(!x || x.length == 0) return "";
     else return x.split(",").join("");
 }
 
-
-
-		
 </script>
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-section {
-	padding-top: 90px;
-	padding-left: 240px;
-}
-
-input {
-	width: 500px;
-	height: 24px;
-	padding-left: 6px;
-}
-
-td {
-	width: 740px;
-	height: 24px;
-}
-
 input {
 	height: 38px;
 }
-
 </style>
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-<%@ include file="./form/aside.jsp"%>
 
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
+	
 	<section>
 		<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
 		<input type="hidden" name="command" value="insertbuyboardres">

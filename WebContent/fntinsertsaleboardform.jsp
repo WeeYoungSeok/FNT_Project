@@ -15,75 +15,23 @@
 <script src="./js/summernote-ko-KR.min.js"></script>
 <link rel="stylesheet" href="./css/summernote-lite.css">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+<link href="css/section.css" rel="stylesheet" type="text/css" />
+<link href="css/fntinsertsaleboardform.css" rel="stylesheet" type="text/css" />
 
-
-<style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-section {
-	padding-top: 90px;
-	padding-left: 240px;
-}
-
-input {
-	width: 500px;
-	height: 24px;
-	padding-left: 6px;
-}
-
-td {
-	width: 740px;
-	height: 24px;
-}
-
-
-.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;height:460px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-.bg_white {background:#fff;}
-#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-#menu_wrap .option{text-align: center;}
-#menu_wrap .option p {margin:10px 0;}  
-#menu_wrap .option button {margin-left:5px;}
-#placesList li {list-style: none;}
-#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-#placesList .item span {display: block;margin-top:4px;}
-#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#placesList .item .info{padding:10px 0 10px 55px;}
-#placesList .info .gray {color:#8a8a8a;}
-#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
-#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-#placesList .item .marker_1 {background-position: 0 -10px;}
-#placesList .item .marker_2 {background-position: 0 -56px;}
-#placesList .item .marker_3 {background-position: 0 -102px}
-#placesList .item .marker_4 {background-position: 0 -148px;}
-#placesList .item .marker_5 {background-position: 0 -194px;}
-#placesList .item .marker_6 {background-position: 0 -240px;}
-#placesList .item .marker_7 {background-position: 0 -286px;}
-#placesList .item .marker_8 {background-position: 0 -332px;}
-#placesList .item .marker_9 {background-position: 0 -378px;}
-#placesList .item .marker_10 {background-position: 0 -423px;}
-#placesList .item .marker_11 {background-position: 0 -470px;}
-#placesList .item .marker_12 {background-position: 0 -516px;}
-#placesList .item .marker_13 {background-position: 0 -562px;}
-#placesList .item .marker_14 {background-position: 0 -608px;}
-#placesList .item .marker_15 {background-position: 0 -654px;}
-#pagination {margin:10px auto;text-align: center;}
-#pagination a {display:inline-block;margin-right:10px;}
-#pagination .on {font-weight: bold; cursor: default;color:#777;}
-
-
-</style>
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-<%@ include file="./form/aside.jsp"%>
 
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
+	
 	<section>
 		<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
 		<input type="hidden" name="command" value="insertsaleboardres">
@@ -172,7 +120,6 @@ $(function(){
 			}, 
 		});
 	
-
 	$("input[name=dprice]").on("keyup", function() {
 	    $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
 	});	
@@ -181,9 +128,7 @@ $(function(){
 		//alert(langitude);
 		document.getElementById("coords").value=langitude;
 		document.getElementById("roadname").value=roadname;
-		
 	});
-
 });
 
 var postForm = function() {
@@ -195,7 +140,6 @@ var postForm = function() {
 	   	return true;
 	}
 }
-
 
 var markersList =[];
 var infowindowList = [];
@@ -213,7 +157,6 @@ function loadinfo(me){
 		console.log(roadname);
 		console.log('x좌표'+$(me).children("#x").val());
 	}
-	
 }
  
 // infowindow 없애는 함수
@@ -248,21 +191,16 @@ function removeMarkerList() {
         	   var image =$("<img>").attr("src",img_name);
         	//   $(".summernote").summernote('insertImage', img_name);
         	   $(".summernote").summernote('insertNode', image[0]);
-    
-        	   
            },
            error:function(){
         	   alert("실패!");
            }
 	    });
 	  } 
-
-	  
-
+ 
 function addCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
- 
 
 //모든 콤마 제거
 function removeCommas(x) {
@@ -280,8 +218,6 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         level: 3 // 지도의 확대 레벨
     };  
     
- 
-
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
@@ -310,7 +246,6 @@ if (navigator.geolocation) {
         
     displayMarker(locPosition, message);
 }
-
 
 //지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition, message) {
@@ -344,7 +279,6 @@ var ps = new kakao.maps.services.Places();
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 var infowindow2 = new kakao.maps.InfoWindow({zIndex:1});
 
-
 // 키워드로 장소를 검색합니다
 searchPlaces();
 
@@ -375,15 +309,12 @@ function placesSearchCB(data, status, pagination) {
         displayPagination(pagination);
 
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
         alert('검색 결과가 존재하지 않습니다.');
         return;
 
     } else if (status === kakao.maps.services.Status.ERROR) {
-
         alert('검색 결과 중 오류가 발생했습니다.');
         return;
-
     }
 }
 
@@ -443,13 +374,9 @@ function displayPlaces(places) {
             	displayHERE(marker, title);
             	langitude = placePosition;
             	
-            	
             //	console.log(langitude);
             });
-            
-            
         })(marker, places[i].place_name);
-
         fragment.appendChild(itemEl);
     }
 
@@ -459,7 +386,6 @@ function displayPlaces(places) {
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
-    
 }
 var roadname;
 var langitude;
@@ -470,7 +396,6 @@ function getListItem(index, places) {
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info"  onclick="loadinfo(this);">' +
                 '   <h5 id="placename">' + places.place_name + '</h5>';
-                
 
     if (places.road_address_name) {
         itemStr += '    <span id="roadname">' + places.road_address_name + '</span>' +
@@ -487,9 +412,6 @@ function getListItem(index, places) {
 
     return el;
 }
-
-
-
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
@@ -545,7 +467,6 @@ function displayPagination(pagination) {
                 }
             })(i);
         }
-
         fragment.appendChild(el);
     }
     paginationEl.appendChild(fragment);
