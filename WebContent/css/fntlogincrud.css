@@ -47,6 +47,10 @@ th {
 	text-decoration: underline;
 }
 
+#findbtn:hover {
+	color: red;
+}
+
 input {
 	border: none;
 	width: 300px;
