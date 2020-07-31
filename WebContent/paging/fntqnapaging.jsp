@@ -57,7 +57,7 @@ body {
             <div class="thispage"><a id="onePage">${index}</a></div>
         </c:when>
         <c:otherwise>
-            <div class="otherpage"><a href="${action}?page=${index}&command=qna">${index}</a></div>
+            <div class="otherpage"><a style="text-decoration:none; color:black;" href="${action}?page=${index}&command=qna">${index}</a></div>
         </c:otherwise>
     </c:choose>
 </c:forEach>

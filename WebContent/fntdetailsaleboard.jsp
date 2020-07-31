@@ -57,7 +57,7 @@ section {
 				<th>가격</th>
 				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 
 				<c:choose>
-					<c:when test="${!empty memberdto }">
+					<c:when test="${!empty memberdto && memberdto.membernickname ne dealboarddto.dnickname && dealboarddto.dsellflag eq 'N'}">
 						<span><a href="javascript:cashpop()">결제하기🤑</a></span></td>
 					</c:when>
 				</c:choose>

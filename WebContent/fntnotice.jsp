@@ -33,8 +33,6 @@
  span {cursor: pointer; margin-left: 10px;}
  span:hover {font-weight: bold;}
  
-
- 
  #nlistlast {background-color: #dddddd; height: 2px;}
  
  #btnline:hover {background-color: white;}
@@ -63,7 +61,7 @@
 			<col width="100">
      		<col width="400">
      	 	<col width="150">
-      		<col width="250">
+      		<col width="200">
       		
       		<tr align="center">
       			<th>No.</th>
