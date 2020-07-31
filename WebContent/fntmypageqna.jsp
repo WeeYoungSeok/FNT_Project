@@ -10,10 +10,17 @@
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)문의글 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
-
 <link href="css/fntmydealpage.css" rel="stylesheet" type="text/css" />
-
-
+<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		// 현재 게시판 버튼은 사라짐
+		$(".thislistbox").animate({width:"0px",opacity:"0.1"},1000);
+		
+		// 다른 게시판 버튼은 1/4 너비로 차지
+		$(".listbox").animate({width:"100%"},1000);
+	});
+</script>
 </head>
 <body>
 <%
@@ -27,7 +34,7 @@
 			<div id="list">
 				<p class="listbox" onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'">내가 쓴 판매글</p>
 				<p class="listbox" onclick="location.href='mypage.do?command=buylist&memberid=<%=memberdto.getMemberid()%>'">내가 쓴 구매글</p>
-				<p class="thislistbox" onclick="location.href='mypage.do?command=qnalist&memberid=<%=memberdto.getMemberid()%>'">내가 쓴 문의글</p>
+				<p class="thislistbox"></p>
 				<p class="listbox" onclick="location.href='mypage.do?command=wishlist&memberid=<%=memberdto.getMemberid()%>'">내가 찜한 상품</p>
 				<p class="listbox" onclick="location.href='mypage.do?command=orderlist&memberid=<%=memberdto.getMemberid()%>'">내가 주문한 상품</p>
 			</div>

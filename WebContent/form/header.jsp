@@ -36,7 +36,7 @@
 			<%
 				if(memberdto != null) {
 			%>
-				<p id="loginmsg"><b><a href="mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>"><%=memberdto.getMembernickname() %></a></b>님<br/>환영합니다!</p>
+				<p id="loginmsg"><b onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'"><%=memberdto.getMembernickname() %></b>님<br/>환영합니다!</p>
 				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
@@ -51,9 +51,7 @@
 					}
 				</script>
 
-				<a href="javascript:newpop();">
-					<img class="alertbell" alt="alert" src="./img/bell.png"/>
-				</a>
+				<img class="alertbell" alt="alert" src="./img/bell.png" onclick="javascript:newpop();"/>
 				<%
 					}
 				} else {

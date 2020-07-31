@@ -62,10 +62,10 @@ header {
 }
 
 .alertbell {
-   width: 22px;
-   height: 26px;
+   width: 27px;
+   height: 32px;
    margin-left: 10px;
-   margin-top: 14%;
+   margin-top: 1%;
 }
 
 #loginmsg {

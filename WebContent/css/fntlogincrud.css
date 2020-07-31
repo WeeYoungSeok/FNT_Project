@@ -18,7 +18,7 @@
 	width: 16%;
 }
 
-table {
+#logintable {
 	font-size: 16pt;
 	font-family: "Arial";
 	margin: 0 auto;
@@ -69,7 +69,6 @@ input {
 	font-size: 16pt;
 	font-family: "Arial";
 	border: none;
-	float: left;
 	border-radius: 2px 2px 2px 2px;
 }
 
@@ -80,7 +79,6 @@ input {
 
 #naver_id_login {
 	float: right;
-	margin-right: 6px;
 }
 
 #kakao_id_login {
