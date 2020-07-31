@@ -49,9 +49,10 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
 		</a>	
 	</div>
+	
 	<form action="LoginCrudController" method="post">
-	<input type="hidden" name="command" value="login">
-	<table>
+		<input type="hidden" name="command" value="login">
+	<table id="logintable">
 		<col width="40">
 		<col width="100">
 		<col width="100">
@@ -77,7 +78,7 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 				<button class="login_btn" type="submit">로그인</button>
 			</td>
 			<td>
-				<button class="login_btn" type="button" onclick="location.href='fntsignupform.jsp'">회원가입</button>
+				<button class="login_btn" style="float:right;" type="button" onclick="location.href='fntsignupform.jsp'">회원가입</button>
 			</td>
 			<td class="ltablex"></td>
 		</tr>
@@ -85,14 +86,14 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 		<tr>
 			<td class="ltablex"></td>
 			<td colspan="3" style="text-align:center;">
-				<pre><b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchid'">ID로 찾기</b> / <b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchpw'">PW로 찾기</b></pre>
+				<pre><b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchid'">ID로 찾기</b>/<b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchpw'">PW로 찾기</b></pre>
 			</td>
 			<td class="ltablex"></td>
 		</tr> 
 		<tr>
 			<td class="ltablex"></td>
 			<td colspan="2"><!-- navers -->
-				<a href="<%=apiURL%>"><img id="naver_id_login" height="50" src="img/naver_btn.png"/></a>
+				<a style="float:right;" href="<%=apiURL%>"><img id="naver_id_login" height="50" src="img/naver_btn.png"/></a>
 			</td>
 			<td><!-- 카카오 -->
 				<a><img id="kakao_id_login" src="img/kakao_btn.png" height="50" onclick="javascript:loginWithKakao()"/></a>
