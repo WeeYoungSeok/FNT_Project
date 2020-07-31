@@ -180,10 +180,11 @@ public class MypageController extends HttpServlet {
 			System.out.println("마이페이지에서 받아온 invoice : "+invoice);
 			int olboardno = Integer.parseInt(request.getParameter("olboardno"));
 			System.out.println("마이페이지컨트롤러에서 받아온 olboardno : " + olboardno);
-			String memberid = memberdto.getMemberid();
-			System.out.println("마이페이지컨트롤로에서 로그인 한 id출력 : " + memberid);
+			DealBoardDto dealboarddto = dealboarddao.selectDetail(olboardno);
+			String membernickname = dealboarddto.getDnickname();
+			System.out.println("마이페이지컨트롤로에서 로그인 한 id출력 : " + membernickname);
 			
-			int updateinvoice = invoicedao.updateinvoice(invoice, memberid, olboardno);
+			int updateinvoice = invoicedao.updateinvoice(invoice, membernickname, olboardno);
 			System.out.println("마이페이지에서 받아온 invoice로 mapper실행한 결과값 : " + updateinvoice);
 			
 			jsResponse("송장번호 입력성공", "fntmain.jsp", response);

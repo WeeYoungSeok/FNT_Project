@@ -8,16 +8,18 @@
 		<result property="olinvoice" column="OL_INVOICE" />
 		<result property="olboardno" column="OL_BOARDNO" />
 	</resultMap>
+	
+	
 
 
 	<insert id="insert" parameterType="orderlistdto">
 		INSERT INTO ORDER_LIST 
-		VALUES (OL_NO_SEQ.NEXTVAL, #{olid}, #{olsellnickname}, 0, #{olboardno})
+		VALUES (OL_NO_SEQ.NEXTVAL, #{olid}, #{olsellnickname}, '입력한 송장번호가 없습니다.', #{olboardno})
 	</insert>
 	
 	<update id="updateinvoice" parameterType="map">
 		UPDATE ORDER_LIST SET OL_INVOICE = #{invoice}
-		WHERE OL_ID = #{memberid}
+		WHERE OL_SELL_NICKNAME = #{membernickname}
 		AND OL_BOARDNO = #{olboardno}
 	</update>
 	
