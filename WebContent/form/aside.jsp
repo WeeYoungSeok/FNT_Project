@@ -9,6 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/aside.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 
