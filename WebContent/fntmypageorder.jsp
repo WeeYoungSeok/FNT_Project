@@ -61,18 +61,21 @@
 				<%
 					} else {
 						for (int i = 0; i < orderlist.size(); i++) {
-				%>
-				<tr>
-					<td><%=orderlist.get(i).getOlno() %></td>
-					<td><%=orderlist.get(i).getOlsellnickname() %></td>
-					<td><%=orderlist.get(i).getDealboarddto().getDtitle() %></td>
-					<td><fmt:formatNumber value="<%=orderlist.get(i).getDealboarddto().getDprice()%>" pattern="#,###"/>원</td>
-					<td><%=orderlist.get(i).getOlinvoice() %></td>
-					<td>
-						<input type="button" value="배송조회" onclick="invoicechk();"/>
-					</td>
-				</tr>
-				<%
+
+					%>
+					<tr>
+						<td><%=orderlist.get(i).getOlno() %></td>
+						<td><%=orderlist.get(i).getOlsellnickname() %></td>
+						<td>
+							<a href="dealboard.do?command=detailsaleboard&dboardno=<%=orderlist.get(i).getDealboarddto().getDboardno()%>"><%=orderlist.get(i).getDealboarddto().getDtitle() %></a>
+						</td>
+						<td><fmt:formatNumber value="<%=orderlist.get(i).getDealboarddto().getDprice()%>" pattern="#,###"/>원</td>
+						<td><%=orderlist.get(i).getOlinvoice() %></td>
+						<td>
+							<input type="button" value="배송조회" onclick="invoicechk();"/>
+						</td>
+					</tr>
+					<%
 					}
 				}
 				%>
