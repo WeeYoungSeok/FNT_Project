@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매 글쓰기</title>
+
 <!-- summernote 넣기 -->
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -18,24 +19,24 @@
 
 <style type="text/css">
 * {
-	margin: 0px;
-	padding: 0px;
+   margin: 0px;
+   padding: 0px;
 }
 
 section {
-	padding-top: 90px;
-	padding-left: 240px;
+   padding-top: 90px;
+   padding-left: 240px;
 }
 
 input {
-	width: 500px;
-	height: 24px;
-	padding-left: 6px;
+   width: 500px;
+   height: 24px;
+   padding-left: 6px;
 }
 
 td {
-	width: 740px;
-	height: 24px;
+   width: 740px;
+   height: 24px;
 }
 
 
@@ -78,167 +79,162 @@ td {
 
 
 </style>
-
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
+<%@ include file="./form/aside.jsp"%>
 
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>
-	
-	<section>
-		<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
-		<input type="hidden" name="command" value="insertsaleboardres">
-			<table border="1">
-				<tr>
-					<th>글제목</th>
-					<td>
-						<select name="dcategory">
-							<option value="CHECK">카테고리</option>
-							<option value="F">패션</option>
-							<option value="C">차량</option>
-							<option value="D">가전제품</option>
-							<option value="A">애완</option>
-							<option value="S">스포츠</option>
-						</select>
-						<input type="text" name="dtitle" placeholder="제목을 입력해주세요." required="required"/>
-					</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td>
-						<textarea class="summernote" id="summernote" name="dcontent" style="resize:none" ></textarea>
-					</td>
-				</tr>
-				<tr>
-					<th>가격</th>
-					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" maxlength="8"/>
-				</tr>
-				<tr>
-					<td colspan="2" align="right">
-						<input type="submit" value="전송" style="width:100px">
-						<input type="hidden" name="coords" id="coords" value="">
-						<input type="hidden" name="roadname" id="roadname" value="">
-					</td>
-				</tr>
-			</table>
-			<span style="font-weight:bold">직거래시 원하는 장소를 검색 후 클릭해주세요!</span>
-		</form>
-			<div class="map_wrap">
-			    <div id="map" style="width:75%;height:500px;position:relative;overflow:hidden;"></div>
-			    <div id="menu_wrap" class="bg_white">
-			        <div class="option">
-			            <div>
-			                <form onsubmit="searchPlaces(); return false;">
-			                    키워드 : <input type="text" placeholder="장소를 검색해주세요" id="keyword" size="15" style="width:130px;"> 
-			                    <button type="submit">검색하기</button> 
-			                </form>
-			            </div>
-			        </div>
-			        <hr>
-			        <ul id="placesList"></ul>
-			        <div id="pagination"></div>
-			    </div>
-			</div>
-	</section>
+   <section>
+      <form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
+      <input type="hidden" name="command" value="insertsaleboardres">
+         <table border="1">
+            <tr>
+               <th>글제목</th>
+               <td>
+                  <select name="dcategory">
+                     <option value="CHECK">카테고리</option>
+                     <option value="F">패션</option>
+                     <option value="C">차량</option>
+                     <option value="D">가전제품</option>
+                     <option value="A">애완</option>
+                     <option value="S">스포츠</option>
+                  </select>
+                  <input type="text" name="dtitle" placeholder="제목을 입력해주세요." required="required"/>
+               </td>
+            </tr>
+            <tr>
+               <th>내용</th>
+               <td>
+                  <textarea class="summernote" id="summernote" name="dcontent" style="resize:none" ></textarea>
+               </td>
+            </tr>
+            <tr>
+               <th>가격</th>
+               <td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" maxlength="8"/>
+            </tr>
+            <tr>
+               <td colspan="2" align="right">
+                  <input type="submit" value="전송" style="width:100px">
+                  <input type="hidden" name="coords" id="coords" value="">
+                  <input type="hidden" name="roadname" id="roadname" value="">
+               </td>
+            </tr>
+         </table>
+         <span style="font-weight:bold">직거래시 원하는 장소를 검색 후 클릭해주세요!</span>
+      </form>
+         <div class="map_wrap">
+             <div id="map" style="width:75%;height:500px;position:relative;overflow:hidden;"></div>
+             <div id="menu_wrap" class="bg_white">
+                 <div class="option">
+                     <div>
+                         <form onsubmit="searchPlaces(); return false;">
+                             키워드 : <input type="text" placeholder="장소를 검색해주세요" id="keyword" size="15" style="width:130px;"> 
+                             <button type="submit">검색하기</button> 
+                         </form>
+                     </div>
+                 </div>
+                 <hr>
+                 <ul id="placesList"></ul>
+                 <div id="pagination"></div>
+             </div>
+         </div>
+   </section>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
 $(function(){
-	$('#summernote').summernote({
-		  height: 300,                 // 에디터 높이
-		  minHeight: null,             // 최소 높이
-		  maxHeight: null,             // 최대 높이
-		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-		  lang: "ko-KR",					// 한글 설정
-		  placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-		  
-		  toolbar: [
-			    // [groupName, [list of button]]
-			    ['fontname', ['fontname']],
-			    ['fontsize', ['fontsize']],
-			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-			    ['color', ['forecolor','color']],
-			    ['table', ['table']],
-			    ['para', ['ul', 'ol', 'paragraph']],
-			    ['height', ['height']],
-			    ['insert',['picture']],
-			    ['view', ['fullscreen', 'help']]
-			  ],
-			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-		    callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-				onImageUpload : function(files,editor,welEditable) {
-						sendFile(files[0],this);
-				}
-			}, 
-		});
-	
-	$("input[name=dprice]").on("keyup", function() {
-	    $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
-	});	
-	
-	$("#insertform").on("submit",function(){
-		//alert(langitude);
-		document.getElementById("coords").value=langitude;
-		document.getElementById("roadname").value=roadname;
-	});
+   $('#summernote').summernote({
+        height: 300,                 // 에디터 높이
+        minHeight: null,             // 최소 높이
+        maxHeight: null,             // 최대 높이
+        focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+        lang: "ko-KR",               // 한글 설정
+        placeholder: '최대 2048자까지 쓸 수 있습니다',   //placeholder 설정
+        
+        toolbar: [
+             // [groupName, [list of button]]
+             ['fontname', ['fontname']],
+             ['fontsize', ['fontsize']],
+             ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+             ['color', ['forecolor','color']],
+             ['table', ['table']],
+             ['para', ['ul', 'ol', 'paragraph']],
+             ['height', ['height']],
+             ['insert',['picture']],
+             ['view', ['fullscreen', 'help']]
+           ],
+         fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+          callbacks: {   //여기 부분이 이미지를 첨부하는 부분
+            onImageUpload : function(files,editor,welEditable) {
+                  sendFile(files[0],this);
+            }
+         }, 
+      });
+   
+
+   $("input[name=dprice]").on("keyup", function() {
+       $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
+   });   
+   
+   $("#insertform").on("submit",function(){
+      //alert(langitude);
+      document.getElementById("coords").value=langitude;
+      document.getElementById("roadname").value=roadname;
+      
+   });
+
 });
 
 var postForm = function() {
-	if($('select[name="dcategory"]').val() == ('CHECK')){
-		alert("카테고리를 선택해주세요");
-		return false;
-	}else{
-		$('textarea[name="dcontent"]').val($('#summernote').summernote('code'));
-	   	return true;
-	}
+   if($('select[name="dcategory"]').val() == ('CHECK')){
+      alert("카테고리를 선택해주세요");
+      return false;
+   }else{
+      $('textarea[name="dcontent"]').val($('#summernote').summernote('code'));
+         return true;
+   }
 }
+
 
 var markersList =[];
 var infowindowList = [];
 
 function loadinfo(me){
-	roadname = $(me).children("#roadname").text();
-	
-	if(!roadname){
-		roadname = $(me).children("#placename").text();
-	}
-	var marker;
-	var infowindow;
-	
-	if(confirm(roadname+"에서 만나겠습니까?")){
-		console.log(roadname);
-		console.log('x좌표'+$(me).children("#x").val());
-	}
+   roadname = $(me).children("#roadname").text();
+   
+   if(!roadname){
+      roadname = $(me).children("#placename").text();
+   }
+   var marker;
+   var infowindow;
+   
+   if(confirm(roadname+"에서 만나겠습니까?")){
+      console.log(roadname);
+      console.log('x좌표'+$(me).children("#x").val());
+   }
+   
 }
  
 // infowindow 없애는 함수
 function removeInfowindow(){
-	for ( var i = 0; i < infowindowList.length; i++ ) {
-		infowindowList[i].close();
+   for ( var i = 0; i < infowindowList.length; i++ ) {
+      infowindowList[i].close();
     }   
-	infowindow2 = [];
+   infowindow2 = [];
 }
 
 // marker 없애는 함수
 function removeMarkerList() {
     for ( var i = 0; i < markersList.length; i++ ) {
-    	markersList[i].setMap(null);
+       markersList[i].setMap(null);
     }   
     markersList = [];
 }
 
  function sendFile(file,editor){
- 	var data = new FormData();
-	  data.append("file", file);
+    var data = new FormData();
+     data.append("file", file);
            $.ajax({
            data: data,
            type: "POST",
@@ -249,19 +245,24 @@ function removeMarkerList() {
          //  enctype: 'multipart/form-data',
            processData: false,
            success : function(img_name){
-        	   var image =$("<img>").attr("src",img_name);
-        	//   $(".summernote").summernote('insertImage', img_name);
-        	   $(".summernote").summernote('insertNode', image[0]);
+              var image =$("<img>").attr("src",img_name);
+           //   $(".summernote").summernote('insertImage', img_name);
+              $(".summernote").summernote('insertNode', image[0]);
+    
+              
            },
            error:function(){
-        	   alert("실패!");
+              alert("실패!");
            }
-	    });
-	  } 
- 
+       });
+     } 
+
+     
+
 function addCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+ 
 
 //모든 콤마 제거
 function removeCommas(x) {
@@ -279,6 +280,8 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         level: 3 // 지도의 확대 레벨
     };  
     
+ 
+
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
@@ -307,6 +310,7 @@ if (navigator.geolocation) {
         
     displayMarker(locPosition, message);
 }
+
 
 //지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition, message) {
@@ -340,6 +344,7 @@ var ps = new kakao.maps.services.Places();
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 var infowindow2 = new kakao.maps.InfoWindow({zIndex:1});
 
+
 // 키워드로 장소를 검색합니다
 searchPlaces();
 
@@ -370,12 +375,15 @@ function placesSearchCB(data, status, pagination) {
         displayPagination(pagination);
 
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+
         alert('검색 결과가 존재하지 않습니다.');
         return;
 
     } else if (status === kakao.maps.services.Status.ERROR) {
+
         alert('검색 결과 중 오류가 발생했습니다.');
         return;
+
     }
 }
 
@@ -426,18 +434,22 @@ function displayPlaces(places) {
             };
             
             itemEl.onclick =  function () {
-            	displayHERE(marker, title);
-            	langitude = placePosition;
+               displayHERE(marker, title);
+               langitude = placePosition;
             };
             
             kakao.maps.event.addListener(marker, 'click', function() {
-            	//infowindow.close();
-            	displayHERE(marker, title);
-            	langitude = placePosition;
-            	
-            //	console.log(langitude);
+               //infowindow.close();
+               displayHERE(marker, title);
+               langitude = placePosition;
+               
+               
+            //   console.log(langitude);
             });
+            
+            
         })(marker, places[i].place_name);
+
         fragment.appendChild(itemEl);
     }
 
@@ -447,6 +459,7 @@ function displayPlaces(places) {
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
+    
 }
 var roadname;
 var langitude;
@@ -457,6 +470,7 @@ function getListItem(index, places) {
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info"  onclick="loadinfo(this);">' +
                 '   <h5 id="placename">' + places.place_name + '</h5>';
+                
 
     if (places.road_address_name) {
         itemStr += '    <span id="roadname">' + places.road_address_name + '</span>' +
@@ -473,6 +487,9 @@ function getListItem(index, places) {
 
     return el;
 }
+
+
+
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
@@ -528,6 +545,7 @@ function displayPagination(pagination) {
                 }
             })(i);
         }
+
         fragment.appendChild(el);
     }
     paginationEl.appendChild(fragment);
@@ -543,10 +561,10 @@ function displayInfowindow(marker, title) {
 }
 
 function displayHERE(marker,title){
-	 var content = '<div style="padding:10px;z-index:1;">여기서 만나요♬</div>';
-	 
-	 infowindow2.setContent(content);
-	 infowindow2.open(map, marker);
+    var content = '<div style="padding:10px;z-index:1;">여기서 만나요♬</div>';
+    
+    infowindow2.setContent(content);
+    infowindow2.open(map, marker);
 }
 
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다

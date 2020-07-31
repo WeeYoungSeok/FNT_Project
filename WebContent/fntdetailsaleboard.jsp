@@ -125,7 +125,14 @@ section {
 							<em><strong style="color:red">송장번호를 입력해주세요</strong></em>
 							<input type="hidden" name="command" value="invoiceinsert"/>
 							<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
-							<input type="text" name="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
+							<c:choose>
+								<c:when test="${invoice eq '입력한 송장번호가 없습니다.' }">
+									<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)">
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
+								</c:otherwise>
+							</c:choose>
 							<input type="submit" value="등록하기">
 						</td>
 					</tr>	
@@ -437,6 +444,7 @@ geocoder.addressSearch(roadname, function(result, status) {
 
 $(function(){
 	$("#mapcontent").parent().parent().attr('border-radius','20px;');
+	
 	
 });
 

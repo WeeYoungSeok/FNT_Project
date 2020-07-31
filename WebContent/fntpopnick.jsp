@@ -17,6 +17,11 @@
 		self.close();
 	}
 	
+	function chatGo() {
+		open("fntstreaming.html","","width=1600, height=1000");
+		self.close();;
+	}
+	
 
 </script>
 </head>
@@ -33,7 +38,7 @@
 			<td><input type="button" value="신고하기" onclick="reportform();"></td>
 		</tr>
 		<tr>
-			<td><input type="button" value="채팅하기" onclick=""></td>
+			<td><input type="button" value="채팅하기" onclick="chatGo();"></td>
 		</tr>
 	</table>
 </body>
