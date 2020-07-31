@@ -6,15 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 구매 글쓰기</title>
-<!-- summernote 넣기 -->
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="./js/summernote-lite.js"></script>
-<script src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="./js/summernote-ko-KR.min.js"></script>
-<link rel="stylesheet" href="./css/summernote-lite.css">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
 
+<!-- summernote 넣기 -->
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <script>
 $(function(){
 	$('#summernote').summernote({
