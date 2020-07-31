@@ -1,0 +1,67 @@
+* {
+   margin: 0px;
+   padding: 0px;
+}
+
+aside {
+	position: fixed;
+	align: left;
+	width: 14%;
+	height: 100%;
+	box-shadow: 1px 0px 6px black;
+	z-index: 2;
+}
+
+#menubars {
+	margin-top: 48%;
+	height: 62%;
+}
+
+.menubar {
+	padding-top: 14%;
+	background-color: black;
+	color: white;
+	width: 100%;
+	height: 16%;
+	text-align: left;
+	font: 16pt "Arial";
+	font-weight: bold;
+	cursor: pointer;
+	opacity: 0.4;
+}
+
+.menubar > p {
+	padding-left: 10%;
+}
+
+.menubar:hover {
+	font: 18pt "Arial";
+	opacity: 0.6;
+	font-weight: bold;
+}
+
+.menubar_x {
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+}
+
+section {
+	padding-top: 7%;
+	padding-left: 14%;
+	height: 100%;
+	overflow: auto;
+	padding-bottom: 30px;
+}
+
+input {
+   width: 500px;
+   height: 24px;
+   padding-left: 6px;
+}
+
+td {
+   width: 740px;
+   height: 24px;
+}
