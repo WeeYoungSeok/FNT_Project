@@ -14,7 +14,16 @@
 <%
 	List<OrderlistDto> orderlist = (List<OrderlistDto>) request.getAttribute("orderlist");
 %>
-
+<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		// 현재 게시판 버튼은 사라짐
+		$(".thislistbox").animate({width:"0px",opacity:"0.1"},1000);
+		
+		// 다른 게시판 버튼은 1/4 너비로 차지
+		$(".listbox").animate({width:"100%"},1000);
+	});
+</script>
 </head>
 <body>
 	<%@ include file="./form/header.jsp"%>
@@ -34,7 +43,7 @@
 				<p class="listbox" onclick="location.href='mypage.do?command=buylist&memberid=<%=memberdto.getMemberid()%>'">내가 쓴 구매글</p>
 				<p class="listbox" onclick="location.href='mypage.do?command=qnalist&memberid=<%=memberdto.getMemberid()%>'">내가 쓴 문의글</p>
 				<p class="listbox" onclick="location.href='mypage.do?command=wishlist&memberid=<%=memberdto.getMemberid()%>'">내가 찜한 상품</p>
-				<p class="thislistbox" onclick="location.href='mypage.do?command=orderlist&memberid=<%=memberdto.getMemberid()%>'">내가 주문한 상품</p>
+				<p class="thislistbox"></p>
 			</div>
 
 			<table id="selllist">
@@ -55,29 +64,28 @@
 				<%
 					if (orderlist.size() == 0) {
 				%>
-				<tr>
+				<tr style="font-weight:normal;">
 					<td colspan="6" align="center">-----주문 내역이 없습니다.-----</td>
 				</tr>
 				<%
 					} else {
 						for (int i = 0; i < orderlist.size(); i++) {
-
-					%>
-					<tr>
-						<td><%=orderlist.get(i).getOlno() %></td>
-						<td><%=orderlist.get(i).getOlsellnickname() %></td>
-						<td>
-							<a href="dealboard.do?command=detailsaleboard&dboardno=<%=orderlist.get(i).getDealboarddto().getDboardno()%>"><%=orderlist.get(i).getDealboarddto().getDtitle() %></a>
-						</td>
-						<td><fmt:formatNumber value="<%=orderlist.get(i).getDealboarddto().getDprice()%>" pattern="#,###"/>원</td>
-						<td><%=orderlist.get(i).getOlinvoice() %></td>
-						<td>
-							<input type="button" value="배송조회" onclick="invoicechk();"/>
-						</td>
-					</tr>
-					<%
+				%>
+				<tr>
+					<td style="font-weight:normal;"><%=orderlist.get(i).getOlno() %></td>
+					<td style="font-weight:normal;"><%=orderlist.get(i).getOlsellnickname() %></td>
+					<td>
+						<a href="dealboard.do?command=detailsaleboard&dboardno=<%=orderlist.get(i).getDealboarddto().getDboardno()%>"><%=orderlist.get(i).getDealboarddto().getDtitle() %></a>
+					</td>
+					<td style="font-weight:normal;"><fmt:formatNumber value="<%=orderlist.get(i).getDealboarddto().getDprice()%>" pattern="#,###"/>원</td>
+					<td><%=orderlist.get(i).getOlinvoice() %></td>
+					<td>
+						<input id="tracebtn" type="button" value="조회" onclick="invoicechk();"/>
+					</td>
+				</tr>
+				<%
+						}
 					}
-				}
 				%>
 				<tr><td id="listlast" colspan="6"></td></tr>
 			</table>
