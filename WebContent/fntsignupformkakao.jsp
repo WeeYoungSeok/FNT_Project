@@ -30,7 +30,7 @@
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-	<div>
+	<div class="topbar">
 		<a href="fntmain.jsp">
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
 		</a>	
@@ -45,6 +45,9 @@
 		<input type="hidden" value="" name="real" id="real"/>
 		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
 		<table>
+			<col width="200">
+			<col width="500">
+			<col width="140">
 			<tr><td colspan="3" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td></tr>
 			<tr>
 				<th>ID</th>

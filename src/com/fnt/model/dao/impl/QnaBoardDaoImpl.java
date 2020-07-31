@@ -156,13 +156,21 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 	}
 
 	@Override
-	public List<QnaBoardDto> searchList(String searchqna) {
+	public List<QnaBoardDto> searchList(String searchqna, Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("searchqna", searchqna);
+		
 		SqlSession session = null;
 		List<QnaBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"qnalist",searchqna);
+			list = session.selectList(namespace+"qnalist",map);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -173,13 +181,21 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 	}
 
 	@Override
-	public List<QnaBoardDto> searchWriter(String searchqna) {
+	public List<QnaBoardDto> searchWriter(String searchqna,Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("searchqna", searchqna);
+		
 		SqlSession session = null;
 		List<QnaBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"nicklist",searchqna);
+			list = session.selectList(namespace+"nicklist",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -187,7 +203,42 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 		}
 		return list;
 	}
+
+	public int getTitleCount(String searchqna) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "titlecount",searchqna);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
 	}
+
+	@Override
+	public int getWriterCount(String searchqna) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "writercount",searchqna);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+	}
+}
 	
 	
 

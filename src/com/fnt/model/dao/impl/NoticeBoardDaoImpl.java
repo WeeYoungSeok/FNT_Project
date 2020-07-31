@@ -151,20 +151,43 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	}
 
 	@Override
-	public List<NoticeBoardDto> searchlist(String searchnotice) {
+	public List<NoticeBoardDto> searchlist(String searchnotice,Paging paging) {
+		int startNum = paging.getStartNum();
+		int endNum = paging.getEndNum();
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("searchnotice",searchnotice);
 		SqlSession session = null;
 		List<NoticeBoardDto> list = null;
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"searchnotice",searchnotice);
+			list = session.selectList(namespace+"searchnotice",map);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			session.close();
 		}
 		return list;
+	}
+
+	@Override
+	public int getSearchCount(String searchnotice) {
+		SqlSession session = null;
+		int count = 0;
+
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "searchcount",searchnotice);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
 	}
 
 	

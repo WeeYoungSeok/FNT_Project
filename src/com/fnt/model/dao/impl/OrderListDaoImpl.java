@@ -28,6 +28,20 @@ public class OrderListDaoImpl implements OrderListDao {
 		}
 		return res;
 	}
+	@Override
+	public String selectInvoiceByBoardno(int boardno) {
+		SqlSession session = null;
+		String olinvoice = "";
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			olinvoice = session.selectOne(namespace+"selectInvoiceByBoardno",boardno);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return olinvoice;
+	}
 
 
 }

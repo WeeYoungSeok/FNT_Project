@@ -20,6 +20,10 @@ import com.fnt.model.biz.AlertBiz;
 import com.fnt.model.biz.MyPageBiz;
 import com.fnt.model.biz.impl.AlertBizImpl;
 import com.fnt.model.biz.impl.MyPageBizImpl;
+import com.fnt.model.dao.DealBoardDao;
+import com.fnt.model.dao.InvoiceDao;
+import com.fnt.model.dao.impl.DealBoardDaoImpl;
+import com.fnt.model.dao.impl.InvoiceDaoImpl;
 import com.fnt.model.dto.AlertDto;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
@@ -29,7 +33,6 @@ import com.fnt.model.dto.WishlistDto;
 import com.google.gson.Gson;
 
 import net.sf.json.JSONException;
-import sun.rmi.server.Dispatcher;
 
 
 @WebServlet("/mypage.do")
@@ -61,6 +64,8 @@ public class MypageController extends HttpServlet {
 		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 		MyPageBiz mypagebiz = new MyPageBizImpl();
 		AlertBiz alertbiz = new AlertBizImpl();
+		DealBoardDao dealboarddao = new DealBoardDaoImpl();
+		InvoiceDao invoicedao = new InvoiceDaoImpl();
 		
 		
 		//알람창뜨게하기
@@ -117,8 +122,10 @@ public class MypageController extends HttpServlet {
 			//그 값을 받아서 sell list출력하고 담고 fntmypagesell.jsp에 보내준다.
 			if(memberdto.getMemberrole().equals("USER")) {
 				String memberid = request.getParameter("memberid");
+				
 				List<DealBoardDto> selllist = new ArrayList<DealBoardDto>();
 				selllist = mypagebiz.Selllist(memberid);
+				
 				
 				request.setAttribute("selllist", selllist);
 				dispatch("fntmypagesell.jsp", request, response);
@@ -168,6 +175,18 @@ public class MypageController extends HttpServlet {
 			//내가 주문한 상품 클릭 시
 		}else if(command.equals("invoicechk")) {
 			response.sendRedirect("fntinvoicecheck.jsp");
+		} else if(command.equals("invoiceinsert")) {
+			String invoice = request.getParameter("invoice");
+			System.out.println("마이페이지에서 받아온 invoice : "+invoice);
+			int olboardno = Integer.parseInt(request.getParameter("olboardno"));
+			System.out.println("마이페이지컨트롤러에서 받아온 olboardno : " + olboardno);
+			String memberid = memberdto.getMemberid();
+			System.out.println("마이페이지컨트롤로에서 로그인 한 id출력 : " + memberid);
+			
+			int updateinvoice = invoicedao.updateinvoice(invoice, memberid, olboardno);
+			System.out.println("마이페이지에서 받아온 invoice로 mapper실행한 결과값 : " + updateinvoice);
+			
+			jsResponse("송장번호 입력성공", "fntmain.jsp", response);
 		}
 		
 	}

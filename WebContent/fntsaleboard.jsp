@@ -46,7 +46,7 @@
  #search {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
  #salesearch {margin-top: 8px; height: 22px; border: 2px solid #cccccc; padding-left: 10px;}
  
- #form1 {margin-top: 4%;}
+ #form1 {margin-top: 5%;}
  
 </style>
 </head>
@@ -215,7 +215,7 @@
 				<option value="T">제목</option>
 				<option value="W">작성자</option>
 			</select>
-			<input type="text"  name="salesearch" id="salesearch" value="" required="required" placeholder="내용을 입력하세요"/>
+			<input type="text"  name="salesearch" id="salesearch" value="" required="required" />
 			<input id="sbbtn" type="submit" value="검색"/>
 		</form>
 	

@@ -13,7 +13,7 @@
 <script type="text/javascript">
 
 // 주석 해제하면 메인에서 카카오채널 팝업 띄움 
-window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=480,height=640");
+//window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=480,height=640");
 
 imgslide(); 						// 페이지 로딩될 때 함수 실행
 
@@ -22,7 +22,7 @@ function imgslide() {
 	$val = $("#slide").attr("val"); // 현재 이미지 번호
 	$mx = $("#slide").attr("mx"); 	// 총 이미지 개수
 
-	$("#img" + $val).fadeOut(1000);	// 현재 이미지 사라지게
+	$("#img" + $val).fadeOut(2000);	// 현재 이미지 사라지게
 
 	if( $val == $mx ) { 			// 현재 이미지가 마지막 번호라면 다시 1번으로
 		$val = 1; 
@@ -30,11 +30,11 @@ function imgslide() {
 		$val++; 
 	}
 
-	$("#img" + $val).fadeIn(1000); 	// 변경된 번호의 이미지 나타나게 (괄호 안 숫자 : 페이드인 소요 시간)
+	$("#img" + $val).fadeIn(2000); 	// 변경된 번호의 이미지 나타나게 (괄호 안 숫자 : 페이드인 소요 시간)
 
 	$("#slide").attr('val', $val); 	// 변경된 이미지에 번호 부여
 
-	setTimeout('imgslide()', 1000); // 1초 뒤 다시 함수 호출 (숫자 1000 : 1초)
+	setTimeout('imgslide()', 2000); // 1초 뒤 다시 함수 호출 (숫자 1000 : 1초)
 
 }
 

@@ -49,7 +49,7 @@ body {
 <!-- 1~10까지 있는 페이지의 페이징 -->
 <c:url var="action" value="/notice.do"/>
 <c:if test="${param.prev}">
-    <a href="${action}?page=${param.beginPage-1}&command=notice">prev</a>
+    <a href="${action}?page=${param.beginPage-1}&command=searchnotice&searchnotice=${param.searchnotice}">prev</a>
 </c:if>
 <c:forEach begin="${param.beginPage}" end="${param.endPage}" step="1" var="index">
     <c:choose>
@@ -57,12 +57,12 @@ body {
             <div class="thispage"><a id="onePage">${index}</a></div>
         </c:when>
         <c:otherwise>
-            <div class="otherpage"><a style="text-decoration:none; color:black;" href="${action}?page=${index}&command=notice">${index}</a></div>
+            <div class="otherpage"><a href="${action}?page=${index}&command=searchnotice&searchnotice=${param.searchnotice}">${index}</a></div>
         </c:otherwise>
     </c:choose>
 </c:forEach>
 <c:if test="${param.next}">
-    <a href="${action}?page=${param.endPage+1}&command=notice">next</a>
+    <a href="${action}?page=${param.endPage+1}&command=searchnotice&searchnotice=${param.searchnotice}">next</a>
 </c:if>
 </div>
 </body>

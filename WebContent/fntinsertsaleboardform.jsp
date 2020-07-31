@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매 글쓰기</title>
-
 <!-- summernote 넣기 -->
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -79,11 +78,21 @@ td {
 
 
 </style>
+
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-<%@ include file="./form/aside.jsp"%>
 
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
+	
 	<section>
 		<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
 		<input type="hidden" name="command" value="insertsaleboardres">
@@ -172,7 +181,6 @@ $(function(){
 			}, 
 		});
 	
-
 	$("input[name=dprice]").on("keyup", function() {
 	    $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
 	});	
@@ -181,9 +189,7 @@ $(function(){
 		//alert(langitude);
 		document.getElementById("coords").value=langitude;
 		document.getElementById("roadname").value=roadname;
-		
 	});
-
 });
 
 var postForm = function() {
@@ -195,7 +201,6 @@ var postForm = function() {
 	   	return true;
 	}
 }
-
 
 var markersList =[];
 var infowindowList = [];
@@ -213,7 +218,6 @@ function loadinfo(me){
 		console.log(roadname);
 		console.log('x좌표'+$(me).children("#x").val());
 	}
-	
 }
  
 // infowindow 없애는 함수
@@ -248,21 +252,16 @@ function removeMarkerList() {
         	   var image =$("<img>").attr("src",img_name);
         	//   $(".summernote").summernote('insertImage', img_name);
         	   $(".summernote").summernote('insertNode', image[0]);
-    
-        	   
            },
            error:function(){
         	   alert("실패!");
            }
 	    });
 	  } 
-
-	  
-
+ 
 function addCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
- 
 
 //모든 콤마 제거
 function removeCommas(x) {
@@ -280,8 +279,6 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         level: 3 // 지도의 확대 레벨
     };  
     
- 
-
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
@@ -310,7 +307,6 @@ if (navigator.geolocation) {
         
     displayMarker(locPosition, message);
 }
-
 
 //지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition, message) {
@@ -344,7 +340,6 @@ var ps = new kakao.maps.services.Places();
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 var infowindow2 = new kakao.maps.InfoWindow({zIndex:1});
 
-
 // 키워드로 장소를 검색합니다
 searchPlaces();
 
@@ -375,15 +370,12 @@ function placesSearchCB(data, status, pagination) {
         displayPagination(pagination);
 
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
         alert('검색 결과가 존재하지 않습니다.');
         return;
 
     } else if (status === kakao.maps.services.Status.ERROR) {
-
         alert('검색 결과 중 오류가 발생했습니다.');
         return;
-
     }
 }
 
@@ -443,13 +435,9 @@ function displayPlaces(places) {
             	displayHERE(marker, title);
             	langitude = placePosition;
             	
-            	
             //	console.log(langitude);
             });
-            
-            
         })(marker, places[i].place_name);
-
         fragment.appendChild(itemEl);
     }
 
@@ -459,7 +447,6 @@ function displayPlaces(places) {
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
-    
 }
 var roadname;
 var langitude;
@@ -470,7 +457,6 @@ function getListItem(index, places) {
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info"  onclick="loadinfo(this);">' +
                 '   <h5 id="placename">' + places.place_name + '</h5>';
-                
 
     if (places.road_address_name) {
         itemStr += '    <span id="roadname">' + places.road_address_name + '</span>' +
@@ -487,9 +473,6 @@ function getListItem(index, places) {
 
     return el;
 }
-
-
-
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
@@ -545,7 +528,6 @@ function displayPagination(pagination) {
                 }
             })(i);
         }
-
         fragment.appendChild(el);
     }
     paginationEl.appendChild(fragment);

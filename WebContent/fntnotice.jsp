@@ -33,8 +33,6 @@
  span {cursor: pointer; margin-left: 10px;}
  span:hover {font-weight: bold;}
  
- a {text-decoration: none; color: black;}
- 
  #nlistlast {background-color: #dddddd; height: 2px;}
  
  #btnline:hover {background-color: white;}
@@ -51,6 +49,7 @@
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	<%
+		String searchnotice = (String)request.getAttribute("searchnotice");
 		List<NoticeBoardDto> noticeboardlist = (List<NoticeBoardDto>)request.getAttribute("noticeboardlist");
 		Paging paging = (Paging)request.getAttribute("paging");
 	%>
@@ -62,7 +61,7 @@
 			<col width="100">
      		<col width="400">
      	 	<col width="150">
-      		<col width="250">
+      		<col width="200">
       		
       		<tr align="center">
       			<th>No.</th>
@@ -113,6 +112,10 @@
 				}
 			%>
 		</table></div>
+		
+		<%
+			if(searchnotice == null) {
+		%>
 	<jsp:include page="./paging/fntnoticepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -120,7 +123,20 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
-	
+	<%
+			} else {
+	%>
+		<jsp:include page="./paging/fntnoticesearchpaging.jsp">
+		<jsp:param value="<%=searchnotice %>" name="searchnotice"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+	<%
+			}
+	%>
 	<form id="form1" action="notice.do?command=searchnotice" method="post">
 		
 

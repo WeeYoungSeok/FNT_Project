@@ -58,20 +58,36 @@
  	</update>
  	
  	<!-- 문의 게시판 검색 -->
- 	<select id="qnalist" parameterType="String" resultMap="qnaboardDtoResultMap">
- 		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET,
- 				QB_FLAG, QB_REGDATE, QB_REDATE
- 		FROM QNA_BOARD
- 		WHERE QB_TITLE LIKE '%'||#{searchqna}||'%'
+ 	<select id="qnalist" parameterType="map" resultMap="qnaboardDtoResultMap">
+ 		<![CDATA[
+		SELECT QB_BOARDNO,QB_ID,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE
+ 		FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE,ROWNUM AS RNUM
+        FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE FROM QNA_BOARD WHERE QB_TITLE LIKE '%'||#{searchqna}||'%' ORDER BY QB_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum}
  		ORDER BY QB_BOARDNO DESC
+			]]>
  	</select>
  	
- 	<select id="nicklist" parameterType="String" resultMap="qnaboardDtoResultMap">
- 		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET,
- 				QB_FLAG, QB_REGDATE, QB_REDATE
- 		FROM QNA_BOARD
- 		WHERE QB_NICKNAME LIKE '%'||#{searchqna}||'%'
+ 	<select id="nicklist" parameterType="map" resultMap="qnaboardDtoResultMap">
+ 	<![CDATA[
+		SELECT QB_BOARDNO,QB_ID,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE
+ 		FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE,ROWNUM AS RNUM
+        FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE FROM QNA_BOARD WHERE QB_NICKNAME LIKE '%'||#{searchqna}||'%' ORDER BY QB_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum}
  		ORDER BY QB_BOARDNO DESC
+			]]>
+ 	</select>
+ 	
+ 	
+ 	
+ 	<select id="titlecount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM QNA_BOARD WHERE QB_TITLE LIKE '%'||#{searchqna}||'%'
+ 	</select>
+ 	
+ 	<select id="writercount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM QNA_BOARD WHERE QB_NICKNAME LIKE '%'||#{searchqna}||'%'
  	</select>
  	
 </mapper>
