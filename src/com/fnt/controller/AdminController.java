@@ -2,6 +2,7 @@ package com.fnt.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ import com.fnt.model.biz.AdminPageBiz;
 import com.fnt.model.biz.ReportPageBiz;
 import com.fnt.model.biz.impl.AdminPageBizImpl;
 import com.fnt.model.biz.impl.ReportPageBizImpl;
+import com.fnt.model.dao.DealBoardDao;
+import com.fnt.model.dao.impl.DealBoardDaoImpl;
+import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.ReportDto;
 import com.google.gson.Gson;
@@ -48,6 +52,7 @@ public class AdminController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		AdminPageBiz adminpagebiz = new AdminPageBizImpl();
 		ReportPageBiz reportpagebiz = new ReportPageBizImpl();
+		DealBoardDao dealboarddao = new DealBoardDaoImpl();
 
 		String command = request.getParameter("command");
 		System.out.println("<" + command + ">");
@@ -61,68 +66,114 @@ public class AdminController extends HttpServlet {
 		// enabled가 report이면 reportdto로 전체출력해주고 뿌려줘야한다.
 		if (command.equals("select")) {
 			String enabled = request.getParameter("enabled");
-				List<MemberDto> list = new ArrayList<>();
-		        list = adminpagebiz.selectAll(enabled);
-		        List<ReportDto> list1 = new ArrayList<>();
-		        list1 = reportpagebiz.selectList();
+			System.out.println("컨트롤러에 넘어온 enabled : " + enabled);
+			
+		    PrintWriter out = response.getWriter(); 
 		        
-		        
-		        JSONObject obj = new JSONObject();
-		        JSONObject obj1 = new JSONObject();
-		        try {
-		        JSONArray jArray = new JSONArray();//배열이 필요할때
-		        JSONArray jArray1 = new JSONArray();
-		        //배열
-		        for (int i = 0; i < list.size(); i++){
-		           JSONObject sObject = new JSONObject();//배열 내에 들어갈 json
-		           sObject.put("memberid", list.get(i).getMemberid());
-		           sObject.put("membernickname", list.get(i).getMembernickname());
-		           sObject.put("membername", list.get(i).getMembername());
-		           sObject.put("memberbirth", list.get(i).getMemberbirth());
-		           sObject.put("memberphone", list.get(i).getMemberphone());
-		           sObject.put("memberaddr", list.get(i).getMemberaddr());
-		           sObject.put("memberemail", list.get(i).getMemberemail());
-		           sObject.put("memberregdate", list.get(i).getMemberregdate());
-		           jArray.add(sObject);
-		        }
-		        for(int i = 0; i < list1.size(); i++) {
-		        	JSONObject sObject1 = new JSONObject();
-		        	sObject1.put("reportno", list1.get(i).getReportno());
-		        	sObject1.put("reporttitle", list1.get(i).getReporttitle());
-		        	sObject1.put("sendid", list1.get(i).getSendid());
-		        	sObject1.put("sendnickname", list1.get(i).getSendnickname());
-		        	sObject1.put("receiveid", list1.get(i).getReceiveid());
-		        	sObject1.put("receivenickname", list1.get(i).getReceivenickname());
-		        	sObject1.put("reportregdate", list1.get(i).getReportregdate());
-		        	jArray1.add(sObject1);
-		        }
-		        // obj.put("DESCRIPTION","{\"memberid\":\"아이디\",\"membernickname\":\"닉네임\",\"membername\":\"이름\",\"memberbirth\":\"생일\",\"memberphone\":\"전화번호\",\"memberaddr\":\"주소\",\"memberemail\":\"이메일\",\"memberregdate\":\"가입날짜\"}");
-		        obj.put("LIST", jArray);//배열을 넣음
-		        obj1.put("REPORT", jArray1);
-		        
-		        
-	
-		        } catch (JSONException e) {
-		        e.printStackTrace();
-		        }
-		         
-		        Gson gson = new Gson();
-		        String jsonPlace = gson.toJson(obj);
-		        System.out.println(jsonPlace);
-		        
-		        Gson gson1 = new Gson();
-		        String jsonPlace1 = gson1.toJson(obj1);
-		        System.out.println(jsonPlace1);
-		        
-		         
-		        PrintWriter out = response.getWriter(); 
-		        if(enabled.equals("Y") || enabled.equals("N") || enabled.equals("R")) {
+		    if(enabled.equals("Y") || enabled.equals("N") || enabled.equals("R")) {
+		    	System.out.println("enabeld가 Y,N,R일 떄");
+		        	
+		        List<MemberDto> list = new ArrayList<>();
+			    list = adminpagebiz.selectAll(enabled);
+			        
+			    JSONObject obj = new JSONObject();
+			        
+			    try {
+			    JSONArray jArray = new JSONArray();
+			       
+			    for (int i = 0; i < list.size(); i++){
+				    JSONObject sObject = new JSONObject();//배열 내에 들어갈 json
+				    sObject.put("memberid", list.get(i).getMemberid());
+				    sObject.put("membernickname", list.get(i).getMembernickname());
+				    sObject.put("membername", list.get(i).getMembername());
+				    sObject.put("memberbirth", list.get(i).getMemberbirth());
+				    sObject.put("memberphone", list.get(i).getMemberphone());
+				    sObject.put("memberaddr", list.get(i).getMemberaddr());
+				    sObject.put("memberemail", list.get(i).getMemberemail());
+				    sObject.put("memberregdate", list.get(i).getMemberregdate());
+				    jArray.add(sObject);
+				 }
+			        
+			        obj.put("LIST", jArray);
+			        
+			        } catch (JSONException e) {
+				        e.printStackTrace();
+			        }
+			        
+			        Gson gson = new Gson();
+			        String jsonPlace = gson.toJson(obj);
+			        System.out.println(jsonPlace);
+			        
 		        	out.print(jsonPlace);
-		        } else if(enabled.equals("report")) {
+		        	
+		        } else if(enabled.equals("REPORT")) {
+		        	System.out.println("enabled가 report일떄");
+		        	
+		        	List<ReportDto> list1 = new ArrayList<>();
+			        list1 = reportpagebiz.selectList();
+			        
+			       
+			        JSONObject obj1 = new JSONObject();
+			        try {
+			                                             //배열이 필요할때
+			        JSONArray jArray1 = new JSONArray();
+			        //배열
+			        for(int i = 0; i < list1.size(); i++) {
+			        	JSONObject sObject1 = new JSONObject();
+			        	sObject1.put("reportno", list1.get(i).getReportno());
+			        	sObject1.put("reporttitle", list1.get(i).getReporttitle());
+			        	sObject1.put("sendid", list1.get(i).getSendid());
+			        	sObject1.put("sendnickname", list1.get(i).getSendnickname());
+			        	sObject1.put("receiveid", list1.get(i).getReceiveid());
+			        	sObject1.put("receivenickname", list1.get(i).getReceivenickname());
+			        	sObject1.put("reportregdate", list1.get(i).getReportregdate());
+			        	jArray1.add(sObject1);
+			        }
+			        // obj.put("DESCRIPTION","{\"memberid\":\"아이디\",\"membernickname\":\"닉네임\",\"membername\":\"이름\",\"memberbirth\":\"생일\",\"memberphone\":\"전화번호\",\"memberaddr\":\"주소\",\"memberemail\":\"이메일\",\"memberregdate\":\"가입날짜\"}");
+			        //배열을 넣음
+			        obj1.put("REPORT", jArray1);
+			        
+			        } catch (JSONException e) {
+			        e.printStackTrace();
+			        }
+			        
+			        Gson gson1 = new Gson();
+			        String jsonPlace1 = gson1.toJson(obj1);
+			        System.out.println(jsonPlace1);
+		        	
 		        	out.print(jsonPlace1);
+		        } else {
+		        	System.out.println("enabled가 S일 떄 판매완료글 조회");
+		        		        	
+		        	List<DealBoardDto> sellendlist = new ArrayList<DealBoardDto>();
+		        	sellendlist = dealboarddao.selectselllist();
+		        	
+		        	JSONObject obj = new JSONObject();
+		        	
+		        	try {
+						JSONArray jArray = new JSONArray();
+						
+						for(int i = 0; i < sellendlist.size(); i++) {
+							JSONObject sObject = new JSONObject();//배열 내에 들어갈 json
+						    sObject.put("dboardno", sellendlist.get(i).getDboardno());
+						    sObject.put("did", sellendlist.get(i).getDid());
+						    sObject.put("dnickname", sellendlist.get(i).getDnickname());
+						    sObject.put("dtitle", sellendlist.get(i).getDtitle());
+						    sObject.put("dprice", NumberFormat.getInstance().format(sellendlist.get(i).getDprice()));
+						    sObject.put("dregdate", sellendlist.get(i).getDregdate());
+						    jArray.add(sObject);
+						}
+						obj.put("SELLEND", jArray);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+		        	Gson gson = new Gson();
+		        	String jsonPlace = gson.toJson(obj);
+		        	System.out.println(jsonPlace);
+		        	
+		        	out.print(jsonPlace);
 		        }
-	        
-	         
+		
 			// 신고내용 자세히 보기
 		} else if (command.equals("reportdetail")) {
 			int reportno = Integer.parseInt(request.getParameter("reportno"));
@@ -147,6 +198,11 @@ public class AdminController extends HttpServlet {
 			if (res > 0) {
 				jsResponse("복귀처리가 완료되었습니다.", "admin.do?command=adminpage", response);
 			}
+		}
+		// 판매 완료 글 조회하기
+		else if(command.equals("sellend")) {
+			String enabled = request.getParameter("enabled");
+			System.out.println("판매완료 글을 조회할 때 넘어오는 값 : " + enabled); 
 		}
 	}
 

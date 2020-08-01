@@ -280,4 +280,11 @@
  		UPDATE DEAL_BOARD SET D_SELLFLAG = 'Y' WHERE D_BOARDNO = #{dboardno}
  	</update>
  	
+ 	<!-- 관리자페이지에서 판매왼료된 글을 조회하기 -->
+ 	<select id="selectselllist" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_PRICE, D_REGDATE
+ 		FROM DEAL_BOARD
+ 		WHERE D_SELLFLAG = 'Y'
+ 		ORDER BY D_BOARDNO ASC
+ 	</select> 	
 </mapper>
