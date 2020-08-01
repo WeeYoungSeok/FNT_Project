@@ -618,6 +618,22 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return res;
 	}
 	
+	//관리자페이지에서 판매완료 글 출력하기
+	public List<DealBoardDto> selectselllist(){
+		SqlSession session = null;
+		List<DealBoardDto> sellendlist = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			sellendlist = session.selectList(namespace + "selectselllist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return sellendlist;
+	}
+	
 	
 }
 

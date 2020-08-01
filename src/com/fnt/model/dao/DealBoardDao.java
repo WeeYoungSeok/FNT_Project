@@ -74,4 +74,7 @@ public interface DealBoardDao {
 	//판매완료 글로 바꾸기
 	public int updatesellflag(int dboardno);
 	
+	//관리자페이지에서 판매완료 글 출력하기
+	public List<DealBoardDto> selectselllist();
+	
 }
