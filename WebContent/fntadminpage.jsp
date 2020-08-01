@@ -161,6 +161,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		               "<th>판매 글번호</th>"+
 			  		               "<th>판매자 아이디</th>"+
 			  		               "<th>판매자 닉네임</th>"+
+			  		               "<th>판매자 계좌번호</th>" +
 			  		               "<th>판매 글제목</th>"+
 			  		               "<th>판매상품 가격</th>"+
 			  		               "<th>판매 글 작성날짜</th>" +
@@ -177,9 +178,9 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        				"<td>" + str.dboardno + "</td>" +
 			  		        				"<td>" + str.did + "</td>" +
 			  		        				"<td>" + str.dnickname + "</td>" +
+			  		        				"<td>" + str.account + "</td>" +
 			  		        				"<td>" + str.dtitle + "</td>" +
 			  		        				"<td>" + str.dprice + "원</td>" +
-			  		        			
 			  		        				"<td>" + str.dregdate + "</td>" +
 			  		        				"</tr>"
 			  		        			);

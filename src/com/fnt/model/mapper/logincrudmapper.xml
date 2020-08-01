@@ -15,6 +15,7 @@
  		<result property="memberrole" column="MEMBER_ROLE"></result>
  		<result property="memberenabled" column="ENABLED"></result>
  		<result property="memberregdate" column="REGDATE"></result>
+ 		<result property="memberaccount" column="MEMBER_ACCOUNT"/>
  	</resultMap>
   
   <select id="selectmemberbyidandpw" parameterType="map" resultMap="memberDtoResultMap">
@@ -95,4 +96,10 @@
   	VALUES(REPORT_NO_SEQ.NEXTVAL, #{sendid}, #{receiveid}, #{sendnickname}, #{membernickname}, #{reporttitle}, #{reportcontent}, SYSDATE)
   </insert>
   
+  <!-- 닉네임으로 계좌번호 알아오기 -->
+  <select id="selectAccountNumberByNickname" parameterType="String" resultType="String">
+  	SELECT MEMBER_ACCOUNT
+  	FROM MEMBER
+  	WHERE MEMBER_NICKNAME = #{membernickname}
+  </select>
 </mapper>

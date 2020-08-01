@@ -269,7 +269,6 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		map.put("receiveid", receiveid);
 		map.put("sendid", sendid);
 		map.put("sendnickname", sendnickname);
-		System.out.println("왜 차세요?? 아파요" + map.toString());
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
@@ -284,6 +283,26 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
  			session.close();
  		}
 		return res;
+	}
+
+
+
+
+	@Override
+	public String selectAccountNumberByNickname(String membernickname) {
+		SqlSession session = null;
+		String accountNumber = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			accountNumber = session.selectOne(namespace+"selectAccountNumberByNickname", membernickname);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+	
+		return accountNumber;
 	}
 
 
