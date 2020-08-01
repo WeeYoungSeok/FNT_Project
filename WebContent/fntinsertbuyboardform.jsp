@@ -105,42 +105,24 @@ function removeCommas(x) {
     if(!x || x.length == 0) return "";
     else return x.split(",").join("");
 }
-
-
-
-      
+    
 </script>
-<style type="text/css">
-* {
-   margin: 0px;
-   padding: 0px;
-}
 
-section {
-   padding-top: 90px;
-   padding-left: 240px;
-}
+<link href="css/fntinsertbuyboardform.css" rel="stylesheet" type="text/css"/>
 
-input {
-   width: 500px;
-   height: 24px;
-   padding-left: 6px;
-}
-
-td {
-   width: 740px;
-   height: 24px;
-}
-
-input {
-   height: 38px;
-}
-
-</style>
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-<%@ include file="./form/aside.jsp"%>
+	
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
 
    <section>
       <form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
