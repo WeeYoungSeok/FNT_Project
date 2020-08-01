@@ -15,6 +15,17 @@
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
 	<section>
+	<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
 		<h1>신고 상세보기</h1>
 		<table border="1">
 			<tr>
@@ -59,5 +70,8 @@
 		</table>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
+	<%
+		}
+	%>
 </body>
 </html>

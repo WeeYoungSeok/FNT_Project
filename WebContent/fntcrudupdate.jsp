@@ -34,6 +34,17 @@ td {
 	<%@ include file="./form/aside.jsp" %>
 
 	<section>
+		<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
 	<h2>내정보 수정</h2>
 	<form action="LoginCrudController" method="post">
 	<input type="hidden" name="command" value="crudupdateres">
@@ -71,5 +82,9 @@ td {
 		</table>
 	</form>
 	</section>
+	<%@ include file="./form/footer.jsp" %>
+	<%
+		}
+	%>
 </body>
 </html>

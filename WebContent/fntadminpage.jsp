@@ -207,6 +207,17 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	
 	
 		<section>
+		<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
 		<h1>관리자페이지</h1>
 		<select name="enabled">
 			<optgroup label="선택한 회원 조회">
@@ -231,5 +242,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 		</div>
 	</section>
 	<%@ include file="./form/footer.jsp"%>
+	<%
+		}
+	%>
 </body>
 </html>

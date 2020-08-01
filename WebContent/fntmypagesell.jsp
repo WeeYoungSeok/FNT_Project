@@ -30,6 +30,17 @@
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
 	<section>
+	<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
 		<h1>내가 쓴 판매글</h1>
 		<div id="alllist">
 			<div id="list">
@@ -84,6 +95,9 @@
 	</section>
 	
 	<%@ include file="./form/footer.jsp"%>
+	<%
+		}
+	%>
 
 </body>
 </html>
