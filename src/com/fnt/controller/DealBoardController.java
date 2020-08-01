@@ -194,6 +194,7 @@ public class DealBoardController extends HttpServlet {
 		} else if (command.equals("deletebuyboard")) { // 구매 글 삭제하기
 			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
 			int res = dao.deleteDealBoard(dboardno);
+			
 
 			if (res > 0) {
 				jsResponse("삭제되었습니다.", "dealboard.do?command=fntbuyboard", response);

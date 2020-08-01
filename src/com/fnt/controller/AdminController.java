@@ -21,7 +21,9 @@ import com.fnt.model.biz.ReportPageBiz;
 import com.fnt.model.biz.impl.AdminPageBizImpl;
 import com.fnt.model.biz.impl.ReportPageBizImpl;
 import com.fnt.model.dao.DealBoardDao;
+import com.fnt.model.dao.LoginCrudDao;
 import com.fnt.model.dao.impl.DealBoardDaoImpl;
+import com.fnt.model.dao.impl.LoginCrudDaoImpl;
 import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.ReportDto;
@@ -53,6 +55,8 @@ public class AdminController extends HttpServlet {
 		AdminPageBiz adminpagebiz = new AdminPageBizImpl();
 		ReportPageBiz reportpagebiz = new ReportPageBizImpl();
 		DealBoardDao dealboarddao = new DealBoardDaoImpl();
+		LoginCrudDao logincruddao = new LoginCrudDaoImpl();
+		
 
 		String command = request.getParameter("command");
 		System.out.println("<" + command + ">");
@@ -150,6 +154,7 @@ public class AdminController extends HttpServlet {
 		        	
 		        	JSONObject obj = new JSONObject();
 		        	
+		        	
 		        	try {
 						JSONArray jArray = new JSONArray();
 						
@@ -158,6 +163,7 @@ public class AdminController extends HttpServlet {
 						    sObject.put("dboardno", sellendlist.get(i).getDboardno());
 						    sObject.put("did", sellendlist.get(i).getDid());
 						    sObject.put("dnickname", sellendlist.get(i).getDnickname());
+						    sObject.put("account",logincruddao.selectAccountNumberByNickname(sellendlist.get(i).getDnickname()));
 						    sObject.put("dtitle", sellendlist.get(i).getDtitle());
 						    sObject.put("dprice", NumberFormat.getInstance().format(sellendlist.get(i).getDprice()));
 						    sObject.put("dregdate", sellendlist.get(i).getDregdate());
