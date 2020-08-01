@@ -184,7 +184,7 @@ td {
 		
 		
 		function getParameterValues(){
-			var queryString = "?command=real&email=" + $("#email").val();
+			var queryString = "?command=real&email=" + $("#email").val() + "&name="+ $("#name").val();
 			// 우리가 써준 이메일을 받아옴
 			// 이유는 이메일을 받아와서 dao를 실행해서 id가 존재하는지 안하는지 알기위해 넘겨줌!
 		return queryString;

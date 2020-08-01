@@ -37,7 +37,7 @@
   <select id="findid" parameterType="map" resultMap="memberDtoResultMap">
   	SELECT MEMBER_ID
   	FROM MEMBER
-  	WHERE MEMBER_EMAIL = #{memberemail}
+  	WHERE MEMBER_EMAIL = #{memberemail} AND MEMBER_NAME = #{membername}
   </select>
   
   <select id="findpw" parameterType="map" resultMap="memberDtoResultMap">
