@@ -164,7 +164,7 @@ input {
                <th>내용</th>
                <td>
                   <textarea class="summernote" id="summernote" name="dcontent" style="resize:none" ></textarea>
-               </td>
+               </td> 
             </tr>
             <tr>
                <th>가격</th>
