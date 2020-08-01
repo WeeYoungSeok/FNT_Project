@@ -171,6 +171,18 @@ public class ReplyController extends HttpServlet {
     	  }else {
     		  jsResponse("삭제 실패","dealboard.do?command=detailboard&dboardno="+dboardno, response);
     	  }
+      }else if(command.equals("deletereply2")) {
+    	  int replyno = Integer.parseInt(request.getParameter("replyno"));
+    	  int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+    	  
+    	  int res = replydao.deletereply2(replyno);
+    	  
+    	  if(res>0) {
+    		  jsResponse("삭제 완료", "dealboard.do?command=detailboard&dboardno="+dboardno, response);
+    	  }else {
+    		  jsResponse("삭제 실패","dealboard.do?command=detailboard&dboardno="+dboardno, response);
+    	  }    	  
+
       }
       
    }

@@ -150,7 +150,27 @@ public class ReplyDaoImpl implements ReplyDao {
 		}
 		return res;
 	}
-	
+
+	@Override
+	public int deletereply2(int replyno) {
+		SqlSession sqlsession = null;
+		int res = 0;
+		
+		try {
+			sqlsession = getSqlSessionFactory().openSession(false);
+			res = sqlsession.update(namespace+"deletereply2",replyno);
+			
+			if(res > 0) {
+				sqlsession.commit();
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		return res;		
+	}
 	
 
 	

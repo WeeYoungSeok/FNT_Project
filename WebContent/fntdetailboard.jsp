@@ -159,7 +159,7 @@ function insertRereply(){
 
 function deletereply(replyno,replyboardno){
 	if(confirm("삭제하시겠습니까?")){
-		location.href='reply.do?command=deletereply&replyno='+replyno+'&dboardno='+replyboardno;
+		location.href='reply.do?command=deletereply2&replyno='+replyno+'&dboardno='+replyboardno;
 	}
 }
 
@@ -274,7 +274,10 @@ section {
 				<c:choose>
 					<c:when test="${replydto.replygroupnoseq eq 1}">
 						<li id="reply" style="list-style:none;">
-					</c:when>	
+					</c:when>
+					<c:when test="${replydto.replygroupnoseq eq 0 }">
+						<li id="reply" style="list-style:none;">삭제된 댓글입니다.</li>
+					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
 					</c:otherwise>

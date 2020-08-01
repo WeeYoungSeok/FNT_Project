@@ -11,4 +11,5 @@ public interface ReplyDao {
 	public int insertReReply(ReplyDto replydto);
 	public List<ReplyDto> selectReply(ReplyDto replydto);
 	public int deletereply(int replyno);
+	public int deletereply2(int replyno);
 }
