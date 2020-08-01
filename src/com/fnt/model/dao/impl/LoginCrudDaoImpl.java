@@ -163,16 +163,17 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 	}
 	
 	//email로 id 찾기
-	public MemberDto findId(String memberemail) {
+	public MemberDto findId(String memberemail, String membername) {
 		SqlSession session = null;
 		MemberDto dto = null;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("memberemail", memberemail);
+		map.put("membername", membername);
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			dto = session.selectOne(namespace+"findid",memberemail);
+			dto = session.selectOne(namespace+"findid",map);
 			if(dto != null) {
 				session.commit();
 			}

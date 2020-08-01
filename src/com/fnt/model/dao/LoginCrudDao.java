@@ -18,7 +18,7 @@ public interface LoginCrudDao {
 	
 	public int updateoutmember(MemberDto dto);
 	
-	public MemberDto findId(String memberemail);
+	public MemberDto findId(String memberemail, String membername);
 	
 	public MemberDto findPw(String memberid, String memberemail);
 	

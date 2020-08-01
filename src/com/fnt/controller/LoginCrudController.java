@@ -157,7 +157,7 @@ public class LoginCrudController extends HttpServlet {
 				jsResponse("내 정보 수정 성공!", "LoginCrudController?command=cruddetail", response);
 			//	dispatch("fntcrudmypage.jsp", request, response);
 			}else {
-				jsResponse("내 정보 수정 실패ㅜ", "LoginCrudController?command=crudupdate", response);
+				jsResponse("내 정보 수정 실패", "LoginCrudController?command=crudupdate", response);
 			}
 			
 			
@@ -173,7 +173,7 @@ public class LoginCrudController extends HttpServlet {
 				session.invalidate();
 				jsResponse("회원 탈퇴가 성공되었습니다.", "fntmain.jsp", response);
 			}else {
-				jsResponse("회원 탈퇴 실패 ㅠ", "LoginCrudController?command=crudupdate", response);
+				jsResponse("회원 탈퇴 실패 ", "LoginCrudController?command=crudupdate", response);
 			}
 		}else if(command.equals("main")) {
 			dispatch("fntmain.jsp", request, response);
@@ -247,7 +247,8 @@ public class LoginCrudController extends HttpServlet {
 			
 			
 			String email = request.getParameter("email");
-			MemberDto dto = dao.findId(email);
+			String name = request.getParameter("name");
+			MemberDto dto = dao.findId(email, name);
 			// null을 검사해줄때는
 			// 만약 dto가 null이면 dto.get으로 불러오는 함수들은 전부 nullpoint에러남
 			// 그것을 방지하기 위해서 dto.get의 null을 검사하는게 아니라
