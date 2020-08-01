@@ -17,7 +17,7 @@
 		if(memberdto == null) {
 	%>
 		<script type="text/javascript">
-			alert("로그인 후 이용이 가능합니다.")
+			alert("로그인 후 이용이 가능합니다.");
 			self.close();
 		</script>
 	<%
