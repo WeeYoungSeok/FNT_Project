@@ -143,6 +143,17 @@ td {
 <%@ include file="./form/aside.jsp"%>
 
 	<section>
+	<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
 		<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
 		<input type="hidden" name="command" value="updatebuyboardres">
 		<input type="hidden" name="dboardno" value="${dealboarddto.dboardno }">
@@ -180,5 +191,8 @@ td {
 		</form>
 	</section>
 <%@ include file="./form/footer.jsp" %>
+<%
+		}
+%>
 </body>
 </html>

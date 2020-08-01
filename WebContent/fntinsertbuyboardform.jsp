@@ -131,6 +131,17 @@ function removeCommas(x) {
 	</aside>
 
    <section>
+   <%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
+	<%
+		} else {
+	%>
       <form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
       <input type="hidden" name="command" value="insertbuyboardres">
          <table border="1">
@@ -167,5 +178,8 @@ function removeCommas(x) {
       </form>
    </section>
 <%@ include file="./form/footer.jsp" %>
+<%
+		}
+%>
 </body>
 </html>
