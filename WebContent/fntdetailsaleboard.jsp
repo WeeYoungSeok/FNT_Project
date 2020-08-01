@@ -149,15 +149,18 @@ section {
 		}else{
 	%>
 	
+	<form action="reply.do" method="post" onsubmit="insertreply();">
+	<input type="hidden" name="command" value="insertreply">
 		<table>
 			<tr>
 				<th><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="width:80px"></th>
 				<td>
 					<input type="text" id="replytitle" name="replytitle" style="width:450px">
-					<input type="button" id="insertreply" value="등록" onclick="insertreply(this,'${memberdto.memberid}');">
+					<input type="submit" id="insertreply" value="등록">
 					<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
 				</td>
-		</table>			
+		</table>
+	</form>			
 	<%
 		}
 	%>
@@ -180,9 +183,11 @@ section {
 						<li class="rereply" style="padding-left:45px;list-style:none;">
 					</c:otherwise>
 				</c:choose>
-						<div><strong>${replydto.replynickname }</strong></div>
-						<div>${replydto.replytitle }</div>
-						<div>${replydto.replyregdate }
+					<c:choose>
+						<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname || memberdto.memberid eq 'admin' }">
+							<div><strong>${replydto.replynickname }</strong></div>
+							<div>${replydto.replytitle }</div>
+							<div>${replydto.replyregdate }
 							<span>
 								<c:choose>
 									<c:when test="${replydto.replytitletab eq 0 }">
@@ -196,6 +201,11 @@ section {
 								</c:choose>
 							</span>
 						</div>
+						</c:when>
+						<c:otherwise>
+							<span>비밀 댓글입니다.</span>
+						</c:otherwise>
+					</c:choose>
 					</li>			
 			</c:forEach>
 				<div id="up"></div>
@@ -230,8 +240,12 @@ function delChk(dboardno){
 function insertreply(me,memberid){
 	if($("input[name=replytitle]").val()==""){
 		alert("내용을 입력해주세요");
-	}
-	$.ajax({
+		return false;
+	}else{
+		return true;		
+	}	
+}
+/* 	$.ajax({
 		url : "reply.do",
 		method : "POST",
 		data : {"command":"insertreply", 
@@ -270,7 +284,7 @@ function insertreply(me,memberid){
 			}
 		}
 	});
-}
+} */
 
 function openrereply(me,membernickname,replyno,replyboardno){
 	if(membernickname==""){
@@ -280,23 +294,35 @@ function openrereply(me,membernickname,replyno,replyboardno){
 	
 	$(".rereplyform").hide();
 	$(me).closest("li").after(
-				'<li class="rereplyform" style="padding-left:45px;list-style:none;">'
-					+'<div><strong>'+membernickname+'</strong></div>'
-					+'<div><input type="text" name="rereplytitle"/>'		
-					+'<input type="button" value="등록" onclick="insertRereply(this,\''+membernickname+'\','+replyno+','+replyboardno+');">'
-					+'</div>'
-				+'</li>'
+			'<li class="rereplyform" style="padding-left:45px;list-style:none;">'
+				+'<div><strong>'+membernickname+'</strong></div>'
+				+'<form action="reply.do" method="method">'
+				+'<input type="hidden" name="command" value="insertRereply">'
+				+'<div><input type="text" name="rereplytitle"/>'
+				+'<input type="hidden" name="replyno" value="'+replyno+'">'
+				+'<input type="hidden" name="replyboardno" value="'+replyboardno+'">'
+				+'<input type="hidden" name="replynickname" value="'+membernickname+'">'
+				+'<input type="submit" value="등록">'
+				+'</div>'
+				+'</form>'
+			+'</li>'
 			);
 	
 }
 
-function insertRereply(me,replynickname,replyno,replyboardno){	
-	var replynickname = $(me).parent().parent().find("div").eq(0).children().text();
-	var rereplytitle = $(me).parent().find("input").val();
+function insertRereply(){	
+/* 	var replynickname = $(me).parent().parent().find("div").eq(0).children().text();
+	var rereplytitle = $(me).parent().find("input").val(); */
 
 	if(rereplytitle == ""){
 		alert("내용을 입력해주세요");
+		return false;
+	}else{
+		return true;		
 	}
+}
+
+/* 
 	$.ajax({
 		url : "reply.do",
 		data : {"command":"insertRereply",
@@ -338,7 +364,7 @@ function insertRereply(me,replynickname,replyno,replyboardno){
 		}
 	});
 	
-}
+} */
 
 
 function deletereply(replyno,replyboardno){
