@@ -38,6 +38,7 @@
 	
 	<br/><br/>
 	
+	<div class="formtable">
 	<form action="signup.do" id="form" name="form" method="post" >
 		<input type="hidden" name="command" value="signupform"/>
 		<input type="hidden" value="" name="IDCHK" id="IDCHK"/>
@@ -45,9 +46,9 @@
 		<input type="hidden" value="" name="real" id="real"/>
 		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
 		<table>
-			<col width="200">
-			<col width="500">
-			<col width="140">
+			<col width="25%">
+			<col width="55%">
+			<col width="20%">
 			<tr><td colspan="3" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td></tr>
 			<tr>
 				<th>ID</th>
@@ -91,12 +92,19 @@
 			</tr>
 			<tr>
 				<th>account</th>
-				<td><input type="text" name="memberaccount" id="account" placeholder="계좌번호를 입력해주세요." required="required"/></td>
+				<td colspan="2"><input type="text" name="memberaccount" id="account" placeholder="계좌번호를 입력해주세요." required="required"/></td>
 			</tr>
-		</table><br/>
-		<button id="resetbtn" type="reset">RESET</button>
-		<button id="submitbtn" type="submit">Sign Up</button>
+			<tr>
+				<td colspan="3">
+					<div style="display:flex;">
+						<button id="resetbtn" type="reset">RESET</button>
+						<button id="submitbtn" type="submit">Sign Up</button>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</form>
+	</div>
 
 </body>
 </html>
