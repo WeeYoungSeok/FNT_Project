@@ -84,4 +84,11 @@
 	<delete id="deletereply" parameterType="int">
 		DELETE REPLY WHERE REPLY_NO = #{replyno}
 	</delete>
+	
+<!-- 댓글 다시 삭제 -->
+	<update id="deletereply2" parameterType="int">
+		UPDATE REPLY
+		SET REPLY_GROUPNOSEQ = 0
+		WHERE REPLY_NO = #{replyno}
+	</update>
 </mapper>
