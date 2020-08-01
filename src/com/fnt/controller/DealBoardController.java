@@ -231,6 +231,10 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcategory(dcategory);
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
+			dealboarddto.setDfilename("none");
+			dealboarddto.setDlongitude("0");
+			dealboarddto.setDlatitude("0");
+			
 
 			int res = dao.updateDealBoard(dealboarddto);
 

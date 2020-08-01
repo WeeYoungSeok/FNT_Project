@@ -61,10 +61,16 @@ var postForm = function() {
    if($('select[name="dcategory"]').val() == ('CHECK')){
       alert("카테고리를 선택해주세요");
       return false;
-   }else{
-      $('textarea[name="dcontent"]').val($('#summernote').summernote('code'));
-         return true;
    }
+   
+   if($('textarea[name="dcontent"]').val()==""){
+	   alert("내용을 입력해주세요");
+	   return false;
+   }
+  
+   $('textarea[name="dcontent"]').val($('#summernote').summernote('code'));
+      return true;
+
 }
 
 

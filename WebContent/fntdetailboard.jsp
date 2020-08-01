@@ -27,8 +27,13 @@ function delChk(dboardno){
 function insertreply(me,memberid){
 	if($("input[name=replytitle]").val()==""){
 		alert("내용을 입력해주세요");
-	}
-	$.ajax({
+		return false;
+	}else{
+		return true;		
+	}	
+}
+
+/* 	$.ajax({
 		url : "reply.do",
 		method : "POST",
 		data : {"command":"insertreply", 
@@ -68,7 +73,7 @@ function insertreply(me,memberid){
 		}
 	});
 }
-
+ */
 function openrereply(me,membernickname,replyno,replyboardno){
 	if(membernickname==""){
 		alert("답변 하시려면 로그인 해주세요");
@@ -79,21 +84,36 @@ function openrereply(me,membernickname,replyno,replyboardno){
 	$(me).closest("li").after(
 				'<li class="rereplyform" style="padding-left:45px;list-style:none;">'
 					+'<div><strong>'+membernickname+'</strong></div>'
-					+'<div><input type="text" name="rereplytitle"/>'		
-					+'<input type="button" value="등록" onclick="insertRereply(this,\''+membernickname+'\','+replyno+','+replyboardno+');">'
+					+'<form action="reply.do" method="method">'
+					+'<input type="hidden" name="command" value="insertRereply">'
+					+'<div><input type="text" name="rereplytitle"/>'
+					+'<input type="hidden" name="replyno" value="'+replyno+'">'
+					+'<input type="hidden" name="replyboardno" value="'+replyboardno+'">'
+					+'<input type="hidden" name="replynickname" value="'+membernickname+'">'
+					+'<input type="submit" value="등록">'
 					+'</div>'
+					+'</form>'
 				+'</li>'
 			);
 	
 }
 
-function insertRereply(me,replynickname,replyno,replyboardno){	
-	var replynickname = $(me).parent().parent().find("div").eq(0).children().text();
+	
+// 댓글 ajax하는거 취소
+
+
+function insertRereply(){	
+ 	var replynickname = $(me).parent().parent().find("div").eq(0).children().text();
 	var rereplytitle = $(me).parent().find("input").val();
 
 	if(rereplytitle == ""){
 		alert("내용을 입력해주세요");
+		return false;
+	}else{
+		return true;		
 	}
+}
+/*
 	$.ajax({
 		url : "reply.do",
 		data : {"command":"insertRereply",
@@ -133,9 +153,9 @@ function insertRereply(me,replynickname,replyno,replyboardno){
 				alert("대댓글 등록 안됐어 멍청아");
 			}
 		}
-	});
-	
+	}); 
 }
+*/
 
 function deletereply(replyno,replyboardno){
 	if(confirm("삭제하시겠습니까?")){
@@ -225,15 +245,18 @@ section {
 	<%
 		}else{
 	%>
+	<form action="reply.do" method="post" onsubmit="insertreply();">
+	<input type="hidden" name="command" value="insertreply">
 		<table>
 			<tr>
 				<th><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="width:80px"></th>
 				<td>
 					<input type="text" id="replytitle" name="replytitle" style="width:450px">
-					<input type="button" id="insertreply" value="등록" onclick="insertreply(this,'${memberdto.memberid}');">
+					<input type="submit" id="insertreply" value="등록">
 					<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
 				</td>
 		</table>
+	</form>	
 	<%
 		}
 	%>

@@ -1,7 +1,6 @@
 package com.fnt.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,18 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
-
 import com.fnt.model.biz.AlertBiz;
 import com.fnt.model.biz.ReplyBiz;
 import com.fnt.model.biz.impl.AlertBizImpl;
 import com.fnt.model.biz.impl.ReplyBizImpl;
+import com.fnt.model.dao.DealBoardDao;
 import com.fnt.model.dao.ReplyDao;
+import com.fnt.model.dao.impl.DealBoardDaoImpl;
 import com.fnt.model.dao.impl.ReplyDaoImpl;
 import com.fnt.model.dto.AlertDto;
+import com.fnt.model.dto.DealBoardDto;
 import com.fnt.model.dto.MemberDto;
 import com.fnt.model.dto.ReplyDto;
-import com.google.gson.Gson;
 
 @WebServlet("/reply.do")
 public class ReplyController extends HttpServlet {
@@ -35,6 +34,7 @@ public class ReplyController extends HttpServlet {
       ReplyDao replydao = new ReplyDaoImpl();
       ReplyBiz replybiz = new ReplyBizImpl();
       AlertBiz alertbiz = new AlertBizImpl();
+      DealBoardDao dealboarddao = new DealBoardDaoImpl();
       
       MemberDto memberdto = (MemberDto) session.getAttribute("memberdto");
       
@@ -52,7 +52,7 @@ public class ReplyController extends HttpServlet {
          //replyboardno = dealboardno
          //replyid = memberid
          int replyboardno = Integer.parseInt(request.getParameter("replyboardno"));
-
+         
 
          ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
          
@@ -69,76 +69,96 @@ public class ReplyController extends HttpServlet {
         
         
          int res = replydao.insertReply(replydto);
-         ReplyDto returnReplyDto = null;
-         List<ReplyDto> list = replydao.selectReply(replydto);
-
-         JSONObject obj = new JSONObject();
-         obj.put("replyno", list.get(list.size()-1).getReplyno());
-         obj.put("replyid", list.get(list.size()-1).getReplyid());
-         obj.put("replynickname", list.get(list.size()-1).getReplynickname());
-         obj.put("replyboardno", list.get(list.size()-1).getReplyboardno());
-         obj.put("replygroupno", list.get(list.size()-1).getReplygroupno());
-         obj.put("replygroupnoseq", list.get(list.size()-1).getReplygroupnoseq());
-         obj.put("replytitletab", list.get(list.size()-1).getReplytitletab());
-         obj.put("replytitle", list.get(list.size()-1).getReplytitle());
-         obj.put("replyregdate", list.get(list.size()-1).getReplyregdate());
+			/*
+			 * ReplyDto returnReplyDto = null; List<ReplyDto> list =
+			 * replydao.selectReply(replydto);
+			 * 
+			 * JSONObject obj = new JSONObject(); obj.put("replyno",
+			 * list.get(list.size()-1).getReplyno()); obj.put("replyid",
+			 * list.get(list.size()-1).getReplyid()); obj.put("replynickname",
+			 * list.get(list.size()-1).getReplynickname()); obj.put("replyboardno",
+			 * list.get(list.size()-1).getReplyboardno()); obj.put("replygroupno",
+			 * list.get(list.size()-1).getReplygroupno()); obj.put("replygroupnoseq",
+			 * list.get(list.size()-1).getReplygroupnoseq()); obj.put("replytitletab",
+			 * list.get(list.size()-1).getReplytitletab()); obj.put("replytitle",
+			 * list.get(list.size()-1).getReplytitle()); obj.put("replyregdate",
+			 * list.get(list.size()-1).getReplyregdate());
+			 * 
+			 * Gson gson = new Gson(); String gsonobj = gson.toJson(obj);
+			 * 
+			 * if(res > 0) { response.getWriter().print(gsonobj);
+			 * 
+			 * }else { response.getWriter().append("FAILD"); }
+			 */
          
-         Gson gson = new Gson();
-         String gsonobj = gson.toJson(obj);
-         System.out.println(gsonobj);
-            
-         if(res > 0) {
-           response.getWriter().print(gsonobj);
-
+         DealBoardDto dealboarddto = dealboarddao.selectDetail(replyboardno);
+         if(dealboarddto.getDflag().equals("B")) {
+        	 if(res>0) {
+        		 jsResponse("등록되었습니다", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
+        	 }else {
+        		 jsResponse("등록실패", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
+        	 }
+        	 
          }else {
-            response.getWriter().append("FAILD");
+        	 if(res>0) {
+        		 jsResponse("등록되었습니다", "dealboard.do?command=detailsaleboard&dboardno="+replyboardno, response);
+        	 }else {
+        		 jsResponse("등록실패", "dealboard.do?command=detailsaleboard&dboardno="+replyboardno, response);
+        	 }
          }
+         
+         
+         
+        
 
         /* 대댓글 등록 */
       }else if(command.equals("insertRereply")) {
+    	  System.out.println("들어왓누");
          if(memberdto == null) {
     		 jsResponse("로그인 해주세요", "fntlogincrud.jsp", response);
     	 }
          String replyid = memberdto.getMemberid();
          String replynickname = request.getParameter("replynickname");
-         String replytitle = request.getParameter("replytitle");
+         String replytitle = request.getParameter("rereplytitle");
         
          int replyno = Integer.parseInt(request.getParameter("replyno"));
          int replyboardno = Integer.parseInt(request.getParameter("replyboardno"));
-         
-         System.out.println("Replyno : "+ replyno);
          
          ReplyDto replydto = new ReplyDto(replyno, replyid, replynickname, replyboardno, replytitle);
          
          int res = replybiz.replyProc(replydto);
          
-        
-         List<ReplyDto> list = replydao.selectReply(replydto);
+			/*
+			 * List<ReplyDto> list = replydao.selectReply(replydto);
+			 * 
+			 * for(int i =0; i<list.size(); i++) {
+			 * System.out.println(list.get(i).toString()); }
+			 * 
+			 * JSONObject obj = new JSONObject();
+			 * 
+			 * obj.put("replyno", list.get(0).getReplyno()); obj.put("replyid",
+			 * list.get(0).getReplyid()); obj.put("replynickname",
+			 * list.get(0).getReplynickname()); obj.put("replyboardno",
+			 * list.get(0).getReplyboardno()); obj.put("replygroupno",
+			 * list.get(0).getReplygroupno()); obj.put("replygroupnoseq",
+			 * list.get(0).getReplygroupnoseq()); obj.put("replytitletab",
+			 * list.get(0).getReplytitletab()); obj.put("replytitle",
+			 * list.get(0).getReplytitle()); obj.put("replyregdate",
+			 * list.get(0).getReplyregdate());
+			 * 
+			 * Gson gson = new Gson(); String gsonobj = gson.toJson(obj);
+			 * 
+			 * if(res > 0) { response.getWriter().print(gsonobj); }else {
+			 * response.getWriter().append("FAILD"); }
+			 */
          
-         for(int i =0; i<list.size(); i++) {
-         	System.out.println(list.get(i).toString());
-         }
-         
-         JSONObject obj = new JSONObject();
-     
-         obj.put("replyno", list.get(0).getReplyno());
-         obj.put("replyid", list.get(0).getReplyid());
-         obj.put("replynickname", list.get(0).getReplynickname());
-         obj.put("replyboardno", list.get(0).getReplyboardno());
-         obj.put("replygroupno", list.get(0).getReplygroupno());
-         obj.put("replygroupnoseq", list.get(0).getReplygroupnoseq());
-         obj.put("replytitletab", list.get(0).getReplytitletab());
-         obj.put("replytitle", list.get(0).getReplytitle());
-         obj.put("replyregdate", list.get(0).getReplyregdate());
-         
-         Gson gson = new Gson();
-         String gsonobj = gson.toJson(obj);
-         
-         if(res > 0) {
-            response.getWriter().print(gsonobj);
+         if(res>0) {
+        	 jsResponse("등록되었습니다", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
          }else {
-            response.getWriter().append("FAILD");
-         }
+        	 jsResponse("등록실패", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
+         } 
+         
+         
          /* 댓글 삭제 */
       }else if(command.equals("deletereply")) {
     	  int replyno = Integer.parseInt(request.getParameter("replyno"));
