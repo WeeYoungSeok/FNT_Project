@@ -1,3 +1,9 @@
+<%
+response.setHeader("pragma","No-cache");
+response.setHeader("Cache-Control","no-cache");
+response.addHeader("Cache-Control","No-store");
+response.setDateHeader("Expires",1L);
+%>
 <%@page import="com.fnt.model.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
