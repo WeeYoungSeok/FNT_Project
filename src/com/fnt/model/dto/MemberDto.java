@@ -17,8 +17,36 @@ public class MemberDto {
 	private String memberrole;
 	private String memberenabled;
 	private Date memberregdate;
+	private String memberaccount;
 	
 	
+	public MemberDto(String memberid, String memberpw, String memberpwchk, String membernickname, String membername,
+			Date memberbirth, String memberphone, String memberaddr, String memberemail, String memberrole,
+			String memberenabled, Date memberregdate, String memberaccount) {
+		super();
+		this.memberid = memberid;
+		this.memberpw = memberpw;
+		this.memberpwchk = memberpwchk;
+		this.membernickname = membernickname;
+		this.membername = membername;
+		this.memberbirth = memberbirth;
+		this.memberphone = memberphone;
+		this.memberaddr = memberaddr;
+		this.memberemail = memberemail;
+		this.memberrole = memberrole;
+		this.memberenabled = memberenabled;
+		this.memberregdate = memberregdate;
+		this.memberaccount = memberaccount;
+	}
+
+	public String getMemberaccount() {
+		return memberaccount;
+	}
+
+	public void setMemberaccount(String memberaccount) {
+		this.memberaccount = memberaccount;
+	}
+
 	public MemberDto() {
 		
 	}

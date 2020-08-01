@@ -20,7 +20,7 @@
 		if (bool == "true") {
 			opener.document.getElementById("NICKCHK").value = "a";
 			opener.document.getElementsByName("membernickname")[0].title = 'y';
-			opener.document.getElementsByName("memberbirth")[0].focus();
+			opener.document.getElementsByName("membername")[0].focus();
 		} else {
 			opener.document.getElementById("NICKCHK").value = "";
 			opener.document.getElementsByName("membernickname")[0].focus();

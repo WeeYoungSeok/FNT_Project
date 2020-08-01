@@ -97,8 +97,9 @@ public class SignupController extends HttpServlet {
 			String memberphone = request.getParameter("memberphone");
 			String memberaddr = request.getParameter("memberaddr");
 			String memberemail = request.getParameter("memberemail");
+			String memberaccount = request.getParameter("memberaccount");
 
-			int res = dao.signup(new MemberDto(memberid, memberpw, memberpwchk, membernickname, membername, memberbirth, memberphone, memberaddr, memberemail, null, null, null));
+			int res = dao.signup(new MemberDto(memberid, memberpw, memberpwchk, membernickname, membername, memberbirth, memberphone, memberaddr, memberemail, null, null, null,memberaccount));
 			
 			if (res > 0) {
 				response.sendRedirect("signup.do?command=main");

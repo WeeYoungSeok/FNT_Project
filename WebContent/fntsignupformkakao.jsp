@@ -89,6 +89,10 @@
 				<td><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required" value=<%= ((JsonObject) request.getAttribute("profileJson")).get("email") %>/></td>
 				<td><input type="button" class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');" value="Email 인증"></td>
 			</tr>
+			<tr>
+				<th>account</th>
+				<td><input type="text" name="memberaccount" id="account" placeholder="계좌번호를 입력해주세요." required="required"/></td>
+			</tr>
 		</table><br/>
 		<button id="resetbtn" type="reset">RESET</button>
 		<button id="submitbtn" type="submit">Sign Up</button>
