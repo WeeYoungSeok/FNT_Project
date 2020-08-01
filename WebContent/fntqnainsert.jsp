@@ -15,7 +15,6 @@
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 고객센터 글 작성</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
-<link href="css/fntnoticeinsert.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -66,10 +65,6 @@ $(document).ready(function(){
 		
 	});
 	
-	function postForm() {
-	
-		return true
-	}
 </script>
 </head>
 <body>
@@ -99,7 +94,7 @@ $(document).ready(function(){
 		} else {
 	%>
 		<div id="ntable">
-		<form action="qna.do" method="post" onsubmit="postForm()">
+		<form action="qna.do" onsubmit="return qnaform();" method="post">
 			<input type="hidden" value="qnainsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
 			<table border="1">
@@ -108,7 +103,7 @@ $(document).ready(function(){
 				<tr>
 					<th>제목</th>
 					<td style="display:flex;">
-						<input type="text" id="nbtitle" name="qbtitle" placeholder="제목을 입력해주세요." style="width:90%;"/>
+						<input type="text" id="nbtitle" name="qbtitle" placeholder="제목을 입력해주세요." style="width:90%;" required="required"/>
 						<input type="checkbox" name="qbsecret" id="chk" value="N" style="margin-right:10px;"/>비밀글
 					</td>
 				</tr>
@@ -128,10 +123,18 @@ $(document).ready(function(){
 		</div>
 	</section>
 	<%@ include file="./form/footer.jsp"%>
-	
 	<%
 	}
 	%>
+	
+	<script type="text/javascript">
+		var qnaform = function(){
+			if($("textarea[name='qbcontent']").val() == "") {
+				alert("내용을 입력하세요.");
+				return false;
+			}
+		}
+	</script>
 </body>
 
 

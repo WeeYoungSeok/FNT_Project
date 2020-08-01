@@ -56,9 +56,7 @@ section {
 	padding-top: 90px;
 	padding-left: 240px;
 }
-span {
-	color: red;
-}
+
 
 table {
 	margin-top: 100px;
@@ -102,7 +100,7 @@ table {
 	<%
 		} else {
 	%>
-		<form action="qna.do" method="post">
+		<form action="qna.do" method="post" onsubmit="return qnaform();">
 		<input type="hidden" name="command" value="qnarecommnetres"/>
 		<input type="hidden" name="qbboardno" value="<%=qnaboardlistone.getQbboardno()%>"/>
 		<table border="1"> 
@@ -123,7 +121,7 @@ table {
 			</tr>
 			<tr>
 			
-				<td colspan="2"><textarea cols="54" rows="13" name="qbcontent" style="resize: none" id="summernote"><%=qnaboardlistone.getQbcontent() %></textarea></td>
+				<td colspan="2"><textarea name="qbcontent"id="summernote"><%=qnaboardlistone.getQbcontent() %></textarea></td>
 			</tr>
 	
 	
@@ -141,5 +139,14 @@ table {
 		%>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
+	
+		<script type="text/javascript">
+		var qnaform = function(){
+			if($("textarea[name='qbcontent']").val() == "") {
+				alert("내용을 입력하세요.");
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

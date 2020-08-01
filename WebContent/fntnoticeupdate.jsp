@@ -55,9 +55,7 @@ section {
 	padding-top: 90px;
 	padding-left: 240px;
 }
-span {
-	color: red;
-}
+
 
 table {
 	margin-top: 100px;
@@ -100,7 +98,7 @@ table {
 	<%
 		} else {
 	%>
-	<form action="notice.do" method="post">
+	<form action="notice.do" onsubmit="return noticeform();" method="post">
 		<input type="hidden" value="noticeupdateres" name="command"/>
 		<input type="hidden" value="<%=noticeboardlistone.getNbboardno() %>" name="nbboardno"/>
 		<table border="1"> 
@@ -109,7 +107,7 @@ table {
 				<button onclick="location.href='notice.do?command=notice'">목록</button></td>
 			<tr>
 			<tr>
-				<td><input type="text" value="<%=noticeboardlistone.getNbtitle() %>" name="nbtitle"/></td>
+				<td><input type="text" value="<%=noticeboardlistone.getNbtitle() %>" name="nbtitle" required="required"/></td>
 			</tr>
 			<tr>
 				<td><%=noticeboardlistone.getNbnickname() %></td>
@@ -141,5 +139,13 @@ table {
 		</form>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
+		<script type="text/javascript">
+		var noticeform = function(){
+			if($("textarea[name='nbcontent']").val() == "") {
+				alert("내용을 입력하세요.");
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

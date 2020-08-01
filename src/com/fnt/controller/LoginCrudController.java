@@ -94,6 +94,10 @@ public class LoginCrudController extends HttpServlet {
 		}else if(command.equals("logout")) {
 			session.invalidate();
 			jsResponse("로그아웃 되었습니다.", "fntmain.jsp", response);
+			
+		}else if(command.equals("logoutstreaming")) {
+			session.invalidate();
+			jsResponse("로그아웃 되었습니다.", "fntstreaming.jsp", response);
 		}else if(command.equals("searchid")) {
 			
 			String membername = request.getParameter("name");

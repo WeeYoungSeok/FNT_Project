@@ -148,11 +148,22 @@
 			
 			%>
 			<tr><td colspan="5" id="qlistlast"></td></tr>
+			<%
+				if(memberdto == null) {
+			%>
+			
+			<%
+				} else {
+			%>
 			<tr>
 				<td id="btnline" colspan="5" align="right">
 					<button id="qbbtn" onclick="location.href='qna.do?command=qnainsert'">글 작성</button>
 				</td>
 			</tr>
+			
+			<%
+				}
+			%>
 		</table></div>
 		
 		<%

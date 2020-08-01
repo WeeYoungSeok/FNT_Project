@@ -14,8 +14,6 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 공지사항 글 작성</title>
-<link href="css/section.css" rel="stylesheet" type="text/css" />
-<link href="css/fntnoticeinsert.css" rel="stylesheet" type="text/css" />
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -50,6 +48,8 @@
 
 </script>
 <style type="text/css">th{text-align:center;}.panel{margin-bottom: 0px;}</style>
+<link href="css/section.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 	
@@ -64,10 +64,19 @@
 			<div class="menubar_x"></div>
 		</div>
 	</aside>
-	
 	<section>
+	<%
+		if(memberdto == null) {
+	%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+		</script>
+	<%
+		} else {
+	%>
 		<div id="ntable">
-		<form action="notice.do" method="post">
+		<form action="notice.do" onsubmit="return noticeform();" method="post">
 			<input type="hidden" value="noticeinsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
 			<table border="1">
@@ -75,11 +84,11 @@
 			<col width="1000">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" id="nbtitle" name="nbtitle" placeholder="제목을 입력해주세요."/></td>
+				<td><input type="text" id="nbtitle" name="nbtitle" placeholder="제목을 입력해주세요." required="required"/></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="nbcontent" id="summernote" ></textarea></td>
+				<td><textarea name="nbcontent" id="summernote"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right" colspan="2">
@@ -91,8 +100,18 @@
 		</form>
 		</div>
 	</section>
-	
 	<%@ include file="./form/footer.jsp"%>
+	<%
+		}
+	%>
 	
+	<script type="text/javascript">
+		var noticeform = function(){
+			if($("textarea[name=nbcontent]").val() == "") {
+				alert("내용을 입력하세요.");
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

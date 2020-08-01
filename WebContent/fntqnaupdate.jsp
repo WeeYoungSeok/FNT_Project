@@ -55,9 +55,7 @@ section {
 	padding-top: 90px;
 	padding-left: 240px;
 }
-span {
-	color: red;
-}
+
 
 table {
 	margin-top: 100px;
@@ -100,7 +98,7 @@ table {
 	<%
 		} else {
 	%>
-	<form action="qna.do" method="post">
+	<form action="qna.do" onsubmit="return qnaform();" method="post">
 		<input type="hidden" value="qnaupdateres" name="command"/>
 		<input type="hidden" value="<%=qnaboardlistone.getQbboardno() %>" name="qbboardno"/>
 		<table border="1"> 
@@ -109,13 +107,13 @@ table {
 				<button onclick="location.href='qna.do?command=qna'">목록</button></td>
 			<tr>
 			<tr>
-				<td><input type="text" value="<%=qnaboardlistone.getQbtitle() %>" name="qbtitle"/></td>
+				<td><input type="text" value="<%=qnaboardlistone.getQbtitle() %>" name="qbtitle" required="required"/></td>
 			</tr>
 			<tr>
 				<td><%=qnaboardlistone.getQbnickname() %></td>
 			</tr>
 			<tr>
-				<td width="400" height="200"><textarea id="summernote" name="qbcontent" style="resize: none"><%=qnaboardlistone.getQbcontent() %></textarea></td>
+				<td width="400" height="200"><textarea id="summernote" name="qbcontent"><%=qnaboardlistone.getQbcontent() %></textarea></td>
 			</tr>
 	
 		
@@ -137,5 +135,13 @@ table {
 		</form>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
+	<script type="text/javascript">
+		var qnaform = function(){
+			if($("textarea[name='qbcontent']").val() == "") {
+				alert("내용을 입력하세요.");
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

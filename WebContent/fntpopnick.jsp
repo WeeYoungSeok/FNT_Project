@@ -18,7 +18,8 @@
 	}
 	
 	function chatGo() {
-		open("https://localhost:443/FNT_Project/fntstreaming.html","","width=1600, height=1000");
+		open("fntstreaming.jsp","","width=1600, height=1000");
+		//open("https://localhost:443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		self.close();;
 	}
 	

@@ -14,6 +14,7 @@ body {
 }
 
 #paging {
+	margin-top: 1%;
 	display: flex;
 	float: center;
 	position: absolute;
@@ -68,7 +69,7 @@ body {
 </body>
 <script type="text/javascript">
 			$(function(){
-				$("#onePage").css("font-weight","bold");
+				$("#onePage").css("color","red");
 			});
 	</script>
 
