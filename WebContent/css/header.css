@@ -74,6 +74,15 @@ header {
    color: black;
 }
 
+#loginmsg > b {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#loginmsg > b:hover {
+	color: blue;
+}
+
 #trans {
    width: 70px;
    height: 38px;
