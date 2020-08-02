@@ -29,8 +29,8 @@
 
 <%
 	int res = getRandom();
-	// 내부적으로 비동기 실행시 랜덤함수가 두번실행돼서 
-	// 하나의 변수에 담아서 비교했을때 값이 일치하게 만들어주기 위해
+	// 내부적으로 비동기 실행 시 랜덤함수가 두 번 실행돼서 
+	// 하나의 변수에 담아서 비교했을 때 값이 일치하게 만들어주기 위해
 %>
 	<div class="topbar">
 		<a href="fntmain.jsp">
@@ -41,7 +41,7 @@
 	<br/><br/>
 	
 	<div class="formtable">
-	<form action="signup.do" id="form" name="form" method="post" >
+	<form action="signup.do" id="form" name="form" method="post">
 		<input type="hidden" name="command" value="signupform"/>
 		<input type="hidden" value="" name="IDCHK" id="IDCHK"/>
 		<input type="hidden" value="" name="NICKCHK" id="NICKCHK"/>
@@ -49,9 +49,9 @@
 		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
 
 		<table>
-			<col width="200">
-			<col width="500">
-			<col width="140">
+			<col width="25%">
+			<col width="55%">
+			<col width="20%">
 			<tr>
 				<td colspan="3" align="left"><p>* 반드시 <b>모든 항목</b>을 작성완료하셔야만 <b>정상 가입</b>됩니다 :)</p></td>
 			</tr>
@@ -97,11 +97,17 @@
 			</tr>
 			<tr>
 				<th>account</th>
-				<td><input type="text" name="memberaccount" id="account" placeholder="계좌번호를 입력해주세요." required="required"/></td>
+				<td colspan="2"><input type="text" name="memberaccount" id="account" placeholder="계좌번호를 입력해주세요." required="required"/></td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div style="display:flex;">
+						<button id="resetbtn" type="reset">RESET</button>
+						<button id="submitbtn" type="submit">Sign Up</button>
+					</div>
+				</td>
 			</tr>
 		</table>
-		<button id="resetbtn" type="reset">RESET</button>
-		<button id="submitbtn" type="submit">Sign Up</button>
 	</form>
 	</div>
 
