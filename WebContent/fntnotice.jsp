@@ -17,6 +17,15 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
+ * {margin: 0px; padding: 0px;}
+
+ aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
+
+ #menubars {margin-top: 50%; height: 62%;}
+ .menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 10%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
+ .menubar > p {padding-left: 10%;}
+ .menubar:hover {opacity: 0.6;}
+ .menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
  
  #ntable {float: center;}
  
@@ -47,7 +56,15 @@
 <body>
 
 	<%@ include file="./form/header.jsp" %>
-	<%@ include file="./form/aside.jsp" %>
+	<aside>
+		<div id="menubars">
+			<div class="menubar" style="opacity:0.7;"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
 	<%
 		String searchnotice = (String)request.getAttribute("searchnotice");
 		List<NoticeBoardDto> noticeboardlist = (List<NoticeBoardDto>)request.getAttribute("noticeboardlist");
@@ -57,19 +74,16 @@
 		<div id="ntable">
 		<h1>공지사항</h1>
 		<table>
-		
 			<col width="100">
      		<col width="400">
      	 	<col width="150">
       		<col width="200">
-      		
       		<tr align="center">
       			<th>No.</th>
       			<th>제목</th>
       			<th>작성자</th>
       			<th>작성일</th>
       		</tr>
-      		
 			<%
 				if (noticeboardlist == null) { 
 			%>
@@ -138,11 +152,8 @@
 			}
 	%>
 	<form id="form1" action="notice.do?command=searchnotice" method="post">
-		
-
 		<input type="text" name="searchnotice" id="searchnotice" required="required" placeholder="공지사항 검색하기">		
 		<span><input id="nbbtn" type="submit" value="검색"></span>
-
 	</form>
 	
 	</section>

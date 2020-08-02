@@ -26,9 +26,9 @@
 
 	 $(document).ready(function() {
 	      $('#summernote').summernote({
-	        placeholder: '홍보 포스팅을 자유롭게 입력해주세요.',
-	        height: 500,
-	        width: 1000,
+	        placeholder: '공지사항 내용을 자유롭게 입력해주세요.',
+	        height: 300,
+	        //width: 750,
 	        lang: 'ko-KR',
 	        toolbar: [
 	                    // [groupName, [list of button]]
@@ -47,17 +47,32 @@
 	    });
 
 </script>
-<style type="text/css">th{text-align:center;}.panel{margin-bottom: 0px;}</style>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
+#menubars {margin-top: 50%; height: 62%;}
+.menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 16%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
+.menubar > p {padding-left: 10%;}
+.menubar:hover {opacity: 0.6;}
+.menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
+#ntable {float: center; margin-top: 3%;}
+h1 {text-align: center;}
+table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
+th {background-color: #dddddd; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
+td {height: 24px; font-size:12pt;}
+#nbtitle {width: 100%; height: 100%; border: none; padding-left: 10px;}
+.panel {margin: 0px;}
+#nbbtn {width: 50px; height: 34px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc; margin-top: 2px;}
+#nbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
+</style>
 
 </head>
 <body>
 	
 	<%@ include file="./form/header.jsp"%>
-	
 	<aside>
 		<div id="menubars">
-			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar" style="opacity:0.7;"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
 			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
 			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
 			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
@@ -76,12 +91,13 @@
 		} else {
 	%>
 		<div id="ntable">
+		<h1>공지사항 글 작성</h1>
 		<form action="notice.do" onsubmit="return noticeform();" method="post">
 			<input type="hidden" value="noticeinsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
-			<table border="1">
-			<col width="100">
-			<col width="1000">
+			<table border="1" style="border: solid white;">
+			<col width="100px">
+			<col width="750px">
 			<tr>
 				<th>제목</th>
 				<td><input type="text" id="nbtitle" name="nbtitle" placeholder="제목을 입력해주세요." required="required"/></td>
