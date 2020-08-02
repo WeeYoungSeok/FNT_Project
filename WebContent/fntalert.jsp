@@ -1,3 +1,7 @@
+<%@page import="com.fnt.model.dao.DealBoardDao"%>
+<%@page import="com.fnt.model.dao.impl.DealBoardDaoImpl"%>
+<%@page import="com.fnt.model.biz.AlertBiz"%>
+<%@page import="com.fnt.model.biz.impl.AlertBizImpl"%>
 <%@page import="com.fnt.model.dto.AlertDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.fnt.model.dto.MemberDto"%>
@@ -20,14 +24,13 @@
 	<%
 		//세션에 값이 담긴 memberdto을 받아온다.
 		MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
-		//List<AlertDto> alertlist = (List<AlertDto>)request.getAttribute("alertlist"); 
 	%>
 	<script type="text/javascript">
 	
 	var memberid = "<%=memberdto.getMemberid()%>";
 	
 	function closePop(param){
-		opener.location.href='dealboard.do?command=detailboard&dboardno='+param;
+		opener.location.href='dealboard.do?command=alertupdate&dboardno='+param;
 		self.close();
 	}
 	
@@ -37,7 +40,7 @@
 	}
 	
 		onload=function(){
-			//이 창이 load되자마자 mypagecontroller에 meㄷmberid값을 전달해줘야한다.
+		 	//이 창이 load되자마자 mypagecontroller에 meㄷmberid값을 전달해줘야한다.
 			
 			//setInterval(function(){
 			//$("#alertlist").empty();

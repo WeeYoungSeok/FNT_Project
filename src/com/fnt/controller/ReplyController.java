@@ -56,9 +56,11 @@ public class ReplyController extends HttpServlet {
 
          ReplyDto replydto = new ReplyDto(replyid, replynickname, replyboardno, replytitle);
          
-         //insert를 해준다.
-         int alertres = alertbiz.insertAlert(new AlertDto(0, replyid, replyboardno, null));
-         
+         //댓글을 달았을 때 ALERT테이블에 INSERT해주는 것.
+         DealBoardDto dealboarddto1 = dealboarddao.selectDetail(replyboardno);
+         String alertid = dealboarddto1.getDid();
+         int alertres = alertbiz.insertAlert(new AlertDto(0, alertid, replyboardno, "Y"));
+         System.out.println("댓글 달았을 떄 alert테이블에 입력 성공 : " + alertres);
          //insert에 성공한 selectList를 여기서 출력해서 그 결과값을 fntalert.jsp에
          //setAttribute해서 보내고 fntalert.jsp에서 받아서 출력해준다.
          //어차피 session에 나의 id가 있으니까(memberid)
