@@ -27,9 +27,9 @@
 
 $(document).ready(function(){
     $('#summernote').summernote({
-      placeholder: '홍보 포스팅을 자유롭게 입력해주세요.',
-      height: 500,
-      width: 1000,
+      placeholder: '문의글을 자유롭게 작성해주세요.',
+      height: 300,
+      //width: 1000,
       lang: 'ko-KR',
       toolbar: [
                   // [groupName, [list of button]]
@@ -48,7 +48,23 @@ $(document).ready(function(){
   });
 
 </script>
-<style type="text/css">th{text-align:center;}.panel{margin-bottom: 0px;}</style>
+<style type="text/css">
+aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
+#menubars {margin-top: 50%; height: 62%;}
+.menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 16%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
+.menubar > p {padding-left: 10%;}
+.menubar:hover {opacity: 0.6;}
+.menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
+#qtable {float: center; margin-top: 3%;}
+h1 {text-align: center;}
+table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
+th {background-color: #dddddd; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
+td {height: 24px; font-size:12pt;}
+#qbtitle {width: 100%; height: 100%; border: none; padding-left: 10px;}
+.panel {margin: 0px;}
+#qbbtn {width: 50px; height: 34px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc; margin-top: 2px;}
+#qbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
+</style>
 
 <script type="text/javascript">
 	$(function(){
@@ -76,7 +92,7 @@ $(document).ready(function(){
 			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
 			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
 			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar" style="opacity:0.7;"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
 			<div class="menubar_x"></div>
 		</div>
 	</aside>
@@ -93,17 +109,18 @@ $(document).ready(function(){
 	<%
 		} else {
 	%>
-		<div id="ntable">
+		<div id="qtable">
+		<h1>고객센터 글 작성</h1>
 		<form action="qna.do" onsubmit="return qnaform();" method="post">
 			<input type="hidden" value="qnainsertres" name="command"/>
 			<input type="hidden" value="<%=memberdto.getMemberid() %>" name="id"/>
-			<table border="1">
+			<table border="1" style="border: solid white;">
 				<col width="100">
-				<col width="1000">
+				<col width="750">
 				<tr>
 					<th>제목</th>
-					<td style="display:flex;">
-						<input type="text" id="nbtitle" name="qbtitle" placeholder="제목을 입력해주세요." style="width:90%;" required="required"/>
+					<td style="display:flex; border:none;">
+						<input type="text" id="qbtitle" name="qbtitle" placeholder="제목을 입력해주세요." style="width:90%;" required="required"/>
 						<input type="checkbox" name="qbsecret" id="chk" value="N" style="margin-right:10px;"/>비밀글
 					</td>
 				</tr>
@@ -113,9 +130,8 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<td align="right" colspan="2">
-						<input id="nbbtn" type="button" value="취소"
-							onclick="location.href='qna.do?command=qna'" />
-						<input id="nbbtn" type="submit" value="완료" />
+						<input id="qbbtn" type="button" value="취소" onclick="location.href='qna.do?command=qna'" />
+						<input id="qbbtn" type="submit" value="완료" />
 					</td>
 				</tr>
 			</table>
