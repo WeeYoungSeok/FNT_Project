@@ -42,8 +42,23 @@ public class ReportPageDaoImpl implements ReportPageDao {
 		}
 		return dto;
 	}
-	
-	public int update(String rece) {
-		return 0;
-	}
+	//신고받은 회원 중 말도안되는 신고가 들어왔을 때 차단거절 누르면 report테이블에서 삭제
+		public int deleteReport(int reportno) {
+			SqlSession session = null;
+			int deleteres = 0;
+			
+			try {
+				session = getSqlSessionFactory().openSession(false);
+				deleteres = session.delete(namespace + "deletereport", reportno);
+				
+				if(deleteres > 0) {
+					session.commit();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return deleteres;
+		}
 }

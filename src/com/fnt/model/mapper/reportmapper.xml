@@ -42,4 +42,8 @@
 		SELECT REPORT_NO, SEND_ID, RECEIVE_ID, SEND_NICKNAME, RECEIVE_NICKNAME, REPORT_TITLE, REPORT_CONTENT, REPORT_REGDATE
 		FROM REPORT WHERE REPORT_NO = #{reportno}
 	</select>
+	<!-- 말도안되는 신고가 들어왔을 때  차단거절버튼을 눌렀을 때 그에 대한 report테이블 삭제-->
+	<delete id="deletereport" parameterType="int">
+		DELETE FROM REPORT WHERE REPORT_NO = #{reportno}
+	</delete>
 </mapper>

@@ -15,5 +15,4 @@ public interface AdminPageDao {
 	public int updateRole(String receiveid);
 	//신고회원 복귀버튼 누르면 enabled를 y로 바꾸기
 	public int restEnabled(String id);
-	
 }
