@@ -9,146 +9,169 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매 글보기</title>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
+aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
 
-section {
-	padding-top: 90px;
-	padding-left: 240px;
-}
+#menubars {margin-top: 50%; height: 62%;}
+.menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 10%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
+.menubar > p {padding-left: 10%;}
+.menubar:hover {opacity: 0.6;}
+.menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
+
+#sboard {margin-top:4%; margin-bottom:6%;}
+
+h1 {margin-top:6%; font-family:"Arial"; text-align:center; margin-bottom:2%;}
+	
+table {margin:0px auto; width:80%; height:auto; font-family:"Arial";}
+
+#tolist {cursor:pointer;}
+#tolist:hover {font-weight:bold;}
+
+th {font-size:14pt; width:100px; height:30px; background-color:#dddddd; font-weight:bold; padding-top:2px;}
+td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
+
+#slistlast {background-color:#dddddd; height:2px;}
+
+#btnline {background-color:white;}
+#btnbox {margin-top:4px; float:right; display:flex;}
+#sbbtn {width:50px; height:26px; border:none; margin-left:10px; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:#cccccc;}
+#sbbtn:hover {font-weight:bold; background-color:#bbbbbb;}
+
 </style>
 </head>
 <body>
 
 <%@ include file="./form/header.jsp"%>
-<%@ include file="./form/aside.jsp"%>
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar" style="opacity:0.7;"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
 
 <section>
-
-		<table border="1">
-			<tr>
-				<th>제  목</th>
-				<td>
-					<c:choose>
-						<c:when test="${dealboarddto.dsellflag eq 'Y' }">
-							[판매완료]
-						</c:when>
-					</c:choose>
-						${dealboarddto.dtitle }
-				</td>
-			</tr>
-			<tr>
-				<th>찜</th>
-				<td>
-			<c:choose>
-				<c:when test="${empty wishlistdto }">
-					<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');">☆</span>
-				</c:when>
-				<c:otherwise>
-					<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno}');">★</span>
-				</c:otherwise>
-			</c:choose>
-				</td>
-			</tr>
-			<tr>
-				<th>가격</th>
-				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 
-				<c:choose>
-					<c:when test="${!empty memberdto && memberdto.membernickname ne dealboarddto.dnickname && dealboarddto.dsellflag eq 'N'}">
-						<span><a href="javascript:cashpop()">결제하기🤑</a></span></td>
-					</c:when>
-				</c:choose>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td><a onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>
+	<div id="sboard">
+	<h1>판매 게시판</h1>
+	<table>
+		<tr>
+			<th>제목</th>
+			<td colspan="5">
 				<c:choose>
 					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
-						<div align="center;"><strong>판매 완료된 글입니다.</strong></div>
+						[판매완료]
+					</c:when>
+				</c:choose>
+					${dealboarddto.dtitle }
+			</td>
+		</tr>
+		<tr>
+			<th>찜</th>
+			<td>
+				<c:choose>
+					<c:when test="${empty wishlistdto }">
+						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');">☆</span>
 					</c:when>
 					<c:otherwise>
-						<div>${dealboarddto.dcontent }</div></td>					
+						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno}');">★</span>
 					</c:otherwise>
 				</c:choose>
-			</tr>		
+			</td>
+			<th>가격</th>
+			<td>
+				<fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 
+				<c:choose>
+					<c:when test="${!empty memberdto && memberdto.membernickname ne dealboarddto.dnickname && dealboarddto.dsellflag eq 'N'}">
+						<span><a href="javascript:cashpop()">결제하기🤑</a></span>
+					</c:when>
+				</c:choose>
+			</td>
+			<th>작성자</th>
+			<td><a onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td colspan="5">
+				<c:choose>
+					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+						<div align="center"><strong>판매 완료된 글입니다.</strong></div>
+					</c:when>
+					<c:otherwise>
+						<div>${dealboarddto.dcontent }</div>					
+					</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>		
 	<%
 		DealBoardDto dealboarddto = (DealBoardDto) request.getAttribute("dealboarddto");
-		if(dealboarddto.getDlatitude() != null){
+		if(dealboarddto.getDlatitude() != null) {
 	%>
-			
-			<tr>
-				<th>여기서 만나요!</th>
-				<td style="width:500px;"><div id="map" style="width:100%;height:350px;"></div><td>
+		<tr>
+			<th>여기서 만나요!</th>
+			<td colspan="4" style="width:500px;">
+				<div id="map" style="width:100%;height:350px;"></div>
 				<input type="hidden" name="longitude" id="longitude" value="${dealboarddto.dlongitude }">
 				<input type="hidden" name="latitude" id="latitude" value="${dealboarddto.dlatitude }">
-			</tr>
-
-
+			<td>
+		</tr>
+		<tr><td colspan="6" id="dlistlast"></td></tr>
 	<%
 		}
 		if(memberdto==null) {
 	%>
-		
 	<% 
-		}else {
+		} else {
 	%>
 	<%
-				String dealboardid = dealboarddto.getDid();
-				if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin")){
+			String dealboardid = dealboarddto.getDid();
+			if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin")){
 	%>
 			<tr>
-				<td colspan="2" align="right">
+				<td colspan="6" align="right">
 					<input type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatesaleboard&dboardno=${dealboarddto.dboardno}'">
 					<input type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
 				</td>
 			</tr>
 	<%	
-				} else {
+			} else {
 	%>
-					
 	<%
-				}
+			}
 		}
 	%> 
 		<c:choose>
 			<c:when test="${dealboarddto.dsellflag eq 'Y' && dealboarddto.dnickname eq memberdto.membernickname }">
 				<form action="mypage.do">
-					<tr>
-						<td colspan="2" align="right">
-							<em><strong style="color:red">송장번호를 입력해주세요</strong></em>
-							<input type="hidden" name="command" value="invoiceinsert"/>
-							<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
-							<c:choose>
-								<c:when test="${invoice eq '입력한 송장번호가 없습니다.' }">
-									<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)">
-								</c:when>
-								<c:otherwise>
-									<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
-								</c:otherwise>
-							</c:choose>
-							<input type="submit" value="등록하기">
-						</td>
-					</tr>	
+				<tr>
+					<td colspan="2" align="right">
+						<em><strong style="color:red">송장번호를 입력해주세요</strong></em>
+						<input type="hidden" name="command" value="invoiceinsert"/>
+						<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
+						<c:choose>
+							<c:when test="${invoice eq '입력한 송장번호가 없습니다.' }">
+								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)">
+							</c:when>
+							<c:otherwise>
+								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
+							</c:otherwise>
+						</c:choose>
+						<input type="submit" value="등록하기">
+					</td>
+				</tr>	
 				</form>	
 			</c:when>
 		</c:choose>
-		</table>
+	</table>
+	</div>
 	<%
 		if(memberdto==null) {
-			
 	%>
-	
 	<%
-		}else{
+		} else {
 	%>
-	
 	<form action="reply.do" method="post" onsubmit="insertreply();">
 	<input type="hidden" name="command" value="insertreply">
 		<table>
@@ -215,10 +238,7 @@ section {
 				</ul>
 		</c:otherwise>
 	</c:choose>		
-		
-		
-		
-		
+	
 	</section>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -369,7 +389,6 @@ function insertRereply(){
 	
 } */
 
-
 function deletereply(replyno,replyboardno){
 	if(confirm("삭제하시겠습니까?")){
 		location.href='reply.do?command=deletereply2&replyno='+replyno+'&dboardno='+replyboardno;
@@ -473,8 +492,6 @@ geocoder.addressSearch(roadname, function(result, status) {
 
 $(function(){
 	$("#mapcontent").parent().parent().attr('border-radius','20px;');
-	
-	
 });
 
 	function cashpop() {
