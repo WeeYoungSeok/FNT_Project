@@ -116,7 +116,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			               "<th>"+"신고받는사람 아이디"+"</th>"+
 			               "<th>"+"신고받는사람 닉네임"+"</th>"+
 			               "<th>"+"신고날짜"+"</th>"+
-			               "<th>"+"처리"+"</th>"+
+			               "<th colspan=2>"+"처리"+"</th>"+
 			            "</tr>"
 			         );
 			         $.each(data, function(key, val){
@@ -134,6 +134,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			                        "<td>"+str.receivenickname+"</td>"+
 			                        "<td>"+str.reportregdate+"</td>"+
 			                        "<td><input type=button value=차단하기 onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
+			                     	"<td><input type=button value=차단거절 onclick=location.href='admin.do?command=cancel&reportno="+str.reportno+"'></td>" +
 			                     "</tr>"
 			                  );
 			               }

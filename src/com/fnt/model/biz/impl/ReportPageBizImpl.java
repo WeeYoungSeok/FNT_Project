@@ -17,4 +17,7 @@ public class ReportPageBizImpl implements ReportPageBiz {
 	public ReportDto selectOne(int reportno) {
 		return dao.selectOne(reportno);
 	}
+	public int deleteReport(int reportno) {
+		return dao.deleteReport(reportno);
+	}
 }

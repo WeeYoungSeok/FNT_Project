@@ -195,7 +195,16 @@ public class AdminController extends HttpServlet {
 			if (res > 0) {
 				jsResponse("신고처리가 완료되었습니다.", "admin.do?command=adminpage", response);
 			}
+		}else if(command.equals("cancel")) {
+			//신고거절
+			int reportno = Integer.parseInt(request.getParameter("reportno"));
+			System.out.println("admincontroller에서 받은 번호" + reportno);
+			int deletereport = reportpagebiz.deleteReport(reportno);
+			if(deletereport > 0) {
+				jsResponse("신고처리가 거절되었습니다.", "admin.do?command=adminpage", response);
+			}
 		}
+			
 		// 회원상태조회에서 복귀버튼 누르면 enabled를 y로 변경
 		else if (command.equals("reset")) {
 			String id = request.getParameter("id");
