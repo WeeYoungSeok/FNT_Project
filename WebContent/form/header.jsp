@@ -50,20 +50,20 @@ response.setDateHeader("Expires",1L);
 				<script type="text/javascript">
 					function newpop(url, name){
 						var memberid = '<%=memberdto.getMemberid()%>';
-						var url = "fntalert.jsp?command=alert&memberid=" + memberid;
+						var url = "fntalert.jsp?memberid=" + memberid;
 						var option = "width=450, height=550";
 						
 						open(url, "", option);
 					}
 				</script>
 
+				<!-- 알림 -->
 				<img class="alertbell" alt="alert" src="./img/bell.png" onclick="javascript:newpop();"/>
 				<%
 					}
 				} else {
 			%>
 				<button class="headerbtn" onclick="location.href='fntlogincrud.jsp'">Sign In</button>
-				<!-- 알림 -->
 			<%
 				}
 			%>

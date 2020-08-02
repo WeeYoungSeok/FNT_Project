@@ -182,7 +182,6 @@ public class DealBoardController extends HttpServlet {
 
 		} else if (command.equals("detailboard")) { // 구매글 자세히보기
 			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
-			int alertres = alertbiz.updateAlert(dboardno);
 			DealBoardDto dealboarddto = dao.selectDetail(dboardno);
 			List<ReplyDto> replylist = replydao.selectReplyList(dboardno);
 
@@ -248,7 +247,7 @@ public class DealBoardController extends HttpServlet {
 
 		} else if (command.equals("detailsaleboard")) { // 판매글 자세히보기
 			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
-			int alertres = alertbiz.updateAlert(dboardno);
+			System.out.println("dealboardcontroller에서 alert_flag를 제대로 출력");
 			DealBoardDto dealboarddto = dao.selectDetail(dboardno);
 			List<ReplyDto> replylist = replydao.selectReplyList(dboardno);
 			String memberid = "";
@@ -592,6 +591,15 @@ public class DealBoardController extends HttpServlet {
                    "</script>");
         	 } 
           
+        	 //alert을 확인하면 alert_flag를 Y에서 N으로 변경
+         } else if(command.equals("alertupdate")) {
+        	 int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+        	 int alertres = alertbiz.updateAlert(dboardno);
+	        	 if(dao.selectDetail(dboardno).getDflag().equals("S")) {
+	        		 response.sendRedirect("dealboard.do?command=detailsaleboard&dboardno="+dboardno);
+	        	 } else {
+	        		 response.sendRedirect("dealboard.do?command=detailboard&dboardno="+dboardno);
+	        	 }
          }
 	}
 
