@@ -6,4 +6,5 @@ public interface OrderListDao {
 	public int insert(OrderlistDto dto);
 	
 	public String selectInvoiceByBoardno(int boardno);
+	
 }
