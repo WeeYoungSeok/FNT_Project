@@ -33,13 +33,13 @@
  #c_btn {width: 50px; height: 19px; border: none; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: #595959; margin-bottom: 10px;}
  #c_btn:hover {font-weight: bold;}
  
- table {font-size: 14pt; margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
+ table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
  
  tr:hover {background-color: #efefef;}
  
- th {background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
+ th {font-size: 14pt; background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
  
- td {height: 24px;}
+ td {font-size: 12pt; height: 24px;}
  
  span {cursor: pointer; margin-left: 10px;}
  span:hover {font-weight: bold;}
