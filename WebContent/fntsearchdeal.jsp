@@ -105,6 +105,9 @@ a{
 				</c:otherwise>
 			</c:choose>
 		</table>
+		<%
+			if(orderlist.equals("D") && categorylist.equals("CHECK")) {
+		%>
 		<jsp:include page="./paging/fntsearchpaging.jsp">
 		<jsp:param value="<%=searchdeal %>" name="searchdeal"/>
     <jsp:param value="${paging.page}" name="page"/>
@@ -113,6 +116,50 @@ a{
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+	<%
+			} else if((orderlist.equals("D")) && (categorylist.equals("F") || categorylist.equals("C")
+					|| categorylist.equals("D") || categorylist.equals("A") || categorylist.equals("S"))){
+	%>
+			<jsp:include page="./paging/fntsearchcatepaging.jsp">
+		<jsp:param value="<%=categorylist %>" name="categorylist"/>
+		<jsp:param value="<%=orderlist %>" name="orderlist"/>
+		<jsp:param value="<%=searchdeal %>" name="searchdeal"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+	<%
+			} else if(orderlist.equals("A") && categorylist.equals("CHECK")) {
+	%>
+	<jsp:include page="./paging/fntsearchascpaging.jsp">
+		<jsp:param value="<%=categorylist %>" name="categorylist"/>
+		<jsp:param value="<%=orderlist %>" name="orderlist"/>
+		<jsp:param value="<%=searchdeal %>" name="searchdeal"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+	<%
+			} else if((orderlist.equals("A")) && (categorylist.equals("F") || categorylist.equals("C")
+					|| categorylist.equals("D") || categorylist.equals("A") || categorylist.equals("S"))) {
+	%>
+	<jsp:include page="./paging/fntsearchascpaging.jsp">
+		<jsp:param value="<%=categorylist %>" name="categorylist"/>
+		<jsp:param value="<%=orderlist %>" name="orderlist"/>
+		<jsp:param value="<%=searchdeal %>" name="searchdeal"/>
+    <jsp:param value="${paging.page}" name="page"/>
+    <jsp:param value="${paging.beginPage}" name="beginPage"/>
+    <jsp:param value="${paging.endPage}" name="endPage"/>
+    <jsp:param value="${paging.prev}" name="prev"/>
+    <jsp:param value="${paging.next}" name="next"/>
+	</jsp:include>
+	<%
+			}
+	%>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 

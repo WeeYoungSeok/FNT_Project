@@ -29,13 +29,14 @@ public interface DealBoardDao {
 	public int getAllCountsearch(String searchdeal);
 	
 	//통합검색 asc 출력 (오래된 순)
-	public List<DealBoardDto> ascorder(String searchdeal);
+	public List<DealBoardDto> ascorder(String searchdeal,Paging paging);
 	
 	//통합검색 desc 출력 + 카테고리 (최근순)
-	public List<DealBoardDto> desccate(String searchdeal, String categorylist);
+	public List<DealBoardDto> desccate(String searchdeal, String categorylist, Paging paging);
+	public int getAllCountsearchCate(String searchdeal,String categorylist);
 	
 	//통합검생 asc 출려 + 카테고리 (오래된 순)
-	public List<DealBoardDto> asccate(String searchdeal, String categorylist);
+	public List<DealBoardDto> asccate(String searchdeal, String categorylist, Paging paging);
 	
 	
 	

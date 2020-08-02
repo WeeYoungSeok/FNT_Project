@@ -50,7 +50,7 @@ body {
 <!-- 1~10까지 있는 페이지의 페이징 -->
 <c:url var="action" value="/dealboard.do"/>
 <c:if test="${param.prev}">
-    <a href="${action}?page=${param.beginPage-1}&command=searchdealt&searchdeal=${param.searchdeal}">prev</a>
+    <a href="${action}?page=${param.beginPage-1}&command=searchdeal&searchdeal=${param.searchdeal}">prev</a>
 </c:if>
 <c:forEach begin="${param.beginPage}" end="${param.endPage}" step="1" var="index">
     <c:choose>

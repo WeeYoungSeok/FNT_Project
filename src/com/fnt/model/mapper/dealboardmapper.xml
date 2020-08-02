@@ -126,35 +126,44 @@
  		]]>
  	</select>
  	
- 	<!-- 판매글 페이징 -->
+ 	<!-- 통합검색 수 -->
 	<select id="countsearch" parameterType="String" resultType="int">
  		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_TITLE LIKE '%'||#{searchdeal}||'%'
  	</select>
  	
  	
  	
- 	<select id="ascorder" resultMap="dealBoardDtoResultMap">
-		 SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
- 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG
- 		FROM DEAL_BOARD
- 		WHERE D_TITLE LIKE '%'||#{searchdeal}||'%'
- 		ORDER BY D_BOARDNO ASC
+ 	<select id="ascorder" parameterType="map" resultMap="dealBoardDtoResultMap">
+		<![CDATA[
+ 		 SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG FROM DEAL_BOARD WHERE D_TITLE LIKE '%'||#{searchdeal}||'%' ORDER BY D_BOARDNO DESC) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO
+ 		]]>
  	</select>
  	
  	<select id="desccategory" parameterType="map" resultMap="dealBoardDtoResultMap">
- 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
- 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG
- 		FROM DEAL_BOARD
- 		WHERE D_TITLE LIKE '%'||#{searchdeal}||'%' AND D_CATEGORY = #{categorylist}
- 		ORDER BY D_BOARDNO DESC
+ 		<![CDATA[
+	 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+	 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE ,ROWNUM AS RNUM
+	        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_TITLE LIKE '%'||#{searchdeal}||'%' ORDER BY D_BOARDNO
+	 		) A WHERE ROWNUM <= #{startNum})
+	 		WHERE RNUM >= #{endNum}
+	 		ORDER BY D_BOARDNO DESC
+ 		]]>
  	</select>
  	
  	<select id="asccategory" parameterType="map" resultMap="dealBoardDtoResultMap">
- 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE,
- 			   D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG
- 		FROM DEAL_BOARD
- 		WHERE D_TITLE LIKE '%'||#{searchdeal}||'%' AND D_CATEGORY = #{categorylist}
- 		ORDER BY D_BOARDNO ASC
+ 		<![CDATA[
+	 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE 
+	 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE ,ROWNUM AS RNUM
+	        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_TITLE LIKE '%'||#{searchdeal}||'%' ORDER BY D_BOARDNO DESC
+	 		) A WHERE ROWNUM <= #{startNum})
+	 		WHERE RNUM >= #{endNum}
+	 		ORDER BY D_BOARDNO ASC
+ 		]]>
  	</select>
 	
 	<!-- 구매 게시판에서 카테고리 검색 페이징 -->
@@ -293,4 +302,8 @@
  		UPDATE DEAL_BOARD SET D_SELLFLAG = 'F'
  		WHERE D_BOARDNO = #{dboardno}
  	</update>
+ 	
+ 	<select id="countsearchcate" parameterType="map" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_TITLE LIKE '%'||#{searchdeal}||'%'
+ 	</select>
 </mapper>

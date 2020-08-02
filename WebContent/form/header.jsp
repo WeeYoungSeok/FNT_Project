@@ -30,6 +30,8 @@ response.setDateHeader("Expires",1L);
 				
 		<!-- 통합검색 -->
 		<form id="searchzone" action="dealboard.do" method="post">
+			<input type="hidden" name="categorylist" value="CHECK">
+			<input type="hidden" name="orderlist" value="D">
 			<input type="hidden" name="command" value="searchdeal">
 			<input type="text" name="searchdeal" id="searchdeal" required="required" placeholder="구매글 및 판매글만 검색 가능합니다.">		
 			<span>

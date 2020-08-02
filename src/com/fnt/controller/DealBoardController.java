@@ -272,6 +272,10 @@ public class DealBoardController extends HttpServlet {
 			
 		} else if (command.equals("searchdeal")) { // 통합검색
 			String searchdeal = request.getParameter("searchdeal");
+			String orderlist = request.getParameter("orderlist");
+			String categorylist = request.getParameter("categorylist");
+			System.out.println(categorylist + " " + orderlist + " " + searchdeal);
+			System.out.println("여기옴?");
 			int page = 1;
 
 			if (request.getParameter("page") != null) {
@@ -279,15 +283,17 @@ public class DealBoardController extends HttpServlet {
 			}
 			Paging paging = new Paging();
 			int count = dao.getAllCountsearch(searchdeal);
-
+			System.out.println("여기sms?");
 			paging.setTotalcount(count);
 			paging.setPage(page);
 
 			List<DealBoardDto> list = dao.searchList(searchdeal,paging);
-
+			System.out.println("여기얌");
 			request.setAttribute("paging", paging);
 			request.setAttribute("list", list);
 			request.setAttribute("searchdeal", searchdeal);
+			request.setAttribute("orderlist", orderlist);
+			request.setAttribute("categorylist", categorylist);
 
 			dispatch("fntsearchdeal.jsp", request, response);
 			
@@ -295,6 +301,9 @@ public class DealBoardController extends HttpServlet {
 
 			String orderlist = request.getParameter("orderlist");
 			String categorylist = request.getParameter("categorylist");
+			
+			System.out.println("오더" + orderlist);
+			System.out.println("카테" + categorylist);
 
 			List<DealBoardDto> list = null;
 			if (orderlist.equals("D") && categorylist.equals("CHECK")) {
@@ -320,39 +329,83 @@ public class DealBoardController extends HttpServlet {
 				request.setAttribute("searchdeal", searchdeal);
 
 				dispatch("fntsearchdeal.jsp", request, response);
+				
 			} else if ((orderlist.equals("D")) && (categorylist.equals("F") || categorylist.equals("C")
 					|| categorylist.equals("D") || categorylist.equals("A") || categorylist.equals("S"))) {
-				request.setAttribute("orderlist", orderlist);
-				request.setAttribute("categorylist", categorylist);
-
+				// 최근순 + 카테고리 적용 페이징까지
 				String searchdeal = request.getParameter("searchdeal");
 				System.out.println(searchdeal);
-				list = dao.desccate(searchdeal, categorylist);
+				
+				request.setAttribute("orderlist", orderlist);
+				request.setAttribute("categorylist", categorylist);
+				int page = 1;
+
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.getAllCountsearchCate(searchdeal,categorylist);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+
+				
+				
+				list = dao.desccate(searchdeal, categorylist , paging);
+				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
 				request.setAttribute("searchdeal", searchdeal);
 				dispatch("fntsearchdeal.jsp", request, response);
 
 			} else if (orderlist.equals("A") && categorylist.equals("CHECK")) {
+				// 오래된순 + 전체글 
+				String searchdeal = request.getParameter("searchdeal");
 				request.setAttribute("orderlist", orderlist);
 				request.setAttribute("categorylist", categorylist);
+				int page = 1;
 
-				String searchdeal = request.getParameter("searchdeal");
-				list = dao.ascorder(searchdeal);
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.getAllCountsearch(searchdeal);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+
+				list = dao.ascorder(searchdeal,paging);
+				
+				request.setAttribute("paging", paging);
 				request.setAttribute("searchdeal", searchdeal);
 				request.setAttribute("list", list);
 				dispatch("fntsearchdeal.jsp", request, response);
+				
 			} else if ((orderlist.equals("A")) && (categorylist.equals("F") || categorylist.equals("C")
 					|| categorylist.equals("D") || categorylist.equals("A") || categorylist.equals("S"))) {
+				String searchdeal = request.getParameter("searchdeal");
+				
 				request.setAttribute("orderlist", orderlist);
 				request.setAttribute("categorylist", categorylist);
+				
+				int page = 1;
 
-				String searchdeal = request.getParameter("searchdeal");
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				int count = dao.getAllCountsearchCate(searchdeal,categorylist);
+
+				paging.setTotalcount(count);
+				paging.setPage(page);
+
 				System.out.println(searchdeal);
-				list = dao.asccate(searchdeal, categorylist);
+				list = dao.asccate(searchdeal, categorylist, paging);
+				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
 				request.setAttribute("searchdeal", searchdeal);
 				dispatch("fntsearchdeal.jsp", request, response);
 			}
+
 
 		} else if (command.equals("buysearchlist")) { // 구매글 카테고리(페이징 적용)
 			String categorylist = request.getParameter("categorylist");
