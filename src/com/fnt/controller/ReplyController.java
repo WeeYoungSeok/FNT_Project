@@ -97,7 +97,7 @@ public class ReplyController extends HttpServlet {
          if(dealboarddto.getDflag().equals("B")) {
         	 if(res>0) {
         		 jsResponse("등록되었습니다", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
-        	 }else {
+        	 } else {
         		 jsResponse("등록실패", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
         	 }
         	 
@@ -156,7 +156,7 @@ public class ReplyController extends HttpServlet {
          
          if(res>0) {
         	 jsResponse("등록되었습니다", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
-         }else {
+         } else {
         	 jsResponse("등록실패", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
          } 
          
