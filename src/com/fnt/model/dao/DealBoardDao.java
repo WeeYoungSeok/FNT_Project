@@ -77,4 +77,7 @@ public interface DealBoardDao {
 	//관리자페이지에서 판매완료 글 출력하기
 	public List<DealBoardDto> selectselllist();
 	
+	//마이페이지 내 주문내역조회에서 구매확정 버튼을 눌렀을 때 d_sellflag를 F로.
+	public int changesellflag(int dboardno);
+	
 }

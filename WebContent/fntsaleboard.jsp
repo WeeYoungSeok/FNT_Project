@@ -146,7 +146,7 @@
 							<td align="left">
 								<span onclick="location.href='dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}'">
 								<c:choose>
-									<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+									<c:when test="${dealboarddto.dsellflag eq 'Y' || dealboarddto.dsellflag eq 'F' }">
 										[판매완료]
 									</c:when>
 								</c:choose>

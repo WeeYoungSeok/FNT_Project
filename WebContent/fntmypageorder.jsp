@@ -71,12 +71,13 @@
 					<th>가격</th>
 					<th>운송장 번호</th>
 					<th>배송 조회</th>
+					<th>확정</th>
 				</tr>
 				<%
 					if (orderlist.size() == 0) {
 				%>
 				<tr style="font-weight:normal;">
-					<td colspan="6" align="center">-----주문 내역이 없습니다.-----</td>
+					<td colspan="8" align="center">-----주문 내역이 없습니다.-----</td>
 				</tr>
 				<%
 					} else {
@@ -93,6 +94,17 @@
 					<td>
 						<input id="tracebtn" type="button" value="조회" onclick="invoicechk();"/>
 					</td>
+						<%
+							if(orderlist.get(i).getDealboarddto().getDsellflag().equals("F")){
+						%>
+						<td colspan="2">완료</td>
+						<%
+							} else {
+						%>
+							<td><input id="tracebtn" type="button" value="구매확정" onclick="location.href='mypage.do?command=changesellflag&dboardno=<%=orderlist.get(i).getDealboarddto().getDboardno() %>'"/></td>
+						<%
+							}
+						%>
 				</tr>
 				<%
 						}
