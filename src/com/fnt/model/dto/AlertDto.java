@@ -11,6 +11,7 @@ public class AlertDto {
 	private int alertboardno;
 	//알람이 달렸으면 Y, 안달렸으면 N
 	private String alertflag;
+	
 	private DealBoardDto dealboarddto;
 
 	public AlertDto(int alertno, String alertid, int alertboardno, String alertflag, DealBoardDto dealboarddto) {
