@@ -27,7 +27,15 @@
 </head>
 <body>
 	<%@ include file="./form/header.jsp"%>
-	<%@ include file="./form/aside.jsp"%>
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
 	<script type="text/javascript">
 		function invoicechk(){
 			var url = "mypage.do?command=invoicechk";
@@ -59,11 +67,12 @@
 
 			<table id="selllist">
 				<col width="5%">
-				<col width="15%">
+				<col width="10%">
 				<col width="34%">
 				<col width="13%">
 				<col width="20%">
 				<col width="13%">
+				<col width="5%">
 				<tr>
 					<th>No.</th>
 					<th>판매자</th>
@@ -110,7 +119,7 @@
 						}
 					}
 				%>
-				<tr><td id="listlast" colspan="6"></td></tr>
+				<tr><td id="listlast" colspan="7"></td></tr>
 			</table>
 			<input id="mybtn" type="button" value="내 정보 보기" onclick="location.href='LoginCrudController?command=cruddetail&memberid=<%=memberdto.getMemberid()%>'">
 		</div>
