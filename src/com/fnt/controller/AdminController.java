@@ -167,6 +167,7 @@ public class AdminController extends HttpServlet {
 						    sObject.put("dtitle", sellendlist.get(i).getDtitle());
 						    sObject.put("dprice", NumberFormat.getInstance().format(sellendlist.get(i).getDprice()));
 						    sObject.put("dregdate", sellendlist.get(i).getDregdate());
+						    sObject.put("dsellflag", sellendlist.get(i).getDsellflag());
 						    jArray.add(sObject);
 						}
 						obj.put("SELLEND", jArray);

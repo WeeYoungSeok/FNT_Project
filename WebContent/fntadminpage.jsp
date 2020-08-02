@@ -166,6 +166,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		               "<th>판매 글제목</th>"+
 			  		               "<th>판매상품 가격</th>"+
 			  		               "<th>판매 글 작성날짜</th>" +
+			  		               "<th>구매확정확인</th>" + 
 			  		            "</tr>"
 			  		            );
 			  		         $.each(data, function(key, val){
@@ -175,7 +176,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        		for(var i = 0; i < list.length; i++){
 			  		        			var str = list[i];
 			  		        			$("tbody").append(
-			  		        				"<tr>" + 
+			  		        				"<tr id=content>" + 
 			  		        				"<td>" + str.dboardno + "</td>" +
 			  		        				"<td>" + str.did + "</td>" +
 			  		        				"<td>" + str.dnickname + "</td>" +
@@ -183,8 +184,14 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        				"<td>" + str.dtitle + "</td>" +
 			  		        				"<td>" + str.dprice + "원</td>" +
 			  		        				"<td>" + str.dregdate + "</td>" +
+			  		        				"<td class=chk> 구매확정이 안됐습니다.</td>" +
 			  		        				"</tr>"
 			  		        			);
+			  		        			if(str.dsellflag=="F"){
+			  		        				$(".chk").eq(i).html(
+			  		        					"<b>구매가 확정되었습니다.</b>"		
+			  		        				);
+			  		        			}
 			  		        		}
 			  		        	}else {
 			  		        		$("tbody").append(

@@ -188,6 +188,14 @@ public class MypageController extends HttpServlet {
 			System.out.println("마이페이지에서 받아온 invoice로 mapper실행한 결과값 : " + updateinvoice);
 			
 			jsResponse("송장번호 입력성공", "fntmain.jsp", response);
+		} else if(command.equals("changesellflag")) {
+			//구매확정 글 눌렀을 때 넘어오는 command
+			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+			System.out.println("mypagecontroller에서 받아온 changesellflag : "+ dboardno);
+			int changesellflag = dealboarddao.changesellflag(dboardno);
+			System.out.println("mypagecontroller에서 update를 성공한 결과값 : " + changesellflag);
+			jsResponse("구매확정이 완료되었습니다.", "mypage.do?command=orderlist&memberid="+ memberdto.getMemberid(), response);
+			
 		}
 		
 	}

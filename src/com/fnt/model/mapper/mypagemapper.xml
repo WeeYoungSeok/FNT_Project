@@ -80,7 +80,7 @@
 	</select>
 	<!-- 내가 한 주문내역 조회 -->
 	<select id="orderlist" parameterType="String" resultMap="orderlistDtoResultMap">
-		SELECT O.OL_NO, O.OL_SELL_NICKNAME, O.OL_INVOICE, D.D_TITLE, D.D_PRICE, D.D_BOARDNO
+		SELECT O.OL_NO, O.OL_SELL_NICKNAME, O.OL_INVOICE, D.D_TITLE, D.D_PRICE, D.D_BOARDNO, D_SELLFLAG
 		FROM ORDER_LIST O JOIN DEAL_BOARD D ON O.OL_BOARDNO = D.D_BOARDNO
 		WHERE O.OL_ID = #{memberid}
 		ORDER BY O.OL_NO ASC

@@ -632,6 +632,25 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		return sellendlist;
 	}
 	
+	public int changesellflag(int dboardno) {
+		SqlSession session = null;
+		int changesellflagres = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			changesellflagres = session.update(namespace + "changesellflag", dboardno);
+		
+			if(changesellflagres > 0) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return changesellflagres;
+	}
+	
 	
 }
 
