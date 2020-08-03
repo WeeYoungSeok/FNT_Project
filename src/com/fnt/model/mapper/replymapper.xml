@@ -91,4 +91,11 @@
 		SET REPLY_GROUPNOSEQ = 0
 		WHERE REPLY_NO = #{replyno}
 	</update>
+	
+<!-- boardno로 댓글 갯수 세기 -->
+	<select id="replyCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) 
+		FROM REPLY
+		WHERE REPLY_BOARDNO = #{replyboardno}
+	</select>
 </mapper>

@@ -171,6 +171,23 @@ public class ReplyDaoImpl implements ReplyDao {
 		}
 		return res;		
 	}
+
+	@Override
+	public int replyCount(int replyboardno) {
+		SqlSession sqlsession = null;
+		int count = 0;
+		
+		try {
+			sqlsession = getSqlSessionFactory().openSession(false);
+			count = sqlsession.selectOne(namespace+"replyCount",replyboardno);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		return count;
+	}
 	
 
 	
