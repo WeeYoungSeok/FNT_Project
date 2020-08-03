@@ -78,7 +78,7 @@
 					if (wishlist.size() == 0) {
 				%>
 				<tr>
-					<td colspan="5" align="center">-----조회된 글이 없습니다.-----</td>
+					<td colspan="5" align="center">조회된 글이 없습니다.</td>
 				</tr>
 				<%
 					} else {
