@@ -32,7 +32,7 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 <link href="css/fntlogincrud.css" rel="stylesheet" type="text/css"/>
 <%
     String clientId = "T0e_dO0FJagJxo8igTCZ";
-    String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/naversignup.do", "UTF-8");
+    String redirectURI = URLEncoder.encode("http://qclass.iptime.org:8787/FNT_Project/naversignup.do", "UTF-8");
     SecureRandom random = new SecureRandom();
     String state = new BigInteger(130, random).toString();
     String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";

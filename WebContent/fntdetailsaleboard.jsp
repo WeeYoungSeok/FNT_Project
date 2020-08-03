@@ -90,7 +90,8 @@
 					</c:otherwise>
 				</c:choose>
 			</td>
-		</tr>		
+		</tr>
+		<tr><td colspan="6" id="slistlast"></td></tr>
 	<%
 		DealBoardDto dealboarddto = (DealBoardDto) request.getAttribute("dealboarddto");
 		if(dealboarddto.getDlatitude() != null) {
@@ -115,12 +116,12 @@
 			String dealboardid = dealboarddto.getDid();
 			if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin")){
 	%>
-			<tr>
-				<td colspan="6" align="right">
-					<input id="sbbtn" type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatesaleboard&dboardno=${dealboarddto.dboardno}'">
-					<input id="sbbtn" type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
-				</td>
-			</tr>
+		<tr>
+			<td colspan="6" align="right">
+				<input id="sbbtn" type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatesaleboard&dboardno=${dealboarddto.dboardno}'">
+				<input id="sbbtn" type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
+			</td>
+		</tr>
 	<%	
 			} else {
 	%>
@@ -220,10 +221,9 @@
 						</div>
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
-						</div>
 						</c:when>
 						<c:otherwise>
-							<span>비밀 댓글입니다.</span>
+							<div class="re2line" style="width:77.8%;margin:0px auto;text-align:center;"><span>비밀 댓글입니다.</span></div>
 						</c:otherwise>
 					</c:choose>
 					</li>			
@@ -232,7 +232,7 @@
 				</ul>
 		</c:otherwise>
 	</c:choose>	
-	</div>	
+	</div>
 	</section>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
