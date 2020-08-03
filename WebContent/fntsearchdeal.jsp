@@ -12,12 +12,12 @@
 
 aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
 #menubars {margin-top: 50%; height: 62%;}
-.menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 16%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
+.menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 10%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
 .menubar > p {padding-left: 10%;}
 .menubar:hover {opacity: 0.6;}
 .menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
 
-section {padding-top: 8%; padding-left: 14%; width: 100%; height: auto; overflow: scroll; padding-bottom: 30px; z-index: 1;}
+section {padding-top: 10%; padding-left: 14%; width: 100%; height: auto; overflow: scroll; padding-bottom: 30px; z-index: 1;}
 #searchlistzone {float: center; width: 86%; position: fixed;}
 #searchfilter {margin-top: 2%; margin-bottom: 2%;}
 

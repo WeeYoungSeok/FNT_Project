@@ -31,6 +31,9 @@ table {margin:0px auto; width:80%; height:auto; font-family:"Arial";}
 th {font-size:14pt; width:100px; height:30px; background-color:#dddddd; font-weight:bold; padding-top:2px;}
 td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 
+.wish {cursor:pointer;}
+.wish:hover {font-weight:bold; color:blue;}
+
 #slistlast {background-color:#dddddd; height:2px;}
 
 #btnline {background-color:white;}
@@ -70,7 +73,7 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 		</tr>
 		<tr>
 			<th>찜</th>
-			<td>
+			<td style="text-align:center;">
 				<c:choose>
 					<c:when test="${empty wishlistdto }">
 						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');">☆</span>
@@ -110,7 +113,7 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 		if(dealboarddto.getDlatitude() != null) {
 	%>
 		<tr>
-			<th>여기서 만나요!</th>
+			<th>여기에서<br>만나요!</th>
 			<td colspan="4" style="width:500px;">
 				<div id="map" style="width:100%;height:350px;"></div>
 				<input type="hidden" name="longitude" id="longitude" value="${dealboarddto.dlongitude }">

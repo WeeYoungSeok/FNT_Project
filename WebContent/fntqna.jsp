@@ -29,14 +29,11 @@
 
  #qtable {float: center;}
  
- h1 {margin-top: 6%; font-family: "Arial";}
+ h1 {margin-top: 4%; font-family: "Arial";}
  
- table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
- 
+ table {margin: 0 auto; margin-top: 2%; width: 80%; height: auto; font-family: "Arial";} 
  tr:hover {background-color: #efefef;}
- 
  th {font-size: 14pt; background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
- 
  td {font-size: 12pt; height: 24px;}
  
  span {cursor: pointer; margin-left: 10px;}
@@ -78,13 +75,11 @@
 		<div id="qtable">
 		<h1>고객센터</h1>
 		<table>
-		
 			<col width="100">
 			<col width="100">
      		<col width="300">
      	 	<col width="150">
       		<col width="200">
-      		
       		<tr align="center">
       			<th>No.</th>
       			<th>답변여부</th>
@@ -92,7 +87,6 @@
       			<th>작성자</th>
       			<th>작성일</th>
       		</tr>
-      		
 			<%
 				if (qnaboardlist == null) { 
 			%>
@@ -126,11 +120,9 @@
 							%>
 							<td>답변완료</td>
 							<% 
-						
 						}
 					}
 					%>
-					
 					<%
 						if (memberdto == null) {
 							if (qnaboardlist.get(i).getQbsecret().equals("Y")) {
@@ -152,7 +144,6 @@
 							%>
 							<td align="left"><span><a href="qna.do?command=qnadetail&qbboardno=<%=qnaboardlist.get(i).getQbboardno()%>"><%=qnaboardlist.get(i).getQbtitle() %></a></span></td>
 							<% 
-						
 						}  
 					}
 					%>
@@ -162,13 +153,11 @@
 			<%
 				}	
 			}
-			
 			%>
 			<tr><td colspan="5" id="qlistlast"></td></tr>
 			<%
 				if(memberdto == null) {
 			%>
-			
 			<%
 				} else {
 			%>
@@ -177,12 +166,10 @@
 					<button id="qbbtn" onclick="location.href='qna.do?command=qnainsert'">글 작성</button>
 				</td>
 			</tr>
-			
 			<%
 				}
 			%>
 		</table></div>
-		
 		<%
 			if(selectlist == null || searchqna == null) {
 		%>

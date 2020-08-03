@@ -81,6 +81,11 @@ table {
    border: none;
 }
 
+#listlast {
+	background-color: #dddddd; 
+	height: 2px;
+}
+
 tr {
 	height: 36px;
 }
