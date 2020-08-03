@@ -68,6 +68,14 @@ public class DealBoardController extends HttpServlet {
 
 			List<DealBoardDto> list = dao.selectSaleList(paging);
 			
+			List<Integer> replyAllCount = new ArrayList<Integer>();
+			
+			for(int i=0; i<list.size(); i++) {	
+				int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+				replyAllCount.add(replyCount);
+			}			
+			
+			request.setAttribute("replyAllCount", replyAllCount);
 			request.setAttribute("list", list);
 			request.setAttribute("paging", paging);
 
