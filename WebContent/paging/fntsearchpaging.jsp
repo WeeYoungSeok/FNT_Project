@@ -50,7 +50,7 @@ body {
 <!-- 1~10까지 있는 페이지의 페이징 -->
 <c:url var="action" value="/dealboard.do"/>
 <c:if test="${param.prev}">
-    <a href="${action}?page=${param.beginPage-1}&command=searchdeal&searchdeal=${param.searchdeal}">prev</a>
+    <a href="${action}?page=${param.beginPage-1}&command=searchdeal&searchdeal=${param.searchdeal}&categorylist=${param.categorylist}&orderlist=${param.orderlist}">prev</a>
 </c:if>
 <c:forEach begin="${param.beginPage}" end="${param.endPage}" step="1" var="index">
     <c:choose>
@@ -58,12 +58,12 @@ body {
             <div class="thispage"><a id="onePage">${index}</a></div>
         </c:when>
         <c:otherwise>
-            <div class="otherpage"><a style="text-decoration:none; color:black;" href="${action}?page=${index}&command=searchdeal&searchdeal=${param.searchdeal}">${index}</a></div>
+            <div class="otherpage"><a style="text-decoration:none; color:black;" href="${action}?page=${index}&command=searchdeal&searchdeal=${param.searchdeal}&categorylist=${param.categorylist}&orderlist=${param.orderlist}">${index}</a></div>
         </c:otherwise>
     </c:choose>
 </c:forEach>
 <c:if test="${param.next}">
-    <a href= "${action}?page=${param.endPage+1}&command=searchdeal&searchdeal=${param.searchdeal}">next</a>
+    <a href= "${action}?page=${param.endPage+1}&command=searchdeal&searchdeal=${param.searchdeal}&categorylist=${param.categorylist}&orderlist=${param.orderlist}">next</a>
 </c:if>
 </div>
 </body>

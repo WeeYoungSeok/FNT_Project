@@ -13,12 +13,12 @@ aside {
 }
 
 #menubars {
-	margin-top: 48%;
+	margin-top: 50%;
 	height: 62%;
 }
 
 .menubar {
-	padding-top: 14%;
+	padding-top: 12%;
 	background-color: black;
 	color: white;
 	width: 100%;
@@ -35,9 +35,7 @@ aside {
 }
 
 .menubar:hover {
-	font: 18pt "Arial";
 	opacity: 0.6;
-	font-weight: bold;
 }
 
 .menubar_x {
@@ -48,22 +46,79 @@ aside {
 }
 
 section {
-	padding-top: 7%;
+	padding-top: 8%;
 	padding-left: 14%;
 	height: 100%;
 	overflow: auto;
 	padding-bottom: 30px;
 }
 
-input {
-   width: 500px;
-   height: 24px;
-   padding-left: 6px;
+#insertform {
+	float: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	margin: 0px auto;
+}
+
+#dcategory {
+	width: 20%;
+	height: 114%;
+	padding-left: 10px;
+	border: none;
+}
+
+#dtitle {
+   width: 110%;
+   height: 34px;
+   padding-left: 10px;
+   border: none;
+}
+
+tr {
+	height: 36px;
+}
+
+th {
+	background-color: #dddddd;
+ 	font-weight: bold;
+ 	font-size: 12pt;
+	text-align: center;
 }
 
 td {
-   width: 740px;
-   height: 24px;
+   height: 30px;
+   padding: 0px;
+}
+
+.panel {
+	margin: 0px;
+}
+
+#dprice {
+   width: 100%;
+   height: 34px;
+   padding-left: 10px;
+   border: none;
+}
+
+#formbtn {
+ 	width: 50px;
+ 	height: 34px;
+ 	border: none;
+ 	border-radius: 4px 4px 4px 4px;
+ 	cursor: pointer;
+ 	background-color: #cccccc;
+ 	margin-top: 2px;
+}
+
+#formbtn:hover {
+ 	font-weight: bold;
+ 	background-color: #bbbbbb;
 }
 
 .map_wrap, .map_wrap * {
