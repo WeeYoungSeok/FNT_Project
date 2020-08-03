@@ -2,6 +2,7 @@ package com.fnt.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -66,7 +67,7 @@ public class DealBoardController extends HttpServlet {
 			paging.setPage(page);
 
 			List<DealBoardDto> list = dao.selectSaleList(paging);
-
+			
 			request.setAttribute("list", list);
 			request.setAttribute("paging", paging);
 
@@ -86,6 +87,14 @@ public class DealBoardController extends HttpServlet {
 
 			List<DealBoardDto> list = dao.selectBuylist(paging);
 
+			List<Integer> replyAllCount = new ArrayList<Integer>();
+			
+			for(int i=0; i<list.size(); i++) {	
+				int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+				replyAllCount.add(replyCount);
+			}			
+			
+			request.setAttribute("replyAllCount", replyAllCount);
 			request.setAttribute("list", list);
 			request.setAttribute("paging", paging);
 
@@ -138,9 +147,6 @@ public class DealBoardController extends HttpServlet {
 			int dprice = biz.removecomma((request.getParameter("dprice")));
 			String coords = request.getParameter("coords");
 			String roadname = request.getParameter("roadname");
-			
-			System.out.println("지도 : "+coords);
-			System.out.println("길 이름 : "+roadname);
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 
@@ -154,7 +160,6 @@ public class DealBoardController extends HttpServlet {
 				int last = str[1].trim().length()-1;
 				
 				String dlatitude = str[1].trim().substring(0, last);
-				System.out.println("dlatitude :" + dlatitude);
 
 				dealboarddto.setDlongitude(dlongitude);
 				dealboarddto.setDlatitude(dlatitude);
@@ -247,7 +252,6 @@ public class DealBoardController extends HttpServlet {
 
 		} else if (command.equals("detailsaleboard")) { // 판매글 자세히보기
 			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
-			System.out.println("dealboardcontroller에서 alert_flag를 제대로 출력");
 			DealBoardDto dealboarddto = dao.selectDetail(dboardno);
 			List<ReplyDto> replylist = replydao.selectReplyList(dboardno);
 			String memberid = "";
@@ -274,8 +278,7 @@ public class DealBoardController extends HttpServlet {
 			String searchdeal = request.getParameter("searchdeal");
 			String orderlist = request.getParameter("orderlist");
 			String categorylist = request.getParameter("categorylist");
-			System.out.println(categorylist + " " + orderlist + " " + searchdeal);
-			System.out.println("여기옴?");
+
 			int page = 1;
 
 			if (request.getParameter("page") != null) {
@@ -283,12 +286,19 @@ public class DealBoardController extends HttpServlet {
 			}
 			Paging paging = new Paging();
 			int count = dao.getAllCountsearch(searchdeal);
-			System.out.println("여기sms?");
 			paging.setTotalcount(count);
 			paging.setPage(page);
 
 			List<DealBoardDto> list = dao.searchList(searchdeal,paging);
-			System.out.println("여기얌");
+			List<Integer> replyAllCount = new ArrayList<Integer>();
+			
+			for(int i=0; i<list.size(); i++) {	
+				int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+				replyAllCount.add(replyCount);
+			}
+			
+							
+			request.setAttribute("replyAllCount", replyAllCount);
 			request.setAttribute("paging", paging);
 			request.setAttribute("list", list);
 			request.setAttribute("searchdeal", searchdeal);
@@ -301,9 +311,6 @@ public class DealBoardController extends HttpServlet {
 
 			String orderlist = request.getParameter("orderlist");
 			String categorylist = request.getParameter("categorylist");
-			
-			System.out.println("오더" + orderlist);
-			System.out.println("카테" + categorylist);
 
 			List<DealBoardDto> list = null;
 			if (orderlist.equals("D") && categorylist.equals("CHECK")) {
@@ -323,6 +330,15 @@ public class DealBoardController extends HttpServlet {
 				paging.setPage(page);
 
 				list = dao.searchList(searchdeal,paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
@@ -334,7 +350,6 @@ public class DealBoardController extends HttpServlet {
 					|| categorylist.equals("D") || categorylist.equals("A") || categorylist.equals("S"))) {
 				// 최근순 + 카테고리 적용 페이징까지
 				String searchdeal = request.getParameter("searchdeal");
-				System.out.println(searchdeal);
 				
 				request.setAttribute("orderlist", orderlist);
 				request.setAttribute("categorylist", categorylist);
@@ -352,6 +367,15 @@ public class DealBoardController extends HttpServlet {
 				
 				
 				list = dao.desccate(searchdeal, categorylist , paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
 				request.setAttribute("searchdeal", searchdeal);
@@ -374,7 +398,14 @@ public class DealBoardController extends HttpServlet {
 				paging.setPage(page);
 
 				list = dao.ascorder(searchdeal,paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
 				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+												
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("paging", paging);
 				request.setAttribute("searchdeal", searchdeal);
 				request.setAttribute("list", list);
@@ -398,8 +429,17 @@ public class DealBoardController extends HttpServlet {
 				paging.setTotalcount(count);
 				paging.setPage(page);
 
-				System.out.println(searchdeal);
+
 				list = dao.asccate(searchdeal, categorylist, paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
 				request.setAttribute("searchdeal", searchdeal);
@@ -426,6 +466,14 @@ public class DealBoardController extends HttpServlet {
 				response.sendRedirect("dealboard.do?command=fntbuyboard");
 			} else {
 				list = dao.buysearchList(categorylist, paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+			
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("search", search);
 				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("list", list);
@@ -450,6 +498,16 @@ public class DealBoardController extends HttpServlet {
 				paging.setPage(page);
 				list = dao.searchdealtitle(search,paging);
 				
+				
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
@@ -470,6 +528,15 @@ public class DealBoardController extends HttpServlet {
 				paging.setPage(page);
 				list = dao.searchdealwriter(search,paging);
 				
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
@@ -501,6 +568,7 @@ public class DealBoardController extends HttpServlet {
 				response.sendRedirect("dealboard.do?command=fntsaleboard");
 			} else {
 				list = dao.salesearchList(categorylist,paging);
+				
 				request.setAttribute("salesearch", salesearch);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
@@ -580,9 +648,6 @@ public class DealBoardController extends HttpServlet {
  			int dprice = biz.removecomma((request.getParameter("dprice")));
 			String coords = request.getParameter("coords");
 			String roadname = request.getParameter("roadname");
-			
-			System.out.println("지도 : "+coords);
-			System.out.println("길 이름 : "+roadname);
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 
@@ -596,7 +661,6 @@ public class DealBoardController extends HttpServlet {
 				int last = str[1].trim().length()-1;
 				
 				String dlatitude = str[1].trim().substring(0, last);
-				System.out.println("dlatitude :" + dlatitude);
 
 				dealboarddto.setDlongitude(dlongitude);
 				dealboarddto.setDlatitude(dlatitude);
