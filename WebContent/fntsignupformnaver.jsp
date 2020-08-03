@@ -55,8 +55,8 @@
 					naverLogin.reprompt();
 					return;
 				}
-	
-				window.location.replace("fntsignupformnaver.jsp");
+				window.location.replace("http://qclass.iptime.org:8787/FNT_Project/fntsignupformnaver.jsp");
+				//window.location.replace("fntsignupformnaver.jsp");
 			} else {
 				console.log("callback 처리에 실패하였습니다.");
 			}
