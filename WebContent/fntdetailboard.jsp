@@ -180,7 +180,7 @@ function deletereply(replyno,replyboardno) {
 	%>
 	<c:choose>
 		<c:when test="${empty replylist }">
-			<div id="noreply" class="re2line">작성된 댓글이 없습니다.</div>
+			<div id="noreply" class="re2line" style="font-family:'Arial';text-align:center;width:78%;margin:0px auto;">작성된 댓글이 없습니다.</div>
 			<ul id="replylist">
 				<li id="reply" style="list-style:none;"></li>
 				<div id="up"></div>
@@ -194,7 +194,7 @@ function deletereply(replyno,replyboardno) {
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="delreply" class="re2line" style="width:78%; margin:0px auto; list-style:none;">삭제된 댓글입니다.</li>
+						<li id="delreply" class="re2line" style="font-family:'Arial';width:78%; margin:0px auto; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
 					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
