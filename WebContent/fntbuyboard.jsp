@@ -12,48 +12,45 @@
 <title>FNT(Feel New Item) : 구매</title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
- * {margin: 0px; padding: 0px;}
+ * {margin:0px; padding:0px;}
 
- aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
+ aside {position:fixed; align:left; width:14%; height:100%; box-shadow:1px 0px 6px black; z-index:2;}
 
- #menubars {margin-top: 50%; height: 62%;}
- .menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 10%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
- .menubar > p {padding-left: 10%;}
- .menubar:hover {opacity: 0.6;}
- .menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
+ #menubars {margin-top:50%; height:62%;}
+ .menubar {padding-top:12%; background-color:black; color:white; width:100%; height:10%; text-align:left; font:16pt "Arial"; font-weight:bold; cursor:pointer; opacity:0.4;}
+ .menubar > p {padding-left:10%;}
+ .menubar:hover {opacity:0.6;}
+ .menubar_x {background-color:black; width:100%; height:100%; opacity:0.4;}
 
- #btable {float: center;}
+ #btable {float:center;}
  
- h1 {margin-top: 5%; font-family: "Arial";}
+ h1 {margin-top:4%; font-family:"Arial";}
  
- #categorylist {cursor: pointer;}
+ #categorylist {cursor:pointer;}
  
- #c_btn {width: 50px; height: 19px; border: none; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: #595959; margin-bottom: 10px;}
- #c_btn:hover {font-weight: bold;}
+ #c_btn {width:50px; height:19px; border:none; border-radius:2px 2px 2px 2px; cursor:pointer; color:white; background-color:#595959; margin-bottom:10px;}
+ #c_btn:hover {font-weight:bold;}
  
- table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
+ table {margin:0px auto; margin-top:1%; width:80%; height:auto; font-family:"Arial";} 
+ tr:hover {background-color:#efefef;}
+ th {font-size:14pt; background-color:#dddddd; height:30px; font-weight:bold; padding-top:2px;} 
+ td {font-size:12pt; height:24px;}
  
- tr:hover {background-color: #efefef;}
+ span {cursor:pointer; margin-left:10px;}
+ span:hover {font-weight:bold;}
  
- th {font-size: 14pt; background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
+ a {text-decoration:none; color:black;}
  
- td {font-size: 12pt; height: 24px;}
+ #blistlast {background-color:#dddddd; height:2px;}
  
- span {cursor: pointer; margin-left: 10px;}
- span:hover {font-weight: bold;}
+ #btnline:hover {background-color:white;}
+ #bbbtn {width:50px; height:26px; border:none; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:#cccccc;}
+ #bbbtn:hover {font-weight:bold; background-color:#bbbbbb;}
  
- a {text-decoration: none; color: black;}
+ #search {margin-top:6px; height:26px; border:2px solid #cccccc; padding-left:10px;}
+ #searchbuy {margin-top:8px; height:22px; border:2px solid #cccccc; padding-left:10px;}
  
- #blistlast {background-color: #dddddd; height: 2px;}
- 
- #btnline:hover {background-color: white;}
- #bbbtn {width: 50px; height: 26px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
- #bbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
- 
- #search {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
- #searchbuy {margin-top: 8px; height: 22px; border: 2px solid #cccccc; padding-left: 10px;}
- 
- #form1 {margin-top: 5%;}
+ #form1 {margin-top:5%;}
 
 </style>
 </head>

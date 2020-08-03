@@ -19,7 +19,6 @@
 }
 
 #logintable {
-	font-size: 16pt;
 	font-family: "Arial";
 	margin: 0 auto;
 	margin-top: 14%;
@@ -31,9 +30,14 @@ tr {
 }
 
 th {
+	font-size: 16pt;
 	text-align : center;
 	background-color: #dddddd;
 	width: 60px;
+}
+
+td {
+	font-size: 14pt;
 }
 
 .ltablex {
