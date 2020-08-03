@@ -116,7 +116,7 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${list }" var="dealboarddto">
+					<c:forEach items="${list }" var="dealboarddto" varStatus="status">
 						<tr>
 							<td>${dealboarddto.dboardno }</td>
 							<c:choose>
@@ -137,7 +137,13 @@
 							</c:otherwise>
 							</c:choose>
 							<td align="left">
-								<span onclick="location.href='dealboard.do?command=detailboard&dboardno=${dealboarddto.dboardno}'">${dealboarddto.dtitle }</span>
+								<span onclick="location.href='dealboard.do?command=detailboard&dboardno=${dealboarddto.dboardno}'">${dealboarddto.dtitle }
+								<c:choose>
+									<c:when test="${replyAllCount[status.index] ne 0}">
+										(${replyAllCount[status.index]})
+									</c:when>
+								</c:choose>
+								</span>
 							</td>
 							<td>${dealboarddto.dnickname }</td>
 							<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>

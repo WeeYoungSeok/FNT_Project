@@ -94,7 +94,7 @@ a {width: 100%; height: 100%; text-decoration: none; color: black;}
 			</tr>
 		</c:when>
 		<c:otherwise>
-		<c:forEach items="${list}" var="dealboarddto">
+		<c:forEach items="${list}" var="dealboarddto" varStatus="status">
 			<tr>
 				<td>${dealboarddto.dboardno }</td>
 		<c:choose>
@@ -124,6 +124,11 @@ a {width: 100%; height: 100%; text-decoration: none; color: black;}
 		</c:choose>
 				<td>
 					<a href="dealboard.do?command=detailboard&dboardno=${dealboarddto.dboardno}">${dealboarddto.dtitle }</a>
+						<c:choose>
+							<c:when test="${replyAllCount[status.index] ne 0}">
+								(${replyAllCount[status.index]})
+							</c:when>
+						</c:choose>
 				</td>
 				<td>${dealboarddto.dnickname }</td>
 				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>
