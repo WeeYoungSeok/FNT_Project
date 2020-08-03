@@ -126,3 +126,48 @@ td {
 	font-weight: bold; 
 	background-color: #bbbbbb;
 }
+
+.repline {
+	margin: 0px auto; 
+	width: 79.6%; 
+}
+
+.re1line {
+	height: 24px;
+	padding-top: 5px;
+	padding-left: 10px;
+	font-family: "Arial";
+	background-color: #dddddd; 
+}
+
+.re2line {
+	height: 22px;
+	padding-top: 6px;
+	padding-left: 20px;
+	font-family: "Arial";
+	background-color: #f9f9f9;
+}
+
+#reply {
+	list-style: none;
+}
+
+.rereply {
+	width: 96%;
+}
+
+#rbtn {
+	width: 36px; 
+	height: 20px; 
+	border: none; 
+	margin-left: 10px; 
+	border-radius: 2px 2px 2px 2px; 
+	cursor: pointer; 
+	font-weight: bold; 
+	background-color: #eeeeee;
+}
+
+#rbtn:hover {
+	color: white;
+	background-color: black;
+}

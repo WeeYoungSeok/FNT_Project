@@ -30,12 +30,12 @@
 	<div id="sboard">
 	<h1>판매 게시판</h1>
 	<table>
-		<col width="100">
-		<col width="200">
-		<col width="100">
-		<col width="200">
-		<col width="100">
-		<col width="200">
+		<col width="100px">
+		<col width="200px">
+		<col width="100px">
+		<col width="200px">
+		<col width="100px">
+		<col width="200px">
 		<tr>
 			<th>제목</th>
 			<td colspan="5">
@@ -96,7 +96,7 @@
 				<input type="hidden" name="latitude" id="latitude" value="${dealboarddto.dlatitude }">
 			</td>
 		</tr>
-		<tr><td colspan="6" id="dlistlast"></td></tr>
+		<tr><td colspan="6" id="slistlast"></td></tr>
 	<%
 		}
 		if(memberdto==null) {
@@ -110,8 +110,8 @@
 	%>
 			<tr>
 				<td colspan="6" align="right">
-					<input type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatesaleboard&dboardno=${dealboarddto.dboardno}'">
-					<input type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
+					<input id="sbbtn" type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatesaleboard&dboardno=${dealboarddto.dboardno}'">
+					<input id="sbbtn" type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
 				</td>
 			</tr>
 	<%	
@@ -126,7 +126,8 @@
 				<form action="mypage.do">
 				<tr>
 					<td colspan="2" align="right">
-						<em><strong style="color:red">송장번호를 입력해주세요</strong></em>
+						<div style="display:flex;">
+						<p style="width:300px;height:100%;"><b style="color:red">송장번호를 입력해주세요</b></p>
 						<input type="hidden" name="command" value="invoiceinsert"/>
 						<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
 						<c:choose>
@@ -137,14 +138,14 @@
 								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
 							</c:otherwise>
 						</c:choose>
-						<input type="submit" value="등록하기">
+						<input id="sbbtn" type="submit" value="등록하기">
+						</div>
 					</td>
 				</tr>	
 				</form>	
 			</c:when>
 		</c:choose>
 	</table>
-	</div>
 	<%
 		if(memberdto==null) {
 	%>
@@ -153,13 +154,15 @@
 	%>
 	<form action="reply.do" method="post" onsubmit="insertreply();">
 	<input type="hidden" name="command" value="insertreply">
-		<table>
+		<table style="margin-bottom:3px;">
 			<tr>
-				<th><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="width:80px"></th>
-				<td>
-					<input type="text" id="replytitle" name="replytitle" style="width:450px">
-					<input type="submit" id="insertreply" value="등록">
-					<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
+				<th style="background-color:#fee500;width:108px;"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; background-color:#fee500;"></th>
+				<td style="display:flex; padding-left:0px;">
+					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; background-color:#f9f9f9;">
+					<div id="btnbox">
+						<input id="sbbtn" type="submit" id="insertreply" value="등록">
+						<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
+					</div>
 				</td>
 		</table>
 	</form>			
@@ -168,21 +171,21 @@
 	%>
 	<c:choose>
 		<c:when test="${empty replylist }">
-			<div id="noreply">작성된 댓글이 없습니다.</div>
+			<div id="noreply" class="re2line" style="text-align:center;">작성된 댓글이 없습니다.</div>
 			<ul id="replylist">
 				<li id="reply" style="list-style:none;"></li>
 				<div id="up"></div>
 			</ul>
 		</c:when>
 		<c:otherwise>
-				<ul id="replylist">
+				<ul id="replylist" style="font-family:'Arial';">
 			<c:forEach items="${replylist }" var="replydto">
 				<c:choose>
 					<c:when test="${replydto.replygroupnoseq eq 1}">
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="reply" style="list-style:none;">삭제된 댓글입니다.</li>
+						<li id="delreply" style="list-style:none;">삭제된 댓글입니다.</li>
 					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
@@ -190,21 +193,26 @@
 				</c:choose>
 					<c:choose>
 						<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname || memberdto.memberid eq 'admin' }">
-							<div><strong>${replydto.replynickname }</strong></div>
-							<div>${replydto.replytitle }</div>
-							<div>${replydto.replyregdate }
+							<div class="repline">
+							<div class="re1line" style="display:flex;">
+							<div><b>${replydto.replynickname }</b></div>
+							<div style="margin-left:6px;">
+								${replydto.replyregdate }
 							<span>
 								<c:choose>
 									<c:when test="${replydto.replytitletab eq 0 }">
-										<input type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
+										<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
 									</c:when>
 								</c:choose>
 								<c:choose>
 									<c:when test="${replydto.replynickname == memberdto.membernickname}">							
-										<input type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
+										<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
 									</c:when>
 								</c:choose>
 							</span>
+						</div>
+						</div>
+						<div class="re2line">${replydto.replytitle }</div>
 						</div>
 						</c:when>
 						<c:otherwise>
@@ -216,8 +224,8 @@
 				<div id="up"></div>
 				</ul>
 		</c:otherwise>
-	</c:choose>		
-	
+	</c:choose>	
+	</div>	
 	</section>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -256,18 +264,20 @@ function openrereply(me,membernickname,replyno,replyboardno){
 	
 	$(".rereplyform").hide();
 	$(me).closest("li").after(
-			'<li class="rereplyform" style="padding-left:45px;list-style:none;">'
-				+'<div><strong>'+membernickname+'</strong></div>'
+			'<li class="rereplyform" style="width:76%;height:29px;margin:0px auto;padding-left:35px;list-style:none;">'
+				+'<div style="display:flex;">'
+				+'<div style="width:160px;height:24px;padding-top:5px;text-align:center;background-color:#fee500;"><b>' + membernickname + '</b></div>'
 				+'<form action="reply.do" method="method">'
 				+'<input type="hidden" name="command" value="insertRereply">'
-				+'<div><input type="text" name="rereplytitle"/>'
+				+'<div><input type="text" name="rereplytitle" placeholder="댓글 내용을 입력해주세요." style="width:725px;height:28px;border:none;padding-left:10px;"/>'
 				+'<input type="hidden" name="replyno" value="'+replyno+'">'
 				+'<input type="hidden" name="replyboardno" value="'+replyboardno+'">'
 				+'<input type="hidden" name="replynickname" value="'+membernickname+'">'
-				+'<input type="submit" value="등록">'
+				+'<input id="rbtn" type="submit" value="등록">'
+				+'</div>'
 				+'</div>'
 				+'</form>'
-			+'</li>'
+				+'</li>'
 			);
 }
 
