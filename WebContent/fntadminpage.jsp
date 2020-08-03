@@ -11,6 +11,37 @@
 <link href="css/section.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
+<style type="text/css">
+h1 {
+	margin-top: 4%;
+	margin-bottom: 2%;
+	text-align: center;
+	font-family: "Arial";
+}
+
+th {
+	background-color: #cccccc;
+	font-weight: bold;
+	height: 30px;
+	font-size: 14pt;
+	text-align: center;
+	padding-top: 0.4%;
+}
+td {
+	height: 28px;
+	font-size: 12pt;
+	text-align: center;
+}
+table {
+	margin : auto;
+	text-align : center;
+}
+select{
+}
+
+</style>
+
 <script type="text/javascript">
 //일반,신고,탈퇴 회원 조회했을 때 option에서 받아오는 value값을 controller에 넘겨주려고 만든 function
 function getParameterValues(){
@@ -184,12 +215,12 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        				"<td>" + str.dtitle + "</td>" +
 			  		        				"<td>" + str.dprice + "원</td>" +
 			  		        				"<td>" + str.dregdate + "</td>" +
-			  		        				"<td class=chk> 구매확정이 안됐습니다.</td>" +
+			  		        				"<td class=chk> 구매확정 대기중입니다.</td>" +
 			  		        				"</tr>"
 			  		        			);
 			  		        			if(str.dsellflag=="F"){
 			  		        				$(".chk").eq(i).html(
-			  		        					"<b>구매가 확정되었습니다.</b>"		
+			  		        					"<b style=color:red>구매가 확정되었습니다.</b>"		
 			  		        				);
 			  		        			}
 			  		        		}

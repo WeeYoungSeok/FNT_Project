@@ -64,7 +64,7 @@
 						if(selllist.size() == 0){
 					%>
 					<tr>
-						<td colspan="3">-----조회된 글이 없습니다.-----</td>
+						<td colspan="3">조회된 글이 없습니다.</td>
 					</tr>
 					<%
 						} else {

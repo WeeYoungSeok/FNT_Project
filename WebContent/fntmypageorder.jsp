@@ -77,7 +77,7 @@
 					if (orderlist.size() == 0) {
 				%>
 				<tr style="font-weight:normal;">
-					<td colspan="8" align="center">-----주문 내역이 없습니다.-----</td>
+					<td colspan="8" align="center">주문 내역이 없습니다.</td>
 				</tr>
 				<%
 					} else {
