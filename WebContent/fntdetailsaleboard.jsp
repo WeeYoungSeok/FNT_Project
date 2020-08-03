@@ -21,7 +21,7 @@ aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0
 
 #sboard {margin-top:4%; margin-bottom:6%;}
 
-h1 {margin-top:6%; font-family:"Arial"; text-align:center; margin-bottom:2%;}
+h1 {margin-top:4%; font-family:"Arial"; text-align:center; margin-bottom:2%;}
 	
 table {margin:0px auto; width:80%; height:auto; font-family:"Arial";}
 
@@ -31,8 +31,10 @@ table {margin:0px auto; width:80%; height:auto; font-family:"Arial";}
 th {font-size:14pt; width:100px; height:30px; background-color:#dddddd; font-weight:bold; padding-top:2px;}
 td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 
-.wish {cursor:pointer;}
+.wish {cursor:pointer; align:center; margin:0px auto;}
 .wish:hover {font-weight:bold; color:blue;}
+
+#payment {cursor:pointer;}
 
 #slistlast {background-color:#dddddd; height:2px;}
 
@@ -60,6 +62,12 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 	<div id="sboard">
 	<h1>판매 게시판</h1>
 	<table>
+		<col width="100">
+		<col width="200">
+		<col width="100">
+		<col width="200">
+		<col width="100">
+		<col width="200">
 		<tr>
 			<th>제목</th>
 			<td colspan="5">
@@ -73,7 +81,7 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 		</tr>
 		<tr>
 			<th>찜</th>
-			<td style="text-align:center;">
+			<td style="text-align:center; padding-left:0px;">
 				<c:choose>
 					<c:when test="${empty wishlistdto }">
 						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');"><img alt="noWish" src="./icon/nowish.png" style="width:18px;height:18px;"></span>
@@ -88,7 +96,7 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 				<fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원 
 				<c:choose>
 					<c:when test="${!empty memberdto && memberdto.membernickname ne dealboarddto.dnickname && dealboarddto.dsellflag eq 'N'}">
-						<span><a href="javascript:cashpop()">결제하기🤑</a></span>
+						<span id="payment"><img onclick="javascript:cashpop()" alt="payment" src="./img/payment.png" style="width:20px; height:auto; margin-left:6px;"></span>
 					</c:when>
 				</c:choose>
 			</td>
@@ -97,7 +105,7 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="5">
+			<td colspan="5" style="padding-top:10px;padding-bottom:10px;">
 				<c:choose>
 					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
 						<div align="center"><strong>판매 완료된 글입니다.</strong></div>
