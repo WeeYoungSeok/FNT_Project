@@ -51,11 +51,18 @@
 			<th>찜</th>
 			<td style="text-align:center; padding-left:0px;">
 				<c:choose>
-					<c:when test="${empty wishlistdto }">
-						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');"><img alt="noWish" src="./icon/nowish.png" style="width:18px;height:18px;"></span>
-					</c:when>
-					<c:otherwise>
-						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno}');"><img alt="Wish" src="./icon/wish.png" style="width:18px;height:18px;"></span>
+					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+						<div align="center"><img alt="noWish" src="./icon/nosale.png" style="width:20px;height:25px;"></div>
+					</c:when>		
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${empty wishlistdto }">
+							<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');"><img alt="noWish" src="./icon/nowish.png" style="width:18px;height:18px;"></span>
+						</c:when>
+						<c:otherwise>
+							<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno}');"><img alt="Wish" src="./icon/wish.png" style="width:18px;height:18px;"></span>
+						</c:otherwise>
+					</c:choose>
 					</c:otherwise>
 				</c:choose>
 			</td>
