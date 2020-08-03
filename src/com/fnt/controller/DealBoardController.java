@@ -639,7 +639,8 @@ public class DealBoardController extends HttpServlet {
         	 String msg = "결제가 완료되었습니다";
         	 PrintWriter out = response.getWriter();
              out.append("<script type='text/javascript'>" + 
-                   "alert('" + msg + "');" +
+                   "alert('" + msg + "');"
+                   		+ "opener.location.reload();" +
                    "self.close();" +
                    "</script>");
         	 } 
