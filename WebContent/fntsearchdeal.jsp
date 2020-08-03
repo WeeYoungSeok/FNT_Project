@@ -139,6 +139,8 @@ a {width: 100%; height: 100%; text-decoration: none; color: black;}
 			if(orderlist.equals("D") && categorylist.equals("CHECK")) {
 		%>
 		<jsp:include page="./paging/fntsearchpaging.jsp">
+		<jsp:param value="<%=categorylist %>" name="categorylist"/>
+		<jsp:param value="<%=orderlist %>" name="orderlist"/>
 		<jsp:param value="<%=searchdeal %>" name="searchdeal"/>
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
