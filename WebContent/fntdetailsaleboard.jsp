@@ -73,10 +73,10 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 			<td>
 				<c:choose>
 					<c:when test="${empty wishlistdto }">
-						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');">☆</span>
+						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno }');"><img alt="noWish" src="./icon/nowish.png" style="width:18px;height:18px;"></span>
 					</c:when>
 					<c:otherwise>
-						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno}');">★</span>
+						<span class="wish" onclick="wishcheck('${memberdto.memberid}','${dealboarddto.dnickname}','${dealboarddto.dboardno}');"><img alt="Wish" src="./icon/wish.png" style="width:18px;height:18px;"></span>
 					</c:otherwise>
 				</c:choose>
 			</td>
@@ -407,10 +407,12 @@ function wishcheck(memberid,dnickname,dboardno){
 		success : function(msg){
 			if(msg == "INSERT"){
 				alert("찜목록 추가");
-				$(".wish").text("★")
+				//$(".wish").text("★")
+				$(".wish").html('<img alt="Wish" src="./icon/wish.png" style="width:18px;height:18px;">');
 			}else{
 				alert("찜목록 삭제");
-				$(".wish").text("☆");
+				//$(".wish").text("☆");
+				$(".wish").html('<img alt="nowish" src="./icon/nowish.png" style="width:18px;height:18px;">');
 			}
 		}
 	});
@@ -434,14 +436,20 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 
 //마커가 표시될 위치입니다 
 var markerPosition  = new kakao.maps.LatLng($("#longitude").val(), $("#latitude").val()); 
+var imageSrc = "./icon/pin.png",
+	imageSize = new kakao.maps.Size(64,69),
+	imageOption = {offset: new kakao.maps.Point(27,69)};
 
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 //마커를 생성합니다
 var marker = new kakao.maps.Marker({
-position: markerPosition
+	position: markerPosition,
+	image: markerImage
 });
 
 //마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);
+
 var infowindow = new kakao.maps.InfoWindow({zindex:1}); 
 var geocoder = new kakao.maps.services.Geocoder();
 /* var latlng = new kakao.maps.LatLng($("#longitude").val(), $("#latitude").val());
@@ -471,10 +479,18 @@ geocoder.addressSearch(roadname, function(result, status) {
      if (status === kakao.maps.services.Status.OK) {
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
+        
+        var imageSrc = "./icon/pin.png",
+    	imageSize = new kakao.maps.Size(64,69),
+    	imageOption = {offset: new kakao.maps.Point(27,69)};
+
+    	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+    	
         // 결과값으로 받은 위치를 마커로 표시합니다
         var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
+            position: coords,
+            image: markerImage,
+            map: map
         });
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
@@ -483,6 +499,11 @@ geocoder.addressSearch(roadname, function(result, status) {
  					+'<div> 주소 : '+roadname+'</div>'
       
         });
+        
+        
+        
+
+        
         infowindow.open(map, marker);
 	
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
