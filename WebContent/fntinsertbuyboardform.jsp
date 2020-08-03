@@ -48,13 +48,10 @@ $(function(){
          }, 
       });
    
-
    $("input[name=dprice]").on("keyup", function() {
        $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
    });   
-   
-
-   
+  
 });
 
 var postForm = function() {
@@ -72,7 +69,6 @@ var postForm = function() {
       return true;
 
 }
-
 
  function sendFile(file,editor){
     var data = new FormData();

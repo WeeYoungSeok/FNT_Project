@@ -46,12 +46,15 @@
 		} else {
 	%>
 	<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
+		<h1>판매글 작성</h1>
 		<input type="hidden" name="command" value="insertsaleboardres">
-        <table border="1">
+        <table border="1" style="border: solid white;">
+			<col width="100px">
+			<col width="756px">
 			<tr>
-				<th>글제목</th>
-				<td>
-					<select name="dcategory">
+				<th>제목</th>
+				<td style="display:flex; border:none;">
+					<select name="dcategory" id="dcategory">
 						<option value="CHECK">카테고리</option>
 						<option value="F">패션</option>
 						<option value="C">차량</option>
@@ -59,32 +62,30 @@
 						<option value="A">애완</option>
 						<option value="S">스포츠</option>
 					</select>
-					<input type="text" name="dtitle" placeholder="제목을 입력해주세요." required="required"/>
+					<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required"/>
 				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>
+				<td style="padding:0px auto;">
 					<textarea class="summernote" id="summernote" name="dcontent" style="resize:none" ></textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" maxlength="8"/>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
-					<input type="submit" value="전송" style="width:100px">
+				<td style="display:flex; border:none;">
+					<input type="text" name="dprice" id="dprice" required="required" placeholder="가격을 숫자로 입력해주세요." maxlength="8"/>
+					<input id="formbtn" type="submit" value="전송">
 					<input type="hidden" name="coords" id="coords" value="">
 					<input type="hidden" name="roadname" id="roadname" value="">
 				</td>
 			</tr>
 		</table>
-         <span style="font-weight:bold">직거래시 원하는 장소를 검색 후 클릭해주세요!</span>
+         <span style="font-weight:bold;align:center;float:center;margin:0px auto;">직거래시 원하는 장소를 검색 후 클릭해주세요!</span>
       </form>
-         <div class="map_wrap">
-             <div id="map" style="width:75%;height:500px;position:relative;overflow:hidden;"></div>
-             <div id="menu_wrap" class="bg_white">
+         <div class="map_wrap" style="float:center;">
+             <div id="map" style="margin:0px auto;width:856px;height:500px;position:relative;overflow:hidden;"></div>
+             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;">
                  <div class="option">
                      <div>
                          <form onsubmit="searchPlaces(); return false;">
@@ -105,6 +106,7 @@
 $(function(){
    $('#summernote').summernote({
         height: 300,                 // 에디터 높이
+        width: 756, 
         minHeight: null,             // 최소 높이
         maxHeight: null,             // 최대 높이
         focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부

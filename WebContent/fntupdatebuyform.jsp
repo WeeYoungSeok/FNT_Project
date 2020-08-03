@@ -19,7 +19,8 @@
 <script>
 $(function(){
 	$('#summernote').summernote({
-		  height: 300,                 // 에디터 높이
+		  height: 300,					// 에디터 높이
+		  width: 756,
 		  minHeight: null,             // 최소 높이
 		  maxHeight: null,             // 최대 높이
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
@@ -46,13 +47,10 @@ $(function(){
 				}
 			}, 
 		});
-	
 
 	$("input[name=dprice]").on("keyup", function() {
 	    $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
 	});	
-	
-
 	
 });
 
@@ -71,7 +69,6 @@ var postForm = function() {
 	      return true;
 }
 
-
  function sendFile(file,editor){
  	var data = new FormData();
 	  data.append("file", file);
@@ -88,7 +85,6 @@ var postForm = function() {
         	   var image =$("<img>").attr("src",img_name);
         	//   $(".summernote").summernote('insertImage', img_name);
         	   $(".summernote").summernote('insertNode', image[0]);
-    
         	   
            },
            error:function(){
@@ -97,50 +93,31 @@ var postForm = function() {
 	    });
 	  } 
 
-	  
-
 function addCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
- 
 
 //모든 콤마 제거
 function removeCommas(x) {
     if(!x || x.length == 0) return "";
     else return x.split(",").join("");
 }
-
-
-
 		
 </script>
-<style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
+<link href="css/fntinsertbuyboardform.css" rel="stylesheet" type="text/css"/>
 
-section {
-	padding-top: 90px;
-	padding-left: 240px;
-}
-
-input {
-	width: 500px;
-	height: 24px;
-	padding-left: 6px;
-}
-
-td {
-	width: 740px;
-	height: 24px;
-}
-
-</style>
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-<%@ include file="./form/aside.jsp"%>
+	<aside>
+		<div id="menubars">
+			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
+			<div class="menubar" style="opacity:0.7;"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
+			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
+			<div class="menubar_x"></div>
+		</div>
+	</aside>
 
 	<section>
 	<%
@@ -155,13 +132,16 @@ td {
 		} else {
 	%>
 		<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
-		<input type="hidden" name="command" value="updatebuyboardres">
-		<input type="hidden" name="dboardno" value="${dealboarddto.dboardno }">
-			<table border="1">
+			<h1>구매글 수정</h1>
+			<input type="hidden" name="command" value="updatebuyboardres">
+			<input type="hidden" name="dboardno" value="${dealboarddto.dboardno }">
+			<table border="1" style="border: solid white;">
+				<col width="100px">
+				<col width="756px">
 				<tr>
-					<th>글제목</th>
-					<td>
-						<select name="dcategory">
+					<th>제목</th>
+					<td style="display:flex; border:none;">
+						<select name="dcategory" id="dcategory">
 							<option value="CHECK">카테고리</option>
 							<option value="F">패션</option>
 							<option value="C">차량</option>
@@ -169,24 +149,22 @@ td {
 							<option value="A">애완</option>
 							<option value="S">스포츠</option>
 						</select>
-						<input type="text" name="dtitle" placeholder="제목을 입력해주세요." required="required" value="${dealboarddto.dtitle }"/>
+						<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required" value="${dealboarddto.dtitle }"/>
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td>
+				<td style="padding:0px auto;">
 						<textarea class="summernote" id="summernote" name="dcontent" style="resize:none" >${dealboarddto.dcontent}</textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td><input type="text" name="dprice" id="dprice" required="required" style="width:100px" value="${dealboarddto.dprice }"/>
+					<td style="display:flex; border:none;">
+						<input type="text" name="dprice" id="dprice" required="required" value="${dealboarddto.dprice }"/>
+						<input id="formbtn" type="submit" value="전송" style="width:100px">
+					</td>
 				</tr>
-				<tr>
-					<td colspan="2" align="right"><input type="submit" value="전송" style="width:100px"></td>
-				</tr>
-				
-				
 			</table>
 		</form>
 	</section>
