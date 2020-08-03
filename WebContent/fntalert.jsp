@@ -14,11 +14,32 @@
 <title>FNT(Feel New Item)알람내역</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style type="text/css">
-	.alertone:nth-child(even){
-		background-color : gray;
+	* {
+		margin: 0px;
+		padding: 0px;
 	}
 	h3{
 		text-align : center;
+		font-family: "Arial";
+		width: 100vw;
+		height: 40px;
+		padding-top: 16px;
+		background-color: #fee500;
+		position: fixed;
+		z-index: 2;
+	}
+	#alertlist {
+		padding-top: 56px;
+		font-family:"Arial";
+		overflow: auto;
+	}
+	.alertone {
+		padding-top:8px;
+		padding-bottom:8px;
+		display:flex;
+	}
+	.alertone:nth-child(even){
+		background-color : #dddddd;
 	}
 </style>
 	<%
@@ -40,7 +61,7 @@
 	}
 	
 		onload=function(){
-		 	//이 창이 load되자마자 mypagecontroller에 meㄷmberid값을 전달해줘야한다.
+		 	//이 창이 load되자마자 mypagecontroller에 memberid값을 전달해줘야한다.
 			
 			//setInterval(function(){
 			//$("#alertlist").empty();
@@ -53,19 +74,19 @@
 					
 					$.each(data, function(key, val){
 					
-						if(val == "") {
+						if (val == "") {
 							$("#alertlist").append(
-								"<p class='alertone'>현재 <b>" + '<%=memberdto.getMembernickname()%>' + "</b>님이 올린 글에 달린 댓글이 없습니다.</p>"		
+								"<div class='alertone'><p>현재 <b>" + '<%=memberdto.getMembernickname()%>' + "</b>님의 글에 작성된 댓글이 없습니다.</p></div>"		
 							);
-						}
-						else{
+							
+						} else {
 							var list = val;
-							for(var i = 0; i < list.length; i++){
+							for(var i = 0; i < list.length; i++) {
 								var str = list[i];
 								var param = str.dboardno;
 								console.log(param);
 								$("#alertlist").append(
-									"<p class=alertone>"+ str.alertboardno +"번글. <b>"+ str.dnickname +"</b>님이 올린 <b>"+ str.dtitle +"</b> 에 댓글이 달렸습니다.</p>"
+									"<div class='alertone'><p style='font-size:14pt;font-weight:bold;margin-top:4px;margin-right:20px;margin-left:30px;'>No. "+ str.alertboardno +"</p><p style='font-size:11pt;'><b>"+ str.dnickname +"</b>님의 <b>"+ str.dtitle +"</b> 에<br/>새로운 댓글이 있습니다.</p></div>"
 								);
 								//$(".alertone").eq(i).attr('onclick', "opener.location.href='dealboard.do?command=detailboard&dboardno="+param+"'");
 								$(".alertone").eq(i).attr('onclick', 'closePop('+param+');');
