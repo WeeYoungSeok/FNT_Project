@@ -68,10 +68,11 @@ public class SignupController extends HttpServlet {
 		// nickname 중복 체크
 		} else if (command.equals("nickchk")) {
 			String nick = request.getParameter("nick");
+			System.out.println(nick);
 			MemberDto memberdto = dao.nickchk(nick);
 			System.out.println("nick-memberdto " + memberdto);
 			boolean nicknotused = true;
-			if (memberdto != null) {
+			if (memberdto != null) { 
 				nicknotused = false;
 			}
 			System.out.println("nicknotused " + nicknotused);

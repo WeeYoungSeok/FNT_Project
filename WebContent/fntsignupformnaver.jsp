@@ -103,7 +103,7 @@
 			</tr>
 			<tr>
 				<th>Nickname</th>
-				<td><input class="NickChk" type="text" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" required="required" value=<%=((JsonObject)request.getAttribute("profileJson")).get("nickname")%>/></td>
+				<td><input class="NickChk" type="text" id="nick" name="membernickname" placeholder="사용하실 닉네임을 입력해주세요. (한글 6자 이내)" required="required" value=<%=((JsonObject)request.getAttribute("profileJson")).get("nickname")%>/></td>
 				<td><input type="button" id="nickchkbtn" class="in_btn" onclick="search_nick('signup.do?command=nickchk','nickchk');" value="Nickname 중복"></td>
 			</tr>
 			<tr>
