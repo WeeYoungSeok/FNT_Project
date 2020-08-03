@@ -35,7 +35,7 @@ td {
 }
 table {
 	margin : auto;
-	text-align : center;
+	text-align : absmiddle;
 }
 select{
 }
@@ -55,16 +55,16 @@ function enabledValue() {
 }
 
 function letGo(){
-	   $("table").removeAttr("border");
-	   $("thead").empty();
-	   $("tbody").empty();
+	   $("#tabletitle").removeAttr("border");
+	   $("#tablethead").empty();
+	   $("#tabletbody").empty();
 if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	   $.ajax({
 	      url : "admin.do" + getParameterValues(),
 	      dataType : "json",
 	      success : function(data) {
-	         $("table").attr("border", 1);
-	         $("thead").append(
+	         $("#tabletitle").attr("border", 1);
+	         $("#tablethead").append(
 	            "<tr id=title>"+
 	               "<th>"+"아이디"+"</th>"+
 	               "<th>"+"닉네임"+"</th>"+
@@ -88,7 +88,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	               for (var i = 0; i < list.length; i++) {
 	                  var str = list[i];
 	                  if(enabledValue() =="Y"||enabledValue()=="N"){
-	                  $("tbody").append(
+	                  $("#tabletbody").append(
 	                     "<tr id=content>"+
 	                        "<td>"+str.memberid+"</td>"+
 	                        "<td>"+str.membernickname+"</td>"+
@@ -103,7 +103,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	                  );
 	                  }
 	                  else {
-	                	  $("tbody").append(
+	                	  $("#tabletbody").append(
 	     	                     "<tr>"+
 	     	                        "<td>"+str.memberid+"</td>"+
 	     	                        "<td>"+str.membernickname+"</td>"+
@@ -120,9 +120,9 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	                  }
 	               }
 	            } else{
-           	  $("tbody").append(
-	                		"<tr><td colspan='9 ' align='center'>-----조회된 회원이 없습니다.-----</td></tr>"	  
-	              );
+           	  		$("#tabletbody").append(
+	                	"<tr><td colspan='9 ' align='center'>-----조회된 회원이 없습니다.-----</td></tr>"	  
+	              	);
 	              }
 	         });
 	      },
@@ -132,22 +132,22 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	      });
 	   	}
 
-	   	else if(enabledValue() == "REPORT"){
-		   $.ajax({
-			      url : "admin.do" + getParameterValues(),
-			      dataType : "json",
-			      success : function(data) {
-			         $("table").attr("border", 1);
-			         $("thead").append(
-			            "<tr>"+
-			               "<th>"+"신고번호"+"</th>"+
-			               "<th>"+"신고사유"+"</th>"+
-			               "<th>"+"신고자 아이디"+"</th>"+
-			               "<th>"+"신고자 닉네임"+"</th>"+
-			               "<th>"+"신고받는사람 아이디"+"</th>"+
-			               "<th>"+"신고받는사람 닉네임"+"</th>"+
-			               "<th>"+"신고날짜"+"</th>"+
-			               "<th colspan=2>"+"처리"+"</th>"+
+	else if(enabledValue() == "REPORT"){
+   $.ajax({
+	      url : "admin.do" + getParameterValues(),
+	      dataType : "json",
+	      success : function(data) {
+	    	 $("#tabletitle").attr("border", 1);
+	         $("#tablethead").append(
+	            "<tr>"+
+	               "<th>"+"신고번호"+"</th>"+
+	               "<th>"+"신고사유"+"</th>"+
+	               "<th>"+"신고자 아이디"+"</th>"+
+	               "<th>"+"신고자 닉네임"+"</th>"+
+	               "<th>"+"신고받는사람 아이디"+"</th>"+
+	               "<th>"+"신고받는사람 닉네임"+"</th>"+
+	               "<th>"+"신고날짜"+"</th>"+
+	               "<th colspan=2>"+"처리"+"</th>"+
 			            "</tr>"
 			         );
 			         $.each(data, function(key, val){
@@ -155,7 +155,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			               var list = val;
 			               for (var i = 0; i < list.length; i++) {
 			                  var str = list[i];
-			                  $("tbody").append(
+			                  $("#tabletbody").append(
 			                     "<tr>"+
 			                        "<td>"+str.reportno+"</td>"+
 			                        "<td><a href=admin.do?command=reportdetail&reportno=" + str.reportno +">"+str.reporttitle+"</a></td>"+
@@ -170,7 +170,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			                  );
 			               }
 			        	 }  else {
-			        		 $("tbody").append(
+			        		 $("#tabletbody").append(
 			        			"<tr><td colspan='8' align='center'>-----신고받은 회원이 없습니다.-----</td></tr>"		 
 			        		 );
 			        	 } 
@@ -187,8 +187,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  			url : "admin.do" + getParameterValues(),
 			  			dataType : "json",
 			  			success : function(data){
-			  				$("table").attr("border", 1);
-			  		         $("thead").append(
+			  				$("#tabletitle").attr("border", 1);
+			  		         $("#tablethead").append(
 			  		            "<tr>"+
 			  		               "<th>판매 글번호</th>"+
 			  		               "<th>판매자 아이디</th>"+
@@ -206,7 +206,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        	
 			  		        		for(var i = 0; i < list.length; i++){
 			  		        			var str = list[i];
-			  		        			$("tbody").append(
+			  		        			$("#tabletbody").append(
 			  		        				"<tr id=content>" + 
 			  		        				"<td>" + str.dboardno + "</td>" +
 			  		        				"<td>" + str.did + "</td>" +
@@ -225,7 +225,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        			}
 			  		        		}
 			  		        	}else {
-			  		        		$("tbody").append(
+			  		        		$("#tabletbody").append(
 			  		        			"<tr><td colspan='6' align='center'>판매완료된 글이 없습니다.</td></tr>"		
 			  		        		);
 			  		        	}
@@ -259,25 +259,32 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 		} else {
 	%>
 		<h1>관리자페이지</h1>
-		<select name="enabled">
-			<optgroup label="선택한 회원 조회">
-				<option value="Y">일반회원 조회</option>
-				<option value="N">탈퇴회원 조회</option>
-				<option value="R">신고회원 조회</option>
-			</optgroup>
-			<optgroup label="신고된 회원 차단">
-				<option value="REPORT">신고 및 차단</option>
-			</optgroup>
-			<optgroup label="판매완료 글 조회">
-				<option value="S">판매완료 글</option>
-			</optgroup>
-		</select>
-		<input type="button" value="조회" id="selectmember" onclick="letGo();" />
+		<table id="selecttable">
+		<tr>
+			<td>
+				<select name="enabled">
+					<optgroup label="선택한 회원 조회">
+						<option value="Y">일반회원 조회</option>
+						<option value="N">탈퇴회원 조회</option>
+						<option value="R">신고회원 조회</option>
+					</optgroup>
+					<optgroup label="신고된 회원 차단">
+						<option value="REPORT">신고 및 차단</option>
+					</optgroup>
+					<optgroup label="판매완료 글 조회">
+						<option value="S">판매완료 글</option>
+					</optgroup>
+				</select>
+		
+				<input type="button" value="조회" id="selectmember" onclick="letGo();" />
+			</td>
+		</tr>
+		</table>
 
 		<div id="print">
-			<table>
-				<thead></thead>
-				<tbody></tbody>
+			<table id="tabletitle">
+				<thead id="tablethead"></thead>
+				<tbody id="tabletbody"></tbody>
 			</table>
 		</div>
 	</section>
