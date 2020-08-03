@@ -179,7 +179,7 @@
 	%>
 	<c:choose>
 		<c:when test="${empty replylist }">
-			<div id="noreply" class="re2line" style="text-align:center;">작성된 댓글이 없습니다.</div>
+			<div id="noreply" class="re2line" style="text-align:center;width:78%;margin:0px auto;">작성된 댓글이 없습니다.</div>
 			<ul id="replylist">
 				<li id="reply" style="list-style:none;"></li>
 				<div id="up"></div>
@@ -193,7 +193,7 @@
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="delreply" style="list-style:none;">삭제된 댓글입니다.</li>
+						<li id="delreply" style="width:78%; margin:0px auto; list-style:none;">삭제된 댓글입니다.</li>
 					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
@@ -223,7 +223,7 @@
 						<div class="re2line">${replydto.replytitle }</div>
 						</c:when>
 						<c:otherwise>
-							<div class="re2line" style="width:77.8%;margin:0px auto;text-align:center;"><span>비밀 댓글입니다.</span></div>
+							<div class="re2line" style="width:77.8%;margin:0px auto;padding-left:20px;"><span>비밀 댓글입니다.</span></div>
 						</c:otherwise>
 					</c:choose>
 					</li>			
