@@ -36,47 +36,6 @@ function insertreply(me,memberid) {
 	}	
 }
 
-/* 	$.ajax({
-		url : "reply.do",
-		method : "POST",
-		data : {"command":"insertreply", 
-			"memberid":memberid, 
-			"replynickname":$("input[name=replynickname]").val(),
-			"replytitle":$("input[name=replytitle]").val(),
-			"replyboardno" : $("input[name=replyboardno]").val()},
-		dataType : "JSON",
-		success : function(obj){
-			if(obj != null){
-				alert("댓글 등록 성공!");
-				$("#noreply").hide();
-				let today = new Date();   
-
-				let year = today.getFullYear(); // 년도
-				let month = today.getMonth() + 1;  // 월
-				let date = today.getDate();  // 날짜
-				let day = today.getDay();  // 요일 
-		
-				$("#replylist").last().append(
-				'<ul>'+
-				'<li id="relpy"  style="list-style:none;">'
-					+'<div><strong>'+obj.replynickname+'</strong></div>'
-					+ '<div>'+obj.replytitle+'</div>'
-					+ '<div>'+year+"-"+"0"+month+"-"+date
-					+'<span><input type="button" value="답변" onclick="openrereply(this,\''+obj.replynickname+'\','+obj.replyno+','+obj.replyboardno+');"></span>'
-					+'<input type="button" value="삭제" onclick="deletereply('+obj.replyno+','+obj.replyboardno+');">'
-					+'<input type="hidden" name="replyid" value="'+obj.replyid+'">'
-					+'</div>'
-				+'</li>'+
-				'</ul>'
-			);
-				document.getElementById("replytitle").value="";
-			}else{
-				alert("댓글 등록 실패");
-			}
-		}
-	});
-}
- */
 function openrereply(me,membernickname,replyno,replyboardno) {
 	if (membernickname == "") {
 		alert("답변 하시려면 로그인 해주세요");
@@ -85,15 +44,17 @@ function openrereply(me,membernickname,replyno,replyboardno) {
 	
 	$(".rereplyform").hide();
 	$(me).closest("li").after(
-				'<li class="rereplyform" style="padding-left:45px;list-style:none;">'
-					+'<div><strong>'+membernickname+'</strong></div>'
+				'<li class="rereplyform" style="width:76%;height:29px;margin:0px auto;padding-left:35px;list-style:none;">'
+					+'<div style="display:flex;">'
+					+'<div style="width:160px;height:24px;padding-top:5px;text-align:center;background-color:#fee500;"><b>' + membernickname + '</b></div>'
 					+'<form action="reply.do" method="method">'
 					+'<input type="hidden" name="command" value="insertRereply">'
-					+'<div><input type="text" name="rereplytitle"/>'
-					+'<input type="hidden" name="replyno" value="'+replyno+'">'
-					+'<input type="hidden" name="replyboardno" value="'+replyboardno+'">'
-					+'<input type="hidden" name="replynickname" value="'+membernickname+'">'
-					+'<input type="submit" value="등록">'
+					+'<div><input type="text" name="rereplytitle" placeholder="댓글 내용을 입력해주세요." style="width:725px;height:28px;border:none;padding-left:10px;"/>'
+					+'<input type="hidden" name="replyno" value="' + replyno + '">'
+					+'<input type="hidden" name="replyboardno" value="' + replyboardno + '">'
+					+'<input type="hidden" name="replynickname" value="' + membernickname + '">'
+					+'<input id="rbtn" type="submit" value="등록">'
+					+'</div>'
 					+'</div>'
 					+'</form>'
 					+'</li>'
@@ -115,49 +76,6 @@ function insertRereply() {
 		return true;		
 	}
 }
-/*
-	$.ajax({
-		url : "reply.do",
-		data : {"command":"insertRereply",
-			"replyno":replyno,
-			"replytitle":rereplytitle,
-			"replyboardno":replyboardno,
-			"replynickname":replynickname
-			},
-		dataType:"JSON",
-		success:function(obj){
-			if(obj != null){
-				alert("대댓글 작성 완료");
-				let today = new Date();   
-
-				let year = today.getFullYear(); // 년도
-				let month = today.getMonth() + 1;  // 월
-				let date = today.getDate();  // 날짜
-				let day = today.getDay();  // 요일 
-
-				var go = $(me).parent().parent().parent();
-				$(".rereplyform").hide();
-				go.append(
-					'<ul class="rereply">' +
-					'<li style="padding-left:45px;list-style:none;">'
-						+'<div><strong>'+obj.replynickname+'</strong></div>'
-						+ '<div>'+obj.replytitle+'</div>'
-						+ '<div>'+year+"-"+"0"+month+"-"+date
-//						+'<span><input type="button" value="답변" onclick="openrereply(this,\''+obj.replynickname+'\','+obj.replyno+','+obj.replyboardno+');"></span>'
-						+'<input type="hidden" name="replyid" value="'+obj.replyid+'">'
-						+'</div>'
-					+'</li>' +
-					'</ul>'
-				);
-				
-			
-			}else{
-				alert("대댓글 등록 안됐어 멍청아");
-			}
-		}
-	}); 
-}
-*/
 
 function deletereply(replyno,replyboardno) {
 	if (confirm("삭제하시겠습니까?")) {
@@ -169,37 +87,8 @@ function deletereply(replyno,replyboardno) {
 }
 </script>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
-<style type="text/css">
-aside {position:fixed; align:left; width:14%; height:100%; box-shadow:1px 0px 6px black; z-index:2;}
+<link href="css/fntdetailboard.css" rel="stylesheet" type="text/css"/>
 
-#menubars {margin-top:50%; height:62%;}
-.menubar {padding-top:12%; background-color:black; color:white; width:100%; height:10%; text-align:left; font:16pt "Arial"; font-weight:bold; cursor:pointer; opacity:0.4;}
-.menubar > p {padding-left:10%;}
-.menubar:hover {opacity:0.6;}
-.menubar_x {background-color:black; width:100%; height:100%; opacity:0.4;}
-
-#dboard {margin-top:6%; margin-bottom:6%;}
-
-h1 {margin-top:6%; font-family:"Arial"; text-align:center; margin-bottom:2%;}
-	
-table {margin:0px auto; width:80%; height:auto; font-family:"Arial";}
-
-#tolist {cursor:pointer;}
-#tolist:hover {font-weight:bold;}
-
-th {font-size:14pt; width:100px; height:30px; background-color:#dddddd; font-weight:bold; padding-top:2px;}
-td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
-
-#dlistlast {background-color:#dddddd; height:2px;}
-
-#btnline {background-color:white;}
-#btnbox {margin-top:4px; float:right; display:flex;}
-#dbbtn {width:50px; height:26px; border:none; margin-left:10px; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:#cccccc;}
-#dbbtn:hover {font-weight:bold; background-color:#bbbbbb;}
-
-#reply {list-style:none;}
-
-</style>
 </head>
 <body>
 
@@ -274,12 +163,12 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 	%>
 	<form action="reply.do" method="post" onsubmit="insertreply();">
 	<input type="hidden" name="command" value="insertreply">
-		<table>
+		<table style="margin-bottom:3px;">
 			<tr>
-				<th><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="width:90%; height:90%; border:none; margin:0px auto; background-color:#dddddd;"></th>
-				<td>
+				<th style="background-color:#fee500;"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; background-color:#fee500;"></th>
+				<td style="display:flex; padding-left:0px;">
+					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px;">
 					<div id="btnbox">
-						<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; background-color:#f9f9f9;">
 						<input id="dbbtn" type="submit" id="insertreply" value="등록">
 						<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
 					</div>
@@ -291,41 +180,46 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 	%>
 	<c:choose>
 		<c:when test="${empty replylist }">
-			<div id="noreply">작성된 댓글이 없습니다.</div>
+			<div id="noreply" class="re2line">작성된 댓글이 없습니다.</div>
 			<ul id="replylist">
 				<li id="reply" style="list-style:none;"></li>
 				<div id="up"></div>
 			</ul>
 		</c:when>
 		<c:otherwise>
-				<ul id="replylist">
+				<ul id="replylist" style="font-family:'Arial';">
 			<c:forEach items="${replylist }" var="replydto">
 				<c:choose>
 					<c:when test="${replydto.replygroupnoseq eq 1}">
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="reply" style="list-style:none;">삭제된 댓글입니다.</li>
+						<li id="delreply" class="re2line" style="width:78%; margin:0px auto; list-style:none;">삭제된 댓글입니다.</li>
 					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
 					</c:otherwise>
 				</c:choose>
-						<div><strong>${replydto.replynickname }</strong></div>
-						<div>${replydto.replytitle }</div>
-						<div>${replydto.replyregdate }
+						<div class="repline">
+						<div class="re1line" style="display:flex;">
+						<div><b>${replydto.replynickname }</b></div>
+						<div style="margin-left:6px;">
+							${replydto.replyregdate }
 							<span>
 								<c:choose>
 									<c:when test="${replydto.replytitletab eq 0 }">
-										<input type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
+										<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
 									</c:when>
 								</c:choose>
 								<c:choose>
 									<c:when test="${replydto.replynickname == memberdto.membernickname}">							
-										<input type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
+										<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
 									</c:when>
 								</c:choose>
 							</span>
+						</div>
+						</div>
+						<div class="re2line">${replydto.replytitle }</div>
 						</div>
 					</li>			
 			</c:forEach>

@@ -1,0 +1,156 @@
+aside {
+	position: fixed; 
+	align: left; 
+	width: 14%; 
+	height: 100%; 
+	box-shadow: 1px 0px 6px black; 
+	z-index: 2;
+}
+
+#menubars {
+	margin-top: 50%; 
+	height: 62%;
+}
+
+.menubar {
+	padding-top: 12%; 
+	background-color: black; 
+	color: white; 
+	width: 100%; 
+	height: 10%; 
+	text-align: left; 
+	font: 16pt "Arial"; 
+	font-weight: bold; 
+	cursor: pointer; 
+	opacity: 0.4;
+}
+
+.menubar > p {
+	padding-left: 10%;
+}
+
+.menubar:hover {
+	opacity: 0.6;
+}
+
+.menubar_x {
+	background-color: black; 
+	width: 100%; 
+	height: 100%; 
+	opacity: 0.4;
+}
+
+#dboard {
+	margin-top: 6%; 
+	margin-bottom: 6%;
+}
+
+h1 {
+	margin-top: 6%; 
+	font-family: "Arial"; 
+	text-align: center; 
+	margin-bottom: 2%;
+}
+	
+table {
+	margin: 0px auto; 
+	width: 80%; 
+	height: auto; 
+	font-family: "Arial";
+}
+
+#tolist {
+	cursor: pointer;
+}
+
+#tolist:hover {
+	font-weight: bold;
+}
+
+th {
+	font-size: 14pt; 
+	width: 100px; 
+	height: 30px; 
+	background-color: #dddddd; 
+	font-weight: bold; 
+	padding-top: 2px;
+}
+
+td {
+	font-size: 12pt; 
+	padding-left: 10px; 
+	background-color: #f9f9f9;
+}
+
+#dlistlast {
+	background-color: #dddddd; 
+	height: 2px;
+}
+
+#btnline {
+	background-color: white;
+}
+
+#btnbox {
+	margin-top: 4px; 
+	float: right; 
+	display: flex;
+}
+
+#dbbtn {
+	width: 50px; 
+	height: 26px; 
+	border: none; 
+	margin-left: 10px; 
+	border-radius: 4px 4px 4px 4px; 
+	cursor: pointer; 
+	background-color: #cccccc;
+}
+
+#dbbtn:hover {
+	font-weight: bold; 
+	background-color: #bbbbbb;
+}
+
+.repline {
+	margin: 0px auto; 
+	width: 79.6%; 
+}
+
+.re1line {
+	height: 24px;
+	padding-top: 5px;
+	padding-left: 10px;
+	background-color: #dddddd; 
+}
+
+.re2line {
+	height: 22px;
+	padding-top: 6px;
+	padding-left: 20px;
+	background-color: #f9f9f9;
+}
+
+#reply {
+	list-style: none;
+}
+
+.rereply {
+	width: 96%;
+}
+
+#rbtn {
+	width: 36px; 
+	height: 20px; 
+	border: none; 
+	margin-left: 10px; 
+	border-radius: 2px 2px 2px 2px; 
+	cursor: pointer; 
+	font-weight: bold; 
+	background-color: #eeeeee;
+}
+
+#rbtn:hover {
+	color: white;
+	background-color: black;
+}
