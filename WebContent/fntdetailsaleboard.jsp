@@ -114,11 +114,11 @@ td {font-size:12pt; padding-left:10px; background-color:#f9f9f9;}
 	%>
 		<tr>
 			<th>여기에서<br>만나요!</th>
-			<td colspan="4" style="width:500px;">
+			<td colspan="5" style="padding:0px;width:800px;">
 				<div id="map" style="width:100%;height:350px;"></div>
 				<input type="hidden" name="longitude" id="longitude" value="${dealboarddto.dlongitude }">
 				<input type="hidden" name="latitude" id="latitude" value="${dealboarddto.dlatitude }">
-			<td>
+			</td>
 		</tr>
 		<tr><td colspan="6" id="dlistlast"></td></tr>
 	<%
