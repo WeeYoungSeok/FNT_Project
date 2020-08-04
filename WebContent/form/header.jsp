@@ -71,7 +71,7 @@ response.setDateHeader("Expires",1L);
 			%>
 			
 			<!-- 번역 -->
-			<button id="trans" onclick="">KO/EN</button>
+			<!-- <button id="trans" onclick="">KO/EN</button> -->
 			
 		</span>
 		</div>
