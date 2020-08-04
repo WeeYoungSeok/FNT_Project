@@ -132,9 +132,9 @@ jQuery(document).on("ready", function() {
 	<div class="box" id="box1">
 		<div style="display: flex;">
 			<p class="maincopy" style="padding-top:14%;">이제는 다들 한 번쯤은<br>경험해 본 <b>중고거래</b></p>
-			<img alt="" src="img/hands.png" style="width:400px;height:auto;margin-top:14%;margin-left:20%;">
+			<img alt="" src="img/hands.png" style="width:400px;height:auto;margin-top:15%;margin-left:20%;">
 		</div>
-		<div style="padding-top:3%;padding-bottom:11%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
+		<div style="padding-top:3%;padding-bottom:9.5%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box2">
 		<div style="display: flex;">
