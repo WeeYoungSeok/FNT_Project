@@ -1,3 +1,7 @@
+<%@page import="com.google.gson.Gson"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.sun.imageio.plugins.common.ImageUtil"%>
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="org.json.simple.JSONObject"%>
@@ -61,6 +65,27 @@
 
 		
 	*/
+	String pattern = fileName.substring(fileName.indexOf(".")+1); // gif, png 확장자 자르기
+	String headName = fileName.substring(0,fileName.indexOf(".")); // 확장자 자른 진짜 파일 이름
+	
+	
+	
+	
+/* 	String imagePath = "./upload/"+fileName; 
+	String thumbnail ="./upload/"+headName+"_small."+pattern;
+	File dest = new File(thumbnail); // 섬네일 사진 만들기 완료
+	
+	List<String> list = new ArrayList<>();
+	list.add(imagePath);
+	list.add(thumbnail);
+	JSONObject obj = new JSONObject();
+	for(int i=0; i<list.size(); i++){
+		obj.put(i,list.get(i));
+	}
+	
+	Gson gson = new Gson();
+	String jsonobj = gson.toJson(obj); */
+	
 	out.print("./upload/"+fileName); // 상대경로 입력해주기
 	
 %>
