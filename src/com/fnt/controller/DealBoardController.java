@@ -81,7 +81,11 @@ public class DealBoardController extends HttpServlet {
 
 			dispatch("fntsaleboard.jsp", request, response);
 
-		} else if (command.equals("fntbuyboard")) { // 구매게시판
+		} else if(command.equals("fntImageSaleBoard")) {
+			
+			
+			
+		}else if (command.equals("fntbuyboard")) { // 구매게시판
 			int page = 1;
 
 			if (request.getParameter("page") != null) {
@@ -137,6 +141,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDfilename("None");
 			dealboarddto.setDlatitude("0");
 			dealboarddto.setDlongitude("0");
+			dealboarddto.setDroadname("none");
 
 			int res = dao.insertBuyBoard(dealboarddto);
 
@@ -155,8 +160,17 @@ public class DealBoardController extends HttpServlet {
 			int dprice = biz.removecomma((request.getParameter("dprice")));
 			String coords = request.getParameter("coords");
 			String roadname = request.getParameter("roadname");
+			String dfilename = request.getParameter("dfilename");
+			
+			
 
 			DealBoardDto dealboarddto = new DealBoardDto();
+			
+			if(dfilename.equals("undefined")) {
+				dealboarddto.setDfilename("none");
+			}else {
+				dealboarddto.setDfilename(dfilename);
+			}
 
 			if (coords.equals("undefined")) {
 				dealboarddto.setDlongitude("");
@@ -182,7 +196,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcategory(dcategory);
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
-			dealboarddto.setDfilename(roadname); //원래 roadname 컬럼 만들어야하는데 일단 dfilename 사용중
+			dealboarddto.setDroadname(roadname);
 
 			int res = dao.insertSaleBoard(dealboarddto);
 
@@ -236,6 +250,7 @@ public class DealBoardController extends HttpServlet {
 			String dcontent = request.getParameter("dcontent");
 			int dprice = biz.removecomma((request.getParameter("dprice")));
 			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
+			String dfilename = request.getParameter("dfilename");
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 
@@ -244,7 +259,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcategory(dcategory);
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
-			dealboarddto.setDfilename("none");
+			dealboarddto.setDfilename(dfilename);
 			dealboarddto.setDlongitude("0");
 			dealboarddto.setDlatitude("0");
 			
@@ -656,6 +671,7 @@ public class DealBoardController extends HttpServlet {
  			int dprice = biz.removecomma((request.getParameter("dprice")));
 			String coords = request.getParameter("coords");
 			String roadname = request.getParameter("roadname");
+			String dfilename = request.getParameter("dfilename");
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 
@@ -684,7 +700,8 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcategory(dcategory);
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
-			dealboarddto.setDfilename(roadname); //원래 roadname 컬럼 만들어야하는데 일단 dfilename 사용중
+			dealboarddto.setDfilename(dfilename); 
+			dealboarddto.setDroadname(roadname);
 
 			int res = dao.updateDealBoard(dealboarddto);
 			

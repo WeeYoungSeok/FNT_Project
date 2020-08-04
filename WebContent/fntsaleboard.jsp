@@ -84,6 +84,7 @@
 		<table>
 				<col width="100">
      			<col width="100">
+     			<col width="100">
      	 		<col width="300">
       			<col width="150">
      	 		<col width="150">
@@ -108,6 +109,7 @@
 			<tr>
 				<th>No.</th>
 				<th>분류</th>
+				<th>이미지</th>
 				<th>제목</th>
 				<th>작성자</th>
 				<th>가격</th>
@@ -140,6 +142,18 @@
 								<td>스포츠</td>
 							</c:otherwise>
 							</c:choose>
+							<td>
+								<div style="width:100;height:100;">
+								<c:choose>
+									<c:when test="${dealboarddto.dfilename ne 'undefined'}">
+										<img src="${dealboarddto.dfilename }" style="width:100%;height:100%;">
+									</c:when>
+									<c:otherwise>
+										<img src="./img/fnt_logo.png" style="width: 100%;height: 100%;">
+									</c:otherwise>
+								</c:choose>
+								</div>
+							</td>
 							<td align="left">
 								<span onclick="location.href='dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}'">
 								<c:choose>

@@ -78,6 +78,7 @@
 					<input id="formbtn" type="submit" value="전송">
 					<input type="hidden" name="coords" id="coords" value="">
 					<input type="hidden" name="roadname" id="roadname" value="">
+					<input type="hidden" name="dfilename" id="dfilename" value="">
 				</td>
 			</tr>
 		</table>
@@ -216,7 +217,7 @@ function removeMarkerList() {
               var image =$("<img>").attr("src",img_name);
            //   $(".summernote").summernote('insertImage', img_name);
               $(".summernote").summernote('insertNode', image[0]);
-    
+    		document.getElementById("dfilename").value = img_name;
               
            },
            error:function(){
