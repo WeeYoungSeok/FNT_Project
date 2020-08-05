@@ -5,30 +5,39 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)PW 찾기</title>
+<link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-	* {
-   margin: 0px;
-   padding: 0px;
+	#form2 {
+	display: none;
 }
+* {margin: 0px; padding: 0px;}
+
+table {
+	margin: auto;
+	margin-top: 50px;
+}
+
+#submitbtn {
+	width: 100%;
+	height: 40px;
+}
+
 
 section {
-   padding-top: 90px;
-   padding-left: 240px;
+	padding-top: 7%;
+	margin-left: 14%;
+	width: 100%;
+	overflow: auto;
+	margin-bottom: 30px;
 }
 
-input {
-   width: 500px;
-   height: 24px;
-   padding-left: 6px;
+.border{
+	border: 1px solid gray;
+	margin-left: 13%;
 }
 
-td {
-   width: 500px;
-   height: 24px;
-}
-
-#form2 {
-	display: none;
+h2{
+	margin-left: 25%;
 }
 </style>
 
@@ -50,49 +59,78 @@ td {
 <%
 	int res = getRandom();
 %>
-		<form action="javascript:getemail()" method="post">
+		<form action="javascript:getemail()" method="post" id="form" >
 		<!-- 서브밋 버튼을 누리면 getemail()함수 실행 form태그 안에 있는 값을 전부 들고감 -->
 		<input type="hidden" name="command" value="findpw">
 		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
-		<h2>PW 찾기</h2>
-		<table border="1">
+		<div>
+		<h2 align="center">PW 찾기</h2>
+		<table class="border" style="width: 100%;">
+		<col width="200px">
+			<col width="200px">
+			<col width="400px">
+			<col width="200px">
 			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>	
+			</tr>
+			<tr>
+				<td></td>
+				<th>ID</th>
 				<td>
 					<input type="text" required="required" id="id" name="id" placeholder="ID를 입력하세요">
 				</td>
+				<td></td>
 			</tr>
 			<tr>
+				<td></td>
+				<th>NAME</th>
 				<td>
 					<input type="text" required="required" id="name" name="name" placeholder="이름을 입력하세요" >
 				</td>
+				<td></td>
 			</tr>
 			<tr>
+				<td></td>
+				<th>EMAIL</th>
 				<td>
 					<input type="text" id="email" required="required" name="email" placeholder="email을 입력하세요">
 				</td>
+				<td></td>
 			</tr>
 			<tr>
-				<td>
-					<input type="submit" value="인증하기">
+			<td></td>
+				<td colspan="2">
+					<input id="submitbtn" type="submit" value="인증하기">
 				</td>
+				<td></td>
 			</tr>
+			<tr><td></td><td></td><td></td><td></td></tr>
 		</table>
+		</div>
 		</form> 
 		<!-- getemail() 비동기가 실행됐을 때 block 될 폼 -->
 		<form id="form2" action="javascript:getId()">
 		<!-- 서브밋을 눌렀을 때 getId() 함수 실행 -->
-			<table>
+			<table style="margin-top: 550px; margin-left: 35%;">
 				<tr>
-					<td><span>인증번호</span></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="code" id="code" onkeyup="checkCode()" placeholder="인증번호를 입력하세요.">
-						<div id="checkCode"></div></td>
+					<th>인증번호</th>
+				
+				
+					<td><input style="width: 92%;" type="text" name="code" id="code" onkeyup="checkCode()" placeholder="인증번호를 입력하세요.">
+						</td>
+						<td><div id="checkCode"></div></td>
 						
 						<td><input type="hidden" readonly="readonly" name="code_check2" id="code_check2" value=""></td>
 				</tr>
+			<tr>
+			<td colspan="2">
+			<input id="hi"  class="submitbtn"type="hidden" value="인증하기">
+			</td>
+			</tr>
 			</table>
-			<input id="hi" type="hidden" value="인증하기">
 		</form>
 	</section>
 	
@@ -157,14 +195,14 @@ td {
 			
 			if(v1 != v2){
 				document.getElementById("checkCode").style.color = "red";
-				document.getElementById("checkCode").innerHTML = "잘못된 인증 번호";
+				document.getElementById("checkCode").innerHTML = "&nbsp;&nbsp;잘못된 인증 번호";
 				// 우리가 발생시킨 난수랑 사용자가 입력한 숫자랑 다르면 div태그에 빨간 글씨로 뿌려줘라
 				
 				makeNull();
 				//그리고 이 함수 실행
 			}else {
 				document.getElementById("checkCode").style.color = "blue";
-				document.getElementById("checkCode").innerHTML = "인증되었습니다";
+				document.getElementById("checkCode").innerHTML = "&nbsp;&nbsp;인증되었습니다";
 				// 사용자가 입력한 인증번호를 한글자씩 치면서 
 				// 우리가 발생시킨 난수와 일치가 되는순간.!
 				// 인증되었습니다 라고 div태그에 써주고

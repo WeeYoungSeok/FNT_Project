@@ -11,6 +11,7 @@
 <title>FNT(Feel New Item) : 판매 글보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <link href="css/fntdetailsaleboard.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 

@@ -18,7 +18,7 @@
 	}
 	
 	function chatGo() {
-		open("fntstreaming.jsp","","width=1600, height=1000");
+		open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		//open("https://localhost:443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		self.close();;
 	}
