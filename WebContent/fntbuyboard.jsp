@@ -299,5 +299,6 @@ typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2
 		</form>
 	</section>
 <%@ include file="./form/footer.jsp" %>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 </html>
