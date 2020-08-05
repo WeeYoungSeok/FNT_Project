@@ -243,7 +243,7 @@ function popnick(membernickname){
 		alert("로그인이 필요합니다");
 		location.href="fntlogincrud.jsp";
 	}else{
-	open("fntpopnick.jsp?popnick="+membernickname,"","width=200, height=250");	
+	open("fntpopnick.jsp?popnick="+membernickname,"","width=400, height=500");	
 	}
 }
 

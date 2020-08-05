@@ -37,7 +37,26 @@ table {
 	margin : auto;
 	text-align : absmiddle;
 }
-select{
+.chkbtn {
+	margin : 0px;
+	width: 100%; 
+	height: 50px; 
+	border: none; 
+	border-radius: 2px 2px 2px 2px; 
+	cursor: pointer; 
+	font-size: 12pt;
+	color: black;
+	float: center;
+	font-weight: bold;
+}
+
+.chkbtn:hover {
+	font-weight: bold;
+	color: white;
+	background-color: black;
+}
+#tabletitle td{
+	border-bottom : 1px solid black;
 }
 
 </style>
@@ -55,7 +74,6 @@ function enabledValue() {
 }
 
 function letGo(){
-	   $("#tabletitle").removeAttr("border");
 	   $("#tablethead").empty();
 	   $("#tabletbody").empty();
 if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
@@ -63,7 +81,6 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	      url : "admin.do" + getParameterValues(),
 	      dataType : "json",
 	      success : function(data) {
-	         $("#tabletitle").attr("border", 1);
 	         $("#tablethead").append(
 	            "<tr id=title>"+
 	               "<th>"+"아이디"+"</th>"+
@@ -113,7 +130,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	     	                        "<td>"+str.memberaddr+"</td>"+
 	     	                        "<td>"+str.memberemail+"</td>"+
 	     	                        "<td>"+str.memberregdate+"</td>"+
-	     	                       "<td><input type=button value=복귀하기 onclick=location.href='admin.do?command=reset&id="+ str.memberid + "'></td>"+
+	     	                       "<td><input type=button value=복귀하기 class=chkbtn  onclick=location.href='admin.do?command=reset&id="+ str.memberid + "'></td>"+
 	     	                     "</tr>"
 	     	                     
 	     	                  );	  
@@ -137,7 +154,6 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	      url : "admin.do" + getParameterValues(),
 	      dataType : "json",
 	      success : function(data) {
-	    	 $("#tabletitle").attr("border", 1);
 	         $("#tablethead").append(
 	            "<tr>"+
 	               "<th>"+"신고번호"+"</th>"+
@@ -164,8 +180,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			                        "<td>"+str.receiveid+"</td>"+
 			                        "<td>"+str.receivenickname+"</td>"+
 			                        "<td>"+str.reportregdate+"</td>"+
-			                        "<td><input type=button value=차단하기 onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
-			                     	"<td><input type=button value=차단거절 onclick=location.href='admin.do?command=cancel&reportno="+str.reportno+"'></td>" +
+			                        "<td><input type=button value=차단하기 class=chkbtn onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
+			                     	"<td><input type=button value=차단거절 class=chkbtn onclick=location.href='admin.do?command=cancel&reportno="+str.reportno+"'></td>" +
 			                     "</tr>"
 			                  );
 			               }
@@ -187,7 +203,6 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  			url : "admin.do" + getParameterValues(),
 			  			dataType : "json",
 			  			success : function(data){
-			  				$("#tabletitle").attr("border", 1);
 			  		         $("#tablethead").append(
 			  		            "<tr>"+
 			  		               "<th>판매 글번호</th>"+

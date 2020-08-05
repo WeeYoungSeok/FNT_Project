@@ -13,13 +13,6 @@
 <title>FNT(Feel New Item) : 구매 글보기</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-
-function popnick(membernickname) {
-	open("fntpopnick.jsp?popnick=" + membernickname,
-		 "",
-		 "width=200, height=250");
-}
-
 function delChk(dboardno) {
 	if (confirm("삭제하시겠습니까?")) {
 		location.href='dealboard.do?command=deletebuyboard&dboardno=' + dboardno;
@@ -243,7 +236,7 @@ function popnick(membernickname) {
 	} else {
 	open("fntpopnick2.jsp?popnick=" + membernickname,
 		 "",
-		 "width=200, height=250");	
+		 "width=400, height=500");	
 	}
 }
 
