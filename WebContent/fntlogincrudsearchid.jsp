@@ -67,7 +67,7 @@ h2{
 		<input type="hidden" name="command" value="emailchk">
 		<input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=res%>">
 		<div>
-		<h2 align="center">ID 찾기</h2>
+		<h2 align="center" style="font-family: Arial;">ID 찾기</h2>
 		<table class="border" style="width:100%">
 			<col width="200px">
 			<col width="200px">
