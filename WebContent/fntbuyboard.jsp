@@ -18,12 +18,18 @@
  
  #btable {float:center;}
  
- h1 {padding-top:4%; font-family:"Arial";}
+ .titlezone {margin:0px auto;margin-left:13%;margin-top:4%;}
  
- #categorylist {cursor:pointer;}
+ h1 {margin-top:22px;margin-right:40px;font-family:"Arial";}
+ 
+ #categorylist {cursor:pointer;margin-top:26px;}
  
  #c_btn {width:50px; height:19px; border:none; border-radius:2px 2px 2px 2px; cursor:pointer; color:white; background-color:#595959; margin-bottom:10px;}
  #c_btn:hover {font-weight:bold;}
+ 
+ #buypie {margin-left:40px;margin-right:20px;}
+ #buylank {padding-top:24px;}
+ span > span {font-family:"Arial"; font-weight:bold; font-size:14pt; margin:0px;}
  
  table {margin:0px auto; margin-top:1%; width:80%; height:auto; font-family:"Arial";} 
  tr:hover {background-color:#efefef;}
@@ -48,13 +54,15 @@
 
 </style>
 <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://www.cssscript.com/demo/simple-typewriter-effect-pure-javascript-typewriterjs/typewriter.js"></script>
 <script type="text/javascript">
 	window.addEventListener('DOMContentLoaded', function() {
 
-		var width = 300, 
-		height = 300, 
-		outerRadius = Math.min(width, height) / 2, 
-		innerRadius = outerRadius * .5, 
+	var width = 70,
+		height = 70,
+		outerRadius = Math.min(width, height)/2,
+		innerRadius = outerRadius * .5,
 		color = d3.scale.category20();
 	
 	var dataset = [
@@ -62,7 +70,7 @@
 			{name:"차량", value:${carBuyCnt}}, 
 			{name:"가전제품", value:${electronicBuyCnt}}, 
 			{name:"반려동물", value:${petBuyCnt}}, 
-			{name:"스포츠", value:${sportBuyCnt}},
+			{name:"스포츠", value:${sportBuyCnt}}
 		];
 	var vis = d3.select("#buypie")
 		.append("svg:svg")
@@ -72,7 +80,7 @@
 		.attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")
 		.data([dataset]);
 	
-	var arc = d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+	var arc = d3.svg.arc().innerRadius(0).outerRadius(outerRadius);
 	
 	var pie = d3.layout.pie().value(function(d) { return d.value; });
 	
@@ -87,10 +95,11 @@
 		.attr("fill", function(d, i) { return color(i); });
 	
 	arcs.append("svg:text")
-		.attr("dy", ".25em")
+		.attr("dy", ".2em")
 		.attr("text-anchor", "middle")
 		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
-		.text(function(d) { return d.data.name; });
+		//.text(function(d) { return d.data.name; })
+		;
 	
 	function angle(d) {
 		var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
@@ -98,9 +107,9 @@
 	}
 	
 	vis.append("svg:text")
-		.attr("dy", ".25em")
+		.attr("dy", ".2em")
 		.attr("text-anchor", "middle")
-		.text("카테고리별\n구매글 순위")
+	//	.text("카테고리별 구매글 갯수")
 		.attr("class", "title");
 	});
 
@@ -118,7 +127,37 @@
 	<%@ include file="./form/aside.jsp"%>
 	<section>
 		<div id="btable">
-		<h1>구매게시판</h1>
+		<div class="titlezone" style="display:flex;align:center;">
+			<h1>구매게시판</h1>
+			
+			<form action="dealboard.do" method="post">
+				<input type="hidden" name="command" value="buysearchlist"/>	
+				<input type="hidden" name="search" value="asldjskalsjalsjdk"/>
+				<select id="categorylist" name="categorylist">
+					<option value="CHECK">카테고리</option>
+					<option value="F">패션</option>
+					<option value="C">차량</option>
+					<option value="D">가전제품</option>
+					<option value="A">애완</option>
+					<option value="S">스포츠</option>
+				</select>
+				<input id="c_btn" type="submit" value="필터적용">
+			</form>
+			
+			<div id="buypie"></div>
+			<p id="buylank"></p> 
+<script>
+var typing = document.getElementById('buylank');
+var typewriter = new Typewriter(typing, { loop: true });
+typewriter.typeString('카테고리별 누적 구매글 수').pauseFor(2500).deleteAll()
+		  .typeString('패션 잡화 [ ${fashionBuyCnt} ]').pauseFor(2500).deleteAll()
+		  .typeString('차량 용품 [ ${carBuyCnt} ]').pauseFor(2500).deleteAll()
+		  .typeString('가전 제품 [ ${electronicBuyCnt} ]').pauseFor(2500).deleteAll()
+		  .typeString('반려동물 용품 [ ${petBuyCnt} ]').pauseFor(2500).deleteAll()
+		  .typeString('스포츠 용품 [ ${sportBuyCnt} ]').pauseFor(2500).deleteAll()
+		  .start();
+</script>
+		</div>
 		<table>
 			<colgroup>
 				<col width="100">
@@ -129,26 +168,6 @@
       			<col width="150">
 			</colgroup>
 			<tbody>
-				<tr>
-					<td colspan="6" id="btnline">
-						<form action="dealboard.do" method="post">
-							<input type="hidden" name="command" value="buysearchlist"/>	
-							<input type="hidden" name="search" value="asldjskalsjalsjdk"/>
-							<select id="categorylist" name="categorylist">
-								<option value="CHECK">카테고리</option>
-								<option value="F">패션</option>
-								<option value="C">차량</option>
-								<option value="D">가전제품</option>
-								<option value="A">애완</option>
-								<option value="S">스포츠</option>
-							</select>
-							<input id="c_btn" type="submit" value="필터적용">
-						</form>
-					</td>
-					<td>
-						<div id="buypie"></div>
-					</td>
-				</tr>
 				<tr>
 	      			<th>No.</th>
 					<th>분류</th>
