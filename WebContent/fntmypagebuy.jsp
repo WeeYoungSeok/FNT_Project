@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)구매글 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
+<style type="text/css">.menubar:nth-child(2) {opacity:0.7;}</style>
 <link href="css/fntmydealpage.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -26,15 +27,8 @@
 	List<DealBoardDto> buylist = (List<DealBoardDto>)request.getAttribute("buylist");
 %>
 	<%@ include file="./form/header.jsp"%>
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>
+	<%@ include file="./form/aside.jsp"%>
+	
 	<section>
 		<%
 		if(memberdto == null) {

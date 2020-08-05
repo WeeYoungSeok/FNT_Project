@@ -18,20 +18,12 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <link href="css/fntinsertsaleboardform.css" rel="stylesheet" type="text/css"/>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-	
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar" style="opacity:0.7;"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>
+<%@ include file="./form/aside.jsp"%>
 	
    <section>
    <%

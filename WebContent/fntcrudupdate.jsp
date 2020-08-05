@@ -5,17 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) 내 정보 수정</title>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-* {
-   margin: 0px;
-   padding: 0px;
-}
-
-section {
-   padding-top: 90px;
-   padding-left: 240px;
-}
-
 input {
    width: 500px;
    height: 24px;

@@ -49,12 +49,8 @@ $(document).ready(function(){
 
 </script>
 <style type="text/css">
-aside {position: fixed; align: left; width: 14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
-#menubars {margin-top: 50%; height: 62%;}
-.menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 16%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
-.menubar > p {padding-left: 10%;}
-.menubar:hover {opacity: 0.6;}
-.menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
+* {margin:0px; padding:0px;}
+.menubar:nth-child(4) {opacity:0.7;}
 #qtable {float: center; margin-top: 3%;}
 h1 {text-align: center;}
 table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
