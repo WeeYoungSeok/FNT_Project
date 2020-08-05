@@ -42,8 +42,6 @@ QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone
 	      });
 	    });
 	
-	
-
 </script>
 <style type="text/css">
 * {
@@ -51,11 +49,9 @@ QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone
 	padding: 0px;
 }
 
-section {
-	padding-top: 90px;
-	padding-left: 240px;
+.menubar:nth-child(4) {
+	opacity:0.7;
 }
-
 
 table {
 	margin-top: 100px;

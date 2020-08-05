@@ -42,9 +42,7 @@
 	                 ]
 	      });
 	    });
-	
-	
-
+	 
 </script>
 <style type="text/css">
 * {
@@ -52,11 +50,9 @@
 	padding: 0px;
 }
 
-section {
-	padding-top: 90px;
-	padding-left: 240px;
+.menubar:nth-child(4) {
+	opacity:0.7;
 }
-
 
 table {
 	margin-top: 100px;
@@ -66,22 +62,21 @@ table {
 .form-control {
 	height: 38px;
 }
-	.notice{
-		margin-left: 300px;
-		margin-top: 200px;
-		border: 1px solid gray;
-		width: 600px;
-	}
-	.nickname{
-		margin-bottom: 30px;
-	}
-	.button{
-		margin-left: 300px;
-		
-	}
 
+.notice {
+	margin-left: 300px;
+	margin-top: 200px;
+	border: 1px solid gray;
+	width: 600px;
+}
 
+.nickname {
+	margin-bottom: 30px;
+}
 
+.button {
+	margin-left: 300px;	
+}
 </style>
 </head>
 <body>

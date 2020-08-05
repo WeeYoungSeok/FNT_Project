@@ -5,17 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)PW 새로 만들기</title>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-* {
-   margin: 0px;
-   padding: 0px;
-}
-
-section {
-   padding-top: 90px;
-   padding-left: 240px;
-}
-
 input {
    width: 500px;
    height: 24px;
@@ -26,8 +17,6 @@ td {
    width: 500px;
    height: 24px;
 }
-
-
 </style>
 </head>
 <body>
@@ -94,5 +83,7 @@ td {
 	}
 
 </script>	
+
+	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>

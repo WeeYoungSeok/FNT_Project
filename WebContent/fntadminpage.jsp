@@ -9,8 +9,7 @@
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)관리자페이지</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 <style type="text/css">
 h1 {
@@ -244,8 +243,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 <body>
 	<%@ include file="./form/header.jsp"%>
 	<%@ include file="./form/aside.jsp"%>
-	
-	
+
 		<section>
 		<%
 		if(memberdto == null) {
