@@ -193,6 +193,8 @@ public class DealBoardController extends HttpServlet {
 			String roadname = request.getParameter("roadname");
 			String dfilename = request.getParameter("dfilename");
 			
+			System.out.println("coords : "+coords);
+			System.out.println("roadnaem : "+roadname);
 			
 
 			DealBoardDto dealboarddto = new DealBoardDto();
@@ -706,6 +708,13 @@ public class DealBoardController extends HttpServlet {
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 
+			if(dfilename.equals("undefined")) {
+				dealboarddto.setDfilename("none");
+			}else {
+				dealboarddto.setDfilename(dfilename);
+			}
+			
+			
 			if (coords.equals("undefined")) {
 				dealboarddto.setDlongitude("");
 				dealboarddto.setDlatitude("");

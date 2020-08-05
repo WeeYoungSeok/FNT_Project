@@ -68,7 +68,9 @@
 						<input type="text" name="dprice" id="dprice" required="required" value="${dealboarddto.dprice }"/>
 						<input id="formbtn" type="submit" value="수정">
 						<input type="hidden" name="coords" id="coords" value="">
-						<input type="hidden" name="roadname" id="roadname" value="">					
+						<input type="hidden" name="roadname" id="roadname" value="">		
+						<input type="hidden" name="dfilename" id="dfilename" value="">
+									
 					</td>
 				</tr>
 			</table>
@@ -169,6 +171,7 @@ var postForm = function() {
         	   var image =$("<img>").attr("src",img_name);
         	//   $(".summernote").summernote('insertImage', img_name);
         	   $(".summernote").summernote('insertNode', image[0]);
+       		document.getElementById("dfilename").value = img_name;
     
         	   
            },

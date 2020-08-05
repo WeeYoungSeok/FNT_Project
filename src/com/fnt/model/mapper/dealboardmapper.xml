@@ -103,7 +103,7 @@
 			D_CATEGORY = #{dcategory},
 			D_FILENAME = #{dfilename},
 			D_LONGITUDE = #{dlongitude},
-			D_LATITUDE = #{dlatitude}
+			D_LATITUDE = #{dlatitude},
 			D_ROADNAME = #{droadname}
 		WHERE D_BOARDNO = #{dboardno}
 	</update>
