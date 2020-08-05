@@ -149,7 +149,8 @@
 <script>
 var typing = document.getElementById('buylank');
 var typewriter = new Typewriter(typing, { loop: true });
-typewriter.typeString('카테고리별 누적 구매글 수').pauseFor(2500).deleteAll()
+typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2500).deleteAll()
+		  .typeString('카테고리별 누적 구매글 수').pauseFor(2500).deleteAll()
 		  .typeString('패션 잡화 [ ${fashionBuyCnt} ]').pauseFor(2500).deleteAll()
 		  .typeString('차량 용품 [ ${carBuyCnt} ]').pauseFor(2500).deleteAll()
 		  .typeString('가전 제품 [ ${electronicBuyCnt} ]').pauseFor(2500).deleteAll()
