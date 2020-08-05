@@ -158,13 +158,13 @@
 							<td>${dealboarddto.dregdate }</td>
 						</tr>
 					</c:forEach>
-					<tr><td colspan="6" id="slistlast"></td></tr>
+					<tr><td colspan="7" id="slistlast"></td></tr>
 	<%
 						MemberDto dto = (MemberDto) session.getAttribute("memberdto");
 						if(dto != null){
 	%>		
 					<tr>
-						<td id="btnline" colspan="6" align="right">
+						<td id="btnline" colspan="7" align="right">
 							<button id="sbbtn" onclick="location.href='dealboard.do?command=insertsaleboard'">글 작성</button>
 						</td>
 					</tr>

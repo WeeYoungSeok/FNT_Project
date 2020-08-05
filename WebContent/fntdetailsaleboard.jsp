@@ -122,11 +122,11 @@
 	%> 
 		<c:choose>
 			<c:when test="${dealboarddto.dsellflag eq 'Y' && dealboarddto.dnickname eq memberdto.membernickname }">
-				<form action="mypage.do">
 				<tr>
-					<td colspan="2" align="right">
+				<form action="mypage.do">
+					<td colspan="6" >
 						<div style="display:flex;">
-						<p style="width:300px;height:100%;"><b style="color:red">송장번호를 입력해주세요</b></p>
+						<p style="width:300px;height:100%;" align="right"><b style="color:red">송장번호를 입력해주세요</b></p>
 						<input type="hidden" name="command" value="invoiceinsert"/>
 						<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
 						<c:choose>
@@ -140,8 +140,8 @@
 						<input id="sbbtn" type="submit" value="등록하기">
 						</div>
 					</td>
-				</tr>	
 				</form>	
+				</tr>	
 			</c:when>
 		</c:choose>
 	</table>
@@ -342,25 +342,24 @@ var imageSrc = "./icon/pin.png",
 
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 //마커를 생성합니다
-var marker = new kakao.maps.Marker({
+var marker1 = new kakao.maps.Marker({
 	position: markerPosition,
 	image: markerImage
 });
 
-//마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);
+ //마커가 지도 위에 표시되도록 설정합니다
+//marker.setMap(map); 
 
 var infowindow = new kakao.maps.InfoWindow({zindex:1}); 
 var geocoder = new kakao.maps.services.Geocoder();
+var roadname = '${dealboarddto.droadname}';
 
-var roadname = '${dealboarddto.dfilename}';
 //주소로 좌표를 검색합니다
 geocoder.addressSearch(roadname, function(result, status) {
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-        
         var imageSrc = "./icon/pin.png",
     	imageSize = new kakao.maps.Size(64,69),
     	imageOption = {offset: new kakao.maps.Point(27,69)};
@@ -381,10 +380,16 @@ geocoder.addressSearch(roadname, function(result, status) {
         });
 
         infowindow.open(map, marker);
-	
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
-    } 
+    } else {
+    	marker1.setMap(map);
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;">여기서 만나요!</div>'
+ 					+'<div> 주소 : '+roadname+'</div>'      
+        });
+    	infowindow.open(map, marker1);
+    }
 });  
 
 $(function(){
