@@ -687,7 +687,78 @@ public class DealBoardDaoImpl implements DealBoardDao{
 
 		return count;
 	}
-	
+
+	@Override
+	public int countallbuy(String dflag) {
+		SqlSession session = null;
+		int count = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "buycount", dflag);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return count;
+	}
+
+	@Override
+	public int countcatebuy(String dflag, String dcategory) {
+		SqlSession session = null;
+		int count = 0;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("dflag", dflag);
+		map.put("dcategory", dcategory);
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "count", map);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return count;
+	}
+
+	@Override
+	public int countallsale(String dflag) {
+		SqlSession session = null;
+		int count = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "salecount", dflag);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return count;
+	}
+
+	// 
+	public int countcatesale(String dflag, String dcategory) {
+		SqlSession session = null;
+		int count = 0;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("dflag", dflag);
+		map.put("dcategory", dcategory);
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "counts", map);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return count;
+	}
 	
 }
 

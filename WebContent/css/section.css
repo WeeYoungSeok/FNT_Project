@@ -1,12 +1,7 @@
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
 section {
 	padding-top: 7%;
-	padding-left: 14%;
+	margin-left: 14%;
 	height: 100%;
 	overflow: auto;
-	padding-bottom: 30px;
+	margin-bottom: 30px;
 }

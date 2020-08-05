@@ -32,6 +32,7 @@ import com.fnt.model.dto.OrderlistDto;
 import com.fnt.model.dto.ReplyDto;
 import com.fnt.model.dto.WishlistDto;
 import com.fnt.util.Paging;
+import com.fnt.util.Util;
 
 @WebServlet("/dealboard.do")
 @MultipartConfig
@@ -74,7 +75,21 @@ public class DealBoardController extends HttpServlet {
 				int replyCount  = replydao.replyCount(list.get(i).getDboardno());
 				replyAllCount.add(replyCount);
 			}			
+
+			int allSaleCnt = dao.getAllCount();
+			int fashionSaleCnt = dao.countallbuy("F");
+			int carSaleCnt = dao.countallbuy("C");
+			int electronicSaleCnt = dao.countallbuy("D");
+			int petSaleCnt = dao.countallbuy("A");
+			int sportSaleCnt = dao.countallbuy("S");
 			
+			request.setAttribute("allSaleCnt", allSaleCnt);
+			request.setAttribute("fashionSaleCnt", fashionSaleCnt);
+			request.setAttribute("carSaleCnt", carSaleCnt);
+			request.setAttribute("electronicSaleCnt", electronicSaleCnt);
+			request.setAttribute("petSaleCnt", petSaleCnt);
+			request.setAttribute("sportSaleCnt", sportSaleCnt);
+			 
 			request.setAttribute("replyAllCount", replyAllCount);
 			request.setAttribute("list", list);
 			request.setAttribute("paging", paging);
@@ -93,6 +108,9 @@ public class DealBoardController extends HttpServlet {
 			paging.setTotalcount(count);
 			paging.setPage(page);
 
+			// TODO JSP clear
+			// TODO 
+			
 			List<DealBoardDto> list = dao.selectBuylist(paging);
 
 			List<Integer> replyAllCount = new ArrayList<Integer>();
@@ -100,7 +118,20 @@ public class DealBoardController extends HttpServlet {
 			for(int i=0; i<list.size(); i++) {	
 				int replyCount  = replydao.replyCount(list.get(i).getDboardno());
 				replyAllCount.add(replyCount);
-			}			
+			}
+			int allBuyCnt = dao.getAllCount();
+			int fashionBuyCnt = dao.countallbuy("F");
+			int carBuyCnt = dao.countallbuy("C");
+			int electronicBuyCnt = dao.countallbuy("D");
+			int petBuyCnt = dao.countallbuy("A");
+			int sportBuyCnt = dao.countallbuy("S");
+			
+			request.setAttribute("allBuyCnt", allBuyCnt);
+			request.setAttribute("fashionBuyCnt", fashionBuyCnt);
+			request.setAttribute("carBuyCnt", carBuyCnt);
+			request.setAttribute("electronicBuyCnt", electronicBuyCnt);
+			request.setAttribute("petBuyCnt", petBuyCnt);
+			request.setAttribute("sportBuyCnt", sportBuyCnt);
 			
 			request.setAttribute("replyAllCount", replyAllCount);
 			request.setAttribute("list", list);
@@ -726,7 +757,28 @@ public class DealBoardController extends HttpServlet {
 	        	 } else {
 	        		 response.sendRedirect("dealboard.do?command=detailboard&dboardno="+dboardno);
 	        	 }
-         }
+         } else if(command.equals("buychart")) {
+        	 int buyallcnt = Integer.parseInt(request.getParameter(""));
+        	 
+        	 int fbuycount = Integer.parseInt(request.getParameter(""));
+        	 int cbuycount = Integer.parseInt(request.getParameter(""));
+        	 int dbuycount = Integer.parseInt(request.getParameter(""));
+        	 int abuycount = Integer.parseInt(request.getParameter(""));
+        	 int sbuycount = Integer.parseInt(request.getParameter(""));
+
+        	 request.setAttribute("buyallcnt", buyallcnt);
+        	 
+        	 request.setAttribute("fbuycount", fbuycount);
+        	 request.setAttribute("cbuycount", cbuycount);
+        	 request.setAttribute("dbuycount", dbuycount);
+        	 request.setAttribute("abuycount", abuycount);
+        	 request.setAttribute("sbuycount", sbuycount);
+        	 
+        	 dispatch("d3buyboard.jsp", request, response);
+        	 
+         } else if(command.equals("salechart")) {
+        	 
+         } 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
