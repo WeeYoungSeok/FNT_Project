@@ -142,7 +142,7 @@
 				<option value="F">패션</option>
 				<option value="C">차량</option>
 				<option value="D">가전제품</option>
-				<option value="A">애완</option>
+				<option value="A">반려동물 물품</option>
 				<option value="S">스포츠</option>
 			</select>
 			<input id="c_btn" type="submit" value="필터적용">
@@ -200,8 +200,8 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 							<c:when test="${dealboarddto.dcategory eq 'D'}">
 								<td>가전제품</td>
 							</c:when>
-							<c:when test="${dealboarddto.dcategory eq A}">
-								<td>애완</td>
+							<c:when test="${dealboarddto.dcategory eq 'A'}">
+								<td>반려동물용품</td>
 							</c:when>
 							<c:otherwise>
 								<td>스포츠</td>
