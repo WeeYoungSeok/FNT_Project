@@ -80,5 +80,17 @@ public interface DealBoardDao {
 	
 	//마이페이지 내 주문내역조회에서 구매확정 버튼을 눌렀을 때 d_sellflag를 F로.
 	public int changesellflag(int dboardno);
+
+	//구매글 전체 카운트
+	public int countallbuy(String dflag);
+
+	//카테고리별 구매글 카운트
+	public int countcatebuy(String dflag, String dcategory);
+	
+	//판매글 전체 카운트
+	public int countallsale(String dflag);
+	
+	//카테고리별 판매글 카운트
+	public int countcatesale(String dflag, String dcategory);
 	
 }

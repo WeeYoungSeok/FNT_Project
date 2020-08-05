@@ -1,20 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
-
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <link href="css/aside.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">
-
-</script>
-</head>
-<body>
-
 	<aside>
 		<div id="menubars">
 			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
@@ -24,6 +13,3 @@
 			<div class="menubar_x"></div>
 		</div>
 	</aside>
-
-</body>
-</html>

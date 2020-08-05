@@ -117,22 +117,13 @@ jQuery(document).on("ready", function() {
 <link href="./css/fntmain.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-	
 <%@ include file="./form/header.jsp" %>
-<aside>
-	<div id="menubars">
-		<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-		<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-		<div class="menubar"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-		<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-		<div class="menubar_x"></div>
-	</div>
-</aside>
+<%@ include file="./form/aside.jsp" %>
 <section>
 	<div class="box" id="box1">
 		<div style="display: flex;">
-			<p class="maincopy" style="padding-top:14%;">이제는 다들 한 번쯤은<br>경험해 본 <b>중고거래</b></p>
-			<img alt="" src="img/hands.png" style="width:400px;height:auto;margin-top:15%;margin-left:20%;">
+			<p class="maincopy" style="padding-top:12%;">이제는 다들 한 번쯤은<br>경험해 본 <b>중고거래</b></p>
+			<img alt="" src="img/hands.png" style="width:400px;height:auto;margin-top:12%;margin-left:20%;">
 		</div>
 		<div style="padding-top:3%;padding-bottom:9.5%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
@@ -141,33 +132,33 @@ jQuery(document).on("ready", function() {
 			<p class="maincopy" style="padding-top:16%;">누군가에게 필요하지 않은 물건을<br>필요로 하는 다른 누군가에게<br>판매할 수 있는 것</p>
 			<img alt="" src="img/gift.png" style="width:340px;height:auto;margin-top:16%;margin-left:10%;">
 		</div>
-		<div style="padding-top:6%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
+		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box3">
 		<div style="display: flex;">
 			<p class="maincopy" style="padding-top:16%;">여러모로 의미도 있는<br>이상적 시스템이지만,<br>주저하게 되는 이유는 뭘까요?</p>
 			<img alt="" src="img/tear.png" style="width:280px;height:auto;margin-top:14%;margin-left:20%;">
 		</div>
-		<div style="padding-top:6%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
+		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box4">
 		<div style="display: flex;">
 			<p class="maincopy" style="padding-top:20%;margin-bottom:11%;">'이 사진들만으로 믿을 수 있을까?'<br>'작동하는 모습을 보고 싶은데...'<br>'돈만 잃게 되는 것 아닐까?'</p>
 		</div>
-		<div style="padding-top:6%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
+		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box5">
 		<div style="display: flex;">
-			<p class="maincopy" style="color:black;padding-top:16%;">저희는 생각했습니다.<br><br>"<b>영상통화</b>로 <b>중고거래</b>를 하면 어떨까?"<br>"<b>실시간으로 살펴보고 구매</b>할 수 있다면?"</p>
-			<img alt="" src="img/bulb.png" style="width:320px;height:auto;margin-top:16%;margin-left:8%;">
+			<p class="maincopy" style="color:black;padding-top:14%;">저희는 생각했습니다.<br><br>"<b>영상통화</b>로 <b>중고거래</b>를 하면 어떨까?"<br>"<b>실시간으로 살펴보고 구매</b>할 수 있다면?"</p>
+			<img alt="" src="img/bulb.png" style="width:320px;height:auto;margin-top:14%;margin-left:8%;">
 		</div>
-		<div style="padding-top:4%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_b.png" style="width:100px;height:auto;"></div>
+		<div style="padding-top:2%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_b.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box6">
 		<div style="display: flex;">
 			<p class="maincopy" style="padding-top:24%;margin-bottom:11%;">지금보다 다양한 중고거래가<br>활성화 될 수 있지 않을까요?</p>
 		</div>
-		<div style="padding-top:6%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
+		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box7">
 		<div style="display: flex;">
@@ -176,6 +167,5 @@ jQuery(document).on("ready", function() {
 	</div>
 </section>
 <%@ include file="./form/footer.jsp" %>
-
 </body>
 </html>

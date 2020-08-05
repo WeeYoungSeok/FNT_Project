@@ -16,17 +16,11 @@
 <style type="text/css">
  * {margin:0px; padding:0px;}
 
- aside {position:fixed; align:left; width:14%; height: 100%; box-shadow: 1px 0px 6px black; z-index: 2;}
-
- #menubars {margin-top: 50%; height: 62%;}
- .menubar {padding-top: 12%; background-color: black; color: white; width: 100%; height: 10%; text-align: left; font: 16pt "Arial"; font-weight: bold; cursor: pointer; opacity: 0.4;}
- .menubar > p {padding-left: 10%;}
- .menubar:hover {opacity: 0.6;}
- .menubar_x {background-color: black; width: 100%; height: 100%; opacity: 0.4;}
-
+ .menubar:nth-child(3) {opacity:0.7;}
+ 
  #stable {float: center;}
  
- h1 {margin-top: 4%; font-family: "Arial";}
+ h1 {padding-top: 4%; font-family: "Arial";}
  
  #categorylist {cursor: pointer;}
  
@@ -67,18 +61,8 @@
 
 %>
 <%@ include file="./form/header.jsp"%>
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar" style="opacity:0.7;"><p onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>
-	
-	<section>
-
+<%@ include file="./form/aside.jsp"%>
+<section>
 		<div id="stable">
 		<h1>판매게시판</h1>
 		<table>
@@ -253,8 +237,6 @@
 
 	</section>
 <%@ include file="./form/footer.jsp" %>	
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 </body>
 </html>

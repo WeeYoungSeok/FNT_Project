@@ -7,17 +7,10 @@ response.setDateHeader("Expires",1L);
 <%@page import="com.fnt.model.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
-
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <link href="css/header.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
 <%
 	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 %>
@@ -76,8 +69,3 @@ response.setDateHeader("Expires",1L);
 		</span>
 		</div>
 	</header>
-	
-	
-
-</body>
-</html>
