@@ -522,7 +522,20 @@ public class DealBoardController extends HttpServlet {
 					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
 					replyAllCount.add(replyCount);
 				}
-			
+				int allBuyCnt = dao.getAllCount();
+				int fashionBuyCnt = dao.buyGetAllCount("F");
+				int carBuyCnt = dao.buyGetAllCount("C");
+				int electronicBuyCnt = dao.buyGetAllCount("D");
+				int petBuyCnt = dao.buyGetAllCount("A");
+				int sportBuyCnt = dao.buyGetAllCount("S");
+				
+				request.setAttribute("allBuyCnt", allBuyCnt);
+				request.setAttribute("fashionBuyCnt", fashionBuyCnt);
+				request.setAttribute("carBuyCnt", carBuyCnt);
+				request.setAttribute("electronicBuyCnt", electronicBuyCnt);
+				request.setAttribute("petBuyCnt", petBuyCnt);
+				request.setAttribute("sportBuyCnt", sportBuyCnt);
+				
 				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("search", search);
 				request.setAttribute("categorylist", categorylist);
@@ -555,7 +568,19 @@ public class DealBoardController extends HttpServlet {
 					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
 					replyAllCount.add(replyCount);
 				}
+				int allBuyCnt = dao.getAllCount();
+				int fashionBuyCnt = dao.buyGetAllCount("F");
+				int carBuyCnt = dao.buyGetAllCount("C");
+				int electronicBuyCnt = dao.buyGetAllCount("D");
+				int petBuyCnt = dao.buyGetAllCount("A");
+				int sportBuyCnt = dao.buyGetAllCount("S");
 				
+				request.setAttribute("allBuyCnt", allBuyCnt);
+				request.setAttribute("fashionBuyCnt", fashionBuyCnt);
+				request.setAttribute("carBuyCnt", carBuyCnt);
+				request.setAttribute("electronicBuyCnt", electronicBuyCnt);
+				request.setAttribute("petBuyCnt", petBuyCnt);
+				request.setAttribute("sportBuyCnt", sportBuyCnt);
 								
 				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("categorylist", categorylist);
@@ -584,7 +609,19 @@ public class DealBoardController extends HttpServlet {
 					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
 					replyAllCount.add(replyCount);
 				}
+				int allBuyCnt = dao.getAllCount();
+				int fashionBuyCnt = dao.buyGetAllCount("F");
+				int carBuyCnt = dao.buyGetAllCount("C");
+				int electronicBuyCnt = dao.buyGetAllCount("D");
+				int petBuyCnt = dao.buyGetAllCount("A");
+				int sportBuyCnt = dao.buyGetAllCount("S");
 				
+				request.setAttribute("allBuyCnt", allBuyCnt);
+				request.setAttribute("fashionBuyCnt", fashionBuyCnt);
+				request.setAttribute("carBuyCnt", carBuyCnt);
+				request.setAttribute("electronicBuyCnt", electronicBuyCnt);
+				request.setAttribute("petBuyCnt", petBuyCnt);
+				request.setAttribute("sportBuyCnt", sportBuyCnt);
 								
 				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("categorylist", categorylist);
@@ -625,6 +662,19 @@ public class DealBoardController extends HttpServlet {
 					replyAllCount.add(replyCount);
 				}
 				
+				int allSaleCnt = dao.getAllCountS();
+				int fashionSaleCnt = dao.saleGetAllCount("F");
+				int carSaleCnt = dao.saleGetAllCount("C");
+				int electronicSaleCnt = dao.saleGetAllCount("D");
+				int petSaleCnt = dao.saleGetAllCount("A");
+				int sportSaleCnt = dao.saleGetAllCount("S");
+				
+				request.setAttribute("allSaleCnt", allSaleCnt);
+				request.setAttribute("fashionSaleCnt", fashionSaleCnt);
+				request.setAttribute("carSaleCnt", carSaleCnt);
+				request.setAttribute("electronicSaleCnt", electronicSaleCnt);
+				request.setAttribute("petSaleCnt", petSaleCnt);
+				request.setAttribute("sportSaleCnt", sportSaleCnt);
 								
 				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("salesearch", salesearch);
@@ -659,7 +709,19 @@ public class DealBoardController extends HttpServlet {
 					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
 					replyAllCount.add(replyCount);
 				}
+				int allSaleCnt = dao.getAllCountS();
+				int fashionSaleCnt = dao.saleGetAllCount("F");
+				int carSaleCnt = dao.saleGetAllCount("C");
+				int electronicSaleCnt = dao.saleGetAllCount("D");
+				int petSaleCnt = dao.saleGetAllCount("A");
+				int sportSaleCnt = dao.saleGetAllCount("S");
 				
+				request.setAttribute("allSaleCnt", allSaleCnt);
+				request.setAttribute("fashionSaleCnt", fashionSaleCnt);
+				request.setAttribute("carSaleCnt", carSaleCnt);
+				request.setAttribute("electronicSaleCnt", electronicSaleCnt);
+				request.setAttribute("petSaleCnt", petSaleCnt);
+				request.setAttribute("sportSaleCnt", sportSaleCnt);
 								
 				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("paging", paging);
@@ -688,7 +750,19 @@ public class DealBoardController extends HttpServlet {
 					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
 					replyAllCount.add(replyCount);
 				}
+				int allSaleCnt = dao.getAllCountS();
+				int fashionSaleCnt = dao.saleGetAllCount("F");
+				int carSaleCnt = dao.saleGetAllCount("C");
+				int electronicSaleCnt = dao.saleGetAllCount("D");
+				int petSaleCnt = dao.saleGetAllCount("A");
+				int sportSaleCnt = dao.saleGetAllCount("S");
 				
+				request.setAttribute("allSaleCnt", allSaleCnt);
+				request.setAttribute("fashionSaleCnt", fashionSaleCnt);
+				request.setAttribute("carSaleCnt", carSaleCnt);
+				request.setAttribute("electronicSaleCnt", electronicSaleCnt);
+				request.setAttribute("petSaleCnt", petSaleCnt);
+				request.setAttribute("sportSaleCnt", sportSaleCnt);
 								
 				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("paging", paging);
