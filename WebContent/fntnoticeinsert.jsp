@@ -58,7 +58,6 @@ aside {position:fixed; align:left; width:14%; height:100vh; box-shadow:1px 0px 6
 .menubar:hover {opacity:0.6;}
 .menubar_x {background-color:#3d3d3d; width:100%; height:100%; opacity:0.5;}
 .menubar:nth-child(1) {opacity:0.7;}
-.menubar:nth-child(1) {opacity:0.7;}
 #ntable {float: center; margin-top: 3%;}
 h1 {text-align: center;}
 table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 

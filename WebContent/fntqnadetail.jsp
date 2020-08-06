@@ -14,14 +14,7 @@
 <style type="text/css">
 * {margin:0px; padding:0px;}
 
-aside {position:fixed; align:left; width:14%; height:100vh; box-shadow:1px 0px 6px black; z-index:2;}
-
-#menubars {margin-top:50% !important; height:94.5%;}
-.menubar {padding-top:12% !important; background-color:#3d3d3d; color:white; width:100% !important; height:10%; text-align:left; font:16pt "Arial" !important; font-weight:bold !important; cursor:pointer !important; opacity:0.5;}
-.mtext {padding-left:10% !important;}
-.menubar:hover {opacity:0.6;}
-.menubar_x {background-color:#3d3d3d; width:100%; height:100%; opacity:0.5;}
-.menubar:nth-child(4) {opacity:0.7;}
+.menubar:nth-child(1) {opacity:0.7;}
 
 #qboard {margin-top: 6%; margin-bottom: 6%;}
 
@@ -47,15 +40,8 @@ td {font-size: 12pt; padding-left: 10px; background-color: #f9f9f9;}
 </head>
 <body>
 	<%@ include file="./form/header.jsp" %>
-<aside>
-		<div id="menubars">
-			<div class="menubar"><p class="mtext" onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>	
+	<%@ include file="./form/aside.jsp"%>
+
 	<section>
 		<div id="qboard">
 		<h1>고객센터</h1>
