@@ -9,6 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매 글보기</title>
+<style>
+	#popnick{
+		cursor:pointer;
+	}
+</style>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <link href="css/fntdetailsaleboard.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -68,7 +73,7 @@
 				</c:choose>
 			</td>
 			<th>작성자</th>
-			<td><a onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
+			<td><a id="popnick" onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
 		</tr>
 		<tr>
 			<th>내용</th>
