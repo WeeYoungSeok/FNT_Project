@@ -23,8 +23,8 @@ QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone
 	 $(document).ready(function() {
 	      $('#summernote').summernote({
 	        placeholder: '홍보 포스팅을 자유롭게 입력해주세요.',
-	        height: 500,
-	        width: 1000,
+	        height: 300,
+	        //width: 1000,
 	        lang: 'ko-KR',
 	        toolbar: [
 	                    // [groupName, [list of button]]
@@ -44,39 +44,17 @@ QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone
 	
 </script>
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-.menubar:nth-child(4) {
-	opacity:0.7;
-}
-
-table {
-	margin-top: 100px;
-	margin-left: 100px;
-}
-
-.form-control {
-	height: 38px;
-}
-	.notice{
-		margin-left: 300px;
-		margin-top: 200px;
-		border: 1px solid gray;
-		width: 600px;
-	}
-	.nickname{
-		margin-bottom: 30px;
-	}
-	.button{
-		margin-left: 300px;
-		
-	}
-
-
-
+* {margin:0px; padding:0px;}
+.menubar:nth-child(4) {opacity:0.7;}
+#qtable {float: center; margin-top: 3%;}
+h1 {margin-top: 6%; font-family: "Arial"; text-align: center; margin-bottom: 2%;}
+table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
+th {background-color: #dddddd; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
+td {height: 24px; font-size:12pt;}
+#qbtitle {width: 100%; height: 100%; border: none; padding-left: 10px;}
+.panel {margin: 0px;}
+#qbbtn {width: 50px; height: 34px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc; margin-top: 2px;}
+#qbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
 </style>
 </head>
 <body>
@@ -94,43 +72,44 @@ table {
 	<%
 		} else {
 	%>
+	<div id="qtable">
+	<h1>고객센터 글 수정</h1>
 	<form action="qna.do" onsubmit="return qnaform();" method="post">
 		<input type="hidden" value="qnaupdateres" name="command"/>
 		<input type="hidden" value="<%=qnaboardlistone.getQbboardno() %>" name="qbboardno"/>
-		<table border="1"> 
+		<table border="1" style="border: solid white;"> 
+				<col width="100">
+				<col width="750">
 			<tr>
-				<td>고객센터 > 
-				<button onclick="location.href='qna.do?command=qna'">목록</button></td>
-			<tr>
-			<tr>
-				<td><input type="text" value="<%=qnaboardlistone.getQbtitle() %>" name="qbtitle" required="required"/></td>
+				<th>제목</th>
+				<td style="display:flex; border:none;">
+					<input type="text" value="<%=qnaboardlistone.getQbtitle() %>" name="qbtitle" id="qbtitle" required="required" style="width: 90%;"/>
+				</td>
 			</tr>
+			
 			<tr>
-				<td><%=qnaboardlistone.getQbnickname() %></td>
-			</tr>
-			<tr>
-				<td width="400" height="200"><textarea id="summernote" name="qbcontent"><%=qnaboardlistone.getQbcontent() %></textarea></td>
+				<th>내용</th>
+				<td><textarea id="summernote" name="qbcontent"><%=qnaboardlistone.getQbcontent() %></textarea></td>
 			</tr>
 	
 		
 		
-		<tr>
-		<td align="right">
-			<input type="submit" value="완료"/>
-			<input type="button" value="취소" onclick="location.href='qna.do?command=qnadetail&qbboardno=<%=qnaboardlistone.getQbboardno()%>'"/>
-		</td>
-		</tr>
-		
-			
+			<tr>
+				<td align="right" colspan="2">
+					<input id="qbbtn" type="button" value="취소" onclick="location.href='qna.do?command=qnadetail&qbboardno=<%=qnaboardlistone.getQbboardno()%>'"/>
+				<input id="qbbtn" type="submit" value="완료"/>
+				</td>
+			</tr>			
+		</table>
+		</form>
+		</div>
+	</section>
+	<%@ include file="./form/footer.jsp" %>
 		<%
 			
 		}
 	
 		%>
-		</table>
-		</form>
-	</section>
-	<%@ include file="./form/footer.jsp" %>
 	<script type="text/javascript">
 		var qnaform = function(){
 			if($("textarea[name='qbcontent']").val() == "") {

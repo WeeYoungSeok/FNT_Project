@@ -23,8 +23,8 @@
 	 $(document).ready(function() {
 	      $('#summernote').summernote({
 	        placeholder: '홍보 포스팅을 자유롭게 입력해주세요.',
-	        height: 500,
-	        width: 1000,
+	        height: 300,
+	        //width: 1000,
 	        lang: 'ko-KR',
 	        toolbar: [
 	                    // [groupName, [list of button]]
@@ -46,38 +46,17 @@
 
 </script>
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-.menubar:nth-child(1) {
-	opacity:0.7;
-}
-
-table {
-	margin-top: 100px;
-	margin-left: 100px;
-}
-
-.form-control {
-	height: 38px;
-}
-
-.notice{
-	margin-left: 300px;
-	margin-top: 200px;
-	border: 1px solid gray;
-	width: 600px;
-}
-
-.nickname{
-	margin-bottom: 30px;
-}
-
-.button{
-	margin-left: 300px;
-}
+* {margin:0px;padding:0px;}
+.menubar:nth-child(1) {opacity:0.7;}
+#ntable {float: center; margin-top: 3%;}
+h1 {text-align: center;}
+table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
+th {background-color: #dddddd; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
+td {height: 24px; font-size:12pt;}
+#nbtitle {width: 100%; height: 100%; border: none; padding-left: 10px;}
+.panel {margin: 0px;}
+#nbbtn {width: 50px; height: 34px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc; margin-top: 2px;}
+#nbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
 </style>
 </head>
 <body>
@@ -95,32 +74,29 @@ table {
 	<%
 		} else {
 	%>
+	<div id="ntable">
+	<h1>공지사항 글 수정</h1>
 	<form action="notice.do" onsubmit="return noticeform();" method="post">
 		<input type="hidden" value="noticeupdateres" name="command"/>
 		<input type="hidden" value="<%=noticeboardlistone.getNbboardno() %>" name="nbboardno"/>
-		<table border="1"> 
+		<table border="1" style="border: solid white;"> 
+		<col width="100px">
+		<col width="750px">
 			<tr>
-				<td>공지사항 > 
-				<button onclick="location.href='notice.do?command=notice'">목록</button></td>
+				<th>제목</th>
+				<td><input type="text" value="<%=noticeboardlistone.getNbtitle() %>" name="nbtitle" id="nbtitle" required="required"/></td>
 			<tr>
 			<tr>
-				<td><input type="text" value="<%=noticeboardlistone.getNbtitle() %>" name="nbtitle" required="required"/></td>
-			</tr>
-			<tr>
-				<td><%=noticeboardlistone.getNbnickname() %></td>
-			</tr>
-			<tr>
-				<td width="400" height="200"><textarea id="summernote" name="nbcontent" style="resize: none"><%=noticeboardlistone.getNbcontent() %></textarea></td>
-			</tr>
+				<th>내용</th>
+				<td><textarea id="summernote" name="nbcontent"><%=noticeboardlistone.getNbcontent() %></textarea></td>
 	
-		
 		<%
 			if (memberdto.getMemberrole().equals("ADMIN")) {
 		%>
 		<tr>
-		<td align="right">
-			<input type="submit" value="완료"/>
-			<input type="button" value="취소" onclick="location.href='notice.do?command=noticedetail&nbboardno=<%=noticeboardlistone.getNbboardno()%>'"/>
+		<td align="right" colspan="2">
+			<input id="nbbtn" type="submit" value="완료"/>
+			<input id="nbbtn" type="button" value="취소" onclick="location.href='notice.do?command=noticedetail&nbboardno=<%=noticeboardlistone.getNbboardno()%>'"/>
 		</td>
 		</tr>
 		<%
@@ -134,6 +110,7 @@ table {
 		%>
 		</table>
 		</form>
+		</div>
 	</section>
 	<%@ include file="./form/footer.jsp" %>
 		<script type="text/javascript">
