@@ -26,7 +26,7 @@ aside {
 	font:16pt "Arial" !important; 
 	font-weight:bold !important; 
 	cursor:pointer !important; 
-	opacity:0.3;
+	opacity:0.5;
 }
 .mtext {
 	padding-left:10% !important;
@@ -38,7 +38,7 @@ aside {
 	background-color:#3d3d3d; 
 	width:100%; 
 	height:100%; 
-	opacity:0.3;
+	opacity:0.5;
 }
 
 .menubar:nth-child(2) {
