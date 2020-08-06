@@ -11,6 +11,11 @@
 <title>FNT(Feel New Item) : <%=noticeboardlistone.getNbtitle() %></title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
+*{
+margin: 0px;
+padding: 0px;
+}
+aside {position:fixed; align:left; width:14%; height:100vh; box-shadow:1px 0px 6px black; z-index:2;}
 
 .menubar:nth-child(1) {opacity:0.7;}
 

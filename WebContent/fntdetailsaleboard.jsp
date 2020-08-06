@@ -404,7 +404,7 @@ $(function(){
 
 	function cashpop() {
 		var url = "dealboard.do?command=cash&dboardno="+${dealboarddto.dboardno };
-		var option = "width=500, height=600";
+		var option = "width=1200, height=800";
 		window.open(url,"",option);
 	}
 

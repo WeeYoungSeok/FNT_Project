@@ -218,7 +218,7 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 										<img src="./img/fnt_logo.png" style="width:100%;height:100%;" id="logo"/>
 									</c:when>
 									<c:otherwise>
-										<img src="${dealboarddto.dfilename }" style="width:100%;height:100%;"/>
+										<a href="dealboard.do?command=detailsaleboard&dboardno=${dealboarddto.dboardno}"><img src="${dealboarddto.dfilename }" style="width:100%;height:100%;"/></a>
 									</c:otherwise> 
 								</c:choose>
 								</div>
