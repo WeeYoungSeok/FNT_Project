@@ -114,7 +114,7 @@ h2{
 		<!-- getemail() 비동기가 실행됐을 때 block 될 폼 -->
 		<form id="form2" action="javascript:getId()">
 		<!-- 서브밋을 눌렀을 때 getId() 함수 실행 -->
-			<table style="margin-top: 550px; margin-left: 35%;">
+			<table style="margin-top: 470px; margin-left: 35%;">
 				<tr>
 					<th>인증번호</th>
 				
