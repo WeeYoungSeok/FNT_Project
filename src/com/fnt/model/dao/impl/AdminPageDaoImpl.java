@@ -74,4 +74,34 @@ public class AdminPageDaoImpl implements AdminPageDao {
 		}
 		return res;
 	}
+
+	@Override
+	public int getAllMemCount() {
+		SqlSession session = null;
+		int count = 0;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "allmemcnt");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return count;
+	}
+
+	@Override
+	public int getEnableMemCount(String enabled) {
+		SqlSession session = null;
+		int count = 0;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.selectOne(namespace + "enablememcnt", enabled);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return count;
+	}
 }

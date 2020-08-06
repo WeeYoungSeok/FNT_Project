@@ -10,31 +10,63 @@
 <title>FNT(Feel New Item)관리자페이지</title>
 <link href="css/section.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <style type="text/css">
+* {
+	margin:0px;
+	padding:0px;
+}
+
 h1 {
-	margin-top: 4%;
+	margin-top: 3%;
 	margin-bottom: 2%;
 	text-align: center;
 	font-family: "Arial";
+}
+#memchart {
+	margin-left:40px;
+	margin-right:10px;
+}
+#memlank {
+	padding-top:26px;
+}
+span > span {
+	font-family:"Arial"; 
+	font-weight:bold; 
+	font-size:14pt; 
+	margin:0px;
 }
 
 th {
 	background-color: #cccccc;
 	font-weight: bold;
 	height: 30px;
-	font-size: 14pt;
+	font-size: 12pt;
 	text-align: center;
 	padding-top: 0.4%;
 }
 td {
 	height: 28px;
-	font-size: 12pt;
+	font-size: 10pt;
 	text-align: center;
 }
-table {
-	margin : auto;
+#selecttable {
+	width: 90%;
+	margin: 0px auto;
 	text-align : absmiddle;
+	font-family: "Arial";
+}
+
+#print {
+	width: 90%;
+	margin: 0px auto;
+	overflow: auto;
+}
+
+#tabletitle {
+	width: 100%;
+	font-family: "Arial";
 }
 .chkbtn {
 	margin : 0px;
@@ -54,7 +86,13 @@ table {
 	color: white;
 	background-color: black;
 }
+
+#tabletitle {
+	margin-bottom:5%;
+}
+
 #tabletitle td{
+	overflow: auto;
 	border-bottom : 1px solid black;
 }
 
@@ -81,15 +119,23 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	      dataType : "json",
 	      success : function(data) {
 	         $("#tablethead").append(
+	 	        	"<col width='10%'>"+
+		        	"<col width='10%'>"+
+		        	"<col width='5%'>"+
+		        	"<col width='10%'>"+
+		        	"<col width='10%'>"+
+		        	"<col width='40%'>"+
+		        	"<col width='10%'>"+
+		        	"<col width='5%'>"+
 	            "<tr id=title>"+
-	               "<th>"+"아이디"+"</th>"+
+	               "<th>"+"ID"+"</th>"+
 	               "<th>"+"닉네임"+"</th>"+
 	               "<th>"+"이름"+"</th>"+
 	               "<th>"+"생년월일"+"</th>"+
 	               "<th>"+"전화번호"+"</th>"+
 	               "<th>"+"주소"+"</th>"+
 	               "<th>"+"이메일"+"</th>"+
-	               "<th>"+"가입날짜"+"</th>"+
+	               "<th>"+"가입일"+"</th>"+
 	            "</tr>"
 	            );
 	               if(enabledValue() == "R"){
@@ -155,14 +201,14 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	      success : function(data) {
 	         $("#tablethead").append(
 	            "<tr>"+
-	               "<th>"+"신고번호"+"</th>"+
-	               "<th>"+"신고사유"+"</th>"+
-	               "<th>"+"신고자 아이디"+"</th>"+
+	               "<th>"+"No."+"</th>"+
+	               "<th>"+"신고 사유"+"</th>"+
+	               "<th>"+"신고자 ID"+"</th>"+
 	               "<th>"+"신고자 닉네임"+"</th>"+
-	               "<th>"+"신고받는사람 아이디"+"</th>"+
-	               "<th>"+"신고받는사람 닉네임"+"</th>"+
-	               "<th>"+"신고날짜"+"</th>"+
-	               "<th colspan=2>"+"처리"+"</th>"+
+	               "<th>"+"대상자 ID"+"</th>"+
+	               "<th>"+"대상자 닉네임"+"</th>"+
+	               "<th>"+"신고일"+"</th>"+
+	               "<th colspan=2>"+"신고 처리"+"</th>"+
 			            "</tr>"
 			         );
 			         $.each(data, function(key, val){
@@ -179,8 +225,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			                        "<td>"+str.receiveid+"</td>"+
 			                        "<td>"+str.receivenickname+"</td>"+
 			                        "<td>"+str.reportregdate+"</td>"+
-			                        "<td><input type=button value=차단하기 class=chkbtn onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
-			                     	"<td><input type=button value=차단거절 class=chkbtn onclick=location.href='admin.do?command=cancel&reportno="+str.reportno+"'></td>" +
+			                        "<td><input type=button value=차단 class=chkbtn onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
+			                     	"<td><input type=button value=거절 class=chkbtn onclick=location.href='admin.do?command=cancel&reportno="+str.reportno+"'></td>" +
 			                     "</tr>"
 			                  );
 			               }
@@ -204,14 +250,14 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  			success : function(data){
 			  		         $("#tablethead").append(
 			  		            "<tr>"+
-			  		               "<th>판매 글번호</th>"+
-			  		               "<th>판매자 아이디</th>"+
+			  		               "<th>No.</th>"+
+			  		               "<th>판매자 ID</th>"+
 			  		               "<th>판매자 닉네임</th>"+
-			  		               "<th>판매자 계좌번호</th>" +
-			  		               "<th>판매 글제목</th>"+
-			  		               "<th>판매상품 가격</th>"+
-			  		               "<th>판매 글 작성날짜</th>" +
-			  		               "<th>구매확정확인</th>" + 
+			  		               "<th>계좌번호</th>" +
+			  		               "<th>판매 글 제목</th>"+
+			  		               "<th>가격</th>"+
+			  		               "<th>작성일</th>" +
+			  		               "<th>구매 확정</th>" + 
 			  		            "</tr>"
 			  		            );
 			  		         $.each(data, function(key, val){
@@ -229,18 +275,18 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        				"<td>" + str.dtitle + "</td>" +
 			  		        				"<td>" + str.dprice + "원</td>" +
 			  		        				"<td>" + str.dregdate + "</td>" +
-			  		        				"<td class=chk> 구매확정 대기중입니다.</td>" +
+			  		        				"<td class=chk> 구매 확정 대기</td>" +
 			  		        				"</tr>"
 			  		        			);
 			  		        			if(str.dsellflag=="F"){
 			  		        				$(".chk").eq(i).html(
-			  		        					"<b style=color:red>구매가 확정되었습니다.</b>"		
+			  		        					"<b style=color:red>구매 확정</b>"		
 			  		        				);
 			  		        			}
 			  		        		}
 			  		        	}else {
 			  		        		$("#tabletbody").append(
-			  		        			"<tr><td colspan='6' align='center'>판매완료된 글이 없습니다.</td></tr>"		
+			  		        			"<tr><td colspan='6' align='center'>판매 완료된 글이 없습니다.</td></tr>"		
 			  		        		);
 			  		        	}
 			  		         });
@@ -253,7 +299,62 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 				}
 			}
 </script>
-
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="https://www.cssscript.com/demo/simple-typewriter-effect-pure-javascript-typewriterjs/typewriter.js"></script>
+<script type="text/javascript">
+	window.addEventListener('DOMContentLoaded', function() {
+		var width = 70,
+			height = 70,
+			outerRadius = Math.min(width, height)/2,
+			innerRadius = outerRadius * .5,
+			color = d3.scale.category20();
+			
+		var dataset = [
+			{name:"일반 회원", value:${yMemCnt}}, 
+			{name:"탈퇴 회원", value:${nMemCnt}}, 
+			{name:"신고 회원", value:${rMemCnt}}
+		];
+		var vis = d3.select("#memchart")
+			.append("svg:svg")
+			.attr("width", width)
+			.attr("height", height)
+			.append("svg:g")
+			.attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")
+			.data([dataset]);
+		
+		var arc = d3.svg.arc().innerRadius(0).outerRadius(outerRadius);
+		
+		var pie = d3.layout.pie().value(function(d) { return d.value; });
+		
+		var arcs = vis.selectAll("g.slice")
+			.data(pie)
+			.enter()
+			.append("svg:g")
+			.attr("class", "slice");
+		
+		arcs.append("svg:path")
+			.attr("d", arc)
+			.attr("fill", function(d, i) { return color(i); });
+		
+		arcs.append("svg:text")
+			.attr("dy", ".2em")
+			.attr("text-anchor", "middle")
+			.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
+		//	.text(function(d) { return d.data.name; })
+			;
+		
+		function angle(d) {
+			var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+			return a > 90 ? a - 180 : a;
+		}
+		
+		vis.append("svg:text")
+			.attr("dy", ".2em")
+			.attr("text-anchor", "middle")
+		//	.text("회원 상태 별 회원 수 조회")
+			.attr("class", "title");
+	});
+</script>
 </head>
 <body>
 	<%@ include file="./form/header.jsp"%>
@@ -271,7 +372,26 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	<%
 		} else {
 	%>
-		<h1>관리자페이지</h1>
+		
+		<div style="display:flex;margin-top:4%;margin-left:34%;margin-bottom:1%;">
+		
+			<h1>관리자페이지</h1>
+			
+			<div id="memchart"></div>
+			
+			<p id="memlank"></p>
+			<script type="text/javascript">
+				var typing = document.getElementById('memlank');
+				var typewriter = new Typewriter(typing, { loop: true });
+				typewriter.typeString('전체 누적 회원 ${allMemCnt}명').pauseFor(2000).deleteAll()
+						  .typeString('일반 회원 ${yMemCnt}명').pauseFor(2000).deleteAll()
+						  .typeString('탈퇴한 회원 ${nMemCnt}명').pauseFor(2000).deleteAll()
+						  .typeString('신고된 회원 ${rMemCnt}명').pauseFor(2000).deleteAll()
+						  .start();
+			</script>
+			
+		</div>
+		
 		<table id="selecttable">
 		<tr>
 			<td>
