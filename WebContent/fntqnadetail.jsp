@@ -14,7 +14,7 @@
 <style type="text/css">
 * {margin:0px; padding:0px;}
 
-.menubar:nth-child(1) {opacity:0.7;}
+.menubar:nth-child(4) {opacity:0.7;}
 
 #qboard {margin-top: 6%; margin-bottom: 6%;}
 
