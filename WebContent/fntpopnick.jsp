@@ -37,6 +37,7 @@
 		margin : auto;
 		text-align : center;
 		margin-top : 50px;
+		font-family: Arial;
 	}
 	tr{
 		height : 50px;
@@ -68,7 +69,7 @@
 </style>
 </head>
 <body>
-	<h2 id="head"><%=membernickname %>님의 정보보기</h2>
+	<h2 id="head" style="font-family:Arial;"><%=membernickname %>님의 정보보기</h2>
 	<table>
 		<col width=40/>
 		<col width=80/>
@@ -97,7 +98,5 @@
 			<td colspan="4"></td>
 		</tr>
 	</table>
-	
-	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>

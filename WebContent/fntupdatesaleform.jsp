@@ -6,6 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매글 수정하기</title>
+<style>
+	table{
+		margin: 0 auto; 
+		margin-top: 3%; 
+		width: 80%; 
+		height: auto; 
+		font-family: Arial;
+		float: center;
+	}
+	
+	#infolocation{
+		font-weight:bold;
+		margin-top:10px;
+		padding-left:135px;
+	}
+	
+</style>
 <!-- summernote 넣기 -->
 <link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -81,11 +98,13 @@
 					</td>
 				</tr>
 			</table>
-		<span style="font-weight:bold;align:center;float:center;margin:0px auto;padding-left:220px;"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></span>
+		<div style="height:30px;">
+         	<div id="infolocation"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></div>
+        </div>
 		</form>
 			<div class="map_wrap" style="float:center;">
-			    <div id="map" style="margin:0px auto;width:856px;height:500px;position:relative;overflow:hidden;"></div>
-			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left: 250px;">
+			    <div id="map" style="margin:0px auto;width:1020px;height:500px;position:relative;overflow:hidden;"></div>
+			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left:140px;">
 			        <div class="option">
 			            <div>
 			                <form onsubmit="searchPlaces(); return false;">

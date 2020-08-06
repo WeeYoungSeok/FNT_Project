@@ -6,6 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 구매글 수정하기</title>
+<style>
+	table{
+		margin: 0 auto; 
+		margin-top: 3%; 
+		width: 80%; 
+		height: auto; 
+		font-family: Arial;
+		float: center;
+	}	
+</style>
 <!-- summernote 넣기 -->
 <link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -20,7 +30,7 @@
 $(function(){
 	$('#summernote').summernote({
 		  height: 300,					// 에디터 높이
-		  width: 756,
+		 // width: 756,
 		  minHeight: null,             // 최소 높이
 		  maxHeight: null,             // 최대 높이
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부

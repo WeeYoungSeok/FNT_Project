@@ -6,6 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매 글쓰기</title>
+<style>
+	table{
+		margin: 0 auto; 
+		margin-top: 3%; 
+		width: 80%; 
+		height: auto; 
+		font-family: Arial;
+		float: center;
+	}
+	
+	#infolocation{
+		font-weight:bold;
+		margin-top:10px;
+		padding-left:135px;
+	}
+
+</style>
 
 <!-- summernote 넣기 -->
 <!-- include libraries(jQuery, bootstrap) -->
@@ -81,12 +98,13 @@
 				</td>
 			</tr>
 		</table>
-		
-         <span style="font-weight:bold;align:center;float:center;margin:0px auto;padding-left:220px;"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></span>
+		<div style="height:30px;">
+         	<div id="infolocation"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></div>
+        </div>
       </form>
          <div class="map_wrap" style="float:center;">
-             <div id="map" style="margin:0px auto;width:856px;height:500px;position:relative;overflow:hidden;"></div>
-             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left: 250px;">
+             <div id="map" style="margin:0px auto;width:1020px;height:500px;position:relative;overflow:hidden;"></div>
+             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left:140px;">
                  <div class="option">
                      <div>
                          <form onsubmit="searchPlaces(); return false;">
@@ -100,7 +118,7 @@
                  <div id="pagination"></div>
              </div>
          </div>
-      <div id="underline" style="padding-top: 25px;"></div>
+      <div id="underline" style="padding-top:25px;"></div>
    </section>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
@@ -108,7 +126,7 @@
 $(function(){
    $('#summernote').summernote({
         height: 300,                 // 에디터 높이
-        width: 756, 
+     //   width: 756, 
         minHeight: null,             // 최소 높이
         maxHeight: null,             // 최대 높이
         focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
