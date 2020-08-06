@@ -93,6 +93,7 @@
                  <div id="pagination"></div>
              </div>
          </div>
+      <div id="underline" style="padding-top: 25px;"></div>
    </section>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
