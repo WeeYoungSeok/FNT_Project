@@ -81,11 +81,11 @@
 					</td>
 				</tr>
 			</table>
-			<span style="font-weight:bold">직거래시 원하는 장소를 검색 후 클릭해주세요!</span>
+		<span style="font-weight:bold;align:center;float:center;margin:0px auto;padding-left:220px;"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></span>
 		</form>
-			<div class="map_wrap">
-			    <div id="map" style="width:75%;height:500px;position:relative;overflow:hidden;"></div>
-			    <div id="menu_wrap" class="bg_white">
+			<div class="map_wrap" style="float:center;">
+			    <div id="map" style="margin:0px auto;width:856px;height:500px;position:relative;overflow:hidden;"></div>
+			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left: 250px;">
 			        <div class="option">
 			            <div>
 			                <form onsubmit="searchPlaces(); return false;">
@@ -98,7 +98,8 @@
 			        <ul id="placesList"></ul>
 			        <div id="pagination"></div>
 			    </div>
-			</div>			
+			</div>
+		<div id="underline" style="padding-top: 25px;"></div>			
 	</section>
 	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
