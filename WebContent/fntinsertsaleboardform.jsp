@@ -51,7 +51,7 @@
 						<option value="F">패션</option>
 						<option value="C">차량</option>
 						<option value="D">가전제품</option>
-						<option value="A">애완</option>
+						<option value="A">반려동물용품</option>
 						<option value="S">스포츠</option>
 					</select>
 					<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required"/>
@@ -74,11 +74,12 @@
 				</td>
 			</tr>
 		</table>
-         <span style="font-weight:bold;align:center;float:center;margin:0px auto;">직거래시 원하는 장소를 검색 후 클릭해주세요!</span>
+		
+         <span style="font-weight:bold;align:center;float:center;margin:0px auto;padding-left:220px;"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></span>
       </form>
          <div class="map_wrap" style="float:center;">
              <div id="map" style="margin:0px auto;width:856px;height:500px;position:relative;overflow:hidden;"></div>
-             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;">
+             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left: 250px;">
                  <div class="option">
                      <div>
                          <form onsubmit="searchPlaces(); return false;">

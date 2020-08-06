@@ -198,7 +198,7 @@ typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2
 									<td>가전제품</td>
 								</c:when>
 								<c:when test="${dealboarddto.dcategory eq 'A'}">
-									<td>애완</td>
+									<td>반려동물용품</td>
 								</c:when>
 								<c:otherwise>
 									<td>스포츠</td>

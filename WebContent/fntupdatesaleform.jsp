@@ -50,7 +50,7 @@
 							<option value="F">패션</option>
 							<option value="C">차량</option>
 							<option value="D">가전제품</option>
-							<option value="A">애완</option>
+							<option value="A">반려동물용품</option>
 							<option value="S">스포츠</option>
 						</select>
 						<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required" value="${dealboarddto.dtitle }"/>
