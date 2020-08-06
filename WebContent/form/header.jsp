@@ -10,7 +10,7 @@ response.setDateHeader("Expires",1L);
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <meta charset="UTF-8">
-<link href="css/header.css" rel="stylesheet" type="text/css"/>S
+<link href="css/header.css" rel="stylesheet" type="text/css"/>
 <%
 	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 %>
