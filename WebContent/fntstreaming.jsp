@@ -16,11 +16,32 @@
 	}
 	
 	#localvideo{
-		position: relative;
-   		top: 50px;
+		margin-top: 50px;
+		margin-right: 20px;
 	}
 	#remotevideo{
-		display: block;
+		margin-top: 50px;
+	}
+	button{
+	   width: 70px;
+	   height: 38px;
+	   border: none;
+	   border-radius: 2px 2px 2px 2px;
+	   cursor: pointer;
+	   background-color: #dedede;	
+	}
+	#btn-open{
+		margin-left: 10px;
+	}
+	input[type=text]{
+		width: 45%;
+		height: 30px;
+	   padding-left: 2%;
+	   border: 2px solid #dedede;
+	}
+	button:hover{
+		background-color:#fee500;
+		font-weight:bold;
 	}
 </style>
 </head>
