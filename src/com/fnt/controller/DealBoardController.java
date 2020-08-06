@@ -96,11 +96,7 @@ public class DealBoardController extends HttpServlet {
 
 			dispatch("fntsaleboard.jsp", request, response);
 
-		} else if(command.equals("fntImageSaleBoard")) {
-			
-			
-			
-		}else if (command.equals("fntbuyboard")) { // 구매게시판
+		} else if (command.equals("fntbuyboard")) { // 구매게시판
 			int page = 1;
 
 			if (request.getParameter("page") != null) {
