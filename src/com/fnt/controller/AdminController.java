@@ -21,8 +21,10 @@ import com.fnt.model.biz.AdminPageBiz;
 import com.fnt.model.biz.ReportPageBiz;
 import com.fnt.model.biz.impl.AdminPageBizImpl;
 import com.fnt.model.biz.impl.ReportPageBizImpl;
+import com.fnt.model.dao.AdminPageDao;
 import com.fnt.model.dao.DealBoardDao;
 import com.fnt.model.dao.LoginCrudDao;
+import com.fnt.model.dao.impl.AdminPageDaoImpl;
 import com.fnt.model.dao.impl.DealBoardDaoImpl;
 import com.fnt.model.dao.impl.LoginCrudDaoImpl;
 import com.fnt.model.dto.DealBoardDto;
@@ -57,7 +59,7 @@ public class AdminController extends HttpServlet {
 		ReportPageBiz reportpagebiz = new ReportPageBizImpl();
 		DealBoardDao dealboarddao = new DealBoardDaoImpl();
 		LoginCrudDao logincruddao = new LoginCrudDaoImpl();
-		
+		AdminPageDao dao = new AdminPageDaoImpl();
 
 		String command = request.getParameter("command");
 		System.out.println("<" + command + ">");
@@ -65,7 +67,17 @@ public class AdminController extends HttpServlet {
 
 		// header에 role를 클릭하면 adminpage로 이동한다.
 		if (command.equals("adminpage")) {
-			response.sendRedirect("fntadminpage.jsp");
+			int allMemCnt = dao.getAllMemCount();
+			int yMemCnt = dao.getEnableMemCount("Y");
+			int nMemCnt = dao.getEnableMemCount("N");
+			int rMemCnt = dao.getEnableMemCount("R");
+
+			request.setAttribute("allMemCnt", allMemCnt);
+			request.setAttribute("yMemCnt", yMemCnt);
+			request.setAttribute("nMemCnt", nMemCnt);
+			request.setAttribute("rMemCnt", rMemCnt);
+			
+			dispatch("fntadminpage.jsp", request, response);
 		}
 		// adminpage에서 "전체회원조회"를 클릭하면
 

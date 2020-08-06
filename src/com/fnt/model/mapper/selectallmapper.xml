@@ -21,6 +21,18 @@
 		FROM MEMBER
 		WHERE ENABLED=#{enabled} AND MEMBER_ROLE='USER'
 	</select>
+	<!-- 전체 회원 수 출력 -->
+	<select id="allmemcnt" resultType="int">
+		SELECT COUNT(*) as count 
+		FROM MEMBER
+		WHERE MEMBER_ROLE='USER'
+	</select>
+	<!-- 회원 상태에 따른 회원 수 출력 -->
+	<select id="enablememcnt" resultType="int">
+		SELECT COUNT(*) as count 
+		FROM MEMBER
+		WHERE ENABLED=#{enabled} AND MEMBER_ROLE='USER'
+	</select>
 	<!-- 신고된 회원 처리누르면 role를 r로 바꾸는 것 -->
 	<update id="updateRole" parameterType="String">
 		UPDATE MEMBER SET ENABLED = 'R' WHERE MEMBER_ID = #{receiveid}
