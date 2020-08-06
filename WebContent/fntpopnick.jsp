@@ -14,14 +14,8 @@
 		self.close();
 	}
 	function reportform(){
-		open("LoginCrudController?command=report&membernickname=<%=membernickname%>","","width=700, height=550");
+		open("LoginCrudController?command=report2&membernickname=<%=membernickname%>","","width=700, height=550");
 		self.close();
-	}
-	
-	function chatGo() {
-		open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
-		//open("https://localhost:443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
-		self.close();;
 	}
 </script>
 <style type="text/css">
@@ -97,11 +91,6 @@
 		<tr>
 			<td></td>
 			<td colspan="2"><input class="tracebtn" type="button" value="신고" style="background-color : red;" onclick="reportform();"/></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td colspan="2"><input class="tracebtn" type="button" value="채팅" onclick="chatGo();"/></td>
 			<td></td>
 		</tr>
 		<tr>

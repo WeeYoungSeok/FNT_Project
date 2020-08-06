@@ -10,10 +10,11 @@ response.setDateHeader("Expires",1L);
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <meta charset="UTF-8">
-<link href="css/header.css" rel="stylesheet" type="text/css"/>
+<link href="css/header.css" rel="stylesheet" type="text/css"/>S
 <%
 	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
 %>
+
 	<header>
 	
 		<div id="headerzone">
@@ -33,12 +34,19 @@ response.setDateHeader("Expires",1L);
 		</form>
 	
 		<span class="mysection">
+		<script type="text/javascript">
+		//채팅방 만드는 함수
+		function chatGo() {
+			open("fntstreaming.jsp","","width=1600, height=1000");
+		}
+		</script>
 			<!-- 마이페이지 -->
 			<%
 				if(memberdto != null) {
 			%>
 				<p id="loginmsg"><b onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'"><%=memberdto.getMembernickname() %></b>님<br/>환영합니다!</p>
 				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+				<button class="headerbtn" onclick="chatGo();">Chat</button>
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
 				%>
