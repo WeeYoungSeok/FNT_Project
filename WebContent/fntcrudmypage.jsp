@@ -8,6 +8,10 @@
 <title>FNT(Feel New Item) 내 정보 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
+*{
+	margin: 0px;
+	padding: 0px;
+}
 .tzone {width: 80%; margin: 0px auto; margin-top: 5%;}
 
 h1 {text-align: center; font-family: "Arial";}
