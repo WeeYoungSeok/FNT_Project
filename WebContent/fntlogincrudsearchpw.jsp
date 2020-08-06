@@ -127,7 +127,7 @@ h2{
 				</tr>
 			<tr>
 			<td colspan="2">
-			<input id="hi"  class="submitbtn"type="hidden" value="인증하기">
+			<input id="hi"  class="submitbtn" type="hidden" value="인증하기">
 			</td>
 			</tr>
 			</table>
@@ -162,6 +162,7 @@ h2{
 			var id = document.getElementById("id").value;
 			$.ajax({
 				url : "LoginCrudController" + getParameterValues(),
+				type : "POST",
 				dataType : "text",
 				success : function(data){
 					if(data == "2"){
@@ -169,6 +170,7 @@ h2{
 						window.location="fntlogincrudsearchpw.jsp";
 					} else {
 						alert("인증성공!\n 비밀번호를 변경 해주세요 ! \n ***비밀번호 변경 페이지로 이동합니다***");
+						
 						window.location="LoginCrudController?command=updatepw&memberid="+ id;
 					}
 				}, error:function(){
