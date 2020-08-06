@@ -8,23 +8,23 @@ aside {
 }
 
 #menubars {
-	margin-top:50%; 
-	height:62%;
+	margin-top:50% !important; 
+	height:62% !important;
 }
 .menubar {
-	padding-top:12%; 
+	padding-top:12% !important; 
 	background-color:#3d3d3d; 
 	color:white; 
-	width:100%; 
+	width:100% !important; 
 	height:10%; 
 	text-align:left; 
-	font:16pt "Arial"; 
-	font-weight:bold; 
-	cursor:pointer; 
-	opacity:0.5;
+	font:16pt "Arial" !important; 
+	font-weight:bold !important; 
+	cursor:pointer !important; 
+	opacity:0.3;
 }
-.menubar > p {
-	padding-left:10%;
+.mtext {
+	padding-left:10% !important;
 }
 .menubar:hover {
 	opacity:0.6;
@@ -33,5 +33,5 @@ aside {
 	background-color:#3d3d3d; 
 	width:100%; 
 	height:100%; 
-	opacity:0.5;
+	opacity:0.3;
 }
