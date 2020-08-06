@@ -113,8 +113,12 @@
 		.attr("text-anchor", "middle")
 	//	.text("카테고리별 판매글 갯수")
 		.attr("class", "title");
-	});
+	
 
+	
+	});
+	
+	
 </script>
 </head>
 <body>
@@ -210,12 +214,12 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 							<td>
 								<div style="width:100;height:100;">
 								<c:choose>
-									<c:when test="${dealboarddto.dfilename ne 'undefined'}">
-										<img src="${dealboarddto.dfilename }" style="width:100%;height:100%;">
+									<c:when test="${dealboarddto.dfilename ==  NULL}">
+										<img src="./img/fnt_logo.png" style="width:100%;height:100%;" id="logo"/>
 									</c:when>
 									<c:otherwise>
-										<img src="./img/fnt_logo.png" style="width: 100%;height: 100%;">
-									</c:otherwise>
+										<img src="${dealboarddto.dfilename }" style="width:100%;height:100%;"/>
+									</c:otherwise> 
 								</c:choose>
 								</div>
 							</td>

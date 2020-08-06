@@ -169,7 +169,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcategory(dcategory);
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
-			dealboarddto.setDfilename("None");
+			dealboarddto.setDfilename("none");
 			dealboarddto.setDlatitude("0");
 			dealboarddto.setDlongitude("0");
 			dealboarddto.setDroadname("none");
@@ -193,17 +193,10 @@ public class DealBoardController extends HttpServlet {
 			String roadname = request.getParameter("roadname");
 			String dfilename = request.getParameter("dfilename");
 			
-			System.out.println("coords : "+coords);
-			System.out.println("roadnaem : "+roadname);
-			
+			// 그림을 안넣으면 dfilename이 공백(db에는 null)으로 들어옴
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 			
-			if(dfilename.equals("undefined")) {
-				dealboarddto.setDfilename("none");
-			}else {
-				dealboarddto.setDfilename(dfilename);
-			}
 
 			if (coords.equals("undefined")) {
 				dealboarddto.setDlongitude("");
@@ -230,6 +223,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
 			dealboarddto.setDroadname(roadname);
+			dealboarddto.setDfilename(dfilename);
 
 			int res = dao.insertSaleBoard(dealboarddto);
 
@@ -735,13 +729,8 @@ public class DealBoardController extends HttpServlet {
 
 			DealBoardDto dealboarddto = new DealBoardDto();
 
-			if(dfilename.equals("undefined")) {
-				dealboarddto.setDfilename("none");
-			}else {
-				dealboarddto.setDfilename(dfilename);
-			}
-			
-			
+
+
 			if (coords.equals("undefined")) {
 				dealboarddto.setDlongitude("");
 				dealboarddto.setDlatitude("");
@@ -769,6 +758,7 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDprice(dprice);
 			dealboarddto.setDfilename(dfilename); 
 			dealboarddto.setDroadname(roadname);
+			dealboarddto.setDfilename(dfilename);
 
 			int res = dao.updateDealBoard(dealboarddto);
 			
