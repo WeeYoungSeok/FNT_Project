@@ -70,7 +70,7 @@
 		<input type="text" id="roomid" placeholder="방 이름을 입력해주세요"  required="required"/>
 		<button id="btn-open">만들기</button>
 		<button id="btn-join">입장</button>
-	</div>
+	</div> 
 		<div id="localvideo"></div>
 		<div id="remotevideo"></div>
 		<script type="text/javascript" src="./real.js"></script>
