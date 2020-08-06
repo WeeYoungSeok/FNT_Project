@@ -624,7 +624,15 @@ public class DealBoardController extends HttpServlet {
 				response.sendRedirect("dealboard.do?command=fntsaleboard");
 			} else {
 				list = dao.salesearchList(categorylist,paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
 				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("salesearch", salesearch);
 				request.setAttribute("paging", paging);
 				request.setAttribute("list", list);
@@ -651,6 +659,15 @@ public class DealBoardController extends HttpServlet {
 				paging.setPage(page);
 				
 				List<DealBoardDto> list = dao.salesearchtitle(salesearch,paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("paging", paging);
 				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("list", list);
@@ -671,6 +688,15 @@ public class DealBoardController extends HttpServlet {
 				paging.setPage(page);
 				
 				List<DealBoardDto> list = dao.salesearchnick(salesearch,paging);
+				List<Integer> replyAllCount = new ArrayList<Integer>();
+				
+				for(int i=0; i<list.size(); i++) {	
+					int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+					replyAllCount.add(replyCount);
+				}
+				
+								
+				request.setAttribute("replyAllCount", replyAllCount);
 				request.setAttribute("paging", paging);
 				request.setAttribute("categorylist", categorylist);
 				request.setAttribute("list", list);
@@ -683,6 +709,7 @@ public class DealBoardController extends HttpServlet {
 		} else if(command.equals("popnick")) { //팝업 띄우서 D닉네임 가져가기 (판매글)
             String dnickname = request.getParameter("membernickname");
             List<DealBoardDto> list = dao.popNick(dnickname);
+            
             
             
             request.setAttribute("popnick", dnickname);
