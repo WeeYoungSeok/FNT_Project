@@ -1,7 +1,9 @@
 section {
+	z-index: 1;
 	padding-top: 7%;
-	margin-left: 14%;
+	padding-left: 6%;
 	height: 100%;
 	overflow: auto;
-	margin-bottom: 30px;
+	padding-bottom:7%;
+	background-image: linear-gradient(#6600cc 1%, #c78283 98%, #485696);
 }

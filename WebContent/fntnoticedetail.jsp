@@ -15,7 +15,7 @@
 margin: 0px;
 padding: 0px;
 }
-aside {position:fixed; align:left; width:14%; height:100vh; box-shadow:1px 0px 6px black; z-index:2;}
+aside {position:fixed; align:left; width:14%; height:100vh; z-index:2;}
 
 .menubar:nth-child(1) {opacity:0.7;}
 
@@ -23,7 +23,7 @@ aside {position:fixed; align:left; width:14%; height:100vh; box-shadow:1px 0px 6
 
 h1 {margin-top: 6%; font-family: "Arial"; text-align: center; margin-bottom: 2%;}
 	
-table {margin: 0 auto; width: 80%; height: auto; font-family: "Arial";}
+table {margin-left: 10%; width: 80%; height: auto; font-family: "Arial";}
 	
 #tolist {cursor: pointer;}
 #tolist:hover {font-weight: bold;}

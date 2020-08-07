@@ -33,9 +33,9 @@
  span {cursor:pointer; margin-left:10px;}
  span:hover {font-weight:bold;}
  
- #nlistlast {background-color:#dddddd; height:2px;}
+ #nlistlast {background-color:white; height:2px;}
  
- #btnline:hover {background-color:white;}
+ #btnline:hover {background-color: rgba(255, 255, 255, 0);}
  #nbbtn {width:50px; height:26px; border:none; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:#cccccc;}
  #nbbtn:hover {font-weight:bold; background-color:#bbbbbb;}
  

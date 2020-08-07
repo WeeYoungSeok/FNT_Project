@@ -42,13 +42,13 @@ th {
 	background-color: #cccccc;
 	font-weight: bold;
 	height: 30px;
-	font-size: 12pt;
+	font-size: 11pt;
 	text-align: center;
 	padding-top: 0.4%;
 }
 td {
 	height: 28px;
-	font-size: 10pt;
+	font-size: 9pt;
 	text-align: center;
 }
 #selecttable {
@@ -71,11 +71,11 @@ td {
 .chkbtn {
 	margin : 0px;
 	width: 100%; 
-	height: 50px; 
+	height: 40px; 
 	border: none; 
 	border-radius: 2px 2px 2px 2px; 
 	cursor: pointer; 
-	font-size: 12pt;
+	font-size: 10pt;
 	color: black;
 	float: center;
 	font-weight: bold;
