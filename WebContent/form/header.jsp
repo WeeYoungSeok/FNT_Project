@@ -20,7 +20,7 @@ response.setDateHeader("Expires",1L);
 		<div id="headerzone">
 		
 		<!-- 로고 -->
-		<img class="fnt_logo" src="./img/fnt_logo.png" onclick="location.href='fntmain.jsp'"/>
+		<img class="fnt_logo" src="./img/fnt_logo_main.png" onclick="location.href='fntmain.jsp'"/>
 				
 		<!-- 통합검색 -->
 		<form id="searchzone" action="dealboard.do" method="post">

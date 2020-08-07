@@ -2,18 +2,19 @@ footer {
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
-	background-color: #dddddd;
+	background-color: rgba( 255, 255, 255, 0.5 ) !important;
 	box-shadow: 0px -1px 4px #ccc;
 	height: 30px;
-	z-index: 3;
+	z-index: 5;
 }
 
 .ftrbox {
-	padding: 6px;
+	padding: 7px;
 }
 
 .foot {
 	text-align: center;
-	font: 12pt "Arial";
+	font: 10pt "Arial";
 	color: white;
+	letter-spacing: 2px;
 }

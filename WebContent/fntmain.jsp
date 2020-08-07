@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%
+response.setHeader("pragma","No-cache");
+response.setHeader("Cache-Control","no-cache");
+response.addHeader("Cache-Control","No-store");
+response.setDateHeader("Expires",1L);
+%>
+<%@page import="com.fnt.model.dto.MemberDto"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 
@@ -9,11 +15,12 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) - Main</title>
+<link href="css/header.css" rel="stylesheet" type="text/css"/>
 <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 // 주석 해제하면 메인에서 카카오채널 팝업 띄움 
-window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=480,height=640");
+//window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=480,height=640");
 
 imgslide(); 						// 페이지 로딩될 때 함수 실행
 
@@ -117,54 +124,115 @@ jQuery(document).on("ready", function() {
 <link href="./css/fntmain.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<%@ include file="./form/header.jsp" %>
-<%@ include file="./form/aside.jsp" %>
+<header>
+<%
+	MemberDto memberdto = (MemberDto)session.getAttribute("memberdto");
+%>
+		<div id="headerzone">
+		
+		<!-- 로고 -->
+		<img class="fnt_logo" src="./img/fnt_logo_main.png" onclick="location.href='fntmain.jsp'"/>
+				
+		<!-- 통합검색 -->
+		<form id="searchzone" action="dealboard.do" method="post">
+			<input type="hidden" name="categorylist" value="CHECK">
+			<input type="hidden" name="orderlist" value="D">
+			<input type="hidden" name="command" value="searchdeal">
+			<input type="text" name="searchdeal" id="searchdeal" required="required" placeholder="구매글 및 판매글만 검색 가능합니다.">		
+			<span>
+				<button class="headerbtn" type="submit">검색</button>
+			</span>
+		</form>
+	
+		<span class="mysection">
+		<script type="text/javascript">
+		//채팅방 만드는 함수
+		function chatGo() {
+			open("https://localhost:443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
+		}
+		</script>
+			<!-- 마이페이지 -->
+			<%
+				if(memberdto != null) {
+			%>
+				<p id="loginmsg"><b onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'"><%=memberdto.getMembernickname() %></b>님<br/>환영합니다!</p>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+				<button class="headerbtn" onclick="chatGo();">Chat</button>
+				<%
+					if(memberdto.getMemberrole().equals("USER")){
+				%>
+				<script type="text/javascript">
+					function newpop(url, name){
+						var memberid = '<%=memberdto.getMemberid()%>';
+						var url = "fntalert.jsp?memberid=" + memberid;
+						var option = "width=450, height=550";
+						
+						open(url, "", option);
+					}
+				</script>
+
+				<!-- 알림 -->
+				<img class="alertbell" alt="alert" src="./img/bell.png" onclick="javascript:newpop();"/>
+				<%
+					}
+				} else {
+			%>
+				<button class="headerbtn" onclick="location.href='fntlogincrud.jsp'">Sign In</button>
+			<%
+				}
+			%>
+			
+			<!-- 번역 -->
+			<!-- <button id="trans" onclick="">KO/EN</button> -->
+			
+		</span>
+		</div>
+	</header>
+	<%@ include file="./form/aside.jsp" %>
 <section>
+	<div style="top:80%;left:46.5%;text-align:center;z-index:2;position:fixed;">
+		<img alt="" src="img/tounder_w.png" style="width:100px;height:auto;">
+	</div>
 	<div class="box" id="box1">
 		<div style="display: flex;">
-			<p class="maincopy" style="padding-top:12%;">우리 주변에 다들 한 번 정도는<br>경험해 봤다는 <b>중고거래</b></p>
-			<img alt="" src="img/hands.png" style="width:400px;height:auto;margin-top:12%;margin-left:12%;">
+			<p class="maincopy" style="padding-top:14%;">주변에서 다들 한 번쯤은<br>경험해 봤다는 <b>중고거래</b></p>
+			<img alt="" src="img/hands.png" style="width:380px;height:auto;margin-top:14%;margin-left:8%;">
 		</div>
-		<div style="padding-top:3%;padding-bottom:9.5%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box2">
 		<div style="display: flex;">
 			<p class="maincopy" style="padding-top:16%;"><b>내게</b>는 제 몫을 다 한 물건이지만<br>필요로 하는 <b>다른 누군가</b>에게</p>
-			<img alt="" src="img/gift.png" style="width:320px;height:auto;margin-top:16%;margin-left:10%;">
+			<img alt="" src="img/gift.png" style="width:300px;height:auto;margin-top:16%;margin-left:4%;">
 		</div>
-		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box3">
 		<div style="display: flex;">
 			<p class="maincopy" style="padding-top:16%;">여러모로 의미도 있는<br><b>이상적 시스템</b>이지만,<br>주저하게 되는 <b>이유</b>는 뭘까요?</p>
-			<img alt="" src="img/tear.png" style="width:280px;height:auto;margin-top:14%;margin-left:20%;">
+			<img alt="" src="img/tear.png" style="width:280px;height:auto;margin-top:14%;margin-left:10%;">
 		</div>
-		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box4">
 		<div style="display: flex;">
-			<p class="maincopy" style="padding-top:20%;margin-bottom:9%;">'이 사진들만으로 <b>믿을 수</b> 있을까?'<br>'<b>작동</b>하는 모습을 보고 싶은데...'<br>'믿고 결제했다가 괜히 <b>돈만 잃는</b> 것 아닐까?'</p>
+			<p class="maincopy" style="padding-top:18%;margin-bottom:9%;">'이 사진들만으로 <b>믿을 수</b> 있을까?'<br>'<b>작동</b>하는 모습을 보고 싶은데...'<br>'믿고 결제했다가 괜히 <b>돈만 잃는</b> 것 아닐까?'</p>
 		</div>
-		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box5">
 		<div style="display: flex;">
-			<p class="maincopy" style="padding-top:14%;">저희는 생각했습니다.<br><br>"메신저 대신 <b>일회성 영상통화</b>로 <b>중고거래</b>를 하게 된다면 어떨까?"<br>"<b>실시간으로 살펴보고 나서 구매</b>할 수 있다면?"</p>
+			<p class="maincopy" style="padding-top:14%;">저희는 생각했습니다.<br><br>"메신저 대신 <b>일회성 영상통화</b>로 <b>중고거래</b>를 하면 어떨까?"<br>"<b>실시간으로 살펴보고 나서 구매</b>할 수 있다면?"</p>
 			<!-- <img alt="" src="img/bulb.png" style="width:320px;height:auto;margin-top:14%;margin-left:8%;"> -->
 		</div>
-		<div style="padding-top:13%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box6">
 		<div style="display: flex;">
-			<p class="maincopy" style="padding-top:24%;margin-bottom:8%;">지금보다도 훨씬 <b>다양한</b> 물건들의 <b>중고거래</b>가<br>더욱 많이 <b>활성화</b> 될 수 있지 않을까요?</p>
+			<p class="maincopy" style="padding-top:22%;margin-bottom:14%;">지금보다도 훨씬 <b>다양한</b> 물건들의 <b>중고거래</b>가<br>더욱 많이 <b>활성화</b> 될 수 있지 않을까요?</p>
 		</div>
-		<div style="padding-top:3%;padding-bottom:6%;text-align:center;"><img alt="" src="img/tounder_w.png" style="width:100px;height:auto;"></div>
 	</div>
 	<div class="box" id="box7">
 		<div style="display: flex;">
-			<p class="maincopy" style="padding-top:20%;margin-bottom:26%;">PayKeeper, 실시간 영상...<br><br>지켜봐 주세요!<br>저희 <b>FNT</b>는 더욱 노력하겠습니다 :D</p>
+			<p class="maincopy" style="padding-top:16%;margin-bottom:26%;">PayKeeper, 실시간 영상...<br><br>지켜봐 주세요!<br>저희 <b>FNT</b>는 더욱 노력하겠습니다 :D</p>
 		</div>
 	</div>
+	<div class="box" id="box8"></div>
 </section>
 <%@ include file="./form/footer.jsp" %>
 </body>

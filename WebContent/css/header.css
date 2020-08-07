@@ -1,10 +1,9 @@
 header {
    position: fixed;
-   background-color: white;
+   background-color: rgba( 255, 255, 255, 0 ) !important;
    width: 100vw;
    height: 14%;
-   box-shadow: 0px 1px 10px black;
-   z-index: 4;
+   z-index: 6 !important;
 }
 
 #headerzone {
@@ -31,7 +30,8 @@ header {
    width: 60%;
    height: 56%;
    padding-left: 2%;
-   border: 2px solid #dedede;
+   border: 2px solid white;
+   border-radius: 4px 4px 4px 4px;
 }
 
 .mysection {
@@ -48,12 +48,15 @@ header {
    border-radius: 2px 2px 2px 2px;
    margin-left: 10px;
    cursor: pointer;
-   background-color: #dedede;
+   color:white;
+   font-size:10pt;
+   font-weight:bold;
+   border-radius: 4px 4px 4px 4px;
+   background-color: rgba( 255, 255, 255, 0.5 );
 }
 
 .headerbtn:hover {
-   font-weight: bold;
-   background-color: #cccccc;
+   background-color: black; 
 }
 
 .alertbell {
@@ -66,7 +69,7 @@ header {
 #loginmsg {
    font: 12pt "Arial";
    right: 140px;
-   color: black;
+   color: white;
 }
 
 #loginmsg > b {
@@ -75,7 +78,7 @@ header {
 }
 
 #loginmsg > b:hover {
-	color: blue;
+	color: #fee500;
 }
 
 #trans {
