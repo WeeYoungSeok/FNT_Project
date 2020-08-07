@@ -64,7 +64,6 @@ public class LoginCrudController extends HttpServlet {
 			String memberid = request.getParameter("id");
 			String memberpw = request.getParameter("pw");
 			
-			System.out.println("로그인컨트롤러에서 id : " + memberid);
 			
 			MemberDto memberdto = dao.login(memberid, memberpw);
 			
@@ -413,7 +412,6 @@ public class LoginCrudController extends HttpServlet {
 			
 		}else if(command.equals("report2")) {
 			String membernickname = request.getParameter("membernickname");
-			System.out.println("컨트롤러에서 nick : " + membernickname);
 			request.setAttribute("membernickname", membernickname);
 			dispatch("fntreportform2.jsp", request, response);
 		}else if(command.equals("reportform2")) {
