@@ -118,7 +118,6 @@ public class AdminController extends HttpServlet {
 			        
 			        Gson gson = new Gson();
 			        String jsonPlace = gson.toJson(obj);
-			        System.out.println(jsonPlace);
 			        
 		        	out.print(jsonPlace);
 		        	
@@ -221,10 +220,6 @@ public class AdminController extends HttpServlet {
 			if (res > 0) {
 				jsResponse("복귀처리가 완료되었습니다.", "admin.do?command=adminpage", response);
 			}
-		}
-		// 판매 완료 글 조회하기
-		else if(command.equals("sellend")) {
-			String enabled = request.getParameter("enabled");
 		}
 	}
 
