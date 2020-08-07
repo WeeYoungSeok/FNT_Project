@@ -37,7 +37,7 @@ response.setDateHeader("Expires",1L);
 		<script type="text/javascript">
 		//채팅방 만드는 함수
 		function chatGo() {
-			open("https://localhost:443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
+			open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		}
 		</script>
 			<!-- 마이페이지 -->

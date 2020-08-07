@@ -5,6 +5,33 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT - Email Validation</title>
+<style type="text/css">
+.submitbtn {
+	margin-top: 1%;
+	background-color: #fee500;
+	cursor: pointer;
+	width: 50%;
+	height: 40px;
+	color: black;
+	font-size: 14pt;
+	font-weight: bold;
+	border: none;
+}
+
+.submitbtn:hover {
+	color: white;
+	background-color: black;
+}
+
+input {
+	width: 98%;
+	height: 40px;
+	padding-left: 10px;
+	border: none;
+	font-size: 12pt;
+	background-color: #EFEFEF;
+}
+</style>
 </head>
 <body>
 <%
@@ -57,21 +84,20 @@
 <form id="form2" action="javascript:getId()">
 		<!-- 서브밋을 눌럿을때 getId()함수 실행 -->
 			<table>
-			<tr>
-				<td><span>인증번호</span></td>
-				</tr>
 				<tr>
 				<td><input type="text" name="code" id="code"
-						onkeyup="checkCode()" placeholder="인증번호를 입력하세요.">
+						onkeyup="checkCode()" placeholder="인증번호를 입력하세요." style="width: 100%;">
 						<!-- onkeyup은 input에 한글자입력시 계속 실행되는 함수 입력할때마다 -->
 						
-						<div id="checkCode"></div></td>
 						
 				<td><input type="hidden" readonly="readonly" name="code_check2"
 						id="code_check2" value=""></td>		
 			</tr>
+			<tr>
+					<td><div id="checkCode"></div></td>
+					</tr>
 		</table>
-		<input id="hi" type="hidden" value="인증하기" onclick="checkCompl();">
+		<input id="hi" style="width: 100%;" class="submitbtn" type="hidden" value="인증하기" onclick="checkCompl();">
 		<!-- <input type="button" value="검색하기" onclick="sendnum()"> -->
 	
 		</form>
