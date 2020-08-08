@@ -156,8 +156,6 @@ jQuery(document).on("ready", function() {
 				if(memberdto != null) {
 			%>
 				<p id="loginmsg"><b onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'"><%=memberdto.getMembernickname() %></b>님<br/>환영합니다!</p>
-				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
-				<button class="headerbtn" onclick="chatGo();">Chat</button>
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
 				%>
@@ -181,6 +179,8 @@ jQuery(document).on("ready", function() {
 			<%
 				}
 			%>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+				<button class="headerbtn" onclick="chatGo();">Chat</button>
 			
 			<!-- 번역 -->
 			<!-- <button id="trans" onclick="">KO/EN</button> -->
