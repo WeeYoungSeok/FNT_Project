@@ -13,88 +13,49 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-* {
-	margin:0px;
-	padding:0px;
-}
+* {margin:0px; padding:0px;}
 
-h1 {
-	margin-top: 3%;
-	margin-bottom: 2%;
-	text-align: center;
-	font-family: "Arial";
-}
-#memchart {
-	margin-left:40px;
-	margin-right:10px;
-}
-#memlank {
-	padding-top:26px;
-}
-span > span {
-	font-family:"Arial"; 
-	font-weight:bold; 
-	font-size:14pt; 
-	margin:0px;
-}
+#menutitle {padding-left:31% !important;}
 
-th {
-	background-color: #cccccc;
-	font-weight: bold;
-	height: 30px;
-	font-size: 11pt;
-	text-align: center;
-	padding-top: 0.4%;
-}
-td {
-	height: 28px;
-	font-size: 9pt;
-	text-align: center;
-}
-#selecttable {
-	width: 90%;
-	margin: 0px auto;
-	text-align : absmiddle;
-	font-family: "Arial";
-}
+h1 {margin-top: 3%; margin-bottom: 2%; text-align: center; font-family: "Arial"; color: white;}
 
-#print {
-	width: 90%;
-	margin: 0px auto;
-	overflow: auto;
-}
+#memchart {margin-left:40px; margin-right:10px;}
 
-#tabletitle {
-	width: 100%;
-	font-family: "Arial";
-}
-.chkbtn {
-	margin : 0px;
-	width: 100%; 
-	height: 40px; 
-	border: none; 
-	border-radius: 2px 2px 2px 2px; 
-	cursor: pointer; 
-	font-size: 10pt;
-	color: black;
-	float: center;
-	font-weight: bold;
-}
+#memlank {padding-top:26px;}
 
-.chkbtn:hover {
-	font-weight: bold;
-	color: white;
-	background-color: black;
-}
+#adminmenu {height: 22px; color:white; background-color: rgba(255,255,255,0.1);}
 
-#tabletitle {
-	margin-bottom:5%;
-}
+#selectmember {width: 60px; height: 24px; cursor: pointer; color:white; background-color: rgba(255,255,255,0.3); border: 2px solid rgba(255,255,255,0); border-radius: 2px 2px 2px 2px;}
 
-#tabletitle td{
-	overflow: auto;
-	border-bottom : 1px solid black;
-}
+#selectmember:hover {font-weight: bold; background-color: rgba(255,255,255,0); border: 2px solid rgba(255,255,255,0.5);}
+
+span > span {font-family:"Arial"; font-weight:bold; font-size:14pt; margin:0px;}
+
+tr:hover {background-color:rgba(255,255,255,0.1);}
+
+.hovernot:hover {background-color:rgba(255,255,255,0);}
+
+th {background-color: rgba(255,255,255,0); color: rgba(255,255,255,0.5);
+	font-weight: bold; height: 30px; font-size: 11pt; text-align: center; padding-top: 0.4%;}
+
+td {height: 28px; font-size: 9pt; color: white; text-align: center;}
+
+#selecttable {width: 90%; margin: 0px auto; text-align: absmiddle; font-family: "Arial";}
+
+#print {width: 90%; margin: 0px auto; overflow: auto;}
+
+#tabletitle {width: 100%; font-family: "Arial";}
+
+#listlast {background-color: rgba(255,255,255,0.5); height: 2px; border:none !impotant;}
+
+.chkbtn {margin: 0px auto; width: 100%; height: 40px; border: none; border-radius: 2px 2px 2px 2px; 
+	cursor: pointer; font-size: 10pt; color: black; float: center; font-weight: bold;}
+
+.chkbtn:hover {font-weight: bold; color: white; background-color: black;}
+
+#tabletitle {margin-bottom:5%;}
+
+#tabletitle td {overflow: auto; border-bottom: 1px solid rgba(255,255,255,0.5);}
 
 </style>
 
@@ -127,7 +88,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 		        	"<col width='40%'>"+
 		        	"<col width='10%'>"+
 		        	"<col width='5%'>"+
-	            "<tr id=title>"+
+	            "<tr class='hovernot' id=title>"+
 	               "<th>"+"ID"+"</th>"+
 	               "<th>"+"닉네임"+"</th>"+
 	               "<th>"+"이름"+"</th>"+
@@ -136,7 +97,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	               "<th>"+"주소"+"</th>"+
 	               "<th>"+"이메일"+"</th>"+
 	               "<th>"+"가입일"+"</th>"+
-	            "</tr>"
+	            "</tr>" +
+		            "<tr class='hovernot'><td id='listlast' colspan='8'></tr>"
 	            );
 	               if(enabledValue() == "R"){
 	 	               $("#title").append( 
@@ -161,7 +123,6 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	                        "<td>"+str.memberemail+"</td>"+
 	                        "<td>"+str.memberregdate+"</td>"+
 	                     "</tr>"
-	                     
 	                  );
 	                  }
 	                  else {
@@ -200,7 +161,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	      dataType : "json",
 	      success : function(data) {
 	         $("#tablethead").append(
-	            "<tr>"+
+	            "<tr class='hovernot'>"+
 	               "<th>"+"No."+"</th>"+
 	               "<th>"+"신고 사유"+"</th>"+
 	               "<th>"+"신고자 ID"+"</th>"+
@@ -209,7 +170,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 	               "<th>"+"대상자 닉네임"+"</th>"+
 	               "<th>"+"신고일"+"</th>"+
 	               "<th colspan=2>"+"신고 처리"+"</th>"+
-			            "</tr>"
+			            "</tr>" +
+	  		            "<tr class='hovernot'><td id='listlast' colspan='9'></tr>"
 			         );
 			         $.each(data, function(key, val){
 			        	 if(val.length != 0){
@@ -249,7 +211,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  			dataType : "json",
 			  			success : function(data){
 			  		         $("#tablethead").append(
-			  		            "<tr>"+
+			  		            "<tr class='hovernot'>"+
 			  		               "<th>No.</th>"+
 			  		               "<th>판매자 ID</th>"+
 			  		               "<th>판매자 닉네임</th>"+
@@ -258,7 +220,8 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		               "<th>가격</th>"+
 			  		               "<th>작성일</th>" +
 			  		               "<th>구매 확정</th>" + 
-			  		            "</tr>"
+			  		            "</tr>" +
+			  		            "<tr class='hovernot'><td id='listlast' colspan='8'></tr>"
 			  		            );
 			  		         $.each(data, function(key, val){
 			  		        	if(val.length != 0){
@@ -382,6 +345,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			<script type="text/javascript">
 				var typing = document.getElementById('memlank');
 				var typewriter = new Typewriter(typing, { loop: true });
+				typing.style.color = "white";
 				typewriter.typeString('전체 누적 회원 ${allMemCnt}명').pauseFor(2000).deleteAll()
 						  .typeString('일반 회원 ${yMemCnt}명').pauseFor(2000).deleteAll()
 						  .typeString('탈퇴한 회원 ${nMemCnt}명').pauseFor(2000).deleteAll()
@@ -392,9 +356,9 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 		</div>
 		
 		<table id="selecttable">
-		<tr>
+		<tr class="hovernot">
 			<td>
-				<select name="enabled">
+				<select id="adminmenu" name="enabled">
 					<optgroup label="선택한 회원 조회">
 						<option value="Y">일반회원 조회</option>
 						<option value="N">탈퇴회원 조회</option>

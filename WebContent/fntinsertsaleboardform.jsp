@@ -6,23 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매 글쓰기</title>
-<style>
-	table{
-		margin: 0 auto; 
-		margin-top: 3%; 
-		width: 80%; 
-		height: auto; 
-		font-family: Arial;
-		float: center;
-	}
-	
-	#infolocation{
-		font-weight:bold;
-		margin-top:10px;
-		padding-left:135px;
-	}
-
-</style>
 
 <!-- summernote 넣기 -->
 <!-- include libraries(jQuery, bootstrap) -->
@@ -40,15 +23,8 @@
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p class="mtext" onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>	
+<%@ include file="./form/aside.jsp"%>
+
    <section>
    <%
 		if(memberdto == null) {
@@ -64,7 +40,7 @@
 	<form action="dealboard.do" id="insertform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
 		<h1>판매글 작성</h1>
 		<input type="hidden" name="command" value="insertsaleboardres">
-        <table border="1" style="border: solid white;">
+        <table>
 			<col width="100px">
 			<col width="756px">
 			<tr>
@@ -98,13 +74,13 @@
 				</td>
 			</tr>
 		</table>
-		<div style="height:30px;">
-         	<div id="infolocation"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></div>
+		<div style="width:100%;height:30px;">
+         	<div id="infolocation"><b>직거래시 원하는 장소를 검색 후 클릭해주세요!</b></div>
         </div>
       </form>
-         <div class="map_wrap" style="float:center;">
-             <div id="map" style="margin:0px auto;width:1020px;height:500px;position:relative;overflow:hidden;"></div>
-             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left:250px;">
+         <div class="map_wrap" style="width:60%;margin:0px auto;float:center;">
+             <div id="map" style="margin:0px auto;width:100%;height:500px;position:relative;overflow:hidden;"></div>
+             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;width:100%;">
                  <div class="option">
                      <div>
                          <form onsubmit="searchPlaces(); return false;">
