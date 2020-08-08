@@ -37,21 +37,22 @@ function openrereply(me,membernickname,replyno,replyboardno) {
 	
 	$(".rereplyform").hide();
 	$(me).closest("li").after(
-				'<li class="rereplyform" style="width:76%;height:29px;margin:0px auto;padding-left:35px;list-style:none;">'
+		'<li class="rereplyform" style="width:76%;height:29px;margin:0px auto;padding-left:35px;list-style:none;">'
+			+'<div>'
+				+'<form action="reply.do" method="method">'
 					+'<div style="display:flex;">'
-					+'<div style="width:160px;height:24px;padding-top:5px;text-align:center;background-color:#fee500;"><b>' + membernickname + '</b></div>'
-					+'<form action="reply.do" method="method">'
-					+'<input type="hidden" name="command" value="insertRereply">'
-					+'<div><input type="text" name="rereplytitle" placeholder="댓글 내용을 입력해주세요." style="width:725px;height:28px;border:none;padding-left:10px;"/>'
-					+'<input type="hidden" name="replyno" value="' + replyno + '">'
-					+'<input type="hidden" name="replyboardno" value="' + replyboardno + '">'
-					+'<input type="hidden" name="replynickname" value="' + membernickname + '">'
-					+'<input id="rbtn" type="submit" value="등록">'
+						+'<div style="width:160px;height:24px;padding-top:5px;overflow:auto;text-align:center;color:white;background-color:rgba(255,255,255,0.3);"><b style="margin:5px;">' + membernickname + '</b></div>'
+						+'<input type="hidden" name="command" value="insertRereply">'
+						+'<input type="text" id="rereplytitle" name="rereplytitle" placeholder="댓글 내용을 입력해주세요." style="width:725px;height:28px;border:none;padding-left:10px;"/>'
+						+'<input type="hidden" name="replyno" value="' + replyno + '">'
+						+'<input type="hidden" name="replyboardno" value="' + replyboardno + '">'
+						+'<input type="hidden" name="replynickname" value="' + membernickname + '">'
+						+'<input id="rbtn" type="submit" value="등록" style="margin:3px;">'
 					+'</div>'
-					+'</div>'
-					+'</form>'
-					+'</li>'
-			);
+				+'</form>'
+			+'</div>'
+		+'</li>'
+	);
 }
 
 // 댓글 ajax하는거 취소
@@ -179,7 +180,7 @@ function deletereply(replyno,replyboardno) {
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="delreply" class="re2line" style="font-family:'Arial'; margin:0px auto; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
+						<li id="delreply" class="re2line" style="font-family:'Arial'; margin:0px auto; margin-left: 10.2%; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
 					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
