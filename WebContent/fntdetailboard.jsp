@@ -165,7 +165,7 @@ function deletereply(replyno,replyboardno) {
 	%>
 	<c:choose>
 		<c:when test="${empty replylist }">
-			<div id="noreply" class="re2line" style="font-family:'Arial';text-align:center;width:78%;margin:0px auto;">작성된 댓글이 없습니다.</div>
+			<div id="noreply" class="re2line" style="font-family:'Arial';text-align:center; width:78%;">작성된 댓글이 없습니다.</div>
 			<ul id="replylist">
 				<li id="reply" style="list-style:none;"></li>
 				<div id="up"></div>
@@ -179,30 +179,30 @@ function deletereply(replyno,replyboardno) {
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="delreply" class="re2line" style="font-family:'Arial';width:78%; margin:0px auto; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
+						<li id="delreply" class="re2line" style="font-family:'Arial'; margin:0px auto; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
 					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
 					</c:otherwise>
 				</c:choose>
 						<div class="repline">
-						<div class="re1line" style="display:flex;">
-						<div><b>${replydto.replynickname }</b></div>
-						<div style="margin-left:6px;">
-							${replydto.replyregdate }
-							<span>
-								<c:choose>
-									<c:when test="${replydto.replytitletab eq 0 }">
-										<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
-									</c:when>
-								</c:choose>
-								<c:choose>
-									<c:when test="${replydto.replynickname == memberdto.membernickname}">							
-										<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
-									</c:when>
-								</c:choose>
-							</span>
-						</div>
+							<div class="re1line" style="display:flex;">
+								<div><b>${replydto.replynickname }</b></div>
+								<div style="margin-left:6px;">
+									${replydto.replyregdate }
+								<span>
+									<c:choose>
+										<c:when test="${replydto.replytitletab eq 0 }">
+											<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
+										</c:when>
+									</c:choose>
+									<c:choose>
+										<c:when test="${replydto.replynickname == memberdto.membernickname}">							
+											<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
+										</c:when>
+									</c:choose>
+								</span>
+							</div>
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
 						</div>

@@ -30,12 +30,6 @@
 	<div id="sboard">
 	<h1>판매 게시판</h1>
 	<table>
-		<col width="100px">
-		<col width="200px">
-		<col width="100px">
-		<col width="200px">
-		<col width="100px">
-		<col width="200px">
 		<tr>
 			<th>제목</th>
 			<td colspan="5">
@@ -164,9 +158,9 @@
 	<input type="hidden" name="command" value="insertreply">
 		<table style="margin-bottom:3px;">
 			<tr>
-				<th style="background-color:#fee500;width:108px;"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; background-color:#fee500;"></th>
+				<th style="background-color:rgba(255,255,255,0.1);"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; color: white; background-color:rgba(255,255,255,0);"></th>
 				<td style="display:flex; padding-left:0px;">
-					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; background-color:#f9f9f9;">
+					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; background-color:rgba(255,255,255,0);">
 					<div id="btnbox">
 						<input id="sbbtn" type="submit" id="insertreply" value="등록">
 						<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
@@ -179,7 +173,7 @@
 	%>
 	<c:choose>
 		<c:when test="${empty replylist }">
-			<div id="noreply" class="re2line" style="text-align:center;width:78%;margin:0px auto;">작성된 댓글이 없습니다.</div>
+			<div id="noreply" class="re2line" style="font-family:'Arial';text-align:center; width:78%;">작성된 댓글이 없습니다.</div>
 			<ul id="replylist">
 				<li id="reply" style="list-style:none;"></li>
 				<div id="up"></div>
@@ -194,125 +188,121 @@
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="delreply" style="width:78%; margin:0px auto; list-style:none;">삭제된 댓글입니다.</li>
+						<li id="delreply" style="font-family:'Arial'; margin:0px auto; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
 					</c:when> 
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
 					</c:otherwise>
 				</c:choose>
-					<c:choose>
-						<c:when test="${replydto.replygroupnoseq eq 0  }">
-						</c:when>
-						<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname ||memberdto.memberid eq 'admin'}">
-							
-							
-						
-							<div class="repline">
+				<c:choose>
+					<c:when test="${replydto.replygroupnoseq eq 0  }"></c:when>
+					<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname ||memberdto.memberid eq 'admin'}">
+						<div class="repline">
 							<div class="re1line" style="display:flex;">
-							<div><b>${replydto.replynickname }</b></div>
-							<div style="margin-left:6px;">
-								${replydto.replyregdate }
-							<span>
-								<c:choose>
-									<c:when test="${replydto.replytitletab eq 0 }">
-										<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
-									</c:when>
-								</c:choose>
-								<c:choose>
-									<c:when test="${replydto.replynickname == memberdto.membernickname}">							
-										<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
-									</c:when>
-								</c:choose>
-							</span>
-						</div>
+								<div><b>${replydto.replynickname }</b></div>
+								<div style="margin-left:6px;">
+									${replydto.replyregdate }
+								<span>
+									<c:choose>
+										<c:when test="${replydto.replytitletab eq 0 }">
+											<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
+										</c:when>
+									</c:choose>
+									<c:choose>
+										<c:when test="${replydto.replynickname == memberdto.membernickname}">							
+											<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
+										</c:when>
+									</c:choose>
+								</span>
+							</div>
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
-
-						</c:when>
-						<c:otherwise>
-							<div class="re2line" style="width:77.8%;margin:0px auto;padding-left:20px;"><span>비밀 댓글입니다.</span></div>
-						</c:otherwise>
-					</c:choose>
-					</li>	
-					</c:forEach>		
-				<div id="up"></div>
-				</ul>
+					</c:when>
+					<c:otherwise>
+						<div class="re2line" style="width:77.8%;margin:0px auto;padding-left:20px;"><span>비밀 댓글입니다.</span></div>
+					</c:otherwise>
+				</c:choose>
+			</li>	
+		</c:forEach>		
+		<div id="up"></div>
+		</ul>
 		</c:otherwise>
 	</c:choose>	
 	</div>
-	</section>
+</section>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-function popnick(membernickname){
+function popnick(membernickname) {
 	var memberdto = "<%=memberdto%>";
-	if(memberdto == "null"){	//문자열로 null 선언해줘야함
+	if(memberdto == "null") {	//문자열로 null 선언해줘야함
 		alert("로그인이 필요합니다");
 		location.href="fntlogincrud.jsp";
-	}else{
-	open("fntpopnick.jsp?popnick="+membernickname,"","width=400, height=500");	
+	} else {
+	open("fntpopnick.jsp?popnick=" + membernickname,"","width=400, height=500");	
 	}
 }
 
-function delChk(dboardno){
-	if(confirm("삭제하시겠습니까?")){
-		location.href='dealboard.do?command=deletebuyboard&dboardno='+dboardno;
+function delChk(dboardno) {
+	if(confirm("삭제하시겠습니까?")) {
+		location.href='dealboard.do?command=deletebuyboard&dboardno=' + dboardno;
 	}
 }
 
 
-function insertreply(me,memberid){
-	if($("input[name=replytitle]").val()==""){
-		alert("내용을 입력해주세요");
+function insertreply(me,memberid) {
+	if($("input[name=replytitle]").val() == "") {
+		alert("내용을 입력해주세요!");
 		return false;
-	}else{
+	} else {
 		return true;		
 	}	
 }
 
-function openrereply(me,membernickname,replyno,replyboardno){
-	if(membernickname==""){
-		alert("답변 하시려면 로그인 해주세요");
+function openrereply(me,membernickname,replyno,replyboardno) {
+	if(membernickname == "") {
+		alert("답변하시려면 로그인 해주세요!");
 		return false;
 	}
 	
 	$(".rereplyform").hide();
 	$(me).closest("li").after(
-			'<li class="rereplyform" style="width:76%;height:29px;margin:0px auto;padding-left:35px;list-style:none;">'
-				+'<div style="display:flex;">'
-				+'<div style="width:160px;height:24px;padding-top:5px;text-align:center;background-color:#fee500;"><b>' + membernickname + '</b></div>'
+		'<li class="rereplyform" style="width:66.4%;height:29px;margin-left:13.4%;list-style:none;background-color:rgba(255,255,255,0);">'
+			+'<div>'
 				+'<form action="reply.do" method="method">'
-				+'<input type="hidden" name="command" value="insertRereply">'
-				+'<div><input type="text" name="rereplytitle" placeholder="댓글 내용을 입력해주세요." style="width:725px;height:28px;border:none;padding-left:10px;"/>'
-				+'<input type="hidden" name="replyno" value="'+replyno+'">'
-				+'<input type="hidden" name="replyboardno" value="'+replyboardno+'">'
-				+'<input type="hidden" name="replynickname" value="'+membernickname+'">'
-				+'<input id="rbtn" type="submit" value="등록">'
-				+'</div>'
-				+'</div>'
+					+'<div style="display:flex;">'
+						+'<div style="width:110px;height:24px;padding-top:5px;overflow:auto;text-align:center;color:white;background-color:rgba(255,255,255,0.3);"><b style="margin:5px;">' + membernickname + '</b></div>'
+						+'<input type="hidden" name="command" value="insertRereply">'
+						+'<input type="text" id="rereplytitle" name="rereplytitle" placeholder="댓글 내용을 입력해주세요."/>'
+						+'<input type="hidden" name="replyno" value="' + replyno + '">'
+						+'<input type="hidden" name="replyboardno" value="' + replyboardno + '">'
+						+'<input type="hidden" name="replynickname" value="' + membernickname + '">'
+						+'<input id="rbtn" type="submit" value="등록" style="margin:3px;">'
+					+'</div>'
 				+'</form>'
-				+'</li>'
-			);
+			+'</div>'
+		+'</li>'
+	);
 }
 
-function insertRereply(){	
+function insertRereply() {	
 
-	if(rereplytitle == ""){
-		alert("내용을 입력해주세요");
+	if(rereplytitle == "") {
+		alert("내용을 입력해주세요!");
 		return false;
-	}else{
+	} else {
 		return true;		
 	}
 }
 
-function deletereply(replyno,replyboardno){
-	if(confirm("삭제하시겠습니까?")){
+function deletereply(replyno,replyboardno) {
+	if(confirm("삭제하시겠습니까?")) {
 		location.href='reply.do?command=deletereply2&replyno='+replyno+'&dboardno='+replyboardno;
 	}
 }
 
-function wishcheck(memberid,dnickname,dboardno){
-	if(!memberid){
+function wishcheck(memberid,dnickname,dboardno) {
+	if(!memberid) {
 		alert("찜 하시려면 로그인 해주세요🤗");
 		return false;
 	}
@@ -321,12 +311,12 @@ function wishcheck(memberid,dnickname,dboardno){
 		method : "POST",
 		data : {"command":"selectOnewishlist","memberid":memberid, "dnickname" :dnickname,"dboardno":dboardno },
 		success : function(msg){
-			if(msg == "INSERT"){
-				alert("찜목록 추가");
+			if(msg == "INSERT") {
+				alert("찜 목록 추가");
 				//$(".wish").text("★")
 				$(".wish").html('<img alt="Wish" src="./icon/wish.png" style="width:18px;height:18px;">');
-			}else{
-				alert("찜목록 삭제");
+			} else {
+				alert("찜 목록 삭제");
 				//$(".wish").text("☆");
 				$(".wish").html('<img alt="nowish" src="./icon/nowish.png" style="width:18px;height:18px;">');
 			}
@@ -334,8 +324,8 @@ function wishcheck(memberid,dnickname,dboardno){
 	});
 }
 
-function delChk(dboardno){
-	if(confirm("삭제하시겠습니까?🤔")){
+function delChk(dboardno) {
+	if(confirm("삭제하시겠습니까?🤔")) {
 		location.href='dealboard.do?command=deletesaleboard&dboardno='+dboardno;
 	}
 }

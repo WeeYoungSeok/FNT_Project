@@ -1,140 +1,49 @@
-* {
-	margin: 0px;
-	padding: 0px;
-}
+* {margin: 0px; padding: 0px;}
 
-.menubar:nth-child(3) {
-	opacity:0.7;
-}
+#menutitle {padding-left:31% !important;}
 
-#sboard {
-	margin-top: 4%; 
-	margin-bottom: 6%;
-}
+#sboard {margin-bottom: 2%; margin-left:10%;}
 
-h1 {
-	margin-top: 4%; 
-	font-family: "Arial"; 
-	text-align: center; 
-	margin-bottom: 2%;
-}
+h1 {margin-top: 4%; font-family:"Arial"; text-align:left; margin-left: 10%; color: white; margin-bottom: 1%;}
 	
-table {
-	margin: 0px auto; 
-	width: 80%; 
-	height: auto; 
-	font-family: "Arial";
-}
+table {margin-left: 10%; width: 70%; height: auto; font-family: "Arial";}
 
-#tolist {
-	cursor: pointer;
-}
+#tolist {cursor: pointer;}
+#tolist:hover {font-weight: bold;}
 
-#tolist:hover {
-	font-weight: bold;
-}
+th {font-size: 13pt; width: 100px; height: 30px; background-color: rgba(255,255,255,0.1);color: rgba(255,255,255,0.7); font-weight: bold; padding-top: 2px;}
 
-th {
-	font-size: 14pt; 
-	width: 100px; 
-	height: 30px; 
-	background-color: #dddddd; 
-	font-weight: bold; 
-	padding-top: 2px;
-}
+td {font-size: 12pt; padding-left: 10px; height: 30px; color: white;}
 
-td {
-	font-size: 12pt; 
-	padding-left: 10px; 
-	background-color: #f9f9f9;
-}
+.wish {cursor: pointer; align: center; margin: 0px auto;}
+.wish:hover {font-weight: bold; color: blue;}
 
-.wish {
-	cursor: pointer; 
-	align: center; 
-	margin: 0px auto;
-}
+#payment {cursor: pointer;}
 
-.wish:hover {
-	font-weight: bold; 
-	color: blue;
-}
+#slistlast {background-color: rgba(255,255,255,0.5); height: 2px;}
 
-#payment {
-	cursor: pointer;
-}
+#btnline {background-color: rgba(255,255,255,0);}
 
-#slistlast {
-	background-color: #dddddd; 
-	height: 2px;
-}
+#btnbox {margin-top: 4px; float: right; display: flex;}
 
-#btnline {
-	background-color: white;
-}
+#sbbtn {width: 50px; height: 26px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: rgba(255,255,255,0.3);}
+#sbbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
 
-#btnbox {
-	margin-top: 4px; 
-	float: right; 
-	display: flex;
-}
+.repline {margin: 0px auto; margin-left: 10.2%; margin-right: 20.2%;}
 
-#sbbtn {
-	width: 50px; 
-	height: 26px; 
-	border: none; 
-	margin-left: 10px; 
-	border-radius: 4px 4px 4px 4px; 
-	cursor: pointer; 
-	background-color: #cccccc;
-}
+.re1line {height: 24px; padding-top: 5px; padding-left: 10px; font-family: "Arial"; color: white; background-color: rgba(255,255,255,0.1);}
 
-#sbbtn:hover {
-	font-weight: bold; 
-	background-color: #bbbbbb;
-}
+.re2line {height: 22px; padding-top: 6px; padding-left: 20px; font-family: "Arial"; color: white;}
 
-.repline {
-	margin: 0px auto; 
-	width: 79.6%; 
-}
+#reply {list-style: none;}
 
-.re1line {
-	height: 24px;
-	padding-top: 5px;
-	padding-left: 10px;
-	font-family: "Arial";
-	background-color: #dddddd; 
-}
+#noreply {margin-left: 10%; margin-right: 20.2% !important; width: 68% !important; color: white; background-color: rgba(255,255,255,0.1);}
+#delreply {margin-right: 20.2% !important; width: 69.6% !important; color: white; background-color: rgba(255,255,255,0.1);}
 
-.re2line {
-	height: 22px;
-	padding-top: 6px;
-	padding-left: 20px;
-	font-family: "Arial";
-	background-color: #f9f9f9;
-}
+.rereply {width: 95.4%;}
+#rereplytitle {width:100%;height:24px;border:none;padding-left:10px;color:white;background-color:rgba(255,255,255,0);}
+#rereplytitle::placeholder {color: white;}
+#replytitle::placeholder {color: white;}
 
-#reply {
-	list-style: none;
-}
-
-.rereply {
-	width: 96%;
-}
-
-#rbtn {
-	width: 36px; 
-	height: 20px; 
-	border: none; 
-	margin-left: 10px; 
-	border-radius: 2px 2px 2px 2px; 
-	cursor: pointer; 
-	font-weight: bold; 
-	background-color: #eeeeee;
-}
-
-#rbtn:hover {
-	color: white;
-	background-color: black;
-}
+#rbtn {width: 36px; height: 20px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; font-weight: bold; color: white; background-color: rgba(255,255,255,0.3);}
+#rbtn:hover {color: white; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
