@@ -63,6 +63,10 @@ response.setDateHeader("Expires",1L);
 				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
 				<button class="headerbtn" onclick="chatGo();">Chat</button>
 				<%
+					} else {
+				%>
+						<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+				<%
 					}
 				} else {
 			%>
