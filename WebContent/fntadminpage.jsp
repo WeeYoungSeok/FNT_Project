@@ -263,7 +263,6 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		         $.each(data, function(key, val){
 			  		        	if(val.length != 0){
 			  		        		var list = val;
-			  		        	
 			  		        		for(var i = 0; i < list.length; i++){
 			  		        			var str = list[i];
 			  		        			$("#tabletbody").append(
@@ -286,7 +285,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			  		        		}
 			  		        	}else {
 			  		        		$("#tabletbody").append(
-			  		        			"<tr><td colspan='6' align='center'>판매 완료된 글이 없습니다.</td></tr>"		
+			  		        			"<tr><td colspan='8' align='center'>판매 완료된 글이 없습니다.</td></tr>"		
 			  		        		);
 			  		        	}
 			  		         });
