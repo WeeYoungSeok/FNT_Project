@@ -28,7 +28,7 @@ td {font-size: 12pt; padding-left: 10px; color: white;}
  
 #nlistlast {background-color: rgba(255,255,255,0.5); height: 2px;}
 
-#btnline {background-color: white;}
+#btnline {background-color: rgba(255,255,255,0);}
 #btnbox {margin-top: 4px; float: right; display: flex;}
 #nbbtn {width: 50px; height: 26px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: rgba(255,255,255,0.3);}
 #nbbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}

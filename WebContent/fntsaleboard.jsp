@@ -196,7 +196,6 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 							<button id="sbbtn" onclick="location.href='dealboard.do?command=insertsaleboard'">글 작성</button>
 						</td>
 					</tr>
-					<tr class="hovernot"><td colspan="7" id="slistlast"></td></tr>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${list }" var="dealboarddto" varStatus="status">
@@ -256,8 +255,8 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 						MemberDto dto = (MemberDto) session.getAttribute("memberdto");
 						if(dto != null){
 	%>		
-					<tr>
-						<td class="hovernot" colspan="7" align="right">
+					<tr class="hovernot">
+						<td colspan="7" align="right">
 							<button id="sbbtn" onclick="location.href='dealboard.do?command=insertsaleboard'">글 작성</button>
 						</td>
 					</tr>
