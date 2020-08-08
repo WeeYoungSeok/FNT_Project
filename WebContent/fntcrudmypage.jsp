@@ -8,23 +8,22 @@
 <title>FNT(Feel New Item) 내 정보 보기</title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-*{
-	margin: 0px;
-	padding: 0px;
-}
+*{margin: 0px;padding: 0px;}
+#menutitle {padding-left:31% !important;}
+
 .tzone {width: 80%; margin: 0px auto; margin-top: 5%;}
 
-h1 {text-align: center; font-family: "Arial";}
+h1 {text-align: center; font-family: "Arial"; color: white;}
 
-table {margin: 0px auto; margin-top: 2%; font-size: 12pt; font-family: "Arial"; border: 2px solid #cccccc;}
-th {font-size: 14pt; background-color: #dddddd;}
-td {height: 40px; padding-left: 20px;}
+table {margin: 0px auto; margin-top: 2%; font-size: 12pt; font-family: "Arial"; border: 2px solid rgba(255,255,255,0.5);}
+th {font-size: 14pt; color: white; background-color: rgba(255,255,255,0.2);}
+td {height: 40px; padding-left: 20px; color: white; background-color: rgba(255,255,255,0);}
 
-.acntBtn {width: 100%; height: 100%; font-family: "Arial"; cursor: pointer; border: none;}
-#Udt {font-size: 14pt; font-weight: bold; background-color: #fee500; margin-top: 1%;}
-#Udt:hover {color: white; background-color: black;}
+.acntBtn {width: 100%; height: 100%; font-family: "Arial"; cursor: pointer; border: 2px solid rgba(255,255,255,0); border-radius: 4px 4px 4px 4px; color: white; background-color: rgba(255,255,255,0.3);}
+#Udt {font-size: 14pt; font-weight: bold; margin-top: 1%;}
+#Udt:hover {color: white; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
 #Dlt {font-size: 12pt; height: 90%; margin-top: 2%;}
-#Dlt:hover {color: white; background-color: red; font-weight: bold;}
+#Dlt:hover {border: 2px solid red; font-weight: bold; background-color: rgba(255,255,255,0);}
 
 </style>
 
