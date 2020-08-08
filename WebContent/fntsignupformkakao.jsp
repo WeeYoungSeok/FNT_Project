@@ -33,7 +33,7 @@
 <body>
 	<div class="topbar">
 		<a href="fntmain.jsp">
-			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
+			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo_main.png">
 		</a>	
 	</div>
 	<section>

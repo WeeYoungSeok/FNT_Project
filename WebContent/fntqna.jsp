@@ -23,7 +23,7 @@
  
  #qtable {float: center;}
  
- h1 {margin-top:2%;margin-right:40px;font-family:"Arial"; color: white;}
+ h1 {margin-top:2%; font-family:"Arial"; text-align:left; margin-left: 10%; color: white;}
  
  table {margin:0px auto; margin-top:1%; width:80%; height:auto; font-family:"Arial";} 
  tr:hover {background-color:rgba(255,255,255,0.5);}
@@ -72,13 +72,13 @@
       			<th>작성자</th>
       			<th>작성일</th>
       		</tr>
-      		<tr><td colspan="5" id="qlistlast"></td></tr>
+      		<tr class="hovernot"><td colspan="5" id="qlistlast"></td></tr>
       		
 			<%
 				if (qnaboardlist == null) { 
 			%>
 				<tr align="center">
-					<td colspan="4">작성된 글이 없습니다.</td>
+					<td colspan="5">현재 작성된 글이 없습니다.</td>
 				</tr>
 			<%
 				} else {
@@ -141,15 +141,15 @@
 				}	
 			}
 			%>
-			<tr><td colspan="5" id="qlistlast"></td></tr>
+			<tr class="hovernot"><td colspan="5" id="qlistlast"></td></tr>
 			<%
 				if(memberdto == null) {
 			%>
 			<%
 				} else {
 			%>
-			<tr>
-				<td class="hovernot" colspan="5" align="right">
+			<tr class="hovernot">
+				<td colspan="5" align="right">
 					<button id="qbbtn" onclick="location.href='qna.do?command=qnainsert'">글 작성</button>
 				</td>
 			</tr>

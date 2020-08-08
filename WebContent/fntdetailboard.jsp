@@ -127,8 +127,8 @@ function deletereply(replyno,replyboardno) {
 			<tr>
 				<td align="right" colspan="4" id="btnline">
 					<div id="btnbox">
-						<input id="dbbtn" type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatebuyboard&dboardno=${dealboarddto.dboardno}'">
-						<input id="dbbtn" type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
+						<input id="bbbtn" type="button" value="수정하기" onclick="location.href='dealboard.do?command=updatebuyboard&dboardno=${dealboarddto.dboardno}'">
+						<input id="bbbtn" type="button" value="삭제하기" onclick="delChk(${dealboarddto.dboardno});">
 					</div>
 				</td>
 			</tr>
@@ -150,11 +150,11 @@ function deletereply(replyno,replyboardno) {
 	<input type="hidden" name="command" value="insertreply">
 		<table style="margin-bottom:3px;">
 			<tr>
-				<th style="background-color:#fee500;"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; background-color:#fee500;"></th>
+				<th style="background-color:rgba(255,255,255,0.1);"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; color: white; background-color:rgba(255,255,255,0);"></th>
 				<td style="display:flex; padding-left:0px;">
-					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px;">
+					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; background-color:rgba(255,255,255,0);">
 					<div id="btnbox">
-						<input id="dbbtn" type="submit" id="insertreply" value="등록">
+						<input id="bbbtn" type="submit" id="insertreply" value="등록">
 						<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
 					</div>
 				</td>

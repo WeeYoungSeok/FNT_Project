@@ -14,27 +14,27 @@
 <style type="text/css">
 * {margin:0px; padding:0px;}
 
-.menubar:nth-child(4) {opacity:0.7;}
+#menutitle {padding-left:31% !important;}
 
-#qboard {margin-top: 6%; margin-bottom: 6%;}
+#qboard {margin-top: 4%; margin-bottom: 2%; margin-left:10%;}
 
-h1 {margin-top: 6%; font-family: "Arial"; text-align: center; margin-bottom: 2%;}
+h1 {font-family:"Arial"; text-align:left; margin-left: 10%; color: white; margin-bottom: 1%;}
 	
-table {margin: 0 auto; width: 80%; height: auto; font-family: "Arial";}
+table {margin-left: 10%; width: 70%; height: auto; font-family: "Arial";}
 	
-#tolist {cursor: pointer;}
+#tolist {cursor: pointer;text-decoration:underline;}
 #tolist:hover {font-weight: bold;}
 
-th {font-size: 14pt; width: 100px; height: 30px; background-color: #dddddd; font-weight: bold; padding-top: 2px;}
+th {font-size: 13pt; width: 100px; height: 30px; background-color: rgba(255,255,255,0.1);color: rgba(255,255,255,0.7); font-weight: bold; padding-top: 2px;}
 
-td {font-size: 12pt; padding-left: 10px; background-color: #f9f9f9;}
+td {font-size: 12pt; padding-left: 10px; color: white;}
  
-#qlistlast {background-color: #dddddd; height: 2px;}
+#qlistlast {background-color: rgba(255,255,255,0.5); height: 2px;}
 
 #btnline {background-color: white;}
 #btnbox {margin-top: 4px; float: right; display: flex;}
-#qbbtn {width: 50px; height: 26px; border: none; margin-left: 10px; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
-#qbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
+#qbbtn {width: 50px; height: 26px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: rgba(255,255,255,0.3);}
+#qbbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
 
 </style>
 </head>
@@ -46,23 +46,26 @@ td {font-size: 12pt; padding-left: 10px; background-color: #f9f9f9;}
 		<div id="qboard">
 		<h1>고객센터</h1>
 		<table> 
+			<tr><td colspan="4" id="qlistlast"></td></tr>
 			<tr>
 				<th>게시판</th>
 				<td id="tolist" onclick="location.href='qna.do?command=qna'">고객센터</td>
 				<th>작성자</th>
 				<td><%=qnaboardlistone.getQbnickname() %></td>
 			<tr>
+			<tr><td colspan="4" id="qlistlast"></td></tr>
 			<tr>
 				<th>제목</th>
 				<td colspan="3"><%=qnaboardlistone.getQbtitle() %></td>
 			</tr>
+			<tr><td colspan="4" id="qlistlast"></td></tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="3" width="400" height="200" style="vertical-align: top;"><br/><p style="font-weight: bold;">Q.문의 내용</p><%=qnaboardlistone.getQbcontent() %>
+				<td colspan="3" width="400" height="200" style="width:600; height:240px; padding-bottom:20px; overflow:auto;"><br/><p style="font-weight: bold;">Q.문의 내용</p><%=qnaboardlistone.getQbcontent() %>
 				<%
 				if (qnaboardlistone.getQbflag().equals("Y")) {
 				%>
-					<span>&nbsp;&nbsp;&nbsp;문의 답변 | 등록일 : <%=qnaboardlistone.getQbredate() %></span>
+					<span >&nbsp;&nbsp;&nbsp;문의 답변 | 등록일 : <%=qnaboardlistone.getQbredate() %></span>
 				<%
 				} 
 				%>

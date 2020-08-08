@@ -68,12 +68,12 @@
       			<th>작성자</th>
       			<th>작성일</th>
       		</tr>
-			<tr><td colspan="4" id="nlistlast"></td></tr>
+			<tr class="hovernot"><td colspan="4" id="nlistlast"></td></tr>
 			<%
 				if (noticeboardlist == null) { 
 			%>
 				<tr align="center">
-					<td colspan="4">작성된 글이 없습니다.</td>
+					<td colspan="4">현재 작성된 글이 없습니다.</td>
 				</tr>
 			<%
 				} else {
@@ -95,7 +95,7 @@
 			<%
 				if (memberdto == null || memberdto.getMemberrole().equals("USER")) {
 			%>
-			<tr><td colspan="4" id="nlistlast"></td></tr>
+			<tr class="hovernot"><td colspan="4" id="nlistlast"></td></tr>
 			<tr class="hovernot"><td colspan="4" align="right"></td></tr>
 			<%
 				} else {
