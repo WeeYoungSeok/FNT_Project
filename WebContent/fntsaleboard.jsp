@@ -189,7 +189,7 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 			<c:choose>
 				<c:when test="${empty list }">
 					<tr>
-						<td colspan="5" align="center">작성된 글이 없습니다.</td>
+						<td colspan="7" align="center">작성된 글이 없습니다.</td>
 					</tr>
 					<tr>
 						<td class="hovernot" colspan="7" align="right">
