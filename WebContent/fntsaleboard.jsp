@@ -185,17 +185,18 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 				<th>가격</th>
 				<th>작성일</th>
 			</tr>
-			<tr><td colspan="7" id="slistlast"></td></tr>
+			<tr class="hovernot"><td colspan="7" id="slistlast"></td></tr>
 			<c:choose>
 				<c:when test="${empty list }">
 					<tr>
-						<td colspan="7" align="center">작성된 글이 없습니다.</td>
+						<td colspan="7" align="center">현재 작성된 글이 없습니다.</td>
 					</tr>
 					<tr>
 						<td class="hovernot" colspan="7" align="right">
 							<button id="sbbtn" onclick="location.href='dealboard.do?command=insertsaleboard'">글 작성</button>
 						</td>
 					</tr>
+					<tr class="hovernot"><td colspan="7" id="slistlast"></td></tr>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${list }" var="dealboarddto" varStatus="status">
@@ -250,7 +251,7 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 							<td>${dealboarddto.dregdate }</td>
 						</tr>
 					</c:forEach>
-					<tr><td colspan="7" id="slistlast"></td></tr>
+					<tr class="hovernot"><td colspan="7" id="slistlast"></td></tr>
 	<%
 						MemberDto dto = (MemberDto) session.getAttribute("memberdto");
 						if(dto != null){

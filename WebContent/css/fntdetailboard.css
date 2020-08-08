@@ -1,30 +1,12 @@
-* {
-	margin: 0px;
-	padding: 0px;
-}
+* {margin: 0px; padding: 0px;}
 
-.menubar:nth-child(2) {
-	opacity:0.7;
-}
+#menutitle {padding-left:31% !important;}
 
-#dboard {
-	margin-top: 6%; 
-	margin-bottom: 6%;
-}
+#dboard {margin-bottom: 2%; margin-left:10%;}
 
-h1 {
-	margin-top: 6%; 
-	font-family: "Arial"; 
-	text-align: center; 
-	margin-bottom: 2%;
-}
+h1 {font-family:"Arial"; text-align:left; margin-left: 10%; color: white; margin-bottom: 1%;}
 	
-table {
-	margin: 0px auto; 
-	width: 80%; 
-	height: auto; 
-	font-family: "Arial";
-}
+table {margin-left: 10%; width: 70%; height: auto; font-family: "Arial";}
 
 #tolist {
 	cursor: pointer;
@@ -34,29 +16,12 @@ table {
 	font-weight: bold;
 }
 
-th {
-	font-size: 14pt; 
-	width: 100px; 
-	height: 30px; 
-	background-color: #dddddd; 
-	font-weight: bold; 
-	padding-top: 2px;
-}
+th {font-size: 13pt; width: 100px; height: 30px; background-color: rgba(255,255,255,0.1);color: rgba(255,255,255,0.7); font-weight: bold; padding-top: 2px;}
+td {font-size: 12pt; padding-left: 10px; color: white;}
 
-td {
-	font-size: 12pt; 
-	padding-left: 10px; 
-	background-color: #f9f9f9;
-}
+#dlistlast {background-color: rgba(255,255,255,0.5); height: 2px;}
 
-#dlistlast {
-	background-color: #dddddd; 
-	height: 2px;
-}
-
-#btnline {
-	background-color: white;
-}
+#btnline {background-color: rgba(255,255,255,0);}
 
 #btnbox {
 	margin-top: 4px; 
@@ -64,38 +29,29 @@ td {
 	display: flex;
 }
 
-#dbbtn {
-	width: 50px; 
-	height: 26px; 
-	border: none; 
-	margin-left: 10px; 
-	border-radius: 4px 4px 4px 4px; 
-	cursor: pointer; 
-	background-color: #cccccc;
-}
+#bbbtn {width: 50px; height: 26px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: rgba(255,255,255,0.3);}
 
-#dbbtn:hover {
-	font-weight: bold; 
-	background-color: #bbbbbb;
-}
+#bbbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
 
 .repline {
 	margin: 0px auto; 
-	width: 79.6%; 
+	margin-left: 10.2%;
+	margin-right: 20.2%;
 }
 
 .re1line {
 	height: 24px;
 	padding-top: 5px;
 	padding-left: 10px;
-	background-color: #dddddd; 
+	color: white;
+	background-color: rgba(255,255,255,0.1); 
 }
 
 .re2line {
 	height: 22px;
 	padding-top: 6px;
 	padding-left: 20px;
-	background-color: #f9f9f9;
+	color: white;
 }
 
 #reply {
@@ -103,21 +59,27 @@ td {
 }
 
 .rereply {
-	width: 96%;
+	width: 95.4%;
+}
+
+#replytitle::placeholder {
+	color: white;
 }
 
 #rbtn {
 	width: 36px; 
 	height: 20px; 
-	border: none; 
+	border: 2px solid rgba(255,255,255,0); 
 	margin-left: 10px; 
 	border-radius: 2px 2px 2px 2px; 
 	cursor: pointer; 
 	font-weight: bold; 
-	background-color: #eeeeee;
+	color: white;
+	background-color: rgba(255,255,255,0.3);
 }
 
 #rbtn:hover {
 	color: white;
-	background-color: black;
+	border: 2px solid rgba(255,255,255,0.5); 
+	background-color: rgba(255,255,255,0);
 }
