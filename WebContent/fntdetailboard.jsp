@@ -185,6 +185,9 @@ function deletereply(replyno,replyboardno) {
 						<li class="rereply" style="padding-left:45px;list-style:none;">
 					</c:otherwise>
 				</c:choose>
+				<c:choose>
+						<c:when test="${replydto.replygroupnoseq eq 0  }"></c:when>
+						<c:otherwise>
 						<div class="repline">
 						<div class="re1line" style="display:flex;">
 						<div><b>${replydto.replynickname }</b></div>
@@ -206,7 +209,9 @@ function deletereply(replyno,replyboardno) {
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
 						</div>
-					</li>			
+						</c:otherwise>
+					</c:choose>
+					</li>
 			</c:forEach>
 				<div id="up"></div>
 				</ul>
