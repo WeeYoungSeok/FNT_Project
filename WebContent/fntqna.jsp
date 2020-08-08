@@ -78,7 +78,7 @@
 				if (qnaboardlist == null) { 
 			%>
 				<tr align="center">
-					<td colspan="4">작성된 글이 없습니다.</td>
+					<td colspan="5">작성된 글이 없습니다.</td>
 				</tr>
 			<%
 				} else {
