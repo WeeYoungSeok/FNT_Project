@@ -98,4 +98,13 @@
 		FROM REPLY
 		WHERE REPLY_BOARDNO = #{replyboardno}
 	</select>
+	
+<!-- nickname이랑 boardno로 groupno 가져오기 -->
+	<select id="selectGroupnoByNicknameBoardno" parameterType="map" resultType="int">
+		SELECT REPLY_GROUPNO
+		FROM REPLY
+		WHERE REPLY_BOARDNO = #{boardno}
+		AND REPLY_NICKNAME = #{nickname}
+		GROUP BY REPLY_GROUPNO
+	</select>
 </mapper>

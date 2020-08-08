@@ -1,3 +1,6 @@
+<%@page import="com.fnt.model.dao.ReplyDao"%>
+<%@page import="com.fnt.model.dao.impl.ReplyDaoImpl"%>
+<%@page import="java.util.List"%>
 <%@page import="com.fnt.model.dto.DealBoardDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -185,19 +188,23 @@
 		<c:otherwise>
 				<ul id="replylist" style="font-family:'Arial';">
 			<c:forEach items="${replylist }" var="replydto">
+				
 				<c:choose>
 					<c:when test="${replydto.replygroupnoseq eq 1}">
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
 						<li id="delreply" style="width:78%; margin:0px auto; list-style:none;">삭제된 댓글입니다.</li>
-					</c:when>
+					</c:when> 
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
 					</c:otherwise>
 				</c:choose>
 					<c:choose>
-						<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname || memberdto.memberid eq 'admin' }">
+						<c:when test="${ replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname ||memberdto.memberid eq 'admin' || groupno eq replydto.replygroupno}">
+							
+							
+						
 							<div class="repline">
 							<div class="re1line" style="display:flex;">
 							<div><b>${replydto.replynickname }</b></div>
@@ -218,13 +225,14 @@
 						</div>
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
+
 						</c:when>
 						<c:otherwise>
 							<div class="re2line" style="width:77.8%;margin:0px auto;padding-left:20px;"><span>비밀 댓글입니다.</span></div>
 						</c:otherwise>
 					</c:choose>
-					</li>			
-			</c:forEach>
+					</li>	
+					</c:forEach>		
 				<div id="up"></div>
 				</ul>
 		</c:otherwise>
@@ -391,8 +399,7 @@ geocoder.addressSearch(roadname, function(result, status) {
     } else {
     	marker1.setMap(map);
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;">여기서 만나요!</div>'
- 					+'<div> 주소 : '+roadname+'</div>'      
+            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;">여기서 만나요!</div>'    
         });
     	infowindow.open(map, marker1);
     }

@@ -160,6 +160,7 @@
 		<%
 			if(selectlist == null || searchqna == null) {
 		%>
+
 	<jsp:include page="./paging/fntqnapaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -167,9 +168,11 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+
 		<%
 			} else if (selectlist.equals("W") || selectlist.equals("T")) {
 				%>
+
 	<jsp:include page="./paging/fntqnasearchpaging.jsp">
 	<jsp:param value="<%=searchqna %>" name="searchqna"/>
 	<jsp:param value="<%=selectlist %>" name="selectlist"/>
@@ -179,6 +182,7 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+
 				<%
 			}
 		%>

@@ -100,20 +100,8 @@ public class MypageController extends HttpServlet {
 			Gson gson = new Gson();
 			String jsonPlace = gson.toJson(obj);
 			
-			System.out.println("controller에서 ajax로 보내기 전 : " + jsonPlace);
-			//request.setAttribute("alertlist", alertlist);
-			
-			
 			PrintWriter out = response.getWriter();
 			out.print(jsonPlace);
-			
-			 
-			
-			//request.setAttribute("alertlist", alertlist);
-			//dispatch("fntalert.jsp", request, response);
-			
-			
-			//request.setAttribute("alertlist", alertlist);
 		}
 		
 		//마이페이지
@@ -177,24 +165,18 @@ public class MypageController extends HttpServlet {
 			response.sendRedirect("fntinvoicecheck.jsp");
 		} else if(command.equals("invoiceinsert")) {
 			String invoice = request.getParameter("invoice");
-			System.out.println("마이페이지에서 받아온 invoice : "+invoice);
 			int olboardno = Integer.parseInt(request.getParameter("olboardno"));
-			System.out.println("마이페이지컨트롤러에서 받아온 olboardno : " + olboardno);
 			DealBoardDto dealboarddto = dealboarddao.selectDetail(olboardno);
 			String membernickname = dealboarddto.getDnickname();
-			System.out.println("마이페이지컨트롤로에서 로그인 한 id출력 : " + membernickname);
 			
 			int updateinvoice = invoicedao.updateinvoice(invoice, membernickname, olboardno);
-			System.out.println("마이페이지에서 받아온 invoice로 mapper실행한 결과값 : " + updateinvoice);
 			
 			jsResponse("송장번호 입력성공", "fntmain.jsp", response);
 		} else if(command.equals("changesellflag")) {
 			//구매확정 글 눌렀을 때 넘어오는 command
 			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
-			System.out.println("mypagecontroller에서 받아온 changesellflag : "+ dboardno);
 			int changesellflag = dealboarddao.changesellflag(dboardno);
 			System.out.println("mypagecontroller에서 update를 성공한 결과값 : " + changesellflag);
-			jsResponse("구매확정이 완료되었습니다.", "mypage.do?command=orderlist&memberid="+ memberdto.getMemberid(), response);
 			
 		}
 		

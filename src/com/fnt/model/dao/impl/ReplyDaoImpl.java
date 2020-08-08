@@ -188,6 +188,26 @@ public class ReplyDaoImpl implements ReplyDao {
 		}
 		return count;
 	}
+
+	@Override
+	public List<Integer> selectGroupnoByNicknameBoardno(String nickname, int boardno) {
+		SqlSession sqlsession = null;
+		List<Integer> groupnoList = null;
+		Map<String, Object> map = new HashMap<>();
+		map.put("nickname",nickname);
+		map.put("boardno",boardno);
+		
+		try {
+			sqlsession = getSqlSessionFactory().openSession(false);
+			groupnoList = sqlsession.selectList(namespace+"selectGroupnoByNicknameBoardno",map);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		return groupnoList;
+	}
 	
 
 	

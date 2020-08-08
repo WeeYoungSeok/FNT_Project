@@ -191,6 +191,11 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 					<tr>
 						<td colspan="7" align="center">현재 작성된 글이 없습니다.</td>
 					</tr>
+					<tr>
+						<td class="hovernot" colspan="7" align="right">
+							<button id="sbbtn" onclick="location.href='dealboard.do?command=insertsaleboard'">글 작성</button>
+						</td>
+					</tr>
 					<tr class="hovernot"><td colspan="7" id="slistlast"></td></tr>
 				</c:when>
 				<c:otherwise>

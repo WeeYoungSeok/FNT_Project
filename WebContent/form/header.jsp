@@ -18,7 +18,6 @@ response.setDateHeader("Expires",1L);
 	<header>
 	
 		<div id="headerzone">
-		
 		<!-- 로고 -->
 		<img class="fnt_logo" src="./img/fnt_logo_main.png" onclick="location.href='fntmain.jsp'"/>
 				
@@ -36,8 +35,9 @@ response.setDateHeader("Expires",1L);
 		<span class="mysection">
 		<script type="text/javascript">
 		//채팅방 만드는 함수
-		function chatGo() {
-			open("https://localhost:443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
+
+		function chatGoGo() {
+			open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		}
 		</script>
 			<!-- 마이페이지 -->
@@ -45,8 +45,6 @@ response.setDateHeader("Expires",1L);
 				if(memberdto != null) {
 			%>
 				<p id="loginmsg"><b onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'"><%=memberdto.getMembernickname() %></b>님<br/>환영합니다!</p>
-				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
-				<button class="headerbtn" onclick="chatGo();">Chat</button>
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
 				%>
@@ -70,6 +68,8 @@ response.setDateHeader("Expires",1L);
 			<%
 				}
 			%>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+				<button class="headerbtn" onclick="chatGoGo();">Chat</button>
 			
 			<!-- 번역 -->
 			<!-- <button id="trans" onclick="">KO/EN</button> -->

@@ -60,7 +60,6 @@ public class ReplyController extends HttpServlet {
          DealBoardDto dealboarddto1 = dealboarddao.selectDetail(replyboardno);
          String alertid = dealboarddto1.getDid();
          int alertres = alertbiz.insertAlert(new AlertDto(0, alertid, replyboardno, "Y"));
-         System.out.println("댓글 달았을 떄 alert테이블에 입력 성공 : " + alertres);
          //insert에 성공한 selectList를 여기서 출력해서 그 결과값을 fntalert.jsp에
          //setAttribute해서 보내고 fntalert.jsp에서 받아서 출력해준다.
          //어차피 session에 나의 id가 있으니까(memberid)
@@ -115,7 +114,6 @@ public class ReplyController extends HttpServlet {
 
         /* 대댓글 등록 */
       }else if(command.equals("insertRereply")) {
-    	  System.out.println("들어왓누");
          if(memberdto == null) {
     		 jsResponse("로그인 해주세요", "fntlogincrud.jsp", response);
     	 }
@@ -162,7 +160,7 @@ public class ReplyController extends HttpServlet {
          
          
          /* 댓글 삭제 */
-      }else if(command.equals("deletereply")) {
+      }else if(command.equals("deletereply")) { //완전 댓글 삭제하는 거
     	  int replyno = Integer.parseInt(request.getParameter("replyno"));
     	  int dboardno = Integer.parseInt(request.getParameter("dboardno"));
     	  
@@ -173,7 +171,7 @@ public class ReplyController extends HttpServlet {
     	  }else {
     		  jsResponse("삭제 실패","dealboard.do?command=detailboard&dboardno="+dboardno, response);
     	  }
-      }else if(command.equals("deletereply2")) {
+      }else if(command.equals("deletereply2")) { // 댓글 groupno를 0으로 만들어서 '삭제된 댓글입니다' 라고 보여주기
     	  int replyno = Integer.parseInt(request.getParameter("replyno"));
     	  int dboardno = Integer.parseInt(request.getParameter("dboardno"));
     	  

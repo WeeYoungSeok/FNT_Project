@@ -115,6 +115,7 @@
 		<%
 			if(searchnotice == null) {
 		%>
+		
 	<jsp:include page="./paging/fntnoticepaging.jsp">
     <jsp:param value="${paging.page}" name="page"/>
     <jsp:param value="${paging.beginPage}" name="beginPage"/>
@@ -122,9 +123,11 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+
 	<%
 			} else {
 	%>
+
 		<jsp:include page="./paging/fntnoticesearchpaging.jsp">
 		<jsp:param value="<%=searchnotice %>" name="searchnotice"/>
     <jsp:param value="${paging.page}" name="page"/>
@@ -133,6 +136,8 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 	</jsp:include>
+
+	
 	<%
 			}
 	%>
