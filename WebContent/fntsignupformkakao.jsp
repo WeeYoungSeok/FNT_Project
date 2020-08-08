@@ -25,6 +25,7 @@
 %>
 <meta charset="UTF-8">
 <title>FNT - Sign Up</title>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="./js/fntsignupform.js"></script>
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
@@ -35,7 +36,7 @@
 			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
 		</a>	
 	</div>
-	
+	<section>
 	<br/><br/>
 	
 	<div class="formtable">
@@ -49,7 +50,7 @@
 			<col width="25%">
 			<col width="55%">
 			<col width="20%">
-			<tr><td colspan="3" align="left"><p>* 반드시 모든 항목을 작성완료하셔야만 정상 가입됩니다 :)</p></td></tr>
+			<tr><td colspan="3" align="left"><p style="font-size:14pt;">* 반드시 <b>모든 항목</b>을 작성완료하셔야만 <b>정상 가입</b>됩니다 :)</p></td></tr>
 			<tr>
 				<th>ID</th>
 				<td><input class="IdChk" type="text" id="id" name="memberid" placeholder="ID를 입력해주세요. (영문/숫자 포함 10자 이내)" maxlength="10" title="n" required="required"/></td>
@@ -74,7 +75,7 @@
 			</tr>
 			<tr>
 				<th>Birthday</th>
-				<td colspan="2"><input type="date" name="memberbirth" placeholder="생년월일(YYYYMMDD)을 입력해주세요. (ex.'20200101')" maxlength="8" required="required"/></td>
+				<td colspan="2"><input style="color: white;" type="date" name="memberbirth" placeholder="생년월일(YYYYMMDD)을 입력해주세요. (ex.'20200101')" maxlength="8" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Phone</th>
@@ -87,7 +88,7 @@
 			</tr>
 			<tr>
 				<th>Email</th>
-				<td><input type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required" value=<%= ((JsonObject) request.getAttribute("profileJson")).get("email") %>/></td>
+				<td><input style="color: white;" type="email" name="memberemail" id="email" placeholder="이메일을 입력해주세요." required="required" value=<%= ((JsonObject) request.getAttribute("profileJson")).get("email") %>/></td>
 				<td><input type="button" class="in_btn" onclick="emailReal('signup.do?command=emailchk','Email Validation');" value="Email 인증"></td>
 			</tr>
 			<tr>
@@ -105,6 +106,6 @@
 		</table>
 	</form>
 	</div>
-
+</section>
 </body>
 </html>

@@ -20,7 +20,7 @@ response.setDateHeader("Expires",1L);
 <script type="text/javascript">
 
 // 주석 해제하면 메인에서 카카오채널 팝업 띄움 
-//window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=480,height=640");
+window.open("fntmainpopup.jsp", "FNT-PopUp", "location=0,left=500,top=180,width=480,height=640");
 
 imgslide(); 						// 페이지 로딩될 때 함수 실행
 
@@ -148,7 +148,7 @@ jQuery(document).on("ready", function() {
 		<script type="text/javascript">
 		//채팅방 만드는 함수
 		function chatGo() {
-			open("https://localhost:443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
+			open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		}
 		</script>
 			<!-- 마이페이지 -->
