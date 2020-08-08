@@ -17,15 +17,22 @@
 	}	
 </style>
 <!-- summernote 넣기 -->
-<link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="./js/summernote-lite.js"></script>
-<script src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="./js/summernote-lite.js"></script>
-<script src="./js/summernote-ko-KR.min.js"></script>
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+
+
+
+
 <link rel="stylesheet" href="./css/summernote-lite.css">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
 <script>
 $(function(){
 	$('#summernote').summernote({
