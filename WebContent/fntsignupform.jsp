@@ -21,6 +21,11 @@
 <script src="js/fntsignupform.js"></script>
 </head>
 <body>
+<div class="topbar">
+		<a href="fntmain.jsp">
+			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo_main.png">
+		</a>	
+	</div>
 <section>
 <%!
 	public int getRandom() {
@@ -35,11 +40,7 @@
 	// 내부적으로 비동기 실행 시 랜덤함수가 두 번 실행돼서 
 	// 하나의 변수에 담아서 비교했을 때 값이 일치하게 만들어주기 위해
 %>
-	<div class="topbar">
-		<a href="fntmain.jsp">
-			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo_main.png">
-		</a>	
-	</div>
+	
 	
 	<br/><br/>
 	
@@ -56,7 +57,7 @@
 			<col width="55%">
 			<col width="20%">
 			<tr>
-				<td colspan="3" align="left"><p>* 반드시 <b>모든 항목</b>을 작성완료하셔야만 <b>정상 가입</b>됩니다 :)</p></td>
+				<td colspan="3" align="left"><p style="font-size:14pt;">* 반드시 <b>모든 항목</b>을 작성완료하셔야만 <b>정상 가입</b>됩니다 :)</p></td>
 			</tr>
 			<tr>
 				<th>ID</th>
@@ -82,7 +83,7 @@
 			</tr>
 			<tr>
 				<th>Birthday</th>
-				<td colspan="2"><input type="date" name="memberbirth" placeholder="생년월일(YYYYMMDD)을 입력해주세요. (ex.'20200101')" maxlength="8" required="required"/></td>
+				<td colspan="2"><input style="color: white;" type="date" name="memberbirth" placeholder="생년월일(YYYYMMDD)을 입력해주세요. (ex.'20200101')" maxlength="8" required="required"/></td>
 			</tr>
 			<tr>
 				<th>Phone</th>
