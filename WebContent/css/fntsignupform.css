@@ -5,14 +5,15 @@
 
 .topbar {
 	top: 0px;
-	text-align : center;
+	text-align: center;
 	position: fixed;
 	background-color: rgba(255,255,255,0);
 	width: 100%;
-	height: 14%;
+	height: 10%;
 }
 
 #fnt_logo {
+	padding-top: 20px;
 	width: 180px;
 	height: 80px;
 }
@@ -25,10 +26,15 @@ img {
 .formtable {
 	margin: 0px auto;
 	width: 100%;
+	padding-left: 20%;
 }
 
 #form {
 	margin: 0px auto;
+}
+
+table {
+	color: white;
 }
 
 td > p {
@@ -41,11 +47,18 @@ tr {
 	font-family: "Arial";
 }
 
+td {
+	width: 146px;
+}
+
 th {
-	background-color: #dddddd;
 	text-align: left;
-	padding-left: 16px;
-	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 14pt;
+	background-color: rgba(255,255,255,0.3);
+	color: white;
+	font-weight: bold;
+	width: 60px;
 }
 
 input {
@@ -54,54 +67,70 @@ input {
 	padding-left: 10px;
 	border: none;
 	font-size: 12pt;
+	background-color: rgba(255,255,255,0.1);
+}
+
+input::placeholder { 
+	color: white; 
 }
 
 .in_btn {
 	width: 100%;
 	height: 40px;
-	background-color: #bbbbbb;
+	background-color: rgba(255,255,255,0.3);
 	color: white;
 	font-weight: bold;
-	border: none;
-	border-radius: 2px 2px 2px 2px;
+	border: 2px solid rgba(255,255,255,0);
+	border-radius: 4px 4px 4px 4px;
 	cursor: pointer;
 	padding-left: 0px;
 	text-align: center;
 }
 
 .in_btn:hover {
-	background-color: black;
+	font-weight: bold;
+	background-color: rgba(255,255,255,0);
+	color: white;
+	border: 2px solid rgba(255,255,255,0.5);
 }
 
 #resetbtn {
 	margin-top: 1%;
-	background-color: #dddddd;
+	background-color: rgba(255,255,255,0.3);
+	border-radius: 4px 4px 4px 4px;
 	cursor: pointer;
 	width: 50%;
 	height: 40px;
 	color: white;
 	font-size: 14pt;
 	font-weight: bold;
-	border: none;
+	border: 2px solid rgba(255,255,255,0);
 }
 
 #resetbtn:hover {
-	background-color: black;
+	font-weight: bold;
+	background-color: rgba(255,255,255,0);
+	color: white;
+	border: 2px solid rgba(255,255,255,0.5);
 }
 
 #submitbtn {
 	margin-top: 1%;
-	background-color: #fee500;
+	margin-left: 8px;
+	background-color: rgba(255,255,255,0.3);
 	cursor: pointer;
 	width: 50%;
 	height: 40px;
-	color: black;
+	color: white;
 	font-size: 14pt;
 	font-weight: bold;
-	border: none;
+	border-radius: 4px 4px 4px 4px;
+	border: 2px solid rgba(255,255,255,0);
 }
 
 #submitbtn:hover {
+	font-weight: bold;
+	background-color: rgba(255,255,255,0);
 	color: white;
-	background-color: black;
+	border: 2px solid rgba(255,255,255,0.5);
 }
