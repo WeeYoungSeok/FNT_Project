@@ -220,7 +220,7 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 							</c:otherwise>
 							</c:choose>
 							<td>
-								<div style="width:100;height:100;">
+								<div style="width:105px;height:45px;">
 								<c:choose>
 									<c:when test="${dealboarddto.dfilename ==  NULL}">
 										<img src="./img/fnt_logo.png" style="width:100%;height:100%;" id="logo"/>
