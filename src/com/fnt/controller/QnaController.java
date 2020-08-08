@@ -51,8 +51,8 @@ public class QnaController extends HttpServlet {
 			Paging paging = new Paging();
 			int count = qnaboardbiz.getAllCount();
 
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 
 			List<QnaBoardDto> qnaboardlist = qnaboardbiz.selectAllMember(paging);
 
@@ -155,8 +155,8 @@ public class QnaController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.getTitleCount(searchqna);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 				List<QnaBoardDto> list = dao.searchList(searchqna,paging);
 				request.setAttribute("paging", paging);
 				request.setAttribute("qnaboardlist", list);
@@ -174,8 +174,8 @@ public class QnaController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.getWriterCount(searchqna);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 				List<QnaBoardDto> list = dao.searchWriter(searchqna,paging);
 				request.setAttribute("paging", paging);
 				request.setAttribute("qnaboardlist", list);

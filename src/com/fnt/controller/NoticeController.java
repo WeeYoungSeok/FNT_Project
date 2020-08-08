@@ -57,8 +57,8 @@ public class NoticeController extends HttpServlet {
 			Paging paging = new Paging();
 			int count = noticeboardbiz.getAllCount();
 
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 
 			List<NoticeBoardDto> noticeboardlist = noticeboardbiz.selectAllMember(paging);
 
@@ -133,8 +133,8 @@ public class NoticeController extends HttpServlet {
 			Paging paging = new Paging();
 			int count = dao.getSearchCount(searchnotice);
 
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 			
 			List<NoticeBoardDto> list = dao.searchlist(searchnotice,paging);
 			request.setAttribute("paging", paging);

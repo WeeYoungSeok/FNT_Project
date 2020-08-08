@@ -63,9 +63,8 @@ public class DealBoardController extends HttpServlet {
 			}
 			Paging paging = new Paging();
 			int count = dao.getAllCountS();
-
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 
 			List<DealBoardDto> list = dao.selectSaleList(paging);
 			
@@ -105,8 +104,8 @@ public class DealBoardController extends HttpServlet {
 			Paging paging = new Paging();
 			int count = dao.getAllCount();
 
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 
 			
 			List<DealBoardDto> list = dao.selectBuylist(paging);
@@ -341,8 +340,8 @@ public class DealBoardController extends HttpServlet {
 			}
 			Paging paging = new Paging();
 			int count = dao.getAllCountsearch(searchdeal);
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 
 			List<DealBoardDto> list = dao.searchList(searchdeal,paging);
 			List<Integer> replyAllCount = new ArrayList<Integer>();
@@ -381,8 +380,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.getAllCountsearch(searchdeal);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 
 				list = dao.searchList(searchdeal,paging);
 				List<Integer> replyAllCount = new ArrayList<Integer>();
@@ -416,8 +415,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.getAllCountsearchCate(searchdeal,categorylist);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 
 				
 				
@@ -449,8 +448,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.getAllCountsearch(searchdeal);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 
 				list = dao.ascorder(searchdeal,paging);
 				List<Integer> replyAllCount = new ArrayList<Integer>();
@@ -481,8 +480,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.getAllCountsearchCate(searchdeal,categorylist);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 
 
 				list = dao.asccate(searchdeal, categorylist, paging);
@@ -515,8 +514,8 @@ public class DealBoardController extends HttpServlet {
 			Paging paging = new Paging();
 			int count = dao.buyGetAllCount(categorylist);
 
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 			if (categorylist.equals("CHECK")) {
 				response.sendRedirect("dealboard.do?command=fntbuyboard");
 			} else {
@@ -562,8 +561,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.buysearchTitleCount(search);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 				list = dao.searchdealtitle(search,paging);
 				
 				
@@ -604,8 +603,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.buysearchNicknameCount(search);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 				list = dao.searchdealwriter(search,paging);
 				
 				List<Integer> replyAllCount = new ArrayList<Integer>();
@@ -653,8 +652,8 @@ public class DealBoardController extends HttpServlet {
 			Paging paging = new Paging();
 			int count = dao.saleGetAllCount(categorylist);
 
-			paging.setTotalcount(count);
 			paging.setPage(page);
+			paging.setTotalcount(count);
 			
 			if (categorylist.equals("CHECK")) {
 				response.sendRedirect("dealboard.do?command=fntsaleboard");
@@ -704,8 +703,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.salesearchTitleCount(salesearch);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 				
 				List<DealBoardDto> list = dao.salesearchtitle(salesearch,paging);
 				List<Integer> replyAllCount = new ArrayList<Integer>();
@@ -745,8 +744,8 @@ public class DealBoardController extends HttpServlet {
 				Paging paging = new Paging();
 				int count = dao.salesearchNicknameCount(salesearch);
 
-				paging.setTotalcount(count);
 				paging.setPage(page);
+				paging.setTotalcount(count);
 				
 				List<DealBoardDto> list = dao.salesearchnick(salesearch,paging);
 				List<Integer> replyAllCount = new ArrayList<Integer>();
