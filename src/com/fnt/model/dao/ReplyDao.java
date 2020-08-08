@@ -13,4 +13,5 @@ public interface ReplyDao {
 	public int deletereply(int replyno);
 	public int deletereply2(int replyno);
 	public int replyCount(int replyboardno);
+	public List<Integer> selectGroupnoByNicknameBoardno(String nickname, int boardno);
 }

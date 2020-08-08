@@ -184,6 +184,11 @@ typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2
 						<tr>
 							<td colspan="5" align="center">작성된 글이 없습니다.</td>
 						</tr>
+						<tr>
+							<td id="btnline" colspan="6" align="right">
+								<button id="bbbtn" onclick="location.href='dealboard.do?command=insertbuyboard'">글 작성</button>
+							</td>
+						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list }" var="dealboarddto" varStatus="status">
