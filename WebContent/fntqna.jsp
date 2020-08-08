@@ -19,32 +19,32 @@
 <style type="text/css">
  * {margin: 0px; padding: 0px;}
 
- .menubar:nth-child(4) {opacity:0.7;}
+ .menubar:nth-child(4) {font-weight:bold;}
  
  #qtable {float: center;}
  
- h1 {margin-top: 4%; font-family: "Arial";}
+ h1 {margin-top:2%;margin-right:40px;font-family:"Arial"; color: white;}
  
- table {margin: 0 auto; margin-top: 2%; width: 80%; height: auto; font-family: "Arial";} 
- tr:hover {background-color: #efefef;}
- th {font-size: 14pt; background-color: #dddddd; height: 30px; font-weight: bold; padding-top: 2px;}
- td {font-size: 12pt; height: 24px;}
- 
+ table {margin:0px auto; margin-top:1%; width:80%; height:auto; font-family:"Arial";} 
+ tr:hover {background-color:rgba(255,255,255,0.5);}
+ th {font-size:14pt; color:rgba(255,255,255,0.5); font-weight:bold; height:30px; font-weight:bold; padding-top:2px;}
+ td {font-size:12pt; color: white;height:28px;}
+ .hovernot:hover {background-color:rgba(255,255,255,0);}
+
  span {cursor: pointer; margin-left: 10px;}
  span:hover {font-weight: bold;}
  
- a {text-decoration: none; color: black;}
+ a {text-decoration: none; color: white;}
  
- #qlistlast {background-color: #dddddd; height: 2px;}
+ #qlistlast {background-color:rgba(255,255,255,0.5); height:2px;}
  
- #btnline:hover {background-color: white;}
- #qbbtn {width: 50px; height: 26px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc;}
- #qbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
+ #qbbtn {width:50px; height:30px; color:white;font-weight:bold; border:none; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:rgba( 255, 255, 255, 0.5 );}
+ #qbbtn:hover {color:white;background-color:rgba(255,255,255,0);border:2px solid rgba(255,255,255,0.5);}
  
- #selectlist {margin-top: 6px; height: 26px; border: 2px solid #cccccc; padding-left: 10px;}
- #searchqna {margin-top: 8px; height: 24px; border: 2px solid #cccccc; padding-left: 10px;}
+ #selectlist {margin-top:6px; height:26px; border:2px solid white; border-radius: 4px 4px 4px 4px; padding-left:10px;}
+ #searchqna {margin-top:6px; height:26px; border:2px solid white; border-radius: 4px 4px 4px 4px; padding-left:10px;}
  
- #form1 {margin-top: 4%;}
+ #form1 {margin-top:5%;}
  </style>
 </head>
 	<%
@@ -65,13 +65,15 @@
      		<col width="300">
      	 	<col width="150">
       		<col width="200">
-      		<tr align="center">
+      		<tr align="center" class="hovernot">
       			<th>No.</th>
       			<th>답변여부</th>
       			<th>제목</th>
       			<th>작성자</th>
       			<th>작성일</th>
       		</tr>
+      		<tr><td colspan="5" id="qlistlast"></td></tr>
+      		
 			<%
 				if (qnaboardlist == null) { 
 			%>
@@ -147,7 +149,7 @@
 				} else {
 			%>
 			<tr>
-				<td id="btnline" colspan="5" align="right">
+				<td class="hovernot" colspan="5" align="right">
 					<button id="qbbtn" onclick="location.href='qna.do?command=qnainsert'">글 작성</button>
 				</td>
 			</tr>

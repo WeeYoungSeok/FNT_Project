@@ -14,41 +14,41 @@
 <style type="text/css">
  * {margin:0px; padding:0px;}
 
- .menubar:nth-child(2) {opacity:0.7;}
+ .menubar:nth-child(2) {font-weight:bold;}
  
  #btable {float:center;}
  
- .titlezone {margin:0px auto;margin-left:13%;margin-top:4%;}
+ .titlezone {margin:0px auto;margin-left:13%;margin-top:1%;}
  
- h1 {margin-top:22px;margin-right:40px;font-family:"Arial";}
+ h1 {margin-top:2%;margin-right:40px;font-family:"Arial"; color: white;}
  
- #categorylist {cursor:pointer;margin-top:26px;}
+ #categorylist {cursor:pointer;margin-top:27px;}
  
- #c_btn {width:50px; height:19px; border:none; border-radius:2px 2px 2px 2px; cursor:pointer; color:white; background-color:#595959; margin-bottom:10px;}
- #c_btn:hover {font-weight:bold;}
+ #c_btn {width:50px; height:19px; border:none; border-radius:2px 2px 2px 2px; cursor:pointer; color:white; background-color:rgba(255,255,255,0.3); margin-bottom:10px;}
+ #c_btn:hover {font-weight:bold; background-color:rgba(255,255,255,0); border:2px solid rgba(255,255,255,0.5);}
  
- #buypie {margin-left:40px;margin-right:20px;}
+ #buypie {margin-left:10px;margin-right:10px;}
  #buylank {padding-top:24px;}
  span > span {font-family:"Arial"; font-weight:bold; font-size:14pt; margin:0px;}
  
  table {margin:0px auto; margin-top:1%; width:80%; height:auto; font-family:"Arial";} 
- tr:hover {background-color:#efefef;}
- th {font-size:14pt; background-color:#dddddd; height:30px; font-weight:bold; padding-top:2px;} 
- td {font-size:12pt; height:24px;}
+ tr:hover {background-color:rgba(255,255,255,0.5);}
+ th {font-size:14pt; color:rgba(255,255,255,0.5); font-weight:bold; height:30px; font-weight:bold; padding-top:2px;}
+ td {font-size:12pt; color: white;height:28px;}
+ .hovernot:hover {background-color:rgba(255,255,255,0);}
  
  span {cursor:pointer; margin-left:10px;}
  span:hover {font-weight:bold;}
  
  a {text-decoration:none; color:black;}
  
- #blistlast {background-color:#dddddd; height:2px;}
+ #blistlast {background-color:rgba(255,255,255,0.5); height:2px;}
  
- #btnline:hover {background-color:white;}
- #bbbtn {width:50px; height:26px; border:none; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:#cccccc;}
- #bbbtn:hover {font-weight:bold; background-color:#bbbbbb;}
+ #bbbtn {width:50px; height:30px; color:white;font-weight:bold; border:none; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:rgba( 255, 255, 255, 0.5 );}
+ #bbbtn:hover {color:white;background-color:rgba(255,255,255,0);border:2px solid rgba(255,255,255,0.5);}
  
- #search {margin-top:6px; height:26px; border:2px solid #cccccc; padding-left:10px;}
- #searchbuy {margin-top:8px; height:22px; border:2px solid #cccccc; padding-left:10px;}
+ #search {margin-top:6px; height:26px; border:2px solid white; border-radius: 4px 4px 4px 4px; padding-left:10px;}
+ #searchbuy {margin-top:6px; height:26px; border:2px solid white; border-radius: 4px 4px 4px 4px; padding-left:10px;}
  
  #form1 {margin-top:5%;}
 
@@ -149,6 +149,7 @@
 <script>
 var typing = document.getElementById('buylank');
 var typewriter = new Typewriter(typing, { loop: true });
+typing.style.color = "white";
 typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2500).deleteAll()
 		  .typeString('카테고리별 누적 구매글 수').pauseFor(2500).deleteAll()
 		  .typeString('패션 잡화 [ ${fashionBuyCnt} ]').pauseFor(2500).deleteAll()
@@ -169,7 +170,7 @@ typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2
       			<col width="150">
 			</colgroup>
 			<tbody>
-				<tr>
+				<tr class="hovernot">
 	      			<th>No.</th>
 					<th>분류</th>
 					<th>제목</th>
@@ -177,6 +178,7 @@ typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2
 					<th>가격</th>
 					<th>작성일</th>
 				</tr>
+				<tr><td colspan="6" id="blistlast"></td></tr>
 				<c:choose>
 					<c:when test="${empty list }">
 						<tr>

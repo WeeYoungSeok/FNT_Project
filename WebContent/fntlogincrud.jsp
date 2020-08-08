@@ -44,9 +44,10 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 </head>
 
 <body>
+	<section>
 	<div class="logo">
 		<a href="fntmain.jsp">
-			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
+			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo_main.png">
 		</a>	
 	</div>
 	
@@ -59,7 +60,7 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 		<col width="200">
 		<col width="40">
 		<tr><td class="ltablex"></td><td colspan="3"></td><td class="ltablex"></td></tr>
-		<tr style="text-align:center;"><td colspan="5" style="padding-bottom:12px;"><b style="font-size:26pt; font-family:'Arial';">Log In</b></td></tr>
+		<tr style="text-align:center;"><td colspan="5" style="padding-bottom:12px;"><b style="font-size:26pt; font-family:'Arial';color:white;">Log In</b></td></tr>
 		<tr>
 			<td class="ltablex"></td>
 			<th>ID</th>
@@ -86,7 +87,7 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 		<tr>
 			<td class="ltablex"></td>
 			<td colspan="3" style="text-align:center;">
-				<pre><b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchid'">ID로 찾기</b>/<b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchpw'">PW로 찾기</b></pre>
+				<pre style="color:white;margin-top:2%;"><b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchid'">ID로 찾기</b> / <b id="findbtn" onclick="location.href='LoginCrudController?command=logincrudsearchpw'">PW로 찾기</b></pre>
 			</td>
 			<td class="ltablex"></td>
 		</tr> 
@@ -103,5 +104,6 @@ Kakao.init('290f8b616802bba9fad591226e4dab51');
 		<tr><td class="ltablex"></td><td colspan="3"></td><td class="ltablex"></td></tr>
 	</table>
 	</form>
+	</section>
 </body>
 </html>	

@@ -19,27 +19,27 @@
 <style type="text/css">
  * {margin:0px; padding:0px;}
 
- .menubar:nth-child(1) {opacity:0.7;}
+ .menubar:nth-child(1) {font-weight:bold;}
 
  #ntable {float:center;}
  
- h1 {margin-top:4%; font-family:"Arial";}
+ h1 {margin-top:2%; font-family:"Arial"; text-align:left; margin-left: 10%; color: white;}
  
- table {margin:0px auto; margin-top:2%; width:80%; height:auto; font-family:"Arial";} 
- tr:hover {background-color:#efefef;}
- th {font-size:14pt; background-color:#dddddd; height:30px; font-weight:bold; padding-top:2px;}
- td {font-size:12pt; height:24px;}
+ table {margin:0px auto; margin-top:1%; width:80%; height:auto; font-family:"Arial";} 
+ tr:hover {background-color:rgba(255,255,255,0.5);}
+ th {font-size:14pt; color:rgba(255,255,255,0.5); font-weight:bold; height:30px; font-weight:bold; padding-top:2px;}
+ td {font-size:12pt; color: white;height:28px;}
+ .hovernot:hover {background-color:rgba(255,255,255,0);}
  
  span {cursor:pointer; margin-left:10px;}
  span:hover {font-weight:bold;}
  
- #nlistlast {background-color:white; height:2px;}
+ #nlistlast {background-color:rgba(255,255,255,0.5); height:2px;}
  
- #btnline:hover {background-color: rgba(255, 255, 255, 0);}
- #nbbtn {width:50px; height:26px; border:none; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:#cccccc;}
- #nbbtn:hover {font-weight:bold; background-color:#bbbbbb;}
+ #nbbtn {width:50px; height:30px; color:white;font-weight:bold; border:none; border-radius:4px 4px 4px 4px; cursor:pointer; background-color:rgba( 255, 255, 255, 0.5 );}
+ #nbbtn:hover {color:white;background-color:rgba(255,255,255,0);border:2px solid rgba(255,255,255,0.5);}
  
- #searchnotice {margin-top:6px; height:26px; border:2px solid #cccccc; padding-left:10px;}
+ #searchnotice {margin-top:6px; height:26px; border:2px solid white; border-radius: 4px 4px 4px 4px; padding-left:10px;}
  
  #form1 {margin-top:4%;}
  </style>
@@ -62,12 +62,13 @@
      		<col width="400">
      	 	<col width="150">
       		<col width="200">
-      		<tr align="center">
+      		<tr class="hovernot" align="center">
       			<th>No.</th>
       			<th>제목</th>
       			<th>작성자</th>
       			<th>작성일</th>
       		</tr>
+			<tr><td colspan="4" id="nlistlast"></td></tr>
 			<%
 				if (noticeboardlist == null) { 
 			%>
@@ -95,13 +96,13 @@
 				if (memberdto == null || memberdto.getMemberrole().equals("USER")) {
 			%>
 			<tr><td colspan="4" id="nlistlast"></td></tr>
-			<tr><td id="btnline" colspan="4" align="right"></td></tr>
+			<tr class="hovernot"><td colspan="4" align="right"></td></tr>
 			<%
 				} else {
 			%>
 			<tr><td colspan="4" id="nlistlast"></td></tr>
-			<tr>
-				<td id="btnline" colspan="4" align="right">
+			<tr class="hovernot">
+				<td colspan="4" align="right">
 					<button id="nbbtn" onclick="location.href='notice.do?command=noticeinsert'">글 작성</button>
 				</td>
 			</tr>

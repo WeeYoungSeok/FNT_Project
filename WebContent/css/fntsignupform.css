@@ -7,10 +7,9 @@
 	top: 0px;
 	text-align : center;
 	position: fixed;
-	background-color: white;
+	background-color: rgba(255,255,255,0);
 	width: 100%;
 	height: 14%;
-	box-shadow: 0px 1px 10px #ccc;
 }
 
 #fnt_logo {
@@ -24,25 +23,21 @@ img {
 }
 
 .formtable {
-	margin-top: 25%;
-	width: 100vw;
-	position: relative;
+	margin: 0px auto;
+	width: 100%;
 }
 
 #form {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	margin: 0px auto;
 }
 
 td > p {
-	color: red;
+	color: white;
 	font-size: 16pt;
 }
 
 tr {
-	height: 40px;
+	height: 36px;
 	font-family: "Arial";
 }
 
