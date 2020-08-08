@@ -169,10 +169,10 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 </script>
 		</div>
 		<table>
-				<col width="100">
+				<col width="70">
      			<col width="100">
-     			<col width="100">
-     	 		<col width="300">
+     			<col width="70">
+     	 		<col width="350">
       			<col width="150">
      	 		<col width="150">
       			<col width="150">
@@ -219,7 +219,7 @@ typewriter.typeString('전체 누적 판매글 수 [ ${allSaleCnt} ]').pauseFor(
 							</c:otherwise>
 							</c:choose>
 							<td>
-								<div style="width:105px;height:45px;">
+								<div style="width:80px;height:28px;">
 								<c:choose>
 									<c:when test="${dealboarddto.dfilename ==  NULL}">
 										<img src="./img/fnt_logo.png" style="width:100%;height:100%;" id="logo"/>

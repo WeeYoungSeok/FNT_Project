@@ -37,21 +37,22 @@ function openrereply(me,membernickname,replyno,replyboardno) {
 	
 	$(".rereplyform").hide();
 	$(me).closest("li").after(
-				'<li class="rereplyform" style="width:76%;height:29px;margin:0px auto;padding-left:35px;list-style:none;">'
+		'<li class="rereplyform" style="width:76%;height:29px;margin:0px auto;padding-left:35px;list-style:none;">'
+			+'<div>'
+				+'<form action="reply.do" method="method">'
 					+'<div style="display:flex;">'
-					+'<div style="width:160px;height:24px;padding-top:5px;text-align:center;background-color:#fee500;"><b>' + membernickname + '</b></div>'
-					+'<form action="reply.do" method="method">'
-					+'<input type="hidden" name="command" value="insertRereply">'
-					+'<div><input type="text" name="rereplytitle" placeholder="댓글 내용을 입력해주세요." style="width:725px;height:28px;border:none;padding-left:10px;"/>'
-					+'<input type="hidden" name="replyno" value="' + replyno + '">'
-					+'<input type="hidden" name="replyboardno" value="' + replyboardno + '">'
-					+'<input type="hidden" name="replynickname" value="' + membernickname + '">'
-					+'<input id="rbtn" type="submit" value="등록">'
+						+'<div style="width:160px;height:24px;padding-top:5px;overflow:auto;text-align:center;color:white;background-color:rgba(255,255,255,0.3);"><b style="margin:5px;">' + membernickname + '</b></div>'
+						+'<input type="hidden" name="command" value="insertRereply">'
+						+'<input type="text" id="rereplytitle" name="rereplytitle" placeholder="댓글 내용을 입력해주세요." style="width:725px;height:28px;border:none;padding-left:10px;"/>'
+						+'<input type="hidden" name="replyno" value="' + replyno + '">'
+						+'<input type="hidden" name="replyboardno" value="' + replyboardno + '">'
+						+'<input type="hidden" name="replynickname" value="' + membernickname + '">'
+						+'<input id="rbtn" type="submit" value="등록" style="margin:3px;">'
 					+'</div>'
-					+'</div>'
-					+'</form>'
-					+'</li>'
-			);
+				+'</form>'
+			+'</div>'
+		+'</li>'
+	);
 }
 
 // 댓글 ajax하는거 취소
@@ -165,7 +166,7 @@ function deletereply(replyno,replyboardno) {
 	%>
 	<c:choose>
 		<c:when test="${empty replylist }">
-			<div id="noreply" class="re2line" style="font-family:'Arial';text-align:center;width:78%;margin:0px auto;">작성된 댓글이 없습니다.</div>
+			<div id="noreply" class="re2line" style="font-family:'Arial';text-align:center; width:78%;">작성된 댓글이 없습니다.</div>
 			<ul id="replylist">
 				<li id="reply" style="list-style:none;"></li>
 				<div id="up"></div>
@@ -179,7 +180,7 @@ function deletereply(replyno,replyboardno) {
 						<li id="reply" style="list-style:none;">
 					</c:when>
 					<c:when test="${replydto.replygroupnoseq eq 0 }">
-						<li id="delreply" class="re2line" style="font-family:'Arial';width:78%; margin:0px auto; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
+						<li id="delreply" class="re2line" style="font-family:'Arial'; margin:0px auto; margin-left: 10.2%; list-style:none;text-align:center;">삭제된 댓글입니다.</li>
 					</c:when>
 					<c:otherwise>
 						<li class="rereply" style="padding-left:45px;list-style:none;">
@@ -189,23 +190,23 @@ function deletereply(replyno,replyboardno) {
 						<c:when test="${replydto.replygroupnoseq eq 0  }"></c:when>
 						<c:otherwise>
 						<div class="repline">
-						<div class="re1line" style="display:flex;">
-						<div><b>${replydto.replynickname }</b></div>
-						<div style="margin-left:6px;">
-							${replydto.replyregdate }
-							<span>
-								<c:choose>
-									<c:when test="${replydto.replytitletab eq 0 }">
-										<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
-									</c:when>
-								</c:choose>
-								<c:choose>
-									<c:when test="${replydto.replynickname == memberdto.membernickname}">							
-										<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
-									</c:when>
-								</c:choose>
-							</span>
-						</div>
+							<div class="re1line" style="display:flex;">
+								<div><b>${replydto.replynickname }</b></div>
+								<div style="margin-left:6px;">
+									${replydto.replyregdate }
+								<span>
+									<c:choose>
+										<c:when test="${replydto.replytitletab eq 0 }">
+											<input id="rbtn" type="button" value="답변" onclick="openrereply(this,'${memberdto.membernickname}',${replydto.replyno },${replydto.replyboardno });">
+										</c:when>
+									</c:choose>
+									<c:choose>
+										<c:when test="${replydto.replynickname == memberdto.membernickname}">							
+											<input id="rbtn" type="button" value="삭제" onclick="deletereply(${replydto.replyno },${replydto.replyboardno });">
+										</c:when>
+									</c:choose>
+								</span>
+							</div>
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
 						</div>
