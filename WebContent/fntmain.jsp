@@ -171,6 +171,8 @@ jQuery(document).on("ready", function() {
 
 				<!-- 알림 -->
 				<img class="alertbell" alt="alert" src="./img/bell.png" onclick="javascript:newpop();"/>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+				<button class="headerbtn" onclick="chatGo();">Chat</button>
 				<%
 					}
 				} else {
@@ -179,12 +181,6 @@ jQuery(document).on("ready", function() {
 			<%
 				}
 			%>
-				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
-				<button class="headerbtn" onclick="chatGo();">Chat</button>
-			
-			<!-- 번역 -->
-			<!-- <button id="trans" onclick="">KO/EN</button> -->
-			
 		</span>
 		</div>
 	</header>
