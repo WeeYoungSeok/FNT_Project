@@ -201,7 +201,9 @@
 					</c:otherwise>
 				</c:choose>
 					<c:choose>
-						<c:when test="${replydto.replygroupnoseq ne 0 && replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname ||memberdto.memberid eq 'admin'}">
+						<c:when test="${replydto.replygroupnoseq eq 0  }">
+						</c:when>
+						<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname ||memberdto.memberid eq 'admin'}">
 							
 							
 						
