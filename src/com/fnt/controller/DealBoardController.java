@@ -300,15 +300,8 @@ public class DealBoardController extends HttpServlet {
 			String memberid = "";
 			String invoice = orderlistdao.selectInvoiceByBoardno(dboardno);
 			// 판매자와 boardno로 groupno 가져오기
-			List<Integer> groupnoList = replydao.selectGroupnoByNicknameBoardno(memberdto.getMembernickname(), dboardno);
 			
-			for(int i=0; i<replylist.size(); i++) {
-				for(int j=0; j<groupnoList.size(); j++) {
-					if(replylist.get(i).getReplygroupno() == groupnoList.get(j)) {
-						System.out.println(replylist.get(i).getReplygroupno() +"랑"+groupnoList.get(j)+"값이 같다");
-					}
-				}
-			}
+			
 			
 			
 			if (memberdto == null) {
@@ -321,7 +314,6 @@ public class DealBoardController extends HttpServlet {
 
 			WishlistDto wishlistdto = wishlistdao.selectOneWishlist(memberid, wlsellnickname, dboardno);
 			
-			request.setAttribute("groupnoList", groupnoList);
 			request.setAttribute("invoice", invoice);
 			request.setAttribute("replylist", replylist);
 			request.setAttribute("wishlistdto", wishlistdto);
