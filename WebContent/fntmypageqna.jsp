@@ -56,7 +56,7 @@
 				<col width="15%">
 				<col width="60%">
 				<col width="25%">
-				<tr>
+				<tr class="hovernot">
 					<th>No.</th>
 					<th>제목</th>
 					<th>작성일</th>
@@ -82,7 +82,7 @@
 						}
 					}
 				%>
-				<tr><td id="listlast" colspan="3"></td></tr>
+				<tr class="hovernot"><td id="listlast" colspan="3"></td></tr>
 			</table>
 			<input id="mybtn" type="button" value="내 정보 보기" onclick="location.href='LoginCrudController?command=cruddetail&memberid=<%=memberdto.getMemberid()%>'">
 		</div>
