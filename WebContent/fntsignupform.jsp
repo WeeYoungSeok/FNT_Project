@@ -13,14 +13,17 @@
 <title>FNT(Feel New Item) - Sign Up</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
+<title>FNT(Feel New Item) : 구매</title>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">
 
 </script>
 <script src="js/fntsignupform.js"></script>
 </head>
 <body>
+<section>
 <%!
-	public int getRandom(){
+	public int getRandom() {
 	int random = 0;
 	random = (int)Math.floor((Math.random()*(99999-10000+1)))+10000;
 	return random;
@@ -34,7 +37,7 @@
 %>
 	<div class="topbar">
 		<a href="fntmain.jsp">
-			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo.png">
+			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo_main.png">
 		</a>	
 	</div>
 	
@@ -110,6 +113,6 @@
 		</table>
 	</form>
 	</div>
-
+</section>
 </body>
 </html>

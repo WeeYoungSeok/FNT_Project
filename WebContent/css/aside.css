@@ -9,12 +9,11 @@ aside {
 
 #menutitle {
 	margin-top:50% !important; 
-	font:24pt "Arial Black" !important; 
+	font:18pt "Arial Black" !important; 
 	font-weight: bold;
-	color: white;
-	cursor:pointer;
-	padding-left:10% !important;
-	letter-spacing: 3px;
+	color: rgba(255,255,255,0.5);
+	padding-left:6%;
+	letter-spacing: 2px;
 }
 
 #menubars {
