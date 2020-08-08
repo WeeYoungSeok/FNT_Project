@@ -151,12 +151,21 @@ public class ReplyController extends HttpServlet {
 			 * if(res > 0) { response.getWriter().print(gsonobj); }else {
 			 * response.getWriter().append("FAILD"); }
 			 */
-         
-         if(res>0) {
-        	 jsResponse("등록되었습니다", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
-         } else {
-        	 jsResponse("등록실패", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
-         } 
+         DealBoardDto dealboarddto = dealboarddao.selectDetail(replyboardno);
+         if(dealboarddto.getDflag().equals("B")) {
+        	 if(res>0) {
+        		 jsResponse("등록되었습니다", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
+        	 } else {
+        		 jsResponse("등록실패", "dealboard.do?command=detailboard&dboardno="+replyboardno, response);
+        	 }
+        	 
+         }else {
+        	 if(res>0) {
+        		 jsResponse("등록되었습니다", "dealboard.do?command=detailsaleboard&dboardno="+replyboardno, response);
+        	 }else {
+        		 jsResponse("등록실패", "dealboard.do?command=detailsaleboard&dboardno="+replyboardno, response);
+        	 }
+         }
          
          
          /* 댓글 삭제 */
@@ -171,17 +180,27 @@ public class ReplyController extends HttpServlet {
     	  }else {
     		  jsResponse("삭제 실패","dealboard.do?command=detailboard&dboardno="+dboardno, response);
     	  }
+    	  
       }else if(command.equals("deletereply2")) { // 댓글 groupno를 0으로 만들어서 '삭제된 댓글입니다' 라고 보여주기
     	  int replyno = Integer.parseInt(request.getParameter("replyno"));
     	  int dboardno = Integer.parseInt(request.getParameter("dboardno"));
     	  
     	  int res = replydao.deletereply2(replyno);
-    	  
-    	  if(res>0) {
-    		  jsResponse("삭제 완료", "dealboard.do?command=detailboard&dboardno="+dboardno, response);
-    	  }else {
-    		  jsResponse("삭제 실패","dealboard.do?command=detailboard&dboardno="+dboardno, response);
-    	  }    	  
+          DealBoardDto dealboarddto = dealboarddao.selectDetail(dboardno);
+          if(dealboarddto.getDflag().equals("B")) {
+         	 if(res>0) {
+         		 jsResponse("삭제되었습니다", "dealboard.do?command=detailboard&dboardno="+dboardno, response);
+         	 } else {
+         		 jsResponse("삭제실패", "dealboard.do?command=detailboard&dboardno="+dboardno, response);
+         	 }
+         	 
+          }else {
+         	 if(res>0) {
+         		 jsResponse("삭제되었습니다", "dealboard.do?command=detailsaleboard&dboardno="+dboardno, response);
+         	 }else {
+         		 jsResponse("삭제실패", "dealboard.do?command=detailsaleboard&dboardno="+dboardno, response);
+         	 }
+          } 	  
 
       }
       

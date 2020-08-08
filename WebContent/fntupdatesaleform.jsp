@@ -23,15 +23,19 @@
 	}
 	
 </style>
+
+
 <!-- summernote 넣기 -->
-<link href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="./js/summernote-lite.js"></script>
-<script src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="./js/summernote-lite.js"></script>
-<script src="./js/summernote-ko-KR.min.js"></script>
-<link rel="stylesheet" href="./css/summernote-lite.css">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+
 <link href="css/fntinsertsaleboardform.css" rel="stylesheet" type="text/css"/>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 
@@ -104,7 +108,7 @@
 		</form>
 			<div class="map_wrap" style="float:center;">
 			    <div id="map" style="margin:0px auto;width:1020px;height:500px;position:relative;overflow:hidden;"></div>
-			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left:140px;">
+			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left:250px;">
 			        <div class="option">
 			            <div>
 			                <form onsubmit="searchPlaces(); return false;">
@@ -248,7 +252,7 @@ var mapContainer = document.getElementById('map'),  // 지도를 표시할 div
 
 //지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-var roadname = '${dealboarddto.dfilename}';
+var roadname;
 
 //주소-좌표 변환 할 수 있는 객체를 생성
 var geocoder = new kakao.maps.services.Geocoder();
@@ -376,21 +380,12 @@ function displayPlaces(places) {
          	langitude = placePosition;
          };
           
-//        마크를 클릭했을 때 클릭한 자체의 주소를 알고 싶은데 그게 안되네
-/* 			kakao.maps.event.addListener(marker, 'click', function() {
-         	//infowindow.close();
-         	displayHERE(marker, title);
-         	langitude = placePosition;
-         	
-         	if(confirm(places[marker.getTexts()].road_address_name+"에서 만나겠습니까?")){
-	         	roadname = places[marker.getTexts()].road_address_name;
-	         	console.log(roadname);
-         	}
-         	
-         	
-         //	console.log(langitude);
-         });  */
-         
+         kakao.maps.event.addListener(marker, 'click', function() {
+             //infowindow.close();
+             displayHERE(marker, title);
+             langitude = placePosition;
+
+          });
          
      })(marker, places[i].place_name);
 
