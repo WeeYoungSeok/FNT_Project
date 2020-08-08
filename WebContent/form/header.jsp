@@ -18,7 +18,6 @@ response.setDateHeader("Expires",1L);
 	<header>
 	
 		<div id="headerzone">
-		
 		<!-- 로고 -->
 		<img class="fnt_logo" src="./img/fnt_logo_main.png" onclick="location.href='fntmain.jsp'"/>
 				
@@ -36,6 +35,7 @@ response.setDateHeader("Expires",1L);
 		<span class="mysection">
 		<script type="text/javascript">
 		//채팅방 만드는 함수
+
 		function chatGoGo() {
 			open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		}
