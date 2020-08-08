@@ -36,7 +36,7 @@ response.setDateHeader("Expires",1L);
 		<span class="mysection">
 		<script type="text/javascript">
 		//채팅방 만드는 함수
-		function chatGo() {
+		function chatGoGo() {
 			open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
 		}
 		</script>
@@ -46,7 +46,7 @@ response.setDateHeader("Expires",1L);
 			%>
 				<p id="loginmsg"><b onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'"><%=memberdto.getMembernickname() %></b>님<br/>환영합니다!</p>
 				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
-				<button class="headerbtn" onclick="chatGo();">Chat</button>
+				<button class="headerbtn" onclick="chatGoGo();">Chat</button>
 				<%
 					if(memberdto.getMemberrole().equals("USER")){
 				%>
