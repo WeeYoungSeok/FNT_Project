@@ -13,12 +13,14 @@
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)알람내역</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 * {margin: 0px; padding: 0px;}
-h3{text-align: center; font-family: "Arial"; width: 100vw; height: 40px; padding-top: 16px; background-color: #fee500; position: fixed; z-index: 2;}
-#alertlist {padding-top: 56px; font-family: "Arial"; overflow: auto;}
+section{padding:0px !important;}
+h3{text-align: center; font-family: "Arial"; width: 100vw; height: 40px; padding-top: 16px; color: white; background-color: rgba(255,255,255,0.2); position: fixed; z-index: 2;}
+#alertlist {padding-top: 56px; font-family: "Arial"; color: white; overflow: auto;}
 .alertone {padding-top: 8px; padding-bottom: 8px; display: flex;}
-.alertone:nth-child(even){background-color: #dddddd;}
+.alertone:nth-child(even){background-color: rgba(255,255,255,0.1);}
 </style>
 	<%
 		//세션에 값이 담긴 memberdto을 받아온다.
@@ -54,7 +56,7 @@ h3{text-align: center; font-family: "Arial"; width: 100vw; height: 40px; padding
 					
 						if (val == "") {
 							$("#alertlist").append(
-								"<div class='alertone'><p>현재 <b>" + '<%=memberdto.getMembernickname()%>' + "</b>님의 글에 작성된 댓글이 없습니다.</p></div>"		
+								"<div class='alertone'><p style='margin:0px auto;margin-top:10%;'>현재 <b>" + '<%=memberdto.getMembernickname()%>' + "</b>님의 글에 작성된 댓글이 없습니다.</p></div>"		
 							);
 							
 						} else {
@@ -84,9 +86,10 @@ h3{text-align: center; font-family: "Arial"; width: 100vw; height: 40px; padding
 	</script>
 </head>
 <body>
+<section>
 	<h3><%=memberdto.getMembernickname() %>님의 알림내역</h3>
 	
 	<div id="alertlist"></div>
-	
+</section>
 </body>
 </html>
