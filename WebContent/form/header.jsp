@@ -41,7 +41,7 @@ response.setDateHeader("Expires",1L);
 		}
 		</script>
 			<!-- 마이페이지 -->
-			<%
+				<%
 				if(memberdto != null) {
 			%>
 				<p id="loginmsg"><b onclick="location.href='mypage.do?command=mypage&memberid=<%=memberdto.getMemberid()%>'"><%=memberdto.getMembernickname() %></b>님<br/>환영합니다!</p>
@@ -60,6 +60,8 @@ response.setDateHeader("Expires",1L);
 
 				<!-- 알림 -->
 				<img class="alertbell" alt="alert" src="./img/bell.png" onclick="javascript:newpop();"/>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+				<button class="headerbtn" onclick="chatGo();">Chat</button>
 				<%
 					}
 				} else {
@@ -68,12 +70,6 @@ response.setDateHeader("Expires",1L);
 			<%
 				}
 			%>
-				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
-				<button class="headerbtn" onclick="chatGoGo();">Chat</button>
-			
-			<!-- 번역 -->
-			<!-- <button id="trans" onclick="">KO/EN</button> -->
-			
 		</span>
 		</div>
 	</header>
