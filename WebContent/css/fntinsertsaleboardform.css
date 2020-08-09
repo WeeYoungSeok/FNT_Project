@@ -8,7 +8,7 @@
 
 section {overflow: auto; z-index: 1;}
 
-#insertform {width: 60%; margin-left: 20%;}
+#insertform {width: 70%; margin-left: 16%;}
 
 h1 {text-align: left; color: white; margin-bottom: 4%;}
 
@@ -40,7 +40,7 @@ td {background-color: rgba(255,255,255,0); color: white; height: 30px; padding: 
 
 #formbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
 
-#infolocation {margin-top:10px;text-align:center;color:white;}
+#infolocation {margin-top:10px;text-align:center;color:white;font-weight:bold;margin-top:10px;}
 
 .map_wrap, .map_wrap * {
 	margin:0;

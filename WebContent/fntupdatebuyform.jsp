@@ -127,15 +127,8 @@ function removeCommas(x) {
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p class="mtext" onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>
+<%@ include file="./form/aside.jsp"%>
+
 	<section>
 	<%
 		if(memberdto == null) {
@@ -152,19 +145,19 @@ function removeCommas(x) {
 			<h1>구매글 수정</h1>
 			<input type="hidden" name="command" value="updatebuyboardres">
 			<input type="hidden" name="dboardno" value="${dealboarddto.dboardno }">
-			<table border="1" style="border: solid white;">
+			<table>
 				<col width="100px">
 				<col width="756px">
 				<tr>
 					<th>제목</th>
 					<td style="display:flex; border:none;">
 						<select name="dcategory" id="dcategory">
-							<option value="CHECK">카테고리</option>
-							<option value="F">패션</option>
-							<option value="C">차량</option>
-							<option value="D">가전제품</option>
-							<option value="A">애완</option>
-							<option value="S">스포츠</option>
+							<option value="CHECK" style="color:black;">카테고리</option>
+							<option value="F" style="color:black;">패션</option>
+							<option value="C" style="color:black;">차량</option>
+							<option value="D" style="color:black;">가전제품</option>
+							<option value="A" style="color:black;">애완</option>
+							<option value="S" style="color:black;">스포츠</option>
 						</select>
 						<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required" value="${dealboarddto.dtitle }"/>
 					</td>

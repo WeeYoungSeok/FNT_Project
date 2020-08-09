@@ -47,37 +47,28 @@
 </script>
 <style type="text/css">
 * {margin:0px;padding:0px;}
-aside {position:fixed; align:left; width:14%; height:100vh; box-shadow:1px 0px 6px black; z-index:2;}
+#menutitle {padding-left:31% !important;}
 
-#menubars {margin-top:50% !important; height:94.5%;}
-.menubar {padding-top:12% !important; background-color:#3d3d3d; color:white; width:100% !important; height:10%; text-align:left; font:16pt "Arial" !important; font-weight:bold !important; cursor:pointer !important; opacity:0.5;}
+#menubars {margin-top:2% !important; }
+.menubar {padding-top:0 !important; width:100% !important; padding-bottom:12%;}
 .mtext {padding-left:10% !important;}
-.menubar:hover {opacity:0.6;}
-.menubar_x {background-color:#3d3d3d; width:100%; height:100%; opacity:0.5;}
-.menubar:nth-child(1) {opacity:0.7;}
-.menubar:nth-child(1) {opacity:0.7;}
-#ntable {float: center; margin-top: 3%;}
-h1 {text-align: center;}
-table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
-th {background-color: #dddddd; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
-td {height: 24px; font-size:12pt;}
-#nbtitle {width: 100%; height: 100%; border: none; padding-left: 10px;}
+
+section {overflow: auto; z-index: 1;}
+#ntable {float: center; margin-top: 3%; width: 70%; margin: 0px auto;}
+h1 {text-align: left; color: white;}
+table {margin: 0 auto; margin-top: 3%; width: 100%; height: auto; font-family: "Arial";} 
+th {background-color: rgba(255,255,255,0.2); color: white; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
+td {background-color: rgba(255,255,255,0); height: 24px; font-size:12pt;}
+#nbtitle {width: 100%; height: 100%; border: none; padding-left: 10px; color: white; background-color: rgba(255,255,255,0);}
 .panel {margin: 0px;}
-#nbbtn {width: 50px; height: 34px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc; margin-top: 2px;}
-#nbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
+#nbbtn {width: 50px; height: 34px; color: white; border: 2px solid rgba(255,255,255,0); border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: rgba(255,255,255,0.2); margin-top: 2px;}
+#nbbtn:hover {font-weight: bold; background-color: rgba(255,255,255,0); border: 2px solid rgba(255,255,255,0.3);}
 </style>
 </head>
 <body>
 	<%@ include file="./form/header.jsp" %>
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p class="mtext" onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>	<section>
+	<%@ include file="./form/aside.jsp" %>
+	<section>
 	<%
 		if(memberdto == null) {
 	%>
@@ -94,7 +85,7 @@ td {height: 24px; font-size:12pt;}
 	<form action="notice.do" onsubmit="return noticeform();" method="post">
 		<input type="hidden" value="noticeupdateres" name="command"/>
 		<input type="hidden" value="<%=noticeboardlistone.getNbboardno() %>" name="nbboardno"/>
-		<table border="1" style="border: solid white;"> 
+		<table> 
 		<col width="100px">
 		<col width="750px">
 			<tr>
