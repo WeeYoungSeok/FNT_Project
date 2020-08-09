@@ -1,124 +1,41 @@
-* {
-   margin: 0px;
-   padding: 0px;
-}
+* {margin: 0px; padding: 0px;}
 
-aside {
-	position:fixed; 
-	align:left; 
-	width:14%; 
-	height:100vh; 
-	box-shadow:1px 0px 6px black; 
-	z-index:2;
-}
+#menutitle {padding-left:31% !important;}
 
-#menubars {
-	margin-top:50% !important; 
-	height:94.5%;
-}
-.menubar {
-	padding-top:12% !important; 
-	background-color:#3d3d3d; 
-	color:white; 
-	width:100% !important; 
-	height:10%; 
-	text-align:left; 
-	font:16pt "Arial" !important; 
-	font-weight:bold !important; 
-	cursor:pointer !important; 
-	opacity:0.5;
-}
-.mtext {
-	padding-left:10% !important;
-}
-.menubar:hover {
-	opacity:0.6;
-}
-.menubar_x {
-	background-color:#3d3d3d; 
-	width:100%; 
-	height:100%; 
-	opacity:0.5;
-}
+#menubars {margin-top:2% !important; }
+.menubar {padding-top:0 !important; width:100% !important; padding-bottom:12%;}
+.mtext {padding-left:10% !important;}
 
-.menubar:nth-child(2) {
-	opacity:0.7;
-}
+section {overflow: auto; z-index: 1;}
 
-section {
-	overflow: auto;
-	z-index: 1;
-}
+#insertform {width: 60%; margin-left: 20%;}
 
-#insertform {
-	float: center;
-}
+h1 {text-align: left; color: white; margin-bottom: 4%;}
 
-h1 {
-	text-align: center;
-}
+table {margin: 0 auto; margin-top: 3%; width: 100%; height: auto; font-family: Arial; float: center;}
 
-table {
-	margin: 0px auto;
-}
+#dcategory {width: 20%; height: 114%; padding-left: 10px; border: none; background-color: rgba(255,255,255,0);}
 
-#dcategory {
-	width: 20%;
-	height: 114%;
-	padding-left: 10px;
-	border: none;
-}
+#dtitle {width: 110%; height: 34px; padding-left: 10px; border: none; background-color: rgba(255,255,255,0);}
 
-#dtitle {
-   width: 110%;
-   height: 34px;
-   padding-left: 10px;
-   border: none;
-}
+#dtitle::placeholder {color: white;}
 
-#listlast {
-	background-color: #dddddd; 
-	height: 2px;
-}
+#listlast {background-color: rgba(255,255,255,0.5); height: 2px;}
 
-tr {
-	height: 36px;
-}
+tr {height: 36px;}
 
-th {
-	background-color: #dddddd;
- 	font-weight: bold;
- 	font-size: 12pt;
-	text-align: center;
-}
+th {background-color: rgba(255,255,255,0.2); color: white; font-weight: bold; font-size: 12pt; text-align: center;}
 
-td {
-   height: 30px;
-   padding: 0px;
-}
+td {background-color: rgba(255,255,255,0); color: white; height: 30px; padding: 0px;}
 
-.panel {
-	margin: 0px;
-}
+.panel {margin: 0px;}
 
-#dprice {
-   width: 100%;
-   height: 34px;
-   padding-left: 10px;
-   border: none;
-}
+#dprice {width: 100%; height: 34px; padding-left: 10px; border: none; color: white; background-color: rgba(255,255,255,0);}
 
-#formbtn {
- 	width: 50px;
- 	height: 34px;
- 	border: none;
- 	border-radius: 4px 4px 4px 4px;
- 	cursor: pointer;
- 	background-color: #cccccc;
- 	margin-top: 2px;
-}
+#dprice::placeholder {color: white;}
 
-#formbtn:hover {
- 	font-weight: bold;
- 	background-color: #bbbbbb;
-}
+#formbtn {width: 50px; height: 34px; border: 2px solid rgba(255,255,255,0);
+ 	border-radius: 4px 4px 4px 4px; cursor: pointer; color: white;
+ 	background-color: rgba(255,255,255,0.2); margin-top: 2px;}
+
+#formbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}

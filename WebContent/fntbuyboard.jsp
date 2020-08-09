@@ -232,7 +232,7 @@ typewriter.typeString('전체 누적 구매글 수 [ ${allBuyCnt} ]').pauseFor(2
 							if(dto != null){
 						%>		
 
-						<tr>
+						<tr class="hovernot">
 							<td colspan="7" align="right">
 
 								<button id="bbbtn" onclick="location.href='dealboard.do?command=insertbuyboard'">글 작성</button>

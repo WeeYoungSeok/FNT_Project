@@ -11,16 +11,20 @@
 <style type="text/css">
 * {margin: 0px; padding: 0px;}
 
-#searchlistzone {float: center; width: 86%; position: fixed;}
+#searchlistzone {float: center; width: 90%; margin-left: 6%;}
 #searchfilter {margin-top: 2%; margin-bottom: 2%;}
+#order {height: 22px; color:white; background-color: rgba(255,255,255,0.1);}
+#categorylist {height: 22px; color:white; background-color: rgba(255,255,255,0.1);}
+#filter {width: 60px; height: 24px; cursor: pointer; color:white; background-color: rgba(255,255,255,0.3); border: 2px solid rgba(255,255,255,0); border-radius: 2px 2px 2px 2px;}
+#filter:hover {font-weight: bold; background-color: rgba(255,255,255,0); border: 2px solid rgba(255,255,255,0.5);}
 
 #deallist {width: 80%; margin: 1px auto; font-family: "Arial";}
-tr:hover {background-color: #efefef; font-weight: bold;}
-th {background-color: #cccccc; font-weight: bold; height: 30px; font-size: 14pt; text-align: center; padding-top: 0.4%;}
-td {height: 28px; font-size: 12pt; text-align: center;}
-a {width: 100%; height: 100%; text-decoration: none; color: black;}
-#listlast {background-color: #dddddd; height: 2px;}
-
+tr:hover {background-color: rgba(255,255,255,0.1); font-weight: bold;}
+th {font-weight: bold; height: 30px; text-align: center; padding-top: 0.4%; font-size: 14pt; color: rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
+td {height: 28px; font-size: 12pt; text-align: center; color: white; background-color: rgba(255,255,255,0);}
+a {width: 100%; height: 100%; text-decoration: none; color: white;}
+#listlast {background-color: rgba(255,255,255,0.5); height: 2px;}
+.hovernot:hover {background-color:rgba(255,255,255,0);font-weight:null;}
 #paging {margin-top: 40%; align: center;}
 </style>
 </head>
@@ -52,7 +56,7 @@ a {width: 100%; height: 100%; text-decoration: none; color: black;}
 			<option value="A">애완</option>
 			<option value="S">스포츠</option>
 		</select>
-		<input type="submit" value="필터적용">
+		<input id="filter" type="submit" value="필터적용">
 	</form>
 	
 	<table id="deallist">
@@ -63,7 +67,7 @@ a {width: 100%; height: 100%; text-decoration: none; color: black;}
 		<col width="10%">
 		<col width="10%">
 		<col width="10%">
-			<tr>
+			<tr class="hovernot">
 				<th>No.</th>
 				<th>카테고리</th>
 				<th>게시판</th>
@@ -72,6 +76,7 @@ a {width: 100%; height: 100%; text-decoration: none; color: black;}
 				<th>가격</th>
 				<th>작성일</th>
 			</tr>
+			<tr class="hovernot"><td id="listlast" colspan="7"></td></tr>
 		<c:choose>
 		<c:when test="${empty list} }">
 			<tr>
@@ -122,7 +127,7 @@ a {width: 100%; height: 100%; text-decoration: none; color: black;}
 		</c:forEach>
 		</c:otherwise>
 		</c:choose>
-		<tr><td id="listlast" colspan="7"></td></tr>
+		<tr class="hovernot"><td id="listlast" colspan="7"></td></tr>
 	</table>
 	<div id="paging">
 		<%
