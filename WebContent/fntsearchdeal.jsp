@@ -44,17 +44,17 @@ a {width: 100%; height: 100%; text-decoration: none; color: white;}
 		<input type="hidden" name="command" value="searchlist"/>
 		
 		<select id="order" name="orderlist">
-			<option value="D">최신순</option>
-			<option value="A">오래된 순</option>
+			<option value="D" style="color:black">최신순</option>
+			<option value="A" style="color:black">오래된 순</option>
 		</select>
 		
 		<select id="categorylist" name="categorylist">
-			<option value="CHECK">카테고리</option>
-			<option value="F">패션</option>
-			<option value="C">차량</option>
-			<option value="D">가전제품</option>
-			<option value="A">애완</option>
-			<option value="S">스포츠</option>
+			<option value="CHECK" style="color:black">카테고리</option>
+			<option value="F" style="color:black">패션</option>
+			<option value="C" style="color:black">차량</option>
+			<option value="D" style="color:black">가전제품</option>
+			<option value="A" style="color:black">애완</option>
+			<option value="S" style="color:black">스포츠</option>
 		</select>
 		<input id="filter" type="submit" value="필터적용">
 	</form>

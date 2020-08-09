@@ -359,16 +359,16 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 		<tr class="hovernot">
 			<td>
 				<select id="adminmenu" name="enabled">
-					<optgroup label="선택한 회원 조회">
-						<option value="Y">일반회원 조회</option>
-						<option value="N">탈퇴회원 조회</option>
-						<option value="R">신고회원 조회</option>
+					<optgroup label="선택한 회원 조회" style="color:black">
+						<option value="Y" style="color:black">일반회원 조회</option>
+						<option value="N" style="color:black">탈퇴회원 조회</option>
+						<option value="R" style="color:black">신고회원 조회</option>
 					</optgroup>
-					<optgroup label="신고된 회원 차단">
-						<option value="REPORT">신고 및 차단</option>
+					<optgroup label="신고된 회원 차단" style="color:black">
+						<option value="REPORT" style="color:black">신고 및 차단</option>
 					</optgroup>
-					<optgroup label="판매완료 글 조회">
-						<option value="S">판매완료 글</option>
+					<optgroup label="판매완료 글 조회" style="color:black">
+						<option value="S" style="color:black">판매완료 글</option>
 					</optgroup>
 				</select>
 		
