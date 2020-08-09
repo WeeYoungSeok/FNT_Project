@@ -108,7 +108,7 @@
 		</form>
 			<div class="map_wrap" style="float:center;">
 			    <div id="map" style="margin:0px auto;width:1020px;height:500px;position:relative;overflow:hidden;"></div>
-			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left:250px;">
+			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:right;width:30%;">
 			        <div class="option">
 			            <div>
 			                <form onsubmit="searchPlaces(); return false;">

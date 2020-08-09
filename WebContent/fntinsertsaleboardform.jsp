@@ -10,12 +10,13 @@
 <!-- summernote 넣기 -->
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
 
 <link href="css/fntinsertsaleboardform.css" rel="stylesheet" type="text/css"/>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
@@ -80,7 +81,7 @@
       </form>
          <div class="map_wrap" style="width:60%;margin:0px auto;float:center;">
              <div id="map" style="margin:0px auto;width:100%;height:500px;position:relative;overflow:hidden;"></div>
-             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;width:100%;">
+             <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:right;width:30%;">
                  <div class="option">
                      <div>
                          <form onsubmit="searchPlaces(); return false;">
@@ -98,7 +99,6 @@
    </section>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
    $('#summernote').summernote({
