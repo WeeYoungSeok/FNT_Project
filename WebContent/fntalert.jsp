@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)알람내역</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link href="css/section.css" rel="stylesheet" type="text/css"/>
+<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 * {margin: 0px; padding: 0px;}
 section{padding:0px !important;}

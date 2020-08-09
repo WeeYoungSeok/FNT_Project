@@ -8,31 +8,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-#submitbtn {
-	margin-top: 1%;
-	background-color: #fee500;
-	cursor: pointer;
-	width: 50%;
-	height: 40px;
-	color: black;
-	font-size: 14pt;
-	font-weight: bold;
+* {margin: 0px; padding: 0px;}
+section {margin: 0px; padding: 0px;}
+table {width: 60%; margin: 0px auto; margin-top: 8%;}
+
+input {
+	width: 100%;
+	height: 30px;
+	text-align: center;
 	border: none;
+	color: white;
+	font-size: 12pt;
+	background-color: rgba(255,255,255,0.1);
+}
+
+#submitbtn {
+	margin-top: 2%;
+	background-color: rgba(255,255,255,0.2);
+	cursor: pointer;
+	width: 100%;
+	height: 40px;
+	color: white;
+	font-size: 14pt;
+	border-radius: 4px 4px 4px 4px;
+	border: 2px solid rgba(255,255,255,0);
 }
 
 #submitbtn:hover {
-	color: white;
-	background-color: black;
-}
-
-input {
-	width: 98%;
-	height: 40px;
-	padding-left: 10px;
-	border: none;
-	font-size: 12pt;
-	background-color: #EFEFEF;
+	font-weight: bold;
+	background-color: rgba(255,255,255,0);
+	border: 2px solid rgba(255,255,255,0.5);
 }
 </style>
 <title>FNT - ID Validation</title>
@@ -60,18 +67,21 @@ input {
 <%	String idnotused = request.getParameter("idnotused");%>
 </head>
 <body>
+<section>
 	<table>
 		<tr>
 			<td><input type="text" name="id" readonly="readonly"/></td>
 		</tr>
+		<tr style="height: 10px;"><td></td></tr>
 		<tr>
-			<td><span style="font-family: Arial;"><%=idnotused.equals("true") ? "사용 가능한 ID입니다!" : "이미 사용중인 ID입니다!" %></span></td>
+			<td style="font-family: Arial; color: white; text-align: center;"><span><%=idnotused.equals("true") ? "사용 가능한 ID입니다!" : "이미 사용중인 ID입니다!" %></span></td>
 		</tr>
 		<tr>
 			<td>
-				<button style="width: 100%;" id="submitbtn" onclick="confirmid('<%=idnotused%>')">확인</button>
+				<button id="submitbtn" onclick="confirmid('<%=idnotused%>')">확인</button>
 			</td>
 		</tr>
 	</table>
+</section>
 </body>
 </html>

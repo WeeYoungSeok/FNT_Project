@@ -10,22 +10,25 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/invoice.js"></script>
 <body>
-
-
-<span id="tekbeCompnayName">택배회사명: </span>
-<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br/><br/>
-
-<span id="invoiceNumber">운송장번호: </span>
-	<input type="text" id="invoiceNumberText" name="invoiceNumberText"><br/><br/>
-<button id="myButton1">택배 조회하기 </button>
-<br/>
-<br/>
-<div>
-	<table id="myPtag"></table>
-</div>
-<br/>
-<div>
-	<table id="myPtag2"></table>
-</div>
+<section>
+	<span id="tekbeCompnayName">택배회사명: </span>
+	<select id="tekbeCompnayList" name="tekbeCompnayList"></select>
+	<br/>
+	<br/>
+	<span id="invoiceNumber">운송장번호: </span>
+	<input type="text" id="invoiceNumberText" name="invoiceNumberText">
+	<br/>
+	<br/>
+	<button id="myButton1">택배 조회하기 </button>
+	<br/>
+	<br/>
+	<div>
+		<table id="myPtag"></table>
+	</div>
+	<br/>
+	<div>
+		<table id="myPtag2"></table>
+	</div>
+</section>
 </body>
 </html>
