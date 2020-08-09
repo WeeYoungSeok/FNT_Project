@@ -49,13 +49,13 @@
 				<tr>
 					<th>제목</th>
 					<td style="display:flex; border:none;">
-						<select name="dcategory" id="dcategory">
-							<option value="CHECK">카테고리</option>
-							<option value="F">패션</option>
-							<option value="C">차량</option>
-							<option value="D">가전제품</option>
-							<option value="A">반려동물용품</option>
-							<option value="S">스포츠</option>
+						<select name="dcategory">
+							<option value="CHECK" style="color:black;">카테고리</option>
+							<option value="F" style="color:black">패션</option>
+							<option value="C" style="color:black">차량</option>
+							<option value="D" style="color:black">가전제품</option>
+							<option value="A" style="color:black">반려동물용품</option>
+							<option value="S" style="color:black">스포츠</option>
 						</select>
 						<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required" value="${dealboarddto.dtitle }"/>
 					</td>
@@ -84,7 +84,7 @@
 		</form>
 			<div class="map_wrap" style="float:center;">
 			    <div id="map" style="margin:0px auto;width:1020px;height:500px;position:relative;overflow:hidden;"></div>
-			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:center;left:250px;">
+			    <div id="menu_wrap" class="bg_white" style="margin:0px auto;float:right;width:30%;">
 			        <div class="option">
 			            <div>
 			                <form onsubmit="searchPlaces(); return false;">
