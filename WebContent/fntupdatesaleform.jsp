@@ -6,24 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 판매글 수정하기</title>
-<style>
-	table{
-		margin: 0 auto; 
-		margin-top: 3%; 
-		width: 80%; 
-		height: auto; 
-		font-family: Arial;
-		float: center;
-	}
-	
-	#infolocation{
-		font-weight:bold;
-		margin-top:10px;
-		padding-left:135px;
-	}
-	
-</style>
-
 
 <!-- summernote 넣기 -->
 <!-- include libraries(jQuery, bootstrap) -->
@@ -42,15 +24,8 @@
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p class="mtext" onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>
+<%@ include file="./form/aside.jsp"%>
+
 	<section>
 	<%
 		if(memberdto == null) {
@@ -63,17 +38,18 @@
 	<%
 		} else {
 	%>
+		<div id="insertform">
 		<form action="dealboard.do" id="updateform" onsubmit="return postForm()" enctype='multipart/form-data' method="post">
 			<h1>판매글 수정</h1>
 			<input type="hidden" name="command" value="updatesaleboardres">
 			<input type="hidden" name="dboardno" value="${dealboarddto.dboardno }">
-    	    <table border="1" style="border: solid white;">
+    	    <table>
 				<col width="100px">
 				<col width="756px">
 				<tr>
 					<th>제목</th>
 					<td style="display:flex; border:none;">
-						<select name="dcategory">
+						<select name="dcategory" id="dcategory">
 							<option value="CHECK">카테고리</option>
 							<option value="F">패션</option>
 							<option value="C">차량</option>
@@ -103,7 +79,7 @@
 				</tr>
 			</table>
 		<div style="height:30px;">
-         	<div id="infolocation"><em>직거래시 원하는 장소를 검색 후 클릭해주세요!</em></div>
+         	<div id="infolocation"><b>직거래시 원하는 장소를 검색 후 클릭해주세요!</b></div>
         </div>
 		</form>
 			<div class="map_wrap" style="float:center;">
@@ -122,7 +98,8 @@
 			        <div id="pagination"></div>
 			    </div>
 			</div>
-		<div id="underline" style="padding-top: 25px;"></div>			
+		<div id="underline" style="padding-top: 25px;"></div>
+		</div>
 	</section>
 	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68bbb576a7ffd0b92dd5af16e42288cb&libraries=services,clusterer,drawing"></script>

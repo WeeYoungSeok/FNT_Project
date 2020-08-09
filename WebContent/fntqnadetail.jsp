@@ -14,8 +14,14 @@
 <style type="text/css">
 * {margin:0px; padding:0px;}
 
+
 #menutitle {padding-left:31% !important;}
 
+#menubars {margin-top:2% !important; }
+.menubar {padding-top:0 !important; width:100% !important;}
+.mtext {padding-left:10% !important;}
+
+section {overflow: auto; z-index: 1;}
 #qboard {margin-top: 4%; margin-bottom: 2%; margin-left:10%;}
 
 h1 {font-family:"Arial"; text-align:left; margin-left: 10%; color: white; margin-bottom: 1%;}
@@ -31,7 +37,6 @@ td {font-size: 12pt; padding-left: 10px; color: white;}
  
 #qlistlast {background-color: rgba(255,255,255,0.5); height: 2px;}
 
-#btnline {background-color: white;}
 #btnbox {margin-top: 4px; float: right; display: flex;}
 #qbbtn {width: 50px; height: 26px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: rgba(255,255,255,0.3);}
 #qbbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}

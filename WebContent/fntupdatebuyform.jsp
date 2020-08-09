@@ -127,15 +127,8 @@ function removeCommas(x) {
 </head>
 <body>
 <%@ include file="./form/header.jsp"%>
-	<aside>
-		<div id="menubars">
-			<div class="menubar"><p class="mtext" onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>
+<%@ include file="./form/aside.jsp"%>
+
 	<section>
 	<%
 		if(memberdto == null) {
@@ -152,7 +145,7 @@ function removeCommas(x) {
 			<h1>구매글 수정</h1>
 			<input type="hidden" name="command" value="updatebuyboardres">
 			<input type="hidden" name="dboardno" value="${dealboarddto.dboardno }">
-			<table border="1" style="border: solid white;">
+			<table>
 				<col width="100px">
 				<col width="756px">
 				<tr>
