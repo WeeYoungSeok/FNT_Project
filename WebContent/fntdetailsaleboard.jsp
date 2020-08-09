@@ -381,7 +381,7 @@ geocoder.addressSearch(roadname, function(result, status) {
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;">여기서 만나요!</div>'
+            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;color:black;">여기서 만나요!</div>'
  					+'<div> 주소 : '+roadname+'</div>'      
         });
 
@@ -391,7 +391,7 @@ geocoder.addressSearch(roadname, function(result, status) {
     } else {
     	marker1.setMap(map);
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;">여기서 만나요!</div>'    
+            content: '<div id="mapcontent" style="text-align:center;padding:6px 0;color:black;">여기서 만나요!</div>'    
         });
     	infowindow.open(map, marker1);
     }
