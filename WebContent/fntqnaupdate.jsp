@@ -45,18 +45,18 @@ QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone
 </script>
 <style type="text/css">
 * {margin:0px; padding:0px;}
-aside {position:fixed; align:left; width:14%; height:100vh; box-shadow:1px 0px 6px black; z-index:2;}
-#menubars {margin-top:50% !important; height:94.5%;}
-.menubar {padding-top:12% !important; background-color:#3d3d3d; color:white; width:100% !important; height:10%; text-align:left; font:16pt "Arial" !important; font-weight:bold !important; cursor:pointer !important; opacity:0.5;}
+#menutitle {padding-left:31% !important;}
+
+#menubars {margin-top:2% !important; }
+.menubar {padding-top:0 !important; width:100% !important; padding-bottom:12%;}
 .mtext {padding-left:10% !important;}
-.menubar:hover {opacity:0.6;}
-.menubar_x {background-color:#3d3d3d; width:100%; height:100%; opacity:0.5;}
-.menubar:nth-child(4) {opacity:0.7;}
+
+section {overflow: auto; z-index: 1;}
 #qtable {float: center; margin-top: 3%;}
 h1 {margin-top: 6%; font-family: "Arial"; text-align: center; margin-bottom: 2%;}
 table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
-th {background-color: #dddddd; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
-td {height: 24px; font-size:12pt;}
+th {background-color: rgba(255,255,255,0.2);font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
+td {background-color: rgba(255,255,255,0);height: 24px; font-size:12pt;}
 #qbtitle {width: 100%; height: 100%; border: none; padding-left: 10px;}
 .panel {margin: 0px;}
 #qbbtn {width: 50px; height: 34px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc; margin-top: 2px;}
@@ -65,15 +65,8 @@ td {height: 24px; font-size:12pt;}
 </head>
 <body>
 	<%@ include file="./form/header.jsp" %>
-<aside>
-		<div id="menubars">
-			<div class="menubar"><p class="mtext" onclick="location.href='notice.do?command=notice'">공지사항</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntbuyboard'">구매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='dealboard.do?command=fntsaleboard'">판매게시판</p></div>
-			<div class="menubar"><p class="mtext" onclick="location.href='qna.do?command=qna'">고객센터</p></div>
-			<div class="menubar_x"></div>
-		</div>
-	</aside>	<section>
+	<%@ include file="./form/aside.jsp" %>
+<section>
 	<%
 		if(memberdto == null) {
 	%>
@@ -110,7 +103,7 @@ td {height: 24px; font-size:12pt;}
 			<tr>
 				<td align="right" colspan="2">
 					<input id="qbbtn" type="button" value="취소" onclick="location.href='qna.do?command=qnadetail&qbboardno=<%=qnaboardlistone.getQbboardno()%>'"/>
-				<input id="qbbtn" type="submit" value="완료"/>
+					<input id="qbbtn" type="submit" value="완료"/>
 				</td>
 			</tr>			
 		</table>
