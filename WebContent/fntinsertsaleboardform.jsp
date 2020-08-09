@@ -48,7 +48,7 @@
 				<th>제목</th>
 				<td style="display:flex; border:none;">
 					<select name="dcategory" id="dcategory">
-						<option value="CHECK">카테고리</option>
+						<option value="CHECK" style="color:black;">카테고리</option>
 						<option value="F" style="color:black">패션</option>
 						<option value="C" style="color:black">차량</option>
 						<option value="D" style="color:black">가전제품</option>

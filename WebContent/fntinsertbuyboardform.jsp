@@ -135,12 +135,12 @@ function removeCommas(x) {
 				<th>제목</th>
 				<td style="display:flex; border:none;">
 					<select name="dcategory" id="dcategory">
-						<option value="CHECK">카테고리</option>
-						<option value="F">패션</option>
-						<option value="C">차량</option>
-						<option value="D">가전제품</option>
-						<option value="A">애완</option>
-						<option value="S">스포츠</option>
+						<option value="CHECK" style="color:black;">카테고리</option>
+						<option value="F" style="color:black;">패션</option>
+						<option value="C" style="color:black;">차량</option>
+						<option value="D" style="color:black;">가전제품</option>
+						<option value="A" style="color:black;">애완</option>
+						<option value="S" style="color:black;">스포츠</option>
 					</select>
 					<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required"/>
 				</td>
