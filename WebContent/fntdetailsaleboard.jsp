@@ -139,7 +139,7 @@
 							<c:otherwise>
 								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
 							</c:otherwise>
-						</c:choose>
+						</c:choose> 
 						<input id="sbbtn" type="submit" value="등록하기">
 						</div>
 					</td>
