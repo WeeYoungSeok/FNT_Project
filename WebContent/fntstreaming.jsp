@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/section2.css" rel="stylesheet" type="text/css"/>
+
 <style type="text/css">
 * {margin: 0px; padding: 0px;}
 
@@ -40,6 +41,20 @@
 button {width: 50px; height: 26px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: rgba(255,255,255,0.3);}
 button:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
 
+.topbar {
+	top: 0px;
+	text-align: center;
+	background-color: rgba(255,255,255,0);
+	width: 100%;
+	height: 10%;
+}
+
+img {
+	margin-right: 8%;
+	width: 180px;
+	height: 80px;
+	margin-top: -10%;
+}
 </style>
 </head>
 <body>
@@ -47,19 +62,10 @@ button:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); backgr
 		src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
 	<script
 		src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
-	<%@ include file="./form/headerstreaming.jsp"%>
-	<%
-		if(memberdto == null) {
-	%>
-		<script type="text/javascript">
-			alert("로그인 후 이용이 가능합니다.");
-			opener.location.href="http://qclass.iptime.org:8787/FNT_Project/fntlogincrud.jsp";
-			self.close();
-		</script>
-	<%
-		}
-	%>
 	<section>
+	<div class="topbar">
+			<img id="fnt_logo" alt="FNT" src="./img/fnt_logo_main.png">
+	</div>
 	<br/>
 	<br/>
 	<div id="inputmenu">

@@ -436,7 +436,8 @@ public class LoginCrudController extends HttpServlet {
 					"</script>");
 		} else if(command.equals("logout1")) {
 			session.invalidate();
-			jsResponse("로그아웃 되었습니다.", "https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp", response);
+			jsResponse("로그아웃 되었습니다.", "fntstreaming.jsp", response);
+			//jsResponse("로그아웃 되었습니다.", "https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp", response);
 		} else if(command.equals("logka")) {
 			Object kakaoemail = ((JsonObject) request.getAttribute("profileJson")).get("email");
 			String email1 = kakaoemail.toString();
@@ -459,7 +460,7 @@ public class LoginCrudController extends HttpServlet {
 			} else {
 				response.sendRedirect("LoginCrudController?command=login&id="+memberdto.getMemberid()+"&pw="+memberdto.getMemberpw());
 			}
-		}
+		} 
 		
 	
 	}

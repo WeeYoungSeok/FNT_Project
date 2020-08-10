@@ -1,4 +1,4 @@
-<%
+<%-- <%
 response.setHeader("pragma","No-cache");
 response.setHeader("Cache-Control","no-cache");
 response.addHeader("Cache-Control","No-store");
@@ -69,3 +69,4 @@ response.setDateHeader("Expires",1L);
 		</span>
 		</div>
 	</header>
+ --%>

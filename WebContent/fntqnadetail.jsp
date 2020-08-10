@@ -78,8 +78,13 @@ td {font-size: 12pt; padding-left: 10px; color: white;}
 			</tr>
 			<tr><td colspan="4" id="qlistlast"></td></tr>
 		<%
-			if(memberdto == null) {
+			if(memberdto == null && qnaboardlistone.getQbsecret().equals("Y")) {
 		%>
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href = "fntlogincrud.jsp";
+			// 여기는 고쳐야함
+		</script>
 		<%
 			} else {
 				if (memberdto.getMemberrole().equals("ADMIN")) {
