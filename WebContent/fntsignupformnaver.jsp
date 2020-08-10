@@ -40,6 +40,7 @@
 	var naverLogin = new naver.LoginWithNaverId({
 		clientId: "T0e_dO0FJagJxo8igTCZ",
 		callbackUrl: "http://qclass.iptime.org:8787/FNT_Project/fntsignupformnaver.jsp",
+		//callbackUrl: "http://127.0.0.1:8787/FNT_Project/fntsignupformnaver.jsp",
 		callbackHandle: true
 	});
 	naverLogin.init();
@@ -55,6 +56,7 @@
 					naverLogin.reprompt();
 					return;
 				}
+				//window.location.replace("http://127.0.0.1:8787/FNT_Project/fntsignupformnaver.jsp");
 				window.location.replace("http://qclass.iptime.org:8787/FNT_Project/fntsignupformnaver.jsp");
 				//window.location.replace("fntsignupformnaver.jsp");
 			} else {

@@ -29,4 +29,6 @@ public interface LoginCrudDao {
 	
 	public String selectAccountNumberByNickname(String membernickname);
 	
+	public MemberDto kakaoLogin(String email);
+	
 }

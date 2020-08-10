@@ -73,7 +73,8 @@ public class KakaoSignupController extends HttpServlet {
 		  System.out.println(e);
 		}
 		
-        dispatch("fntsignupformkakao.jsp", request, response);
+        //dispatch("fntsignupformkakao.jsp", request, response);
+		dispatch("LoginCrudController?command=logka", request, response);
 	}
 
 	private String get(String apiUrl, Map<String, String> requestHeaders) {

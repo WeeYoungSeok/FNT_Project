@@ -30,11 +30,13 @@ public class NaverSignupController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.print("들어와");
 		String clientId = "T0e_dO0FJagJxo8igTCZ";//애플리케이션 클라이언트 아이디값";
 		String clientSecret = "vayV2rXfog";//애플리케이션 클라이언트 시크릿값";
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
 		String redirectURI = URLEncoder.encode("http://qclass.iptime.org:8787/FNT_Project/fntsignupformnaver.jsp", "UTF-8");
+		//String redirectURI = URLEncoder.encode("http://127.0.0.1:8787/FNT_Project/fntsignupformnaver.jsp", "UTF-8");
 		String apiURL;
 		apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 		apiURL += "client_id=" + clientId;
@@ -83,7 +85,8 @@ public class NaverSignupController extends HttpServlet {
         request.setAttribute("profile", responseBody);
         JsonObject jsonObject = JsonParser.parseString(responseBody).getAsJsonObject().getAsJsonObject("response");
         request.setAttribute("profileJson", jsonObject);
-        dispatch("fntsignupformnaver.jsp", request, response);
+        //dispatch("fntsignupformnaver.jsp", request, response);
+        dispatch("LoginCrudController?command=logna", request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
