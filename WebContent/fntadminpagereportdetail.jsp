@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fnt.model.dto.ReportDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -43,12 +44,13 @@ td {
 	background-color: #f9f9f9;
 }
 
-textarea {
+#content {
 	border: none;
 	padding-top: 10px;
 	font-size: 11pt;
-	width: 100%;
-	height: 100%;
+	width: 900px;
+	height: 150px;
+	overflow : scroll;
 	background-color: #f9f9f9;
 }
 
@@ -72,6 +74,7 @@ textarea {
 <body>
 <%
 	ReportDto dto = (ReportDto)request.getAttribute("reportdto");
+	SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
 %>
 	<%@ include file="./form/header.jsp" %>
 	<%@ include file="./form/aside.jsp" %>
@@ -108,7 +111,7 @@ textarea {
 			<tr>
 				<th>상세 내용</th>
 				<td>
-					<textarea cols="60" rows="10"><%=dto.getReportcontent() %></textarea>
+					<div id=content><%=dto.getReportcontent() %></div>
 				</td>
 			</tr>
 			<tr>
@@ -121,7 +124,7 @@ textarea {
 			</tr>
 			<tr>
 				<th>신고일</th>
-				<td><%=dto.getReportregdate() %></td>
+				<td><%=sDate.format(dto.getReportregdate()) %></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right" style="background-color: white;">

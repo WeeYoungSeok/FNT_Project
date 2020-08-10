@@ -57,6 +57,25 @@ td {height: 28px; font-size: 9pt; color: white; text-align: center;}
 
 #tabletitle td {overflow: auto; border-bottom: 1px solid rgba(255,255,255,0.5);}
 
+#reportdetail{
+	text-decoration : none;
+	color : white;
+	
+}
+
+#repobtn {
+	background-color: rgba(255,255,255,0.2);
+	border: 2px solid rgba(255,255,255,0);
+	border-radius: 4px 4px 4px 4px;
+	color: white;
+}
+
+#repobtn:hover {
+	background-color: rgba(255,255,255,0);
+	border: 2px solid rgba(255,255,255,0.5);
+	font-weight: bold;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -181,14 +200,14 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			                  $("#tabletbody").append(
 			                     "<tr>"+
 			                        "<td>"+str.reportno+"</td>"+
-			                        "<td><a href=admin.do?command=reportdetail&reportno=" + str.reportno +">"+str.reporttitle+"</a></td>"+
+			                        "<td><a id=reportdetail href=admin.do?command=reportdetail&reportno=" + str.reportno +">"+str.reporttitle+"</a></td>"+
 			                        "<td>"+str.sendid+"</td>"+
 			                        "<td>"+str.sendnickname+"</td>"+
 			                        "<td>"+str.receiveid+"</td>"+
 			                        "<td>"+str.receivenickname+"</td>"+
 			                        "<td>"+str.reportregdate+"</td>"+
-			                        "<td><input type=button value=차단 class=chkbtn onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
-			                     	"<td><input type=button value=거절 class=chkbtn onclick=location.href='admin.do?command=cancel&reportno="+str.reportno+"'></td>" +
+			                        "<td><input id=repobtn type=button value=차단 class=chkbtn onclick=location.href='admin.do?command=change&receiveid="+ str.receiveid + "'></td>"+
+			                     	"<td><input id=repobtn type=button value=거절 class=chkbtn onclick=location.href='admin.do?command=cancel&reportno="+str.reportno+"'></td>" +
 			                     "</tr>"
 			                  );
 			               }
@@ -197,7 +216,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			        			"<tr><td colspan='8' align='center'>-----신고받은 회원이 없습니다.-----</td></tr>"		 
 			        		 );
 			        	 } 
-			            
+			             
 			         });  
 			      },
 			      error : function(){

@@ -176,8 +176,7 @@ public class MypageController extends HttpServlet {
 			//구매확정 글 눌렀을 때 넘어오는 command
 			int dboardno = Integer.parseInt(request.getParameter("dboardno"));
 			int changesellflag = dealboarddao.changesellflag(dboardno);
-			System.out.println("mypagecontroller에서 update를 성공한 결과값 : " + changesellflag);
-			
+			jsResponse("구매확정이 완료되었습니다.", "mypage.do?command=orderlist&memberid="+memberdto.getMemberid(), response);
 		}
 		
 	}
