@@ -108,7 +108,7 @@
 	%>
 	<%
 			String dealboardid = dealboarddto.getDid();
-			if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin") && dealboarddto.getDflag().equals("S")){
+			if( ( dealboarddto.getDid().equals(memberdto.getMemberid()) || memberdto.getMemberid().equals("admin") ) && dealboarddto.getDsellflag().equals("N")){
 	%>
 		<tr>
 			<td colspan="6" align="right">
