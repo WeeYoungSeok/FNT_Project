@@ -9,48 +9,58 @@
 
 <script type="text/javascript">
 	<% String membernickname = request.getParameter("popnick"); %>
-	function closePop(){
+	function closePop() {
 		opener.location.href='dealboard.do?command=popnick&membernickname=<%=membernickname%>';
 		self.close();
 	}
-	function reportform(){
+	
+	function reportform() {
 		open("LoginCrudController?command=report2&membernickname=<%=membernickname%>","","width=700, height=550");
 		self.close();
 	}
 </script>
 <link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-	*{
-		margin : 0px;
-		padding : 0px;
-	}
-	section{margin:0px;padding: 0px;}
-	#head{
-		background-color: rgba(255,255,255,0.1);
-		color : white;
-		text-align : center;
-		 width: 100vw;
-		 height: 40px;
-		 padding-top: 16px;
-		 padding-bottom : 10px;
-	}
-	table{
-		border : 2px solid rgba(255,255,255,0.5);
-		margin : auto;
-		text-align : center;
-		margin-top : 50px;
-		font-family: Arial;
-	}
-	tr{
-		height : 40px;
-	}
-	th{
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+section {
+	margin: 0px;
+	padding: 0px;
+}
+
+#head {
+	background-color: rgba(255,255,255,0.1);
+	color: white;
+	text-align: center;
+	width: 100vw;
+	height: 40px;
+	padding-top: 16px;
+	padding-bottom : 10px;
+}
+
+table {
+	border: 2px solid rgba(255,255,255,0.5);
+	margin: auto;
+	text-align: center;
+	margin-top: 50px;
+	font-family: Arial;
+}
+
+tr {
+	height: 40px;
+}
+
+th {
 	color: white;
 	font-weight: bold;
 	background-color: rgba(255,255,255,0.2);
-	}
-	.listbtn {
-	margin : 0px;
+}
+
+.listbtn {
+	margin: 0px;
 	width: 100%; 
 	height: 40px; 
 	border: 3px solid rgba(255,255,255,0); 
@@ -62,14 +72,14 @@
 	float: center;
 }
 
-	.listbtn:hover {
+.listbtn:hover {
 	font-weight: bold;
 	background-color: rgba(255,255,255,0);
 	border: 3px solid rgba(255,255,255,0.5);
 }
 
-	.reportbtn {
-	margin : 0px;
+.reportbtn {
+	margin: 0px;
 	width: 100%; 
 	height: 30px; 
 	border: 3px solid rgba(255,255,255,0); 
@@ -81,15 +91,15 @@
 	float: center;
 }
 
-	.reportbtn:hover {
+.reportbtn:hover {
 	font-weight: bold;
 	background-color: rgba(255,255,255,0);
 	border: 3px solid red;
 }
 
-	#nicknamebottom{
-		color: white;
-	}
+#nicknamebottom{
+	color: white;
+}
 </style>
 </head>
 <body>
