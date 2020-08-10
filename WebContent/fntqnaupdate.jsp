@@ -22,7 +22,7 @@ QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone
 
 	 $(document).ready(function() {
 	      $('#summernote').summernote({
-	        placeholder: '홍보 포스팅을 자유롭게 입력해주세요.',
+	        placeholder: '작성 내용을 자유롭게 입력해주세요.',
 	        height: 300,
 	        //width: 1000,
 	        lang: 'ko-KR',
@@ -46,21 +46,19 @@ QnaBoardDto qnaboardlistone = (QnaBoardDto)request.getAttribute("qnaboardlistone
 <style type="text/css">
 * {margin:0px; padding:0px;}
 #menutitle {padding-left:31% !important;}
-
 #menubars {margin-top:2% !important; }
 .menubar {padding-top:0 !important; width:100% !important; padding-bottom:12%;}
 .mtext {padding-left:10% !important;}
-
-section {overflow: auto; z-index: 1;}
-#qtable {float: center; margin-top: 3%;}
-h1 {margin-top: 6%; font-family: "Arial"; text-align: center; margin-bottom: 2%;}
-table {margin: 0 auto; margin-top: 3%; width: 80%; height: auto; font-family: "Arial";} 
-th {background-color: rgba(255,255,255,0.2);font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
-td {background-color: rgba(255,255,255,0);height: 24px; font-size:12pt;}
-#qbtitle {width: 100%; height: 100%; border: none; padding-left: 10px;}
+section {margin: 0px; padding: 0px; overflow: auto; z-index: 1;}
+#qtable {float: center; margin-top: 5%; width: 60%; margin: 0px auto;}
+h2 {margin-top: 14%; font-family: "Arial"; color: white; text-align: left;}
+table {margin: 0 auto; margin-top: 2%; width: 100%; height: auto; font-family: "Arial";} 
+th {background-color: rgba(255,255,255,0.2); color: white; font-size: 14pt; text-align: center; height: 30px; font-weight: bold; padding-top: 2px;}
+td {height: 24px; font-size: 12pt; color: white;}
+#qbtitle {margin: 0px auto; width: 100%; height: 100%; border: none; padding-left: 10px; color: white; background-color: rgba(255,255,255,0); padding-top: 4px;}
 .panel {margin: 0px;}
-#qbbtn {width: 50px; height: 34px; border: none; border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: #cccccc; margin-top: 2px;}
-#qbbtn:hover {font-weight: bold; background-color: #bbbbbb;}
+#qbbtn {width: 50px; height: 34px; border: 2px solid rgba(255,255,255,0); border-radius: 4px 4px 4px 4px; cursor: pointer; background-color: rgba(255,255,255,0.1); margin-top: 6px;}
+#qbbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
 </style>
 </head>
 <body>
@@ -79,17 +77,17 @@ td {background-color: rgba(255,255,255,0);height: 24px; font-size:12pt;}
 		} else {
 	%>
 	<div id="qtable">
-	<h1>고객센터 글 수정</h1>
+	<h2>고객센터 글 수정</h2>
 	<form action="qna.do" onsubmit="return qnaform();" method="post">
 		<input type="hidden" value="qnaupdateres" name="command"/>
 		<input type="hidden" value="<%=qnaboardlistone.getQbboardno() %>" name="qbboardno"/>
-		<table border="1" style="border: solid white;"> 
+		<table> 
 				<col width="100">
 				<col width="750">
 			<tr>
 				<th>제목</th>
 				<td style="display:flex; border:none;">
-					<input type="text" value="<%=qnaboardlistone.getQbtitle() %>" name="qbtitle" id="qbtitle" required="required" style="width: 90%;"/>
+					<input type="text" value="<%=qnaboardlistone.getQbtitle() %>" name="qbtitle" id="qbtitle" required="required"/>
 				</td>
 			</tr>
 			
