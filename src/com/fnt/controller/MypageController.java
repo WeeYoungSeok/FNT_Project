@@ -108,6 +108,9 @@ public class MypageController extends HttpServlet {
 		if(command.equals("mypage")) {
 			//fntmain.jsp에서 로그인하고 닉네임을 클릭했을 때에 memberid가 넘어오고
 			//그 값을 받아서 sell list출력하고 담고 fntmypagesell.jsp에 보내준다.
+			if(memberdto == null) {
+				response.sendRedirect("fntmypagesell.jsp");
+			} else {
 			if(memberdto.getMemberrole().equals("USER")) {
 				String memberid = request.getParameter("memberid");
 				
@@ -117,8 +120,10 @@ public class MypageController extends HttpServlet {
 				
 				request.setAttribute("selllist", selllist);
 				dispatch("fntmypagesell.jsp", request, response);
+			
 			} else if(memberdto.getMemberrole().equals("ADMIN")) {
 				response.sendRedirect("admin.do?command=adminpage");
+			}
 			}
 		}else if(command.equals("buylist")) {
 			//내가 쓴 구매글 클릭 시
