@@ -20,7 +20,11 @@ section{padding:0px !important;}
 h3{text-align: center; font-family: "Arial"; width: 100vw; height: 40px; padding-top: 16px; color: white; background-color: rgba(255,255,255,0.2); position: fixed; z-index: 2;}
 #alertlist {padding-top: 56px; font-family: "Arial"; color: white; overflow: auto;}
 .alertone {padding-top: 8px; padding-bottom: 8px; display: flex;}
+.alertone:hover{
+	cursor:pointer;
+}
 .alertone:nth-child(even){background-color: rgba(255,255,255,0.1);}
+
 </style>
 	<%
 		//세션에 값이 담긴 memberdto을 받아온다.
