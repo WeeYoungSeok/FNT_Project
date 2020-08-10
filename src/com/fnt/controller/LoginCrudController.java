@@ -31,6 +31,7 @@ import com.fnt.model.dao.LoginCrudDao;
 import com.fnt.model.dao.impl.LoginCrudDaoImpl;
 import com.fnt.model.dto.MemberDto;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
   
 
@@ -440,6 +441,32 @@ public class LoginCrudController extends HttpServlet {
 		} else if(command.equals("logout1")) {
 			session.invalidate();
 			jsResponse("로그아웃 되었습니다.", "https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp", response);
+		} else if(command.equals("logka")) {
+			Object kakaoemail = ((JsonObject) request.getAttribute("profileJson")).get("email");
+			System.out.println(kakaoemail);
+			String email1 = kakaoemail.toString();
+			String email = email1.substring(1,email1.length()-1);
+			System.out.println(email);
+			MemberDto memberdto = dao.kakaoLogin(email);
+			
+			if(memberdto == null) {
+				
+				dispatch("fntsignupformkakao.jsp", request, response);
+			} else {
+				response.sendRedirect("LoginCrudController?command=login&id="+memberdto.getMemberid()+"&pw="+memberdto.getMemberpw());
+			}
+		} else if(command.equals("logna")) {
+			Object naveremail = ((JsonObject) request.getAttribute("profileJson")).get("email");
+			System.out.println(naveremail);
+			String email1 = naveremail.toString();
+			String email = email1.substring(1,email1.length()-1);
+			System.out.println(email);
+			MemberDto memberdto = dao.kakaoLogin(email);
+			if(memberdto == null) {	
+				dispatch("fntsignupformnaver.jsp", request, response);
+			} else {
+				response.sendRedirect("LoginCrudController?command=login&id="+memberdto.getMemberid()+"&pw="+memberdto.getMemberpw());
+			}
 		}
 		
 	

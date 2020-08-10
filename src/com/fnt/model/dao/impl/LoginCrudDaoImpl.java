@@ -304,6 +304,22 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 	
 		return accountNumber;
 	}
+	
+	public MemberDto kakaoLogin(String email) {
+		SqlSession session = null;
+		MemberDto memberdto = null;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			memberdto = session.selectOne(namespace + "kakao", email);
+			System.out.println(memberdto);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return memberdto;
+	}
 
 
 
