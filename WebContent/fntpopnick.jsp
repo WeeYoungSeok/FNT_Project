@@ -18,13 +18,15 @@
 		self.close();
 	}
 </script>
+<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 	*{
 		margin : 0px;
 		padding : 0px;
 	}
+	section{margin:0px;padding: 0px;}
 	#head{
-		background-color: black;
+		background-color: rgba(255,255,255,0.1);
 		color : white;
 		text-align : center;
 		 width: 100vw;
@@ -33,42 +35,65 @@
 		 padding-bottom : 10px;
 	}
 	table{
-		border : 1px solid black;
+		border : 2px solid rgba(255,255,255,0.5);
 		margin : auto;
 		text-align : center;
 		margin-top : 50px;
 		font-family: Arial;
 	}
 	tr{
-		height : 50px;
+		height : 40px;
 	}
 	th{
-	background-color: #cccccc;
+	color: white;
+	font-weight: bold;
+	background-color: rgba(255,255,255,0.2);
 	}
-	.tracebtn {
+	.listbtn {
 	margin : 0px;
 	width: 100%; 
 	height: 40px; 
-	border: none; 
-	border-radius: 2px 2px 2px 2px; 
+	border: 3px solid rgba(255,255,255,0); 
+	border-radius: 4px 4px 4px 4px; 
 	cursor: pointer; 
 	font-size: 12pt;
-	color: black;
+	color: white;
+	background-color: rgba(255,255,255,0.3);
 	float: center;
-	font-weight: bold;
 }
 
-	.tracebtn:hover {
+	.listbtn:hover {
 	font-weight: bold;
-	color: white;
-	background-color: black;
+	background-color: rgba(255,255,255,0);
+	border: 3px solid rgba(255,255,255,0.5);
 }
+
+	.reportbtn {
+	margin : 0px;
+	width: 100%; 
+	height: 30px; 
+	border: 3px solid rgba(255,255,255,0); 
+	border-radius: 4px 4px 4px 4px; 
+	cursor: pointer; 
+	font-size: 12pt;
+	color: white;
+	background-color: rgba(255,255,255,0.1);
+	float: center;
+}
+
+	.reportbtn:hover {
+	font-weight: bold;
+	background-color: rgba(255,255,255,0);
+	border: 3px solid red;
+}
+
 	#nicknamebottom{
-		border-bottom : 1px solid black;
+		color: white;
 	}
 </style>
 </head>
 <body>
+<section>
 	<h2 id="head" style="font-family:Arial;"><%=membernickname %>님의 정보보기</h2>
 	<table>
 		<col width=40/>
@@ -86,17 +111,18 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td colspan="2"><input class="tracebtn" type="button" style="background-color : #fee500;" value="목록"onclick="closePop();"/></td>
+			<td colspan="2"><input class="listbtn" type="button" value="목록"onclick="closePop();"/></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td colspan="2"><input class="tracebtn" type="button" value="신고" style="background-color : red;" onclick="reportform();"/></td>
+			<td colspan="2"><input class="reportbtn" type="button" value="신고" onclick="reportform();"/></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td colspan="4"></td>
 		</tr>
 	</table>
+</section>
 </body>
 </html>
