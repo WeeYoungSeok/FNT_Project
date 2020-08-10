@@ -156,7 +156,7 @@ function removeCommas(x) {
 							<option value="F" style="color:black;">패션</option>
 							<option value="C" style="color:black;">차량</option>
 							<option value="D" style="color:black;">가전제품</option>
-							<option value="A" style="color:black;">애완</option>
+							<option value="A" style="color:black;">반려동물용품</option>
 							<option value="S" style="color:black;">스포츠</option>
 						</select>
 						<input type="text" name="dtitle" id="dtitle" placeholder="제목을 입력해주세요." required="required" value="${dealboarddto.dtitle }"/>
