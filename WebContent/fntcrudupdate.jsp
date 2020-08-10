@@ -7,10 +7,9 @@
 <title>FNT(Feel New Item) 내 정보 수정</title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-*{
-	margin: 0px;
-	padding: 0px;
-}
+*{margin: 0px; padding: 0px;}
+#menutitle {padding-left:31% !important;}
+
 h2 {text-align: center; font-family: "Arial"; margin-top: 8%;}
 .tzone {width: 80%; margin: 0px auto; margin-top: 5%;}
 
