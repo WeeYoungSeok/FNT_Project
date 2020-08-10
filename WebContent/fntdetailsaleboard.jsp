@@ -196,7 +196,7 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${replydto.replygroupnoseq eq 0  }"></c:when>
-					<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname ||memberdto.memberid eq 'admin'}">
+					<c:otherwise>
 						<div class="repline">
 							<div class="re1line" style="display:flex;">
 								<div style="width: 100px !important; text-align: center;"><b>${replydto.replynickname }</b></div>
@@ -217,9 +217,8 @@
 							</div>
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
-					</c:when>
-					<c:otherwise>
-						<div class="re2line" style="width:68.1%;margin:0px auto;padding-left:18px;margin-left: 10.2%;margin-right: 20.2%; background-color: rgba(255,255,255,0.2);"><span>비밀 댓글입니다.</span></div>
+						</div>
+					
 					</c:otherwise>
 				</c:choose>
 			</li>	

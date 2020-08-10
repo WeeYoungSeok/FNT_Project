@@ -279,9 +279,10 @@ public class DealBoardController extends HttpServlet {
 			dealboarddto.setDcategory(dcategory);
 			dealboarddto.setDcontent(dcontent);
 			dealboarddto.setDprice(dprice);
-			dealboarddto.setDfilename(dfilename);
+			dealboarddto.setDfilename("none");
 			dealboarddto.setDlongitude("0");
 			dealboarddto.setDlatitude("0");
+			dealboarddto.setDroadname("none");
 			
 
 			int res = dao.updateDealBoard(dealboarddto);
@@ -798,7 +799,10 @@ public class DealBoardController extends HttpServlet {
 			String dfilename = request.getParameter("dfilename");
 
 			DealBoardDto dealboarddto = new DealBoardDto();
-
+			
+			if(dfilename == null) {
+				dfilename = dao.selectDetail(dboardno).getDfilename();
+			}
 
 
 			if (coords.equals("undefined")) {

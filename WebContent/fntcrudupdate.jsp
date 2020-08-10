@@ -56,6 +56,7 @@ input {
 	<h2>내정보 수정</h2>
 	<form action="LoginCrudController" method="post">
 	<input type="hidden" name="command" value="crudupdateres">
+	<input type="hidden" name="memberid" value="<%=memberdto.getMemberid()%>">
 	
 		<table>
 		<col width="40">
