@@ -4,7 +4,7 @@
 			alert("ID를 입력해주세요!");
 			return false;
 		} else {
-			window.open(url + '&id=' + $("#id").val(), name, "width=300, height=180");
+			window.open(url + '&id=' + $("#id").val(), name, "width=362, height=197");
 		}
 	}
 	
@@ -33,7 +33,7 @@
 			alert("Nickname을 입력해주세요!");
 			return false;
 		} else {
-			window.open(url + '&nick=' + $("#nick").val(), name, "width=330, height=170");
+			window.open(url + '&nick=' + $("#nick").val(), name, "width=330, height=180");
 		}
 	}
  	
@@ -74,7 +74,7 @@
  			alert("이메일을 입력해주세요.");
  			return false;
  		} else {
- 			window.open(url + getParameterEmail(), name, "width=300, height=170");
+ 			window.open(url + getParameterEmail(), name, "width=400, height=170");
  		}
  	}
 
