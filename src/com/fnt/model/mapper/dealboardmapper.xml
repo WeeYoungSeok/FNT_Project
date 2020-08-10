@@ -301,7 +301,7 @@
  		OR D_SELLFLAG = 'F'
  		ORDER BY D_BOARDNO ASC
  	</select>
- 	
+ 	<!-- 회원이 구매확정버튼 눌렀을 때  -->
  	<update id="changesellflag" parameterType="int">
  		UPDATE DEAL_BOARD SET D_SELLFLAG = 'F'
  		WHERE D_BOARDNO = #{dboardno}

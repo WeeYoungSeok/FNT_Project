@@ -14,7 +14,7 @@
 		self.close();
 	}
 	function reportform(){
-		open("LoginCrudController?command=report2&membernickname=<%=membernickname%>","","width=700, height=550");
+		open("LoginCrudController?command=report2&membernickname=<%=membernickname%>","","width=1000, height=700");
 		self.close();
 	}
 </script>
