@@ -216,7 +216,7 @@ if(enabledValue() == "Y" || enabledValue() == "N" || enabledValue() == "R") {
 			        			"<tr><td colspan='8' align='center'>-----신고받은 회원이 없습니다.-----</td></tr>"		 
 			        		 );
 			        	 } 
-			            
+			             
 			         });  
 			      },
 			      error : function(){
