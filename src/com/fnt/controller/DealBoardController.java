@@ -775,8 +775,36 @@ public class DealBoardController extends HttpServlet {
             String dnickname = request.getParameter("membernickname");
             List<DealBoardDto> list = dao.popNick(dnickname);
             
-            
-            
+            //판매게시판에서 팝닉누르고 목록눌렀을때
+            //D3적용안되고 댓글수 적용안돼서 
+            List<Integer> replyAllCount = new ArrayList<Integer>();
+			
+			for(int i=0; i<list.size(); i++) {	
+				int replyCount  = replydao.replyCount(list.get(i).getDboardno());
+				replyAllCount.add(replyCount);
+			}			
+
+			int allSaleCnt = dao.getAllCountS();
+			int fashionSaleCnt = dao.saleGetAllCount("F");
+			int carSaleCnt = dao.saleGetAllCount("C");
+			int electronicSaleCnt = dao.saleGetAllCount("D");
+			int petSaleCnt = dao.saleGetAllCount("A");
+			int sportSaleCnt = dao.saleGetAllCount("S");
+			
+			request.setAttribute("allSaleCnt", allSaleCnt);
+			request.setAttribute("fashionSaleCnt", fashionSaleCnt);
+			request.setAttribute("carSaleCnt", carSaleCnt);
+			request.setAttribute("electronicSaleCnt", electronicSaleCnt);
+			request.setAttribute("petSaleCnt", petSaleCnt);
+			request.setAttribute("sportSaleCnt", sportSaleCnt);
+			 
+			request.setAttribute("replyAllCount", replyAllCount);
+			//여기까지 선언해서 값을 가지고 saleboard로 옴!
+			//이렇게해야 정상적으로 나옴!
+			
+			
+			
+			
             request.setAttribute("popnick", dnickname);
             request.setAttribute("list", list);
             dispatch("fntsaleboard.jsp", request, response);
