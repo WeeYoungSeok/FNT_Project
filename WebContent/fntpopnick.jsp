@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)</title>
+<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
@@ -18,7 +19,6 @@
 		self.close();
 	}
 </script>
-<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 * {
 	margin: 0px;
@@ -118,11 +118,7 @@ th {
 			<td id="nicknamebottom"><%=membernickname %></td>
 			<td></td>
 		</tr>
-		<tr>
-			<td></td>
-			<td colspan="2"><input class="listbtn" type="button" value="목록"onclick="closePop();"/></td>
-			<td></td>
-		</tr>
+
 		<tr>
 			<td></td>
 			<td colspan="2"><input class="reportbtn" type="button" value="신고" onclick="reportform();"/></td>

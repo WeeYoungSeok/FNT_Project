@@ -11,6 +11,11 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item) : 구매 글보기</title>
+<style>
+ #popnick:hover{
+ 	cursor:pointer;
+ }
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 function delChk(dboardno) {
@@ -105,7 +110,7 @@ function deletereply(replyno,replyboardno) {
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><a onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
+				<td><a id="popnick" onclick="popnick('${dealboarddto.dnickname}');">${dealboarddto.dnickname }</a></td>
 				<th>가격</th>
 				<td><fmt:formatNumber value="${dealboarddto.dprice}" pattern="#,###"/>원</td>
 			</tr>
@@ -232,7 +237,7 @@ function popnick(membernickname) {
 		location.href="fntlogincrud.jsp";
 		
 	} else {
-	open("fntpopnick2.jsp?popnick=" + membernickname,
+	open("fntpopnick.jsp?popnick=" + membernickname,
 		 "",
 		 "width=400, height=500");	
 	}
