@@ -53,7 +53,7 @@ button:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); backgr
 	%>
 		<script type="text/javascript">
 			alert("로그인 후 이용이 가능합니다.");
-			opener.location.href="fntlogincrud.jsp"
+			opener.location.href="http://qclass.iptime.org:8787/FNT_Project/fntlogincrud.jsp";
 			self.close();
 		</script>
 	<%

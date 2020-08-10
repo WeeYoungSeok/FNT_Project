@@ -33,13 +33,6 @@ response.setDateHeader("Expires",1L);
 		</form>
 	
 		<span class="mysection">
-		<script type="text/javascript">
-		//채팅방 만드는 함수
-
-		function chatGo() {
-			open("https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp","","width=1600, height=1000");
-		}
-		</script>
 			<!-- 마이페이지 -->
 				<%
 				if(memberdto != null) {
@@ -60,12 +53,11 @@ response.setDateHeader("Expires",1L);
 
 				<!-- 알림 -->
 				<img class="alertbell" alt="alert" src="./img/bell.png" onclick="javascript:newpop();"/>
-				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
-				<button class="headerbtn" onclick="chatGo();">Chat</button>
+				<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout1'">Sign Out</button>
 				<%
 					} else {
 				%>
-						<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout'">Sign Out</button>
+						<button class="headerbtn" onclick="location.href='LoginCrudController?command=logout1'">Sign Out</button>
 				<%
 					}
 				} else {

@@ -437,6 +437,9 @@ public class LoginCrudController extends HttpServlet {
 					"alert('" + msg + "');" +
 					"self.close();" +
 					"</script>");
+		} else if(command.equals("logout1")) {
+			session.invalidate();
+			jsResponse("로그아웃 되었습니다.", "https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp", response);
 		}
 		
 	
