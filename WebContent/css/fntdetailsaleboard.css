@@ -47,3 +47,6 @@ td {font-size: 12pt; padding-left: 10px; height: 30px; color: white;}
 
 #rbtn {width: 36px; height: 20px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; font-weight: bold; color: white; background-color: rgba(255,255,255,0.3);}
 #rbtn:hover {color: white; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
+
+#invoice {color: white; background-color: rgba(255,255,255,0.1); border: none; padding-left: 10px;}
+#invoice::placeholder {color: white;}

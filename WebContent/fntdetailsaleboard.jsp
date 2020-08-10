@@ -126,24 +126,24 @@
 		<c:choose>
 			<c:when test="${(dealboarddto.dsellflag eq 'Y' ||  dealboarddto.dsellflag eq 'F') && dealboarddto.dnickname eq memberdto.membernickname}">
 				<tr>
-				<form action="mypage.do">
 					<td colspan="6" >
-						<div style="display:flex;">
-						<p style="width:300px;height:100%;" align="right"><b style="color:red">송장번호를 입력해주세요</b></p>
-						<input type="hidden" name="command" value="invoiceinsert"/>
-						<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
-						<c:choose>
-							<c:when test="${invoice eq '입력한 송장번호가 없습니다.' }">
-								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)">
-							</c:when>
-							<c:otherwise>
-								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
-							</c:otherwise>
-						</c:choose> 
-						<input id="sbbtn" type="submit" value="등록하기">
+					<form action="mypage.do">
+						<div style="display:flex; margin: 0px auto; float: right;">
+							<p style="width: 300px; height: 100%; padding-top: 4px; margin-right: 6px;" align="right"><b style="color: #fee500;">송장번호를 입력해주세요</b></p>
+							<input type="hidden" name="command" value="invoiceinsert"/>
+							<input type="hidden" name="olboardno" value="<%=dealboarddto.getDboardno()%>"/>
+							<c:choose>
+								<c:when test="${invoice eq '입력한 송장번호가 없습니다.' }">
+									<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)">
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
+								</c:otherwise>
+							</c:choose> 
+							<input id="sbbtn" type="submit" value="등록하기">
 						</div>
+						</form>	
 					</td>
-				</form>	
 				</tr>	
 			</c:when>
 		</c:choose>

@@ -28,7 +28,7 @@ td {height: 30px;}
 .validate {width: 100%; margin: 0px auto; font-family: "Arial"; color: white; border: 2px solid rgba(255,255,255,0.5);}
 #code {width: 100%; height: 30px; padding-left: 10px; border: none; background-color: rgba(255,255,255,0); color: white;}
 #code::placeholder {color: white;}
-#checkCode {width: 100%; height: 30px; border: none; background-color: rgba(255,255,255,0); text-align: center; padding-top: 4px;}
+#checkCode {color: white; width: 100%; height: 30px; border: none; background-color: rgba(255,255,255,0); text-align: center; padding-top: 4px;}
 #code_check2 {width: 100%; height: 30px; padding-left: 10px; border: none; background-color: rgba(255,255,255,0); text-align: center; font-wieght: bold;}
 #hi {width: 100%; height: 40px; font-size: 13pt; border: 2px solid rgba(255,255,255,0); background-color: rgba(255,255,255,0.2); color: white; border-radius: 4px 4px 4px 4px;}
 #hi:hover {border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0); font-weight: bold;}
@@ -161,14 +161,14 @@ td {height: 30px;}
 		// 사용자가 입력한 인증번호
 		
 		if(v1 != v2) {
-			document.getElementById("checkCode").style.color = "red";
+			//document.getElementById("checkCode").style.color = "red";
 			document.getElementById("checkCode").innerHTML = "&nbsp;&nbsp;잘못된 인증 번호";
 			// 우리가 발생시킨 난수랑 사용자가 입력한 숫자랑 다르면 div태그에 빨간 글씨로 뿌려줘라
 			
 			makeNull();
 			//그리고 이 함수 실행
 		} else {
-			document.getElementById("checkCode").style.color = "blue";
+			//document.getElementById("checkCode").style.color = "blue";
 			document.getElementById("checkCode").innerHTML = "&nbsp;&nbsp;인증되었습니다";
 			// 사용자가 입력한 인증번호를 한글자씩 치면서 
 			// 우리가 발생시킨 난수와 일치가 되는순간.!

@@ -5,41 +5,100 @@
 <head>
 <meta charset="UTF-8">
 <title>FNT(Feel New Item)PW 새로 만들기</title>
-<link href="css/fntsignupform.css" rel="stylesheet" type="text/css"/>
+<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-* {margin: 0px; padding: 0px;}
-
-table {
-	margin: auto;
-	margin-top: 50px;
+* {
+	margin: 0px;
+	padding: 0px;
 }
 
-#submitbtn {
-	width: 100%;
-	height: 40px;
+#menutitle {
+	padding-left: 31% !important;
 }
- 
 
 section {
 	padding-top: 7%;
-	margin-left: 14%;
 	width: 100%;
 	overflow: auto;
 	margin-bottom: 30px;
 }
 
-.border{
-	border: 1px solid gray;
-	margin-left: 13%;
+#tablediv {
+	margin-left: 8%;
 }
 
-h2{
+h2 {
 	margin-top: 5%;
 	margin-right: 25%;
+	color: white;
+	text-align: center;
+	font-family: Arial;
 }
 
-#tablediv{
-	margin-left: 8%;
+.border {
+	margin: 0px auto;
+	margin-top: 50px;
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	margin-left: 13%;
+	font-family: Arial;
+}
+
+th {
+	color: white;
+	height: 30px;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+td {
+	color: white;
+}
+
+#memberpw {
+	color: white;
+	padding-left: 10px;
+	width: 96%;
+	height: 30px;
+	border: none;
+	border-radius: 2px 2px 2px 2px;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+#memberpw::placeholder {
+	color: white;
+}
+
+#memberpwchk {
+	color: white;
+	padding-left: 10px;
+	width: 96%;
+	height: 30px;
+	border: none;
+	border-radius: 2px 2px 2px 2px;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+#memberpwchk::placeholder {
+	color: white;
+}
+
+#submitbtn {
+	width: 100%;
+	height: 40px;
+	font-size: 14pt;
+	color: white;
+	background-color: rgba(255,255,255,0.2);
+	border: 2px solid rgba(255,255,255,0);
+	border-radius: 4px 4px 4px 4px;
+}
+
+#submitbtn:hover {
+	background-color: rgba(255,255,255,0);
+	border: 2px solid rgba(255,255,255,0.5);
+	font-weight: bold;
+}
+
+.notform {
+	width: 30px !important;
 }
 </style>
 </head>
@@ -54,35 +113,28 @@ h2{
 		<input type="hidden" name="memberid" value="<%=memberid%>">
 		<input type="hidden" name="command" value="updatepwres">
 		<div id="tablediv">
-		<h2 align="center" style="font-family: Arial;">PW 변경</h2>
+		<h2>PW 변경</h2>
 		<table class="border" style="width:50%">
-			<col width="200px">
-			<col width="200px">
-			<col width="400px">
-			<col width="200px">
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>	
+				<td colspan="4" style="height: 30px;"></td>
 			</tr>
 			<tr>
-				<td></td>
+				<td class="notform"></td>
 				<th>NEW PW</th>
 				<td>
-					<input type="password" id="memberpw" name="memberpw" required="required" placeholder="비밀번호를  입력해주세요.">
+					<input type="password" id="memberpw" name="memberpw" required="required" placeholder="비밀번호를 입력해주세요.">
 				</td>
-				<td></td>
+				<td class="notform"></td>
 			</tr>
 			<tr>
 				<td></td>
 				<th>NEW PWCHK</th>
 				<td>
-					<input type="password" id="memberpwchk" onkeyup="checkCode()" name="memberpwchk" required="required" placeholder="비밀번호를 확인해주세요.">
+					<input type="password" id="memberpwchk" onkeyup="checkCode()" name="memberpwchk" required="required" placeholder="비밀번호를 다시 한 번 입력해주세요.">
 					</td>
-				<td><div id="code_check"></div></td>
+				<td></td>
 			</tr>
-			
+			<tr><td colspan="4" style="height: 40px; padding-top: 6px;"><div id="code_check" style="text-align: center;"></div></td></tr>
 			<tr>
 				<td></td>
 				<td colspan="2">
@@ -90,7 +142,9 @@ h2{
 				</td>
 				<td></td>
 				</tr>
-			<tr><td></td><td></td><td></td><td></td></tr>
+			<tr>
+				<td colspan="4" style="height: 30px;"></td>
+			</tr>
 			
 		</table>
 		</div>
@@ -103,13 +157,13 @@ h2{
 		var v2 = form1.memberpw.value;
 		
 		if(v1 != v2){
-			document.getElementById("code_check").style.color = "red";
-			document.getElementById("code_check").innerHTML = "&nbsp;&nbsp;잘못된 비밀번호";
+			document.getElementById("code_check").style.color = "white";
+			document.getElementById("code_check").innerHTML = "잘못된 비밀번호";
 			
 			makeNull();
 		}else{
-			document.getElementById("code_check").style.color = "blue";
-			document.getElementById("code_check").innerHTML = "&nbsp;&nbsp;비밀번호 일치";
+			document.getElementById("code_check").style.color = "#fee500";
+			document.getElementById("code_check").innerHTML = "비밀번호 일치";
 			
 			makeReal();
 		}
