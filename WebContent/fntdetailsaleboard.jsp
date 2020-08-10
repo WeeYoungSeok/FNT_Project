@@ -158,9 +158,9 @@
 	<input type="hidden" name="command" value="insertreply">
 		<table style="margin-bottom:3px;">
 			<tr>
-				<th style="background-color:rgba(255,255,255,0.1);"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; color: white; background-color:rgba(255,255,255,0);"></th>
+				<th style="width: 150px !important; background-color:rgba(255,255,255,0.1);"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; color: white; background-color:rgba(255,255,255,0);"></th>
 				<td style="display:flex; padding-left:0px;">
-					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; background-color:rgba(255,255,255,0);">
+					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; color: white; background-color:rgba(255,255,255,0);">
 					<div id="btnbox">
 						<input id="sbbtn" type="submit" id="insertreply" value="등록">
 						<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
@@ -199,7 +199,7 @@
 					<c:otherwise>
 						<div class="repline">
 							<div class="re1line" style="display:flex;">
-								<div><b>${replydto.replynickname }</b></div>
+								<div style="width: 100px !important; text-align: center;"><b>${replydto.replynickname }</b></div>
 								<div style="margin-left:6px;">
 									${replydto.replyregdate }
 								<span>
@@ -270,7 +270,7 @@ function openrereply(me,membernickname,replyno,replyboardno) {
 			+'<div>'
 				+'<form action="reply.do" method="method">'
 					+'<div style="display:flex;">'
-						+'<div style="width:110px;height:24px;padding-top:5px;overflow:auto;text-align:center;color:white;background-color:rgba(255,255,255,0.3);"><b style="margin:5px;">' + membernickname + '</b></div>'
+						+'<div style="width:200px;height:24px;padding-top:5px;overflow:auto;text-align:center;color:white;background-color:rgba(255,255,255,0.3);"><b style="margin:5px;">' + membernickname + '</b></div>'
 						+'<input type="hidden" name="command" value="insertRereply">'
 						+'<input type="text" id="rereplytitle" name="rereplytitle" placeholder="댓글 내용을 입력해주세요."/>'
 						+'<input type="hidden" name="replyno" value="' + replyno + '">'

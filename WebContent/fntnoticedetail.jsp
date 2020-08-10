@@ -11,7 +11,7 @@
 <title>FNT(Feel New Item) : <%=noticeboardlistone.getNbtitle() %></title>
 <link href="css/section.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-*{margin: 0px;padding: 0px;}
+*{margin: 0px; padding: 0px;}
 
 #menutitle {padding-left:31% !important;}
 

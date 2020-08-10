@@ -5,47 +5,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-	#localvideo{
-		float : left;
-	}
-	
-	#inputmenu{
-		position: fixed;	
-		left: 711px;
-	}
-	
-	#localvideo{
-		margin-top: 50px;
-		margin-right: 20px;
-	}
-	#remotevideo{
-		margin-top: 50px;
-	}
-	button{
-	   width: 70px;
-	   height: 38px;
-	   border: none;
-	   border-radius: 2px 2px 2px 2px;
-	   cursor: pointer;
-	   background-color: #dedede;	
-	}
-	#btn-open{
-		margin-left: 10px;
-	}
-	input[type=text]{
-		width: 45%;
-		height: 30px;
-	   padding-left: 2%;
-	   border: 2px solid #dedede;
-	}
-	button:hover{
-		background-color:#fee500;
-		font-weight:bold;
-	}
+* {margin: 0px; padding: 0px;}
+
+#inputmenu {
+	margin: 0px auto;
+	width: 36%;
+}
+
+#roomid {
+	width: 45%;
+	height: 30px;
+	padding-left: 2%;
+	border: none;
+	background-color: rgba(255,255,255,0.1);
+	border-radius: 2px 2px 2px 2px;
+	color: white;
+}
+
+#roomid::placeholder {
+	color: white;
+}
+
+#localvideo {
+	float : left;
+	margin-right: 20px;
+}
+
+#btn-open {
+	margin-left: 10px;
+}
+
+button {width: 50px; height: 26px; border: 2px solid rgba(255,255,255,0); margin-left: 10px; border-radius: 2px 2px 2px 2px; cursor: pointer; color: white; background-color: rgba(255,255,255,0.3);}
+button:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}
+
 </style>
 </head>
-<link href="css/section.css" rel="stylesheet" type="text/css" />
 <body>
 	<script
 		src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
@@ -67,12 +63,14 @@
 	<br/>
 	<br/>
 	<div id="inputmenu">
-		<input type="text" id="roomid" placeholder="방 이름을 입력해주세요"  required="required"/>
+		<input type="text" id="roomid" placeholder="방 이름을 입력해주세요" required="required"/>
 		<button id="btn-open">만들기</button>
 		<button id="btn-join">입장</button>
 	</div> 
+	<div style="display: flex; margin-top: 50px;">
 		<div id="localvideo"></div>
 		<div id="remotevideo"></div>
+	</div>
 		<script type="text/javascript" src="./real.js"></script>
 	</section>
 </body>
