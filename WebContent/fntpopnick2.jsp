@@ -9,59 +9,92 @@
 <script type="text/javascript">
 	<% String membernickname = request.getParameter("popnick"); %>
 
-	function reportform(){
+	function reportform() {
 		open("LoginCrudController?command=report2&membernickname=<%=membernickname%>","","width=700, height=550");
 		self.close();
 	}
 </script>
+<link href="css/section2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-	*{
-		margin : 0px;
-		padding : 0px;
-	}
-	#head{
-		background-color: black;
-		color : white;
-		text-align : center;
-		 width: 100vw;
-		 height: 40px;
-		 padding-top: 16px;
-		 padding-bottom : 10px;
-	}
-	table{
-		border : 1px solid black;
-		margin : auto;
-		text-align : center;
-		margin-top : 50px;
-		font-family: Arial;
-	}
-	tr{
-		height : 50px;
-	}
-	th{
-	background-color: #cccccc;
-	}
-	#tracebtn {
-	margin : 0px;
-	width: 100%; 
-	height: 50px; 
-	border: none; 
-	border-radius: 2px 2px 2px 2px; 
-	cursor: pointer; 
-	font-size: 12pt;
-	color: black;
-	float: center;
-	font-weight: bold;
+* {
+	margin: 0px;
+	padding: 0px;
 }
 
-	#tracebtn:hover {
-	font-weight: bold;
-	color: white;
-	background-color: black;
+section {
+	margin: 0px;
+	padding: 0px;
 }
-	#nicknamebottom{
-	border-bottom : 1px solid black;
-	}
+
+#head {
+	background-color: rgba(255,255,255,0.1);
+	color: white;
+	text-align: center;
+	width: 100vw;
+	height: 40px;
+	padding-top: 16px;
+	padding-bottom : 10px;
+}
+
+table {
+	border: 2px solid rgba(255,255,255,0.5);
+	margin: auto;
+	text-align: center;
+	margin-top: 50px;
+	font-family: Arial;
+}
+
+tr {
+	height: 40px;
+}
+
+th {
+	color: white;
+	font-weight: bold;
+	background-color: rgba(255,255,255,0.2);
+}
+
+.listbtn {
+	margin: 0px;
+	width: 100%; 
+	height: 40px; 
+	border: 3px solid rgba(255,255,255,0); 
+	border-radius: 4px 4px 4px 4px; 
+	cursor: pointer; 
+	font-size: 12pt;
+	color: white;
+	background-color: rgba(255,255,255,0.3);
+	float: center;
+}
+
+.listbtn:hover {
+	font-weight: bold;
+	background-color: rgba(255,255,255,0);
+	border: 3px solid rgba(255,255,255,0.5);
+}
+
+.reportbtn {
+	margin: 0px;
+	width: 100%; 
+	height: 30px; 
+	border: 3px solid rgba(255,255,255,0); 
+	border-radius: 4px 4px 4px 4px; 
+	cursor: pointer; 
+	font-size: 12pt;
+	color: white;
+	background-color: rgba(255,255,255,0.1);
+	float: center;
+}
+
+.reportbtn:hover {
+	font-weight: bold;
+	background-color: rgba(255,255,255,0);
+	border: 3px solid red;
+}
+
+#nicknamebottom{
+	color: white;
+}
 </style>
 </head>
 <body>
@@ -82,19 +115,12 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td colspan="2"><input id="tracebtn" type="button" value="신고" style="background-color : red;" onclick="reportform();"/></td>
+			<td colspan="2"><input class="listbtn" type="button" value="목록"onclick="closePop();"/></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td></td>
-			<td></td>
+			<td colspan="2"><input class="reportbtn" type="button" value="신고" onclick="reportform();"/></td>
 			<td></td>
 		</tr>
 		<tr>

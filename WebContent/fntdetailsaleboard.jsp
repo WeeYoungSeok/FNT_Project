@@ -34,7 +34,7 @@
 			<th>제목</th>
 			<td colspan="5">
 				<c:choose>
-					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+					<c:when test="${dealboarddto.dsellflag eq 'Y' ||  dealboarddto.dsellflag eq 'F'}">
 						[판매완료]
 					</c:when>
 				</c:choose>
@@ -45,7 +45,7 @@
 			<th>찜</th>
 			<td style="text-align:center; padding-left:0px;">
 				<c:choose>
-					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+					<c:when test="${dealboarddto.dsellflag eq 'Y' ||  dealboarddto.dsellflag eq 'F' }">
 						<div align="center"><img alt="noWish" src="./icon/nosale.png" style="width:20px;height:25px;"></div>
 					</c:when>		
 				<c:otherwise>
@@ -108,7 +108,7 @@
 	%>
 	<%
 			String dealboardid = dealboarddto.getDid();
-			if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin")){
+			if( ( dealboarddto.getDid().equals(memberdto.getMemberid()) || memberdto.getMemberid().equals("admin") ) && dealboarddto.getDsellflag().equals("N")){
 	%>
 		<tr>
 			<td colspan="6" align="right">
@@ -124,7 +124,7 @@
 		}
 	%> 
 		<c:choose>
-			<c:when test="${dealboarddto.dsellflag eq 'Y' && dealboarddto.dnickname eq memberdto.membernickname }">
+			<c:when test="${(dealboarddto.dsellflag eq 'Y' ||  dealboarddto.dsellflag eq 'F') && dealboarddto.dnickname eq memberdto.membernickname}">
 				<tr>
 				<form action="mypage.do">
 					<td colspan="6" >
@@ -139,7 +139,7 @@
 							<c:otherwise>
 								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
 							</c:otherwise>
-						</c:choose>
+						</c:choose> 
 						<input id="sbbtn" type="submit" value="등록하기">
 						</div>
 					</td>
@@ -158,9 +158,9 @@
 	<input type="hidden" name="command" value="insertreply">
 		<table style="margin-bottom:3px;">
 			<tr>
-				<th style="background-color:rgba(255,255,255,0.1);"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; color: white; background-color:rgba(255,255,255,0);"></th>
+				<th style="width: 150px !important; background-color:rgba(255,255,255,0.1);"><input type="text" name="replynickname" value="${memberdto.membernickname }" readonly="readonly" style="text-align:center; font-size:12pt; font-weight:bold; width:90%; height:90%; border:none; margin:0px auto; color: white; background-color:rgba(255,255,255,0);"></th>
 				<td style="display:flex; padding-left:0px;">
-					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; background-color:rgba(255,255,255,0);">
+					<input type="text" id="replytitle" name="replytitle" placeholder="댓글을 입력하세요." style="width:100%; height:28px; border:none; margin:0px auto; padding-left:10px; color: white; background-color:rgba(255,255,255,0);">
 					<div id="btnbox">
 						<input id="sbbtn" type="submit" id="insertreply" value="등록">
 						<input type="hidden" name="replyboardno" value="${dealboarddto.dboardno }">
@@ -196,10 +196,10 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${replydto.replygroupnoseq eq 0  }"></c:when>
-					<c:when test="${replydto.replynickname eq memberdto.membernickname || dealboarddto.dnickname eq memberdto.membernickname ||memberdto.memberid eq 'admin'}">
+					<c:otherwise>
 						<div class="repline">
 							<div class="re1line" style="display:flex;">
-								<div><b>${replydto.replynickname }</b></div>
+								<div style="width: 100px !important; text-align: center;"><b>${replydto.replynickname }</b></div>
 								<div style="margin-left:6px;">
 									${replydto.replyregdate }
 								<span>
@@ -217,9 +217,8 @@
 							</div>
 						</div>
 						<div class="re2line">${replydto.replytitle }</div>
-					</c:when>
-					<c:otherwise>
-						<div class="re2line" style="width:68.1%;margin:0px auto;padding-left:18px;margin-left: 10.2%;margin-right: 20.2%; background-color: rgba(255,255,255,0.2);"><span>비밀 댓글입니다.</span></div>
+						</div>
+					
 					</c:otherwise>
 				</c:choose>
 			</li>	
@@ -271,7 +270,7 @@ function openrereply(me,membernickname,replyno,replyboardno) {
 			+'<div>'
 				+'<form action="reply.do" method="method">'
 					+'<div style="display:flex;">'
-						+'<div style="width:110px;height:24px;padding-top:5px;overflow:auto;text-align:center;color:white;background-color:rgba(255,255,255,0.3);"><b style="margin:5px;">' + membernickname + '</b></div>'
+						+'<div style="width:200px;height:24px;padding-top:5px;overflow:auto;text-align:center;color:white;background-color:rgba(255,255,255,0.3);"><b style="margin:5px;">' + membernickname + '</b></div>'
 						+'<input type="hidden" name="command" value="insertRereply">'
 						+'<input type="text" id="rereplytitle" name="rereplytitle" placeholder="댓글 내용을 입력해주세요."/>'
 						+'<input type="hidden" name="replyno" value="' + replyno + '">'
