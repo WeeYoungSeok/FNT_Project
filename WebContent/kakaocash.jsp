@@ -56,6 +56,7 @@
               location.href= "dealboard.do?command=cashupdate&dboardno="+<%=dto.getDboardno()%>;
             } else {
               alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+              self.close();
             }
           });
 
