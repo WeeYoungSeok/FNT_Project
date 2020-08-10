@@ -109,7 +109,6 @@ public class ReplyDaoImpl implements ReplyDao {
 		List<ReplyDto> list = null;
 		
 		
-		System.out.println("selectReply DAO에서 넣어야하는 replydto : "+replydto);
 		
 		Map<String,Object> map = new HashMap<>();
 		map.put("replyid", replydto.getReplyid());

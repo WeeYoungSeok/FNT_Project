@@ -244,7 +244,6 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			receivenickname = session.selectOne(namespace+"receivenickname",membernickname);
-			System.out.println("LoginCRUD에서 결과를 출력해온 receivenickname : " + receivenickname);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -312,7 +311,6 @@ public class LoginCrudDaoImpl implements LoginCrudDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			memberdto = session.selectOne(namespace + "kakao", email);
-			System.out.println(memberdto);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

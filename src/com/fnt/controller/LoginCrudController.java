@@ -362,14 +362,11 @@ public class LoginCrudController extends HttpServlet {
 			String memberid = request.getParameter("memberid");
 			
 			request.setAttribute("memberid", memberid);
-			System.out.println("컨트롤러에서 memberid : "+memberid);
 			dispatch("fntcrudupdatepw.jsp", request, response);
 		}else if(command.equals("updatepwres")) {
 			String memberid = request.getParameter("memberid");
 			String memberpw = request.getParameter("memberpw");
 			String memberpwchk = request.getParameter("memberpwchk");
-			System.out.println("id : " + memberid);
-			System.out.println("pw : "+memberpw + "pwchk : " + memberpwchk);
 			MemberDto dto = new MemberDto();
 			int res = dao.updatepw(memberpw, memberpwchk,memberid);
 			
@@ -381,7 +378,6 @@ public class LoginCrudController extends HttpServlet {
 			}
 		} else if(command.equals("report")) {
 			String membernickname = request.getParameter("membernickname");
-			System.out.println("컨트롤러에서 nick : " + membernickname);
 			request.setAttribute("membernickname", membernickname);
 			dispatch("fntreportform.jsp", request, response);
 		} else if(command.equals("reportform")) {
@@ -443,10 +439,8 @@ public class LoginCrudController extends HttpServlet {
 			jsResponse("로그아웃 되었습니다.", "https://qclass.iptime.org:8443/FNT_Project/fntstreaming.jsp", response);
 		} else if(command.equals("logka")) {
 			Object kakaoemail = ((JsonObject) request.getAttribute("profileJson")).get("email");
-			System.out.println(kakaoemail);
 			String email1 = kakaoemail.toString();
 			String email = email1.substring(1,email1.length()-1);
-			System.out.println(email);
 			MemberDto memberdto = dao.kakaoLogin(email);
 			
 			if(memberdto == null) {
@@ -457,10 +451,8 @@ public class LoginCrudController extends HttpServlet {
 			}
 		} else if(command.equals("logna")) {
 			Object naveremail = ((JsonObject) request.getAttribute("profileJson")).get("email");
-			System.out.println(naveremail);
 			String email1 = naveremail.toString();
 			String email = email1.substring(1,email1.length()-1);
-			System.out.println(email);
 			MemberDto memberdto = dao.kakaoLogin(email);
 			if(memberdto == null) {	
 				dispatch("fntsignupformnaver.jsp", request, response);

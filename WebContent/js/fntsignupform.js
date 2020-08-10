@@ -33,7 +33,7 @@
 			alert("Nickname을 입력해주세요!");
 			return false;
 		} else {
-			window.open(url + '&nick=' + $("#nick").val(), name, "width=330, height=180");
+			window.open(url + '&nick=' + $("#nick").val(), name, "width=330, height=200");
 		}
 	}
  	

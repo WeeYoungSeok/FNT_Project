@@ -70,7 +70,6 @@ public class KakaoSignupController extends HttpServlet {
 		    request.setAttribute("profileJson", profileJson.get("kakao_account"));
 		  }
 		} catch (Exception e) {
-		  System.out.println(e);
 		}
 		
         //dispatch("fntsignupformkakao.jsp", request, response);

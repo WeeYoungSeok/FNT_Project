@@ -206,7 +206,6 @@ public class AdminController extends HttpServlet {
 		}else if(command.equals("cancel")) {
 			//신고거절
 			int reportno = Integer.parseInt(request.getParameter("reportno"));
-			System.out.println("admincontroller에서 받은 번호" + reportno);
 			int deletereport = reportpagebiz.deleteReport(reportno);
 			if(deletereport > 0) {
 				jsResponse("신고처리가 거절되었습니다.", "admin.do?command=adminpage", response);

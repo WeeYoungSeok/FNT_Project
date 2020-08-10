@@ -276,8 +276,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		map.put("categorylist", categorylist );
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-		System.out.println(startNum);
-		System.out.println(endNum);
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
@@ -300,8 +298,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		map.put("categorylist", categorylist);
-		System.out.println("startNum" + startNum);
-		System.out.println("endNum" + endNum);
 		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -344,8 +340,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		map.put("search", search);
-		System.out.println("startNum" + startNum);
-		System.out.println("endNum" + endNum);
 		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -353,7 +347,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			list = session.selectList(namespace + "searchdealtitle",map);
-			System.out.println("여기까진 왓니?");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -371,8 +364,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		map.put("search", search);
-		System.out.println("startNum" + startNum);
-		System.out.println("endNum" + endNum);
 		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -380,8 +371,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			list = session.selectList(namespace + "searchdealwriter",map);
-			System.out.println("다오에서의 list 사이즈"+list.size());
-			System.out.println("여기까진 왓니? 작성자");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -399,8 +388,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		map.put("categorylist", categorylist);
-		System.out.println("startNum" + startNum);
-		System.out.println("endNum" + endNum);
 		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -426,8 +413,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		map.put("salesearch", salesearch);
-		System.out.println("startNum" + startNum);
-		System.out.println("endNum" + endNum);
 		
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
@@ -451,8 +436,6 @@ public class DealBoardDaoImpl implements DealBoardDao{
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		map.put("salesearch", salesearch);
-		System.out.println("startNum" + startNum);
-		System.out.println("endNum" + endNum);
 		SqlSession session = null;
 		List<DealBoardDto> list = null;
 		

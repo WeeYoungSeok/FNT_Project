@@ -43,7 +43,6 @@ public class AdminPageDaoImpl implements AdminPageDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.update(namespace+"updateRole", receiveid);
-			System.out.println(res + "여기입니다.");
 			if(res > 0) {
 				session.commit();
 			}
@@ -59,11 +58,9 @@ public class AdminPageDaoImpl implements AdminPageDao {
 	public int restEnabled(String id) {
 		SqlSession session = null;
 		int res = 0;
-		System.out.println(id + "dao에서 찍힌 id");
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.update(namespace+"resetenabled", id);
-			System.out.println(res + "dao에서 찍힌 res");
 			if(res > 0) {
 				session.commit();
 			}

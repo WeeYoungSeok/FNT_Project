@@ -24,7 +24,6 @@ public class SignupDaoImpl implements SignupDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			list = session.selectList(namespace + "selectidall");
-			System.out.println("id-memberdto-list " + list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -40,7 +39,6 @@ public class SignupDaoImpl implements SignupDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			memberdto = session.selectOne(namespace + "selectidall", id);
-			System.out.println("id-memberdto " + memberdto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -56,7 +54,6 @@ public class SignupDaoImpl implements SignupDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			list = session.selectList(namespace + "selectnickall");
-			System.out.println("nick-memberdto-list " + list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -72,7 +69,6 @@ public class SignupDaoImpl implements SignupDao {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			memberdto = session.selectOne(namespace + "selectnickall", nick);
-			System.out.println("nick-memberdto " + memberdto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -17,9 +17,6 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		SqlSession session = null;
 		int updateinvoice = 0;
 		
-		System.out.println(invoice);
-		System.out.println(membernickname);
-		System.out.println(olboardno);
 		// memberid가 아니라 닉네임 가져오기&***********************************
 		
 		Map<String, Object> map = new HashMap<String, Object>();

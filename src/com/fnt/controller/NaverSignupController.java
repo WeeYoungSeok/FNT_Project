@@ -30,7 +30,6 @@ public class NaverSignupController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.print("들어와");
 		String clientId = "T0e_dO0FJagJxo8igTCZ";//애플리케이션 클라이언트 아이디값";
 		String clientSecret = "vayV2rXfog";//애플리케이션 클라이언트 시크릿값";
 		String code = request.getParameter("code");
@@ -44,7 +43,6 @@ public class NaverSignupController extends HttpServlet {
 		apiURL += "&redirect_uri=" + redirectURI;
 		apiURL += "&code=" + code;
 		apiURL += "&state=" + state;
-		System.out.println("apiURL="+apiURL);
 		StringBuffer res = new StringBuffer();
 		try {
 		  URL url = new URL(apiURL);
@@ -63,10 +61,8 @@ public class NaverSignupController extends HttpServlet {
 		  }
 		  br.close();
 		  if(responseCode==200) {
-		    System.out.println("\n" + res.toString());
 		  }
 		} catch (Exception e) {
-		  System.out.println(e);
 		}
 		
 		JsonObject json = JsonParser.parseString(res.toString()).getAsJsonObject();

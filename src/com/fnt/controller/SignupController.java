@@ -55,27 +55,21 @@ public class SignupController extends HttpServlet {
 		// id 중복 체크
 		} else if (command.equals("idchk")) {
 			String id = request.getParameter("id");
-			System.out.println(id);
 			MemberDto memberdto = dao.idchk(id);
-			System.out.println("id-memberdto " + memberdto);
 			boolean idnotused = true;
 			if (memberdto != null) {
 				idnotused = false;
 			}
-			System.out.println("idnotused " + idnotused);
 			response.sendRedirect("idchk.jsp?idnotused=" + idnotused);
 	
 		// nickname 중복 체크
 		} else if (command.equals("nickchk")) {
 			String nick = request.getParameter("nick");
-			System.out.println(nick);
 			MemberDto memberdto = dao.nickchk(nick);
-			System.out.println("nick-memberdto " + memberdto);
 			boolean nicknotused = true;
 			if (memberdto != null) { 
 				nicknotused = false;
 			}
-			System.out.println("nicknotused " + nicknotused);
 			response.sendRedirect("nickchk.jsp?nicknotused=" + nicknotused);
 			
 		// 회원가입 폼에서 member 테이블로 insert
@@ -91,7 +85,6 @@ public class SignupController extends HttpServlet {
 			try {
 				memberbirth = sdf.parse(prebirth);
 			} catch (ParseException e) {
-				System.out.println("[error] memberbirth");
 				e.printStackTrace();
 			}
 			
@@ -172,7 +165,6 @@ public class SignupController extends HttpServlet {
 	        }catch (MessagingException msg_e) {
 	            msg_e.printStackTrace();
 	        }
-	        System.out.println(real_code);
 	        request.setAttribute("code", real_code);
 	        dispatch("fntsignupformemailchk.jsp", request, response);
 		}

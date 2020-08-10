@@ -88,14 +88,11 @@ public class Paging {
         //endPage = ((page+(displayPage-1))/displayPage)*displayPage;
         
         // 1/10 0.1(올림) 1 (2번 방법)
-    	System.out.println("페이징에서 페이지수 " +page);
         endPage = ((int)Math.ceil(page/(double)displayPage))*displayPage;
         
         
         beginPage = endPage - (displayPage - 1);
         
-        System.out.println("엔드페이지" +endPage);
-        System.out.println("시작페이지" +beginPage);
         
         // 글 32개
         // 32/10 = 3.2 (올림) 4페이지

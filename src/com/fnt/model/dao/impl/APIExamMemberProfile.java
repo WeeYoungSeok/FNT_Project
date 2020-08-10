@@ -29,9 +29,7 @@ public class APIExamMemberProfile {
                 response.append(inputLine);
             }
             br.close();
-            System.out.println(response.toString());
         } catch (Exception e) {
-            System.out.println(e);
         }
     }
 
