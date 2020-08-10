@@ -98,6 +98,7 @@ th {
 </style>
 </head>
 <body>
+<section>
 	<h2 id="head" style="font-family:Arial;"><%=membernickname %>님의 정보보기</h2>
 	<table>
 		<col width=40/>
@@ -127,5 +128,6 @@ th {
 			<td colspan="4"></td>
 		</tr>
 	</table>
+	</section>
 </body>
 </html>
