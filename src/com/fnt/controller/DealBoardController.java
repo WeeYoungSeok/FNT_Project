@@ -254,7 +254,7 @@ public class DealBoardController extends HttpServlet {
 			if (res > 0) {
 				jsResponse("삭제되었습니다.", "dealboard.do?command=fntsaleboard", response);
 			} else {
-				jsResponse("삭제 실패", "dealboard.do?command=detailboard&dboardno=" + dboardno, response);
+				jsResponse("삭제 실패", "dealboard.do?command=detailsaleboard&dboardno=" + dboardno, response);
 			}
 
 		} else if (command.equals("updatebuyboard")) { // 구매글 수정하기

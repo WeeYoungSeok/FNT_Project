@@ -34,7 +34,7 @@
 			<th>제목</th>
 			<td colspan="5">
 				<c:choose>
-					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+					<c:when test="${dealboarddto.dsellflag eq 'Y' ||  dealboarddto.dsellflag eq 'F'}">
 						[판매완료]
 					</c:when>
 				</c:choose>
@@ -45,7 +45,7 @@
 			<th>찜</th>
 			<td style="text-align:center; padding-left:0px;">
 				<c:choose>
-					<c:when test="${dealboarddto.dsellflag eq 'Y' }">
+					<c:when test="${dealboarddto.dsellflag eq 'Y' ||  dealboarddto.dsellflag eq 'F' }">
 						<div align="center"><img alt="noWish" src="./icon/nosale.png" style="width:20px;height:25px;"></div>
 					</c:when>		
 				<c:otherwise>
@@ -108,7 +108,7 @@
 	%>
 	<%
 			String dealboardid = dealboarddto.getDid();
-			if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin")){
+			if(dealboarddto.getDid().equals(memberdto.getMemberid())|| memberdto.getMemberid().equals("admin") && dealboarddto.getDflag().equals("S")){
 	%>
 		<tr>
 			<td colspan="6" align="right">
@@ -124,7 +124,7 @@
 		}
 	%> 
 		<c:choose>
-			<c:when test="${dealboarddto.dsellflag eq 'Y' && dealboarddto.dnickname eq memberdto.membernickname }">
+			<c:when test="${(dealboarddto.dsellflag eq 'Y' ||  dealboarddto.dsellflag eq 'F') && dealboarddto.dnickname eq memberdto.membernickname}">
 				<tr>
 				<form action="mypage.do">
 					<td colspan="6" >
@@ -139,7 +139,7 @@
 							<c:otherwise>
 								<input type="text" name="invoice" id="invoice" placeholder="ex)1234567(CJ대한통운)" value="${invoice }">
 							</c:otherwise>
-						</c:choose>
+						</c:choose> 
 						<input id="sbbtn" type="submit" value="등록하기">
 						</div>
 					</td>
