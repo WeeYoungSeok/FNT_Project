@@ -99,7 +99,7 @@ public class Paging {
         // 2=?  2/10
         int totalPage = (int)Math.ceil(totalcount/(double)displayRow);
         
-        if(totalPage<endPage){
+        if(totalPage<=endPage){
             endPage = totalPage;
             next = false;
         }else{

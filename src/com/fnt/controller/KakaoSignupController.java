@@ -43,6 +43,7 @@ public class KakaoSignupController extends HttpServlet {
 		
 		// String apiUrl = "http://kauth.kakao.com/oauth/authorize?client_id=b11351d1a82132cce9f677667f92302a&redirect_uri=http://127.0.0.1:8787/FNT_Project/kakaosignup.do&response_type=code";
 		String access_token = request.getParameter("access_token");
+		System.out.println(access_token);
 		String apiUrl = "https://kapi.kakao.com/v2/user/me";
 		
 		StringBuffer res = new StringBuffer();
