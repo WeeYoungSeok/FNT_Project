@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orderlistmapper">
+	<resultMap type="orderlistdto" id="orderlistDtoResultMap">
+		<result property="olno" column="OL_NO" />
+		<result property="olid" column="OL_ID" />
+		<result property="olsellnickname" column="OL_SELL_NICKNAME" />
+		<result property="olinvoice" column="OL_INVOICE" />
+		<result property="olboardno" column="OL_BOARDNO" />
+	</resultMap>
+	
+	
+
+
+	<insert id="insert" parameterType="orderlistdto">
+		INSERT INTO ORDER_LIST 
+		VALUES (OL_NO_SEQ.NEXTVAL, #{olid}, #{olsellnickname}, '입력한 송장번호가 없습니다.', #{olboardno})
+	</insert>
+	
+	<update id="updateinvoice" parameterType="map">
+		UPDATE ORDER_LIST SET OL_INVOICE = #{invoice}
+		WHERE OL_SELL_NICKNAME = #{membernickname}
+		AND OL_BOARDNO = #{olboardno}
+	</update>
+	
+	<select id="selectInvoiceByBoardno" parameterType="int" resultType="String">
+		SELECT OL_INVOICE
+		FROM ORDER_LIST
+		WHERE OL_BOARDNO = #{dboardno}
+	</select>
+
+</mapper>

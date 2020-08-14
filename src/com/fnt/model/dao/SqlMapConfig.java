@@ -10,9 +10,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlMapConfig {
 
-	private SqlSessionFactory sqlSessionFactory;
+	private static SqlSessionFactory sqlSessionFactory;
 	
-	public SqlSessionFactory getSqlSessionFactory() {
+	public static SqlSessionFactory getSqlSessionFactory() {
 		String resource = "com/fnt/model/db/fnt_config.xml";
 		Reader reader = null;
 		

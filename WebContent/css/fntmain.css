@@ -1,0 +1,13 @@
+* {margin: 0px; padding: 0px;}
+
+#menutitle {padding-left:31% !important;}
+.box {width:100%; height:100%; position:relative; color:black;}
+.maincopy {font-family: "Arial"; font-size: 30pt; color: white; text-align: left; padding-left: 20%; line-height: 150%;}
+#box1 {background-image: linear-gradient(#332c4e 0.1%, #c78283 98%);}
+#box2 {background-image: linear-gradient(#c78283 1%, #895970 98%);}
+#box3 {background-image: linear-gradient(#895970 1%, #56638a 98%);}
+#box4 {background-image: linear-gradient(#56638a 1%, #774c60 98%);}
+#box5 {background-image: linear-gradient(#774c60 1%, #ff6700 98%);}
+#box6 {background-image: linear-gradient(#ff6700 1%, #0F8B8D 98%);}
+#box7 {background-image: linear-gradient(#0F8B8D 1%, #485696 98%);z-index:3;}
+#box8 {background-image: linear-gradient(#485696 1%, #6600cc);z-index:3;}

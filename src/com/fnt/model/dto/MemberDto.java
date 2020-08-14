@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MemberDto {
 
+	//toStrnig부분 주석처리된 부분은 다시 풀어놓고 다른거는 주석처리히고 가장 위에있는 생성자  주석처리하면 됌
 	private String memberid;
 	private String memberpw;
 	private String memberpwchk;
@@ -12,20 +13,46 @@ public class MemberDto {
 	private Date memberbirth;
 	private String memberphone;
 	private String memberaddr;
-	private String membermail;
+	private String memberemail;
 	private String memberrole;
 	private String memberenabled;
 	private Date memberregdate;
+	private String memberaccount;
 	
 	
-	
-	public MemberDto() {
+	public MemberDto(String memberid, String memberpw, String memberpwchk, String membernickname, String membername,
+			Date memberbirth, String memberphone, String memberaddr, String memberemail, String memberrole,
+			String memberenabled, Date memberregdate, String memberaccount) {
+		super();
+		this.memberid = memberid;
+		this.memberpw = memberpw;
+		this.memberpwchk = memberpwchk;
+		this.membernickname = membernickname;
+		this.membername = membername;
+		this.memberbirth = memberbirth;
+		this.memberphone = memberphone;
+		this.memberaddr = memberaddr;
+		this.memberemail = memberemail;
+		this.memberrole = memberrole;
+		this.memberenabled = memberenabled;
+		this.memberregdate = memberregdate;
+		this.memberaccount = memberaccount;
 	}
 
+	public String getMemberaccount() {
+		return memberaccount;
+	}
 
+	public void setMemberaccount(String memberaccount) {
+		this.memberaccount = memberaccount;
+	}
+
+	public MemberDto() {
+		
+	}
 
 	public MemberDto(String memberid, String memberpw, String memberpwchk, String membernickname, String membername,
-			Date memberbirth, String memberphone, String memberaddr, String membermail, String memberrole,
+			Date memberbirth, String memberphone, String memberaddr, String memberemail, String memberrole,
 			String memberenabled, Date memberregdate) {
 		this.memberid = memberid;
 		this.memberpw = memberpw;
@@ -35,13 +62,19 @@ public class MemberDto {
 		this.memberbirth = memberbirth;
 		this.memberphone = memberphone;
 		this.memberaddr = memberaddr;
-		this.membermail = membermail;
+		this.memberemail = memberemail;
 		this.memberrole = memberrole;
 		this.memberenabled = memberenabled;
 		this.memberregdate = memberregdate;
 	}
-
-
+	
+	// naver 로그인 -> 가입폼
+	public MemberDto(String membernickname, String memberemail, String membername, Date memberbirth) {
+		this.membernickname = membernickname;
+		this.membername = membername;
+		this.memberbirth = memberbirth;
+		this.memberemail = memberemail;
+	}
 
 	public String getMemberid() {
 		return memberid;
@@ -139,14 +172,14 @@ public class MemberDto {
 
 
 
-	public String getMembermail() {
-		return membermail;
+	public String getMemberemail() {
+		return memberemail;
 	}
 
 
 
-	public void setMembermail(String membermail) {
-		this.membermail = membermail;
+	public void setMemberemail(String memberemail) {
+		this.memberemail = memberemail;
 	}
 
 
@@ -179,13 +212,7 @@ public class MemberDto {
 		return memberregdate;
 	}
 
-
-
 	public void setMemberregdate(Date memberregdate) {
 		this.memberregdate = memberregdate;
 	}
-	
-	
-	
-	
 }

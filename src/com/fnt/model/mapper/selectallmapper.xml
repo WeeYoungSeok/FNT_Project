@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="select">
+   	<resultMap type="memberdto" id="memberDtoResultMap">
+ 		<result property="memberid" column="MEMBER_ID"></result>
+ 		<result property="memberpw" column="MEMBER_PW"></result>
+ 		<result property="memberpwchk" column="MEMBER_PWCHK"></result>
+ 		<result property="membernickname" column="MEMBER_NICKNAME"></result>
+ 		<result property="membername" column="MEMBER_NAME"></result>
+ 		<result property="memberbirth" column="MEMBER_BIRTH"></result>
+ 		<result property="memberphone" column="MEMBER_PHONE"></result>
+ 		<result property="memberaddr" column="MEMBER_ADDR"></result>
+ 		<result property="memberemail" column="MEMBER_EMAIL"></result>
+ 		<result property="memberrole" column="MEMBER_ROLE"></result>
+ 		<result property="memberenabled" column="ENABLED"></result>
+ 		<result property="memberregdate" column="REGDATE"></result>
+ 	</resultMap>
+  	<!-- 여부로 상태 출력 회원출력 -->
+	<select id="selectall"  parameterType="String" resultMap="memberDtoResultMap">
+		SELECT MEMBER_ID, MEMBER_NICKNAME, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDR, MEMBER_EMAIL, MEMBER_ROLE, ENABLED, REGDATE
+		FROM MEMBER
+		WHERE ENABLED=#{enabled} AND MEMBER_ROLE='USER'
+	</select>
+	<!-- 전체 회원 수 출력 -->
+	<select id="allmemcnt" resultType="int">
+		SELECT COUNT(*) as count 
+		FROM MEMBER
+		WHERE MEMBER_ROLE='USER'
+	</select>
+	<!-- 회원 상태에 따른 회원 수 출력 -->
+	<select id="enablememcnt" resultType="int">
+		SELECT COUNT(*) as count 
+		FROM MEMBER
+		WHERE ENABLED=#{enabled} AND MEMBER_ROLE='USER'
+	</select>
+	<!-- 신고된 회원 처리누르면 role를 r로 바꾸는 것 -->
+	<update id="updateRole" parameterType="String">
+		UPDATE MEMBER SET ENABLED = 'R' WHERE MEMBER_ID = #{receiveid}
+	</update>
+	<!-- 신고처리된 회원을 복귀버튼 누르면 enabled를 바꿔주자. -->
+	<update id="resetenabled" parameterType="String">
+		UPDATE MEMBER SET ENABLED = 'Y' WHERE MEMBER_ID = #{id}
+	</update>
+</mapper>

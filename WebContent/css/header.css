@@ -1,0 +1,100 @@
+header {
+   position: fixed;
+   background-color: rgba( 255, 255, 255, 0 ) !important;
+   width: 100vw;
+   height: 14%;
+   z-index: 6 !important;
+}
+
+#headerzone {
+   display: flex;
+   margin: 0 auto;
+   margin-left: 12%;
+}
+
+.fnt_logo {
+   width: 16%;
+   height: 16%;
+   margin-top: 0.5%;
+}
+
+#searchzone {
+   margin-left: 10%;
+   display: flex;
+   width: 40%;
+   flex-decoration: row;
+   margin-top: 2%;
+}
+
+#searchdeal {
+   width: 60%;
+   height: 56%;
+   padding-left: 2%;
+   border: 2px solid white;
+   border-radius: 4px 4px 4px 4px;
+}
+
+.mysection {
+   margin-left: 2%;
+   display: flex;
+   flex-decoration: row;
+   margin-top: 2%;
+}
+
+.headerbtn {
+   width: 70px;
+   height: 38px;
+   border: none;
+   border-radius: 2px 2px 2px 2px;
+   margin-left: 10px;
+   cursor: pointer;
+   color:white;
+   font-size:10pt;
+   font-weight:bold;
+   border-radius: 4px 4px 4px 4px;
+   background-color: rgba( 255, 255, 255, 0.5 );
+}
+
+.headerbtn:hover {
+   background-color: rgba(255,255,255,0);
+   border: 2px solid rgba(255,255,255,0.5); 
+}
+
+.alertbell {
+   width: 26px;
+   height: 26px;
+   margin-left: 6px;
+   margin-top: 2%;
+}
+
+#loginmsg {
+   font: 12pt "Arial";
+   right: 140px;
+   color: white;
+}
+
+#loginmsg > b {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#loginmsg > b:hover {
+	color: #fee500;
+}
+
+#trans {
+   width: 70px;
+   height: 38px;
+   border: none;
+   border-radius: 2px 2px 2px 2px;
+   margin-left: 10px;
+   color: white;
+   cursor: pointer;
+   background-color: #bbbbbb;
+   margin-left: 10px;
+}
+
+#trans:hover {
+   font-weight: bold;
+   background-color: black;
+}

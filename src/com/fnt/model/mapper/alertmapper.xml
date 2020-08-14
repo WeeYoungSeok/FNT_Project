@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="alert">
+
+ 	
+ <resultMap type="dealboarddto" id="dealBoardDtoResultMap">
+	<result property="dboardno" column="D_BOARDNO"/>
+	<result property="did" column="D_ID"/>
+	<result property="dnickname" column="D_NICKNAME"/>
+	<result property="dtitle" column="D_TITLE"/>
+	<result property="dfilename" column="D_FILENAME"/>
+	<result property="dcontent" column="D_CONTENT"/>
+	<result property="dprice" column="D_PRICE"/>
+	<result property="dregdate" column="D_REGDATE"/>
+	<result property="dcategory" column="D_CATEGORY"/>
+	<result property="dflag" column="D_FLAG"/>
+	<result property="dlongitude" column="D_LONGITUDE"/>
+	<result property="dlatitude" column="D_LATITUDE"/>
+</resultMap>
+	
+	<resultMap type="alertdto" id="alertDtoResultMap">
+ 		<result property="alertno" column="ALERT_NO"></result>
+ 		<result property="alertid" column="ALERT_ID"></result>
+ 		<result property="alertboardno" column="ALERT_BOARDNO"></result>
+ 		<result property="alertflag" column="ALERT_FLAG"></result>
+ 		<collection property="dealboarddto" resultMap="dealBoardDtoResultMap"></collection>
+ 	</resultMap>
+	
+	<!-- dealboard에 reply을 남길 시에 동시에 alert -->
+	<insert id="alertinsert" parameterType="alertdto">
+		INSERT INTO ALERT
+		VALUES(ALERT_NO_SEQ.NEXTVAL, #{alertid}, #{alertboardno}, 'Y')
+	</insert>
+	
+	<select id="alertlist" parameterType="String" resultMap="alertDtoResultMap">
+		SELECT D.D_TITLE, A.ALERT_NO, D.D_NICKNAME, D.D_BOARDNO, A.ALERT_BOARDNO, A.ALERT_FLAG
+		FROM ALERT A
+			JOIN DEAL_BOARD D ON (D.D_BOARDNO = A.ALERT_BOARDNO)
+			WHERE D.D_ID = #{memberid}
+			AND A.ALERT_FLAG = 'Y'
+			ORDER BY A.ALERT_NO DESC
+	</select>
+	
+	<update id="alertupdate" parameterType="int">
+		UPDATE ALERT SET ALERT_FLAG = 'N'
+		WHERE ALERT_BOARDNO = #{dboardno}
+	</update>
+	
+	<select id="alertcount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM ALERT WHERE ALERT_FLAG = 'Y'
+		AND ALERT_ID = #{memberid}
+	</select>
+</mapper>

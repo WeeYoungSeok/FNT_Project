@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dealboardmapper">
+<resultMap type="dealboarddto" id="dealBoardDtoResultMap">
+	<result property="dboardno" column="D_BOARDNO"/>
+	<result property="did" column="D_ID"/>
+	<result property="dnickname" column="D_NICKNAME"/>
+	<result property="dtitle" column="D_TITLE"/>
+	<result property="dfilename" column="D_FILENAME"/>
+	<result property="dcontent" column="D_CONTENT"/>
+	<result property="dprice" column="D_PRICE"/>
+	<result property="dregdate" column="D_REGDATE"/>
+	<result property="dcategory" column="D_CATEGORY"/>
+	<result property="dflag" column="D_FLAG"/>
+	<result property="dlongitude" column="D_LONGITUDE"/>
+	<result property="dlatitude" column="D_LATITUDE"/>
+	<result property="dsellflag" column="D_SELLFLAG"/>
+	<result property="droadname" column="D_ROADNAME"/>
+</resultMap>
+<!-- 판매목록 -->
+	<select id="selectsalelist" parameterType="map" resultMap="dealBoardDtoResultMap">
+		<![CDATA[
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_FLAG = 'S' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+	</select>
+	
+<!-- 구매목록 -->
+	<select id="selectbuylist" parameterType="map" resultMap="dealBoardDtoResultMap">
+	<![CDATA[
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME FROM DEAL_BOARD WHERE D_FLAG = 'B' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+	</select>
+
+<!-- 구매글 작성 -->
+	<insert id="insertbuyboard" parameterType="dealboarddto">
+		INSERT INTO DEAL_BOARD 
+		VALUES (DB_BOARDNO_SEQ.NEXTVAL, 
+			#{did}, 
+			#{dnickname}, 
+			#{dtitle}, 
+			#{dfilename}, 
+			#{dcontent}, 
+			#{dprice}, 
+			SYSDATE, 
+			#{dcategory}, 
+			'B',
+			#{dlongitude},
+			#{dlatitude},
+			'N',
+			#{droadname}
+			 )
+	</insert>
+
+<!-- 판매글 작성 -->
+	<insert id="insertsaleboard" parameterType="dealboarddto">
+		INSERT INTO DEAL_BOARD 
+		VALUES (DB_BOARDNO_SEQ.NEXTVAL, 
+			#{did}, 
+			#{dnickname}, 
+			#{dtitle}, 
+			#{dfilename}, 
+			#{dcontent}, 
+			#{dprice}, 
+			SYSDATE, 
+			#{dcategory}, 
+			'S',
+			#{dlongitude},
+			#{dlatitude},
+			'N',
+			#{droadname}
+			)
+	</insert>
+
+<!-- 글 자세히 보기 -->
+	<select id="selectdetail" resultMap="dealBoardDtoResultMap">
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+		FROM DEAL_BOARD
+		WHERE D_BOARDNO = #{dboardno}
+	</select>
+	
+<!-- 글 삭제하기 -->
+	<delete id="deletedealboard" parameterType="int">
+		DELETE DEAL_BOARD
+		WHERE D_BOARDNO = #{dboardno} 
+	</delete>
+
+<!-- 글 수정하기 -->
+	<update id="updatedealboard" parameterType="dealboarddto">
+		UPDATE DEAL_BOARD
+		SET D_TITLE = #{dtitle},
+			D_CONTENT = #{dcontent},
+			D_PRICE = #{dprice},
+			D_CATEGORY = #{dcategory},
+			D_FILENAME = #{dfilename},
+			D_LONGITUDE = #{dlongitude},
+			D_LATITUDE = #{dlatitude},
+			D_ROADNAME = #{droadname}
+		WHERE D_BOARDNO = #{dboardno}
+	</update>
+	
+	<!-- 구매글 페이징 -->
+	<select id="count" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'B'
+ 	</select>
+ 	
+ 	<!-- 판매글 페이징 -->
+	<select id="counts" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'S'
+ 	</select>
+ 	
+ 	<!-- 통합검색 구매, 판매 게시판 출력 -->
+ 	<select id="searchdeal" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 	<![CDATA[
+ 		 SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_TITLE LIKE '%'||#{searchdeal}||'%' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 통합검색 수 -->
+	<select id="countsearch" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_TITLE LIKE '%'||#{searchdeal}||'%'
+ 	</select>
+ 	
+ 	
+ 	
+ 	<select id="ascorder" parameterType="map" resultMap="dealBoardDtoResultMap">
+		<![CDATA[
+ 		 SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_TITLE LIKE '%'||#{searchdeal}||'%' ORDER BY D_BOARDNO DESC) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="desccategory" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		<![CDATA[
+	 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME
+	 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME, ROWNUM AS RNUM
+	        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_TITLE LIKE '%'||#{searchdeal}||'%' ORDER BY D_BOARDNO
+	 		) A WHERE ROWNUM <= #{startNum})
+	 		WHERE RNUM >= #{endNum}
+	 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="asccategory" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		<![CDATA[
+	 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME
+	 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME ,ROWNUM AS RNUM
+	        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_ROADNAME FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_TITLE LIKE '%'||#{searchdeal}||'%' ORDER BY D_BOARDNO DESC
+	 		) A WHERE ROWNUM <= #{startNum})
+	 		WHERE RNUM >= #{endNum}
+	 		ORDER BY D_BOARDNO ASC
+ 		]]>
+ 	</select>
+	
+	<!-- 구매 게시판에서 카테고리 검색 페이징 -->
+	 <select id="buycategorylist" parameterType="map" resultMap="dealBoardDtoResultMap">
+	 <![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_FLAG = 'B' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	<!-- 구매 게시판 카테고리 검색 페이징에 쓰일 카운트 -->
+ 	<select id="buycount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'B' AND D_CATEGORY = #{categorylist}
+ 	</select>
+ 	
+ 	
+ 	<!-- 구매 게시판 검색시 페이징(타이들 검색) 카운트 수 -->
+ 	<select id="buysearchcount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG='B' AND D_TITLE LIKE '%'||#{search}||'%'
+ 	</select>
+ 	
+ 	<!-- 구매 게시판 검색시 페이징(타이틀 검색) -->
+ 	<select id="searchdealtitle" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 	<![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_FLAG = 'B' AND D_TITLE LIKE '%'||#{search}||'%' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 구매 게시판 검색시 페이징(작성자 검색) -->
+ 	<select id="searchdealwriter" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		<![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_FLAG = 'B' AND D_NICKNAME LIKE '%'||#{search}||'%' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	
+ 	<!-- 구매 게시판 검색시 페이징(작성자 검색) 카운트 수 -->
+ 	<select id="buynicksearchcount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG='B' AND D_NICKNAME LIKE '%'||#{search}||'%'
+ 	</select>
+ 	
+ 	<!-- 판매 게시판 카테골이 검색 페이징에 쓰일 카운트 -->
+ 	<select id="salecount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG = 'S' AND D_CATEGORY = #{categorylist}
+ 	</select>
+ 	
+ 	
+ 	<!-- 판매 게시판에서 카테고리 검색 페이징 -->
+ 	<select id="salecategorylist" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 	 	<![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_FLAG = 'S' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 판매 게시판에서 타이틀 검색 페이징 -->
+ 	<select id="saletitle" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		<![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_FLAG = 'S' AND D_TITLE LIKE '%'||#{salesearch}||'%' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 판매 게시판에서 타이들 검색 카운트 수 (페이징) -->
+ 	<select id="salesearchcount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG='S' AND D_TITLE LIKE '%'||#{salesearch}||'%'
+ 	</select>
+ 	
+ 	<!-- 판매 게시판에서 작성자 검색 페이징 -->
+ 	<select id="salenick" parameterType="map" resultMap="dealBoardDtoResultMap">
+ 		<![CDATA[
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 		FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME, ROWNUM AS RNUM
+        FROM (SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME FROM DEAL_BOARD WHERE D_FLAG = 'S' AND D_NICKNAME LIKE '%'||#{salesearch}||'%' ORDER BY D_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum} 
+ 		ORDER BY D_BOARDNO DESC
+ 		]]>	
+ 	</select>
+ 	
+ 	
+ 	<!-- 판매 게시판 검색시 페이징(작성자 검색) 카운트 수 -->
+ 	<select id="salenicksearchcount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_FLAG='S' AND D_NICKNAME LIKE '%'||#{salesearch}||'%'
+ 	</select>
+ 	
+	<!-- 팝업 띄워서 D닉네임 가져가기 (판매글) -->
+ 	<select id="salepopnick" parameterType="String" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 	 	FROM DEAL_BOARD
+ 	 	WHERE D_NICKNAME = #{dnickname} AND D_FLAG = 'S'
+ 	 	ORDER BY D_BOARDNO		
+ 	</select>
+
+	<select id="cashselect" parameterType="int" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_LONGITUDE, D_LATITUDE, D_SELLFLAG, D_ROADNAME
+ 	 	FROM DEAL_BOARD
+ 	 	WHERE D_BOARDNO = #{dboardno}
+ 	</select>
+ 	
+ 	<update id="updatesellflag" parameterType="int">
+ 		UPDATE DEAL_BOARD SET D_SELLFLAG = 'Y' WHERE D_BOARDNO = #{dboardno}
+ 	</update>
+ 	
+ 	<!-- 관리자페이지에서 판매완료된 글을 조회하기 -->
+ 	<select id="selectselllist" resultMap="dealBoardDtoResultMap">
+ 		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_PRICE, D_REGDATE, D_SELLFLAG, D_ROADNAME
+ 		FROM DEAL_BOARD
+ 		WHERE D_SELLFLAG = 'Y'
+ 		OR D_SELLFLAG = 'F'
+ 		ORDER BY D_BOARDNO ASC
+ 	</select>
+ 	<!-- 회원이 구매확정버튼 눌렀을 때  -->
+ 	<update id="changesellflag" parameterType="int">
+ 		UPDATE DEAL_BOARD SET D_SELLFLAG = 'F'
+ 		WHERE D_BOARDNO = #{dboardno}
+ 	</update>
+ 	
+ 	<select id="countsearchcate" parameterType="map" resultType="int">
+ 		SELECT COUNT(*) as count FROM DEAL_BOARD WHERE D_CATEGORY = #{categorylist} AND D_TITLE LIKE '%'||#{searchdeal}||'%'
+ 	</select>
+</mapper>

@@ -1,0 +1,44 @@
+aside {
+	position:fixed; 
+	align:left; 
+	width:14%; 
+	height:100%; 
+	/*box-shadow:1px 0px 6px black;*/
+	z-index:4;
+}
+
+#menutitle {
+	margin-top:50% !important; 
+	font:18pt "Arial Black" !important; 
+	font-weight: bold;
+	color: rgba(255,255,255,0.5);
+	padding-left:6%;
+	letter-spacing: 2px;
+}
+
+#menubars {
+	height:62% !important;
+	display:none;
+}
+.menubar {
+	padding-top:10% !important; 
+	color:white; 
+	width:100% !important; 
+	height:6%; 
+	text-align:left; 
+	font:16pt "Arial" !important; 
+	cursor:pointer !important; 
+	opacity:0.6;
+}
+.mtext {
+	padding-left:30% !important;
+}
+.menubar:hover {
+	font-weight:bold !important; 
+	opacity:0.9;
+}
+.menubar_x {
+	width:100%; 
+	height:100%; 
+	opacity:0.6;
+}

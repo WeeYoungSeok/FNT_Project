@@ -5,6 +5,19 @@
 
 	<properties resource="com/fnt/model/db/fntdb.properties"></properties>
 
+	<typeAliases>
+		<typeAlias type="com.fnt.model.dto.NoticeBoardDto" alias="noticeboarddto"/>
+		<typeAlias type="com.fnt.model.dto.AlertDto" alias="alertdto"/>
+		<typeAlias type="com.fnt.model.dto.OrderlistDto" alias="orderlistdto"/>
+		<typeAlias type="com.fnt.model.dto.ReportDto" alias="reportdto"/>
+		<typeAlias type="com.fnt.model.dto.WishlistDto" alias="wishlistdto"/>
+		<typeAlias type="com.fnt.model.dto.DealBoardDto" alias="dealboarddto"/>
+		<typeAlias type="com.fnt.model.dto.MemberDto" alias="memberdto"/>
+		<typeAlias type="com.fnt.model.dto.QnaBoardDto" alias="qnaboarddto"/>
+		<typeAlias type="com.fnt.model.dto.ReplyDto" alias="replydto"/>
+	</typeAliases>
+	
+	
 
 	<environments default="development">
 		<environment id="development">
@@ -17,5 +30,20 @@
 			</dataSource>
 		</environment>
 	</environments>
+	
+	<mappers>
+  		<mapper resource="com/fnt/model/mapper/noticeboardmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/mypagemapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/selectallmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/dealboardmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/logincrudmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/signupmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/reportmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/qnaboardmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/wishlistmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/replymapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/alertmapper.xml"/>
+  		<mapper resource="com/fnt/model/mapper/orderlistmapper.xml"/>
+  </mappers>
 
 </configuration>

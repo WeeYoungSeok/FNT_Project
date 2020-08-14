@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="replymapper">
+	<resultMap type="replydto" id="replyDtoResultMap">
+		<result property="replyno" column="REPLY_NO"/>
+		<result property="replyid" column="REPLY_ID"/>
+		<result property="replynickname" column="REPLY_NICKNAME"/>
+		<result property="replyboardno" column="REPLY_BOARDNO"/>
+		<result property="replygroupno" column="REPLY_GROUPNO"/>
+		<result property="replygroupnoseq" column="REPLY_GROUPNOSEQ"/>
+		<result property="replytitletab" column="REPLY_TITLETAB"/>
+		<result property="replytitle" column="REPLY_TITLE"/>
+		<result property="replyregdate" column="REPLY_REGDATE"/>
+	</resultMap>
+	
+<!-- 댓글  찾아오기 -->
+<select id ="selectreply" parameterType="map" resultMap="replyDtoResultMap">
+	SELECT REPLY_NO, REPLY_ID, REPLY_NICKNAME, REPLY_BOARDNO, REPLY_GROUPNO, 
+			REPLY_GROUPNOSEQ, REPLY_TITLETAB, REPLY_TITLE, REPLY_REGDATE
+	FROM REPLY
+	WHERE REPLY_ID = #{replyid}
+	AND REPLY_NICKNAME = #{replynickname}
+	AND REPLY_TITLE = #{replytitle}
+	AND REPLY_BOARDNO = #{replyboardno}
+	ORDER BY REPLY_NO
+</select>
+	
+<!-- 댓글 리스트 가져오기 -->
+	<select id="selectreplylist" parameterType="int" resultMap="replyDtoResultMap">
+		SELECT REPLY_NO, 
+				REPLY_ID, 
+				REPLY_NICKNAME,
+				REPLY_BOARDNO, 
+				REPLY_GROUPNO, 
+				REPLY_GROUPNOSEQ, 
+				REPLY_TITLETAB,
+				REPLY_TITLE,
+				REPLY_REGDATE
+		FROM REPLY
+		WHERE REPLY_BOARDNO = #{replyboardno}
+		ORDER BY REPLY_GROUPNO, REPLY_REGDATE	
+	</select>
+	
+<!-- 댓글 등록 -->
+<insert id="insertreply" parameterType="map">
+	INSERT INTO REPLY
+	VALUES (REPLY_SEQ.NEXTVAL,
+			#{replyid},
+			#{replynickname},
+			#{replyboardno},
+			REPLY_GROUPNO_SEQ.NEXTVAL,
+			1,
+			0,
+			#{replytitle},
+			SYSDATE
+			)
+</insert>
+
+<!-- 대댓글 등록-->
+	<insert id="insertrereply" parameterType="map">
+		INSERT INTO REPLY
+		VALUES (REPLY_SEQ.NEXTVAL,
+			#{replyid},
+			#{replynickname},
+			#{replyboardno},
+			(SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_NO = #{parentreplyno}),
+			(SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_NO = #{parentreplyno})+1,
+			(SELECT REPLY_TITLETAB FROM REPLY WHERE REPLY_NO = #{parentreplyno})+1,
+			#{replytitle},
+			SYSDATE
+		)
+	</insert>
+	
+<!-- 댓글GROUPSEQ -->
+	<update id="updatereply" parameterType="map">
+		UPDATE REPLY
+		SET REPLY_GROUPNOSEQ = REPLY_GROUPNOSEQ +1
+		WHERE (REPLY_GROUPNO = (SELECT REPLY_GROUPNO FROM REPLY WHERE REPLY_NO = #{replyno})
+		AND REPLY_GROUPNOSEQ > (SELECT REPLY_GROUPNOSEQ FROM REPLY WHERE REPLY_NO = #{replyno}))
+		AND REPLY_BOARDNO = #{replyboardno}
+	</update>
+	 
+<!-- 댓글 삭제 -->
+	<delete id="deletereply" parameterType="int">
+		DELETE REPLY WHERE REPLY_NO = #{replyno}
+	</delete>
+	
+<!-- 댓글 다시 삭제 -->
+	<update id="deletereply2" parameterType="int">
+		UPDATE REPLY
+		SET REPLY_GROUPNOSEQ = 0
+		WHERE REPLY_NO = #{replyno}
+	</update>
+	
+<!-- boardno로 댓글 갯수 세기 -->
+	<select id="replyCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) 
+		FROM REPLY
+		WHERE REPLY_BOARDNO = #{replyboardno}
+	</select>
+	
+<!-- nickname이랑 boardno로 groupno 가져오기 -->
+	<select id="selectGroupnoByNicknameBoardno" parameterType="map" resultType="int">
+		SELECT REPLY_GROUPNO
+		FROM REPLY
+		WHERE REPLY_BOARDNO = #{boardno}
+		AND REPLY_NICKNAME = #{nickname}
+		GROUP BY REPLY_GROUPNO
+	</select>
+</mapper>

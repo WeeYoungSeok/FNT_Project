@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="signupmapper">
+
+	<resultMap type="memberdto" id="memberDtoResultMap">
+ 		<result property="memberid" column="MEMBER_ID"></result>
+ 		<result property="memberpw" column="MEMBER_PW"></result>
+ 		<result property="memberpwchk" column="MEMBER_PWCHK"></result>
+ 		<result property="membernickname" column="MEMBER_NICKNAME"></result>
+ 		<result property="membername" column="MEMBER_NAME"></result>
+ 		<result property="memberbirth" column="MEMBER_BIRTH"></result>
+ 		<result property="memberphone" column="MEMBER_PHONE"></result>
+ 		<result property="memberaddr" column="MEMBER_ADDR"></result>
+ 		<result property="memberemail" column="MEMBER_EMAIL"></result>
+ 		<result property="memberrole" column="MEMBER_ROLE"></result>
+ 		<result property="memberenabled" column="ENABLED"></result>
+ 		<result property="memberregdate" column="REGDATE"></result>
+ 		<result property="memberaccount" column="MEMBER_ACCOUNT"></result>
+ 	</resultMap>
+ 	
+ 	<!-- 입력한 id가 db에 있으면 가져오기 -->
+ 	<select id="selectidall" parameterType="String" resultMap="memberDtoResultMap">
+ 		SELECT MEMBER_ID
+ 		FROM MEMBER
+ 		WHERE MEMBER_ID = #{id}
+ 	</select>
+ 	
+ 	<!-- 입력한 nickname이 db에 있으면 가져오기 -->
+ 	<select id="selectnickall" parameterType="String" resultMap="memberDtoResultMap">
+ 		SELECT MEMBER_NICKNAME
+ 		FROM MEMBER
+ 		WHERE MEMBER_NICKNAME = #{nick}
+ 	</select>
+
+	<!-- 입력한 정보들 db에 넣기 -->
+	<insert id="signup" parameterType="memberdto">
+		INSERT INTO MEMBER 
+		VALUES(#{memberid}, #{memberpw}, #{memberpwchk}, #{membernickname}, #{membername}, #{memberbirth}, #{memberphone}, #{memberaddr}, #{memberemail}, 'USER', 'Y', SYSDATE,#{memberaccount})
+	</insert>
+
+</mapper>

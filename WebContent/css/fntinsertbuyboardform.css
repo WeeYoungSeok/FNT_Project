@@ -1,0 +1,41 @@
+* {margin: 0px; padding: 0px;}
+
+#menutitle {padding-left:31% !important;}
+
+#menubars {margin-top:2% !important; }
+.menubar {padding-top:0 !important; width:100% !important; padding-bottom:12%;}
+.mtext {padding-left:10% !important;}
+
+section {overflow: auto; z-index: 1;}
+
+#insertform {width: 70%; margin-left: 20%;}
+
+h1 {text-align: left; color: white; margin-bottom: 4%;}
+
+table {margin: 0 auto; margin-top: 3%; width: 100%; height: auto; font-family: Arial; float: center;}
+
+#dcategory {width: 20%; height: 114%; padding-left: 10px; border: none; background-color: rgba(255,255,255,0);}
+
+#dtitle {width: 110%; height: 34px; padding-left: 10px; border: none; background-color: rgba(255,255,255,0);}
+
+#dtitle::placeholder {color: white;}
+
+#listlast {background-color: rgba(255,255,255,0.5); height: 2px;}
+
+tr {height: 36px;}
+
+th {background-color: rgba(255,255,255,0.2); color: white; font-weight: bold; font-size: 12pt; text-align: center;}
+
+td {background-color: rgba(255,255,255,0); color: white; height: 30px; padding: 0px;}
+
+.panel {margin: 0px;}
+
+#dprice {width: 100%; height: 34px; padding-left: 10px; border: none; color: white; background-color: rgba(255,255,255,0);}
+
+#dprice::placeholder {color: white;}
+
+#formbtn {width: 50px; height: 34px; border: 2px solid rgba(255,255,255,0);
+ 	border-radius: 4px 4px 4px 4px; cursor: pointer; color: white;
+ 	background-color: rgba(255,255,255,0.2); margin-top: 2px;}
+
+#formbtn:hover {font-weight: bold; border: 2px solid rgba(255,255,255,0.5); background-color: rgba(255,255,255,0);}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qnaboard">
+
+	<resultMap type="qnaboarddto" id="qnaboardDtoResultMap">
+ 		<result property="qbboardno" column="QB_BOARDNO"></result>
+ 		<result property="qbid" column="QB_ID"></result>
+ 		<result property="qbnickname" column="QB_NICKNAME"></result>
+ 		<result property="qbtitle" column="QB_TITLE"></result>
+ 		<result property="qbcontent" column="QB_CONTENT"></result>
+ 		<result property="qbsecret" column="QB_SECRET"></result>
+ 		<result property="qbflag" column="QB_FLAG"></result>
+ 		<result property="qbregdate" column="QB_REGDATE"></result>
+ 		<result property="qbredate" column="QB_REDATE"></result>
+ 	</resultMap>
+
+	<select id="qnaselectPaging" parameterType="map" resultMap="qnaboardDtoResultMap">
+	<![CDATA[
+		SELECT QB_BOARDNO,QB_ID,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE
+ 		FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE,ROWNUM AS RNUM
+        FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE FROM QNA_BOARD ORDER BY QB_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum}
+ 		ORDER BY QB_BOARDNO DESC
+			]]>
+	</select>
+	
+	<select id="count" resultType="int">
+ 		SELECT COUNT(*) as count FROM QNA_BOARD
+ 	</select>
+ 	
+ 	<select id="qnaselectListOne" parameterType="int" resultMap="qnaboardDtoResultMap">
+ 		SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE, QB_REDATE 
+ 		FROM QNA_BOARD
+ 		WHERE QB_BOARDNO = #{qbboardno}
+ 	</select>
+ 	
+ 	<delete id="qnadelete" parameterType="int">
+ 		DELETE FROM QNA_BOARD
+ 		WHERE QB_BOARDNO = #{qbboardno}
+ 	</delete>
+ 	
+ 	<insert id="qnainsert" parameterType="qnaboarddto">
+ 		INSERT INTO QNA_BOARD
+		VALUES (QB_BOARDNO_SEQ.NEXTVAL, #{qbid}, #{qbnickname}, #{qbtitle}, #{qbcontent}, #{qbsecret}, 'N' , SYSDATE, SYSDATE)
+ 	</insert>
+ 	
+ 	<update id="qnarecomment" parameterType="qnaboarddto">
+ 		UPDATE QNA_BOARD
+ 		SET QB_CONTENT = #{qbcontent}, QB_REDATE = SYSDATE, QB_FLAG = 'Y' 
+ 		WHERE QB_BOARDNO = #{qbboardno} 
+ 	</update>
+ 	
+ 	<update id="qnaupdate" parameterType="qnaboarddto">
+ 		UPDATE QNA_BOARD
+ 		SET QB_TITLE = #{qbtitle}, QB_CONTENT = #{qbcontent}  
+ 		WHERE QB_BOARDNO = #{qbboardno} 
+ 	</update>
+ 	
+ 	<!-- 문의 게시판 검색 -->
+ 	<select id="qnalist" parameterType="map" resultMap="qnaboardDtoResultMap">
+ 		<![CDATA[
+		SELECT QB_BOARDNO,QB_ID,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE
+ 		FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE,ROWNUM AS RNUM
+        FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE FROM QNA_BOARD WHERE QB_TITLE LIKE '%'||#{searchqna}||'%' ORDER BY QB_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum}
+ 		ORDER BY QB_BOARDNO DESC
+			]]>
+ 	</select>
+ 	
+ 	<select id="nicklist" parameterType="map" resultMap="qnaboardDtoResultMap">
+ 	<![CDATA[
+		SELECT QB_BOARDNO,QB_ID,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE
+ 		FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE,ROWNUM AS RNUM
+        FROM (SELECT QB_BOARDNO,QB_ID ,QB_NICKNAME ,QB_TITLE,QB_CONTENT, QB_SECRET ,QB_FLAG ,QB_REDATE ,QB_REGDATE FROM QNA_BOARD WHERE QB_NICKNAME LIKE '%'||#{searchqna}||'%' ORDER BY QB_BOARDNO) A
+ 		WHERE ROWNUM <= #{startNum})
+		WHERE RNUM >= #{endNum}
+ 		ORDER BY QB_BOARDNO DESC
+			]]>
+ 	</select>
+ 	
+ 	
+ 	
+ 	<select id="titlecount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM QNA_BOARD WHERE QB_TITLE LIKE '%'||#{searchqna}||'%'
+ 	</select>
+ 	
+ 	<select id="writercount" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) as count FROM QNA_BOARD WHERE QB_NICKNAME LIKE '%'||#{searchqna}||'%'
+ 	</select>
+ 	
+</mapper>

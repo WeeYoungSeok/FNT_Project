@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="mypage">
+
+	<resultMap type="qnaboarddto" id="qnaboardDtoResultMap">
+ 		<result property="qbboardno" column="QB_BOARDNO"></result>
+ 		<result property="qbid" column="QB_ID"></result>
+ 		<result property="qbnickname" column="QB_NICKNAME"></result>
+ 		<result property="qbtitle" column="QB_TITLE"></result>
+ 		<result property="qbcontent" column="QB_CONTENT"></result>
+ 		<result property="qbsecret" column="QB_SECRET"></result>
+ 		<result property="qbflag" column="QB_FLAG"></result>
+ 		<result property="qbregdate" column="QB_REGDATE"></result>
+ 		<result property="qbredate" column="QB_REDATE"></result>
+ 	</resultMap>
+ 	
+	<resultMap type="dealboarddto" id="dealBoardDtoResultMap">
+		<result property="dboardno" column="D_BOARDNO"/>
+		<result property="did" column="D_ID"/>
+		<result property="dnickname" column="D_NICKNAME"/>
+		<result property="dtitle" column="D_TITLE"/>
+		<result property="dfilename" column="D_FILENAME"/>
+		<result property="dcontent" column="D_CONTENT"/>
+		<result property="dprice" column="D_PRICE"/>
+		<result property="dregdate" column="D_REGDATE"/>
+		<result property="dcategory" column="D_CATEGORY"/>
+		<result property="dflag" column="D_FLAG"/>
+		<result property="dsellflag" column="D_SELLFLAG"/>
+	</resultMap>
+ 	
+ 	<resultMap type="wishlistdto" id="wishlistDtoResultMap">
+	  	<result property="wlno" column="WL_NO"/>
+	  	<result property="wlid"	column="WL_ID"/>
+	  	<result property="wlsellnickname" column="WL_SELL_NICKNAME"/>
+	  	<result property="wlboardno" column="WL_BOARDNO"/>
+	  	<collection property="dealboarddto" resultMap="dealBoardDtoResultMap"></collection>
+  	</resultMap> 
+  	
+  	<resultMap type="orderlistdto" id="orderlistDtoResultMap">
+ 		<result property="olno" column="OL_NO"></result>
+ 		<result property="olid" column="OL_ID"></result>
+ 		<result property="olsellnickname" column="OL_SELL_NICKNAME"></result>
+ 		<result property="olinvoice" column="OL_INVOICE"></result>
+ 		<result property="olboardno" column="OL_BOARDNO"></result>
+ 		<collection property="dealboarddto" resultMap="dealBoardDtoResultMap"></collection>
+ 	</resultMap>
+  	
+  	
+  	
+  	
+   	<!-- 찜목록 조회할거야 -->
+  	<select id="wishlist" parameterType="String" resultMap="wishlistDtoResultMap">
+  		SELECT W.WL_NO, D.D_TITLE, W.WL_SELL_NICKNAME, D.D_REGDATE, D.D_FLAG, D.D_BOARDNO, D.D_PRICE
+			FROM WISH_LIST W INNER JOIN DEAL_BOARD D ON W.WL_BOARDNO = D.D_BOARDNO 
+			WHERE W.WL_ID = #{memberid} ORDER BY W.WL_NO ASC
+  	</select>
+  
+    	
+	<!-- 내가 쓴 판매글 조회할거야. -->
+	<select id="selllist" parameterType="String" resultMap="dealBoardDtoResultMap">
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG, D_SELLFLAG
+		FROM DEAL_BOARD WHERE D_ID = #{did} AND D_FLAG = 'S'
+		ORDER BY D_BOARDNO ASC
+	</select>
+	
+	<!-- 내가 쓴 구매글 조회할거야. -->
+	<select id="buylist" parameterType="String" resultMap="dealBoardDtoResultMap">
+		SELECT D_BOARDNO, D_ID, D_NICKNAME, D_TITLE, D_FILENAME, D_CONTENT, D_PRICE, D_REGDATE, D_CATEGORY, D_FLAG
+		FROM DEAL_BOARD WHERE D_ID = #{did} AND D_FLAG = 'B'
+		ORDER BY D_BOARDNO ASC
+	</select>
+	
+	<!-- 내가 쓴 문의글 조회할거야 -->
+	<select id="qnalist" parameterType="String" resultMap="qnaboardDtoResultMap">
+		 SELECT QB_BOARDNO, QB_ID, QB_NICKNAME, QB_TITLE, QB_CONTENT, QB_SECRET, QB_FLAG, QB_REGDATE, QB_REDATE
+		 FROM QNA_BOARD WHERE QB_ID = #{memberid}
+		 ORDER BY QB_BOARDNO ASC
+	</select>
+	<!-- 내가 한 주문내역 조회 -->
+	<select id="orderlist" parameterType="String" resultMap="orderlistDtoResultMap">
+		SELECT O.OL_NO, O.OL_SELL_NICKNAME, O.OL_INVOICE, D.D_TITLE, D.D_PRICE, D.D_BOARDNO, D_SELLFLAG
+		FROM ORDER_LIST O JOIN DEAL_BOARD D ON O.OL_BOARDNO = D.D_BOARDNO
+		WHERE O.OL_ID = #{memberid}
+		ORDER BY O.OL_NO ASC
+	</select>
+
+
+</mapper>
