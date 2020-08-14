@@ -13,7 +13,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-* {margin:0px; padding:0px;}
+* {margin:0px; padding:0px;} 
 
 #menutitle {padding-left:31% !important;}
 
