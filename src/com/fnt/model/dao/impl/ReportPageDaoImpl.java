@@ -1,3 +1,4 @@
+
 package com.fnt.model.dao.impl;
 
 import static com.fnt.model.dao.SqlMapConfig.getSqlSessionFactory;
