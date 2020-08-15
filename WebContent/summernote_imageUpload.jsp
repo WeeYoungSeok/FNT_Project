@@ -12,7 +12,7 @@
     // 이미지 업로드할 경로
    // getrealpath
     
-   String realpath =  request.getSession().getServletContext().getRealPath("/");
+    String realpath =  request.getSession().getServletContext().getRealPath("/");
 	System.out.println("realpath : " +realpath);
     
     System.out.println("[이미지 업로드 하는중]");
